@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Iakov Volf on 4/16/2015.
  */
-public class LoginPage extends Page {
+public class RegistrationPage extends Page {
 
     //fields
     @FindBy(id = "polelogin" )
@@ -24,7 +24,7 @@ public class LoginPage extends Page {
     WebElement loginButton;
 
 
-    public LoginPage(WebDriver driver) {
+    public RegistrationPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://ec2-54-166-51-117.compute-1.amazonaws.com:8080/myavailabletime/";
         PageFactory.initElements(driver, this);

@@ -2,6 +2,7 @@ package com.telran.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.internal.WebElementToJsonConverter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -22,6 +23,58 @@ public class RegistrationPage extends Page {
     //buttons
     @FindBy(id = "1" )
     WebElement loginButton;
+
+    //fields
+    @FindBy(xpath = "html//div[1]//form/div[2]//input")
+    WebElement emailField;
+
+    @FindBy(xpath = "html//div//div//div//div[2]/div[2]/input")
+    WebElement passwordField1;
+
+    @FindBy(xpath = "html//div//div//div//div[3]/div/input")
+    WebElement firstNameField;
+
+    @FindBy(xpath = "html//div//div//div//div[4]//input")
+    WebElement lastNameField;
+
+    @FindBy(xpath = "html//div//div//div//div[5]//input")
+    WebElement conditionField;
+
+    //buttons
+    @FindBy(xpath = "html//ng-include//div//ul/li[1]/span/a")
+    WebElement signUpInTheUpperRightCorner;
+
+    @FindBy(xpath = ".//*[@id='submit']")
+    WebElement signUpButton;
+
+    //checkboxs
+    @FindBy(xpath = "html//div//div//div//div[6]//div//input")
+    WebElement checkBox18;
+
+    @FindBy(xpath = "html//div//div//div//div[7]//div//input")
+    WebElement checkBoxAgree;
+
+    //alerts
+    @FindBy(xpath = "html//div//div//div//div/div[3]/div")
+    WebElement notaValidEmail;
+
+    @FindBy(xpath = "html//div//div//div//div/div[3]/div")
+    WebElement notaValidPassword;
+
+    @FindBy(xpath = "html//div//div//div//div[3]/div/div")
+    WebElement notaValidFirstName;
+
+    @FindBy(xpath = "html//div//div//div//div/div[2]/div")
+    WebElement notaValidLastName;
+
+    @FindBy(xpath = "html//div//div//div//div/div[2]/div[1]")
+    WebElement conditionNotFound;
+
+    @FindBy(xpath = "html//div//div//div//div[6]/div[2]/div[1]")
+    WebElement alertToCheckBox18;
+
+    @FindBy(xpath = "html//div//div//div//div[7]/div[3]/div")
+    WebElement alertToCheckBoxAgree;
 
 
     public RegistrationPage(WebDriver driver) {

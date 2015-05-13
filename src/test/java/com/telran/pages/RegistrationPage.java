@@ -13,22 +13,11 @@ import java.io.IOException;
 public class RegistrationPage extends Page {
 
     //fields
-    @FindBy(id = "polelogin" )
-    WebElement usernameField;
-
-    @FindBy(id = "password" )
-    WebElement passwordField;
-
-    //buttons
-    @FindBy(id = "1" )
-    WebElement loginButton;
-
-    //fields
     @FindBy(name = "email")
     WebElement emailField;
 
     @FindBy(name = "password")
-    WebElement passwordField1;
+    WebElement passwordField;
 
     @FindBy(name = "firstName")
     WebElement firstNameField;

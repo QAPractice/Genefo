@@ -46,14 +46,13 @@ public class RegistrationTest {
 
         try {
 
-            registrationPage.fillFirstNameField("Piter");
-            registrationPage.fillLastNameField("Pen");
-            registrationPage.fillPasswordField("111111");
-            registrationPage.fillEmailField("us000998@genefo.com");
-            registrationPage.fillConditionField("Alstrom");
-            registrationPage.clickToCheckBox18();
-            registrationPage.clickToCheckBoxAgree();
-            registrationPage.clickToSubmit();
+            registrationPage.fillFirstNameField("Piter")
+                    .fillLastNameField("Pen").fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
             assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {

@@ -28,7 +28,7 @@ public class RegistrationPage extends Page {
     @FindBy(name = "condition")
     WebElement conditionField;
 
-    @FindBy(xpath = "//*[@id='typeahead-00A-1397-option-0']/*[1]")
+    @FindBy(xpath = "//*[@id='typeahead-00A-1397-option-0']")
     WebElement conditionToltip;
 
     //buttons
@@ -78,28 +78,33 @@ public class RegistrationPage extends Page {
         driver.get(PAGE_URL);
     }
 
-    public void fillEmailField(String email){
+    public RegistrationPage fillEmailField(String email) {
         setElementText(emailField, email);
-    }
-    
-    public void fillPasswordField(String password){
-        setElementText(passwordField, password);
-    }
-    
-    public void fillFirstNameField(String firstName){
-        setElementText(firstNameField, firstName);
-    }
-    
-    public void fillLastNameField(String lastName){
-        setElementText(lastNameField, lastName);
-    }
-    
-    public void fillConditionField(String condition){
-        setElementText(conditionField, condition);
-        clickElement(conditionToltip);
+        return this;
     }
 
-    public void waitUntilRegPageIsLoaded() {
+    public RegistrationPage fillPasswordField(String password) {
+        setElementText(passwordField, password);
+        return this;
+    }
+
+    public RegistrationPage fillFirstNameField(String firstName) {
+        setElementText(firstNameField, firstName);
+        return this;
+    }
+
+    public RegistrationPage fillLastNameField(String lastName) {
+        setElementText(lastNameField, lastName);
+        return this;
+    }
+
+    public RegistrationPage fillConditionField(String condition) {
+        setElementText(conditionField, condition);
+        clickElement(conditionToltip);
+        return this;
+    }
+
+    public RegistrationPage waitUntilRegPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(conditionField);
         } catch (IOException e) {
@@ -107,29 +112,34 @@ public class RegistrationPage extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        return this;
     }
 
-    public void clickToSignUp() {
+    public RegistrationPage clickToSignUp() {
         clickElement(signUpReg);
+        return this;
     }
     
     public void clickToSubmit(){
         clickElement(submitButton);
         ProfilePage profilePage;
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
+
     }
-    
-    public void clickToCheckBox18(){
+
+    public RegistrationPage clickToCheckBox18() {
         clickElement(checkBox18);
+        return this;
     }
-    
-    public void clickToCheckBoxAgree(){
+
+    public RegistrationPage clickToCheckBoxAgree() {
         clickElement(checkBoxAgree);
+        return this;
     }
 
 
     public boolean isOnRegistrationPage() {
         return exists(alertToCheckBox18);
+
     }
 }

@@ -95,7 +95,7 @@ public class RegistrationPage extends Page {
         setElementText(passwordField, password);
     }
     
-    public void fiilFirstNameField(String firstName){
+    public void fillFirstNameField(String firstName){
         setElementText(firstNameField, firstName);
     }
     

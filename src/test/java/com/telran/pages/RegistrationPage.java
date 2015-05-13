@@ -25,33 +25,33 @@ public class RegistrationPage extends Page {
     WebElement loginButton;
 
     //fields
-    @FindBy(xpath = "html//div[1]//form/div[2]//input")
+    @FindBy(name = "email")
     WebElement emailField;
 
-    @FindBy(xpath = "html//div//div//div//div[2]/div[2]/input")
+    @FindBy(name = "password")
     WebElement passwordField1;
 
-    @FindBy(xpath = "html//div//div//div//div[3]/div/input")
+    @FindBy(name = "firstName")
     WebElement firstNameField;
 
-    @FindBy(xpath = "html//div//div//div//div[4]//input")
+    @FindBy(name  = "lastName")
     WebElement lastNameField;
 
-    @FindBy(xpath = "html//div//div//div//div[5]//input")
+    @FindBy(xpath = "condition")
     WebElement conditionField;
 
     //buttons
     @FindBy(xpath = "html//ng-include//div//ul/li[1]/span/a")
-    WebElement signUpInTheUpperRightCorner;
+    WebElement signUpReg;
 
     @FindBy(xpath = ".//*[@id='submit']")
-    WebElement signUpButton;
+    WebElement submitButton;
 
     //checkboxs
-    @FindBy(xpath = "html//div//div//div//div[6]//div//input")
+    @FindBy(name = "isOver18")
     WebElement checkBox18;
 
-    @FindBy(xpath = "html//div//div//div//div[7]//div//input")
+    @FindBy(name = "TOS")
     WebElement checkBoxAgree;
 
     //alerts
@@ -79,17 +79,32 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://ec2-54-166-51-117.compute-1.amazonaws.com:8080/myavailabletime/";
+        this.PAGE_URL = "http://genefo.com:8080/signup_regular";
         PageFactory.initElements(driver, this);
     }
 
-    public void openLoginPage() {
+    public void openRegistrationPage() {
         driver.get(PAGE_URL);
     }
 
-    public void fillLoginfields(String userName, String pass) {
-        setElementText(usernameField, userName);
-        setElementText(passwordField, pass);
+    public void fillEmailField(String email){
+        setElementText(emailField, email);
+    }
+    
+    public void fillPasswordField(String password){
+        setElementText(passwordField, password);
+    }
+    
+    public void fiilFirstNameField(String firstName){
+        setElementText(firstNameField, firstName);
+    }
+    
+    public void fillLastNameField(String lastName){
+        setElementText(lastNameField, lastName);
+    }
+    
+    public void fillConditionField(String condition){
+        setElementText(conditionField, condition);
     }
 
     public void waitUntilLoginPageIsLoaded() {
@@ -103,36 +118,20 @@ public class RegistrationPage extends Page {
 
     }
 
-    public void login(String login, String pass) throws Exception {
-        waitUntilLoginPageIsLoaded();
-        fillLoginfields(login, pass);
-        clickToLogin();
+    public void clickToSignUp() {
+        clickElement(signUpReg);
     }
-
-    public void loginWithoutPass() throws Exception {
-        openLoginPage();
-        waitUntilElementIsLoaded(loginButton);
-        fillLoginfields("Mary", "");
-        clickToLogin();
+    
+    public void clickToSubmit(){
+        clickElement(submitButton);
     }
-
-    public void clickToLogin() {
-        clickElement(loginButton);
+    
+    public void clickToCheckBox18(){
+        clickElement(checkBox18);
     }
-
-
-    public boolean exists(WebElement element) {
-        return super.exists(element);
+    
+    public void clickToCheckBoxAgree(){
+        clickElement(checkBoxAgree);
     }
-
-
-    public boolean isLoggedIn(WebElement element) {
-        return super.exists(element);
-    }
-
-    public boolean isNotLoggedIn() {
-        return verifyElementIsPresent(loginButton);
-    }
-
 }
 

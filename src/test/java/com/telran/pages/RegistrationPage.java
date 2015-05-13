@@ -22,7 +22,7 @@ public class RegistrationPage extends Page {
     @FindBy(name = "firstName")
     WebElement firstNameField;
 
-    @FindBy(name  = "lastName")
+    @FindBy(name = "lastName")
     WebElement lastNameField;
 
     @FindBy(name = "condition")
@@ -74,8 +74,9 @@ public class RegistrationPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    public void openRegistrationPage() {
+    public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
+        return this;
     }
 
     public RegistrationPage fillEmailField(String email) {
@@ -119,8 +120,8 @@ public class RegistrationPage extends Page {
         clickElement(signUpReg);
         return this;
     }
-    
-    public void clickToSubmit(){
+
+    public void clickToSubmit() {
         clickElement(submitButton);
         ProfilePage profilePage;
         profilePage = PageFactory.initElements(driver, ProfilePage.class);

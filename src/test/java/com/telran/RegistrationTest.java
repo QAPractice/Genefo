@@ -33,9 +33,11 @@ public class RegistrationTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
-        registrationPage.openRegistrationPage();
+
         try {
-            registrationPage.waitUntilRegPageIsLoaded();
+            registrationPage
+                    .openRegistrationPage()
+                    .waitUntilRegPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,8 +47,8 @@ public class RegistrationTest {
     public void RegTestSuccess() {
 
         try {
-
-            registrationPage.fillFirstNameField("Piter")
+            registrationPage
+                    .fillFirstNameField("Piter")
                     .fillLastNameField("Pen").fillPasswordField("111111")
                     .fillEmailField("us000998@genefo.com")
                     .fillConditionField("Alstrom")

@@ -2,14 +2,13 @@ package com.telran.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.internal.WebElementToJsonConverter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
 /**
- * Created by Iakov Volf on 4/16/2015.
+ * Created by Iakov Volf, Maria on 4/16/2015.
  */
 public class RegistrationPage extends Page {
 
@@ -37,8 +36,11 @@ public class RegistrationPage extends Page {
     @FindBy(name  = "lastName")
     WebElement lastNameField;
 
-    @FindBy(xpath = "condition")
+    @FindBy(name = "condition")
     WebElement conditionField;
+
+    @FindBy(xpath = "//*[@id='typeahead-00A-1397-option-0']/*[1]")
+    WebElement conditionToltip;
 
     //buttons
     @FindBy(xpath = "html//ng-include//div//ul/li[1]/span/a")
@@ -55,25 +57,25 @@ public class RegistrationPage extends Page {
     WebElement checkBoxAgree;
 
     //alerts
-    @FindBy(xpath = "html//div//div//div//div/div[3]/div")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'email')]")
     WebElement notaValidEmail;
 
-    @FindBy(xpath = "html//div//div//div//div/div[3]/div")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'password')]")
     WebElement notaValidPassword;
 
-    @FindBy(xpath = "html//div//div//div//div[3]/div/div")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'first name')]")
     WebElement notaValidFirstName;
 
-    @FindBy(xpath = "html//div//div//div//div/div[2]/div")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'last name')]")
     WebElement notaValidLastName;
 
-    @FindBy(xpath = "html//div//div//div//div/div[2]/div[1]")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'condition')]")
     WebElement conditionNotFound;
 
-    @FindBy(xpath = "html//div//div//div//div[6]/div[2]/div[1]")
+    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'18 or older')]")
     WebElement alertToCheckBox18;
 
-    @FindBy(xpath = "html//div//div//div//div[7]/div[3]/div")
+    @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
 
 
@@ -105,11 +107,12 @@ public class RegistrationPage extends Page {
     
     public void fillConditionField(String condition){
         setElementText(conditionField, condition);
+        clickElement(conditionToltip);
     }
 
-    public void waitUntilLoginPageIsLoaded() {
+    public void waitUntilRegPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(loginButton);
+            waitUntilElementIsLoaded(conditionField);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -124,6 +127,8 @@ public class RegistrationPage extends Page {
     
     public void clickToSubmit(){
         clickElement(submitButton);
+        ProfilePage profilePage;
+        profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
     
     public void clickToCheckBox18(){
@@ -133,5 +138,9 @@ public class RegistrationPage extends Page {
     public void clickToCheckBoxAgree(){
         clickElement(checkBoxAgree);
     }
-}
 
+
+    public boolean isOnRegistrationPage() {
+        return exists(alertToCheckBox18);
+    }
+}

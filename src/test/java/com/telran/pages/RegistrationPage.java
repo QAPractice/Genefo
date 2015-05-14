@@ -28,7 +28,7 @@ public class RegistrationPage extends Page {
     @FindBy(name = "condition")
     WebElement conditionField;
 
-    @FindBy(xpath = "//*[@id='typeahead-00A-1397-option-0']")
+    @FindBy(xpath = "//*[ contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]")
     WebElement conditionToltip;
 
     //buttons
@@ -47,19 +47,19 @@ public class RegistrationPage extends Page {
 
     //alerts
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'email')]")
-    WebElement notaValidEmail;
+    WebElement nonValidEmail;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'password')]")
-    WebElement notaValidPassword;
+    WebElement nonValidPassword;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'first name')]")
-    WebElement notaValidFirstName;
+    WebElement nonValidFirstName;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'last name')]")
-    WebElement notaValidLastName;
+    WebElement nonValidLastName;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'condition')]")
-    WebElement conditionNotFound;
+    WebElement nonValidCondition;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'18 or older')]")
     WebElement alertToCheckBox18;
@@ -140,7 +140,37 @@ public class RegistrationPage extends Page {
 
 
     public boolean isOnRegistrationPage() {
-        return exists(alertToCheckBox18);
-
+        return exists(checkBox18);
     }
+
+    //check alert presence
+
+    public boolean alertMessageNotValidFirstName() {
+        return exists(nonValidFirstName);
+    }
+
+    public boolean alertMessageNotValidLastName() {
+        return exists(nonValidLastName);
+    }
+
+    public boolean alertMessageNotValidEmail() {
+        return exists(nonValidEmail);
+    }
+
+    public boolean alertMessageNotValidPassword() {
+        return exists(nonValidPassword);
+    }
+
+    public boolean alertMessageNotValidCondition() {
+        return exists(nonValidCondition);
+    }
+
+    public boolean alertMessageNonChecked18() {
+        return exists(alertToCheckBox18);
+    }
+
+    public boolean alertMessageNonCheckedTerms() {
+        return exists(alertToCheckBoxAgree);
+    }
+
 }

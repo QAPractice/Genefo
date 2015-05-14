@@ -60,10 +60,149 @@ public class RegistrationTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
+    @Test
+    public void RegTestWhitoutCondition() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen").fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("NoCon")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidCondition());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void RegTestWhitoutLastName() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("222")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void RegTestWhitoutFirstName() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("1")
+                    .fillLastNameField("Pen").fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidFirstName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void RegTestWhitoutPassword() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidPassword());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void RegTestWhitoutEmail() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void RegTestWhitoutCheckBox18() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNonChecked18());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void RegTestWhitoutCheckBoxTerms() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNonChecked18());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();

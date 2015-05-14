@@ -35,7 +35,7 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = "html//ng-include//div//ul/li[1]/span/a")
     WebElement signUpReg;
 
-    @FindBy(xpath = ".//*[@id='submit']")
+    @FindBy(id = "submit")
     WebElement submitButton;
 
     //checkboxs

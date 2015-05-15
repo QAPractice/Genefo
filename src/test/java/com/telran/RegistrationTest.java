@@ -76,7 +76,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNotValidCondition());
             assertTrue(registrationPage.isOnRegistrationPage());
-
+            assertTrue(registrationPage.notAvailableSignUpButton());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +97,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,7 +118,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
-
+            assertTrue(registrationPage.notAvailableSignUpButton());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,6 +139,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNotValidPassword());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,6 +161,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,6 +182,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNonChecked18());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,6 +202,7 @@ public class RegistrationTest {
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNonChecked18());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();

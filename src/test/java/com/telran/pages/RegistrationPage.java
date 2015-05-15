@@ -38,6 +38,9 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = ".//*[@id='submit']")
     WebElement submitButton;
 
+    @FindBy(xpath = "*//button[@disabled='disabled']")
+    WebElement submitNotAvailable;
+
     //checkboxs
     @FindBy(name = "isOver18")
     WebElement checkBox18;
@@ -173,4 +176,5 @@ public class RegistrationPage extends Page {
         return exists(alertToCheckBoxAgree);
     }
 
+    public boolean notAvailableSignUpButton(){return exists(submitNotAvailable);}
 }

@@ -199,7 +199,7 @@ public class RegistrationTest {
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToSubmit();
-            assertTrue(registrationPage.alertMessageNonChecked18());
+            assertTrue(registrationPage.alertMessageNonCheckedTerms());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
 

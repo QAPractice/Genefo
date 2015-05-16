@@ -188,6 +188,7 @@ public class RegistrationTest {
         }
     }
 
+    @Test
     public void RegTestWhitoutCheckBoxTerms() {
 
         try {
@@ -200,6 +201,452 @@ public class RegistrationTest {
                     .clickToCheckBox18()
                     .clickToSubmit();
             assertTrue(registrationPage.alertMessageNonCheckedTerms());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //EmailField
+    //1
+    @Test
+    public void RegTestWithoutAtInEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestWithSpecialCharactersInEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("!)*@#$%^&*.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //3
+    @Test
+    public void RegTestWithoutLocalPartInEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //4
+    @Test
+    public void RegTestWithoutDomainPartInEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //5
+
+    @Test
+    public void RegTestWithConsecutiveDotsInEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo..com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //6
+    @Test
+    public void RegTestWithDotInTheBeginningLocalPartEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField(".us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //7
+    @Test
+    public void RegTestWithDotInTheBeginningDomainPartEmailField() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@.genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //8
+    @Test
+    public void RegTestWithEmailContains256Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@.genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidEmail());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //PasswordField
+    //1
+    @Test
+    public void RegTestWithPasswordContains5Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("11111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidPassword());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestWithPasswordContains13Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("1111111111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidPassword());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //FirstName
+    //1
+    @Test
+    public void RegTestWithFirstNameContainsSpecialCharacters() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("@#$%^&*(")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidFirstName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestWithFirstNameContainsDigits() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("55Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidFirstName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //3
+    @Test
+    public void RegTestWithFirstNameContainsUnderscore() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter_Pit")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidFirstName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //4
+    @Test
+    public void RegTestWithFirstNameContains26Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("PiterPiterPiterPiterPiterr")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidFirstName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //LastName
+    //1
+    @Test
+    public void RegTestWithLastNameContainsSpecialCharacters() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("@#$%^&*(")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestWithLastNameContainsDigits() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("55Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //3
+    @Test
+    public void RegTestWithLastNameContainsUnderscore() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen_Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //4
+    @Test
+    public void RegTestWithLastNameContains26Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("PenPenPenPenPenPenPenPennn")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Condition
+    @Test
+    public void RegTestWithConditionNotFromList() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Appendicitis")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidCondition());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
 

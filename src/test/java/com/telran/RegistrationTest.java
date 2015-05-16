@@ -654,6 +654,299 @@ public class RegistrationTest {
             e.printStackTrace();
         }
     }
+
+
+    //Positive Tests emails variations
+
+    //1
+    @Test
+    public void RegTestEmailLocalPartBeginsNumber() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("99piter@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestEmailDomainNameBeginsNumber() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("piter@77genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //3
+
+    @Test
+    public void RegTestEmailWithDotsLocalAndDomain() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("piter.pen.21@77.genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //4
+
+    @Test
+    public void RegTestEmailWithHypenInLocalPart() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("piter-pen@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //5
+    @Test
+    public void RegTestEmailWithHypenInDomainPart() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("piter@ru-genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //6
+
+    @Test
+    public void RegTestEmailWithUnderscoreInLocalPart() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("piter_pen@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Positive test for password
+
+    //1
+    @Test
+    public void RegTestPassword6Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("abs123")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestPassword8Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("absd1234")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //3
+    @Test
+    public void RegTestPassword12Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("absdef123456")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Positive Tests for FirstNameField
+
+    //1
+    @Test
+    public void RegTestFirstName25Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("PiterPiterPiter")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void RegTestFirstName1Symbol() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("P")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("absdef123456")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //Positive Tests for LastNameField
+
+    //1
+    @Test
+    public void RegTestLastName25Symbols() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("PiterPiterPiterPiterPiter")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //2
+    @Test
+    public void RegTestLastName1Symbol() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Pitel")
+                    .fillLastNameField("P")
+                    .fillPasswordField("absdef123456")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
@@ -675,4 +968,5 @@ public class RegistrationTest {
     }
 
 }
+
 

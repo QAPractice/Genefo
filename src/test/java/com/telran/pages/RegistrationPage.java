@@ -28,7 +28,7 @@ public class RegistrationPage extends Page {
     @FindBy(name = "condition")
     WebElement conditionField;
 
-    @FindBy(xpath = "//*[ contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]")
+    @FindBy(xpath = "//*[contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement conditionToltip;
 
     //buttons

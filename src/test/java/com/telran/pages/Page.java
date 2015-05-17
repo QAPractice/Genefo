@@ -78,7 +78,7 @@ public abstract class Page {
   }
 
 
-  public void verifyText(String text, WebElement element) {
+  public void verifyText(WebElement element, String text) {
     try {
       Assert.assertEquals(text, element.getText());
     } catch (Error e) {
@@ -86,7 +86,7 @@ public abstract class Page {
     }
   }
 
-    public boolean verifyTextBoolean(String text, WebElement element) {
+  public boolean verifyTextBoolean(WebElement element, String text) {
        return text.equals(element.getText());
     }
 

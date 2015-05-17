@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by Anton on 13-May-15.
+ * Created by Anton, Regina on 13-May-15.
  */
 public class ProfilePage extends Page {
     //Titles
@@ -26,6 +26,8 @@ public class ProfilePage extends Page {
     WebElement profileLastNameField;
     @FindBy(xpath = "condition")
     WebElement profileConditionField;
+    @FindBy(name = "genderID")
+    WebElement profileGender;
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -43,6 +45,15 @@ public class ProfilePage extends Page {
             e.printStackTrace();
         }
 
+    }
+
+    public ProfilePage selectGender(String value) {
+        selectValueInDropdown(profileGender, value);
+        return this;
+    }
+
+    public boolean isGenderSelected(String value) {
+        return verifyTextBoolean(profileGender, value);
     }
 
     public boolean isOnProfilePage() {

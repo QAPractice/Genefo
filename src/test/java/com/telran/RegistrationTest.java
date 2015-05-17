@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by Iakov Volf, Oleg on 5/4/2015.
+ * Created by Iakov Volf, on 5/4/2015.
  */
 public class RegistrationTest {
 
@@ -25,9 +25,9 @@ public class RegistrationTest {
     RegistrationPage registrationPage;
     ProfilePage profilePage;
     private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
 
-    @BeforeClass(alwaysRun = true)
+
+    @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
@@ -43,19 +43,23 @@ public class RegistrationTest {
         }
     }
 
+
     @Test
     public void RegTestSuccess() {
 
         try {
             registrationPage
-                    .fillFirstNameField("Piter")
-                    .fillLastNameField("Pen").fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillFirstNameField("gggg")
+                    .fillLastNameField("")
+                    .fillPasswordField("111111")
+                    .fillEmailField("usgenefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
             assertTrue(profilePage.isOnProfilePage());
+            profilePage.selectGender("Other");
+            profilePage.isGenderSelected("Other");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +72,8 @@ public class RegistrationTest {
         try {
             registrationPage
                     .fillFirstNameField("Piter")
-                    .fillLastNameField("Pen").fillPasswordField("111111")
+                    .fillLastNameField("Pen")
+                    .fillPasswordField("111111")
                     .fillEmailField("us000998@genefo.com")
                     .fillConditionField("NoCon")
                     .clickToCheckBox18()
@@ -104,6 +109,26 @@ public class RegistrationTest {
         }
     }
 
+    @Test
+    public void RegTestWhitLastName256() {
+
+        try {
+            registrationPage
+                    .fillFirstNameField("Piter")
+                    .fillLastNameField("ggg")
+                    .fillPasswordField("111111")
+                    .fillEmailField("us000998@genefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(registrationPage.alertMessageNotValidLastName());
+            assertTrue(registrationPage.isOnRegistrationPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void RegTestWhitoutFirstName() {
 

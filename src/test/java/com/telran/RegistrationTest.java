@@ -52,7 +52,7 @@ public class RegistrationTest {
                     .fillFirstNameField("gggg")
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("usgenefo.com")
+                    .fillEmailField("one@usgenefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()

@@ -15,7 +15,6 @@ public class HomePage extends Page {
   @CacheLookup
   public WebElement header;
 
-  public HomePage(WebDriver webDriver) {
-    super(webDriver);
+  public HomePage(WebDriver webDriver) {super(webDriver);
   }
 }

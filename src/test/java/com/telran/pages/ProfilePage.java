@@ -14,27 +14,49 @@ public class ProfilePage extends Page {
     //Titles
     @FindBy(xpath = "//*[contains(text(),'Create New Profile')]")
     WebElement profileTitle;
+
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
     @FindBy(xpath = "html/body/div[1]/div[1]/div/div[3]/ng-include[2]/div/div[2]/form/div[11]/div/button[1]")
     WebElement cancelButton;
+
     //fields
     @FindBy(name = "firstName")
     WebElement profileFirstNameField;
     @FindBy(name  = "lastName")
     WebElement profileLastNameField;
-    @FindBy(xpath = "condition")
+    @FindBy(name = "condition")
     WebElement profileConditionField;
     @FindBy(name = "genderID")
     WebElement profileGender;
+    @FindBy(name = "bio")
+    WebElement profileBioField;
+    @FindBy()
+    WebElement profilePicture;
+
+    //dropboxes
+    @FindBy()
+    WebElement profilePatientDropdown;
+    @FindBy()
+    WebElement profileGenderToltip;
+    @FindBy()
+    WebElement profileRaceToltip;
+    @FindBy()
+    WebElement profileBirthdayToltipMonth;
+    @FindBy()
+    WebElement profileBirthdayToltipDay;
+    @FindBy()
+    WebElement profileBirthdayToltipYear;
+    @FindBy()
+    WebElement profileLocationToltip;
+
 
     public ProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    //dropbox
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -44,22 +66,64 @@ public class ProfilePage extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+    }
+    public boolean isOnProfilePage() {
+        waitUntilProfilePageIsLoaded();
+        return exists(profileTitle);
     }
 
     public ProfilePage selectGender(String value) {
         selectValueInDropdown(profileGender, value);
         return this;
     }
-
     public boolean isGenderSelected(String value) {
         return verifyTextBoolean(profileGender, value);
     }
 
-    public boolean isOnProfilePage() {
-        waitUntilProfilePageIsLoaded();
-        return exists(profileTitle);
+    public ProfilePage selectProfilePatient(String value) {
+        selectValueInDropdown(profilePatientDropdown, value);
+        return this;
     }
+    public boolean isPatientSelected(String value){
+        return verifyTextBoolean(profilePatientDropdown, value)
+    }
+
+    public ProfilePage fillProfileFirstNameField(String firstName) {
+        setElementText(profileFirstNameField, firstName);
+        return this;
+    }
+
+    public ProfilePage fillProfileLastNameField(String lastName) {
+        setElementText(profileLastNameField, lastName);
+        return this;
+    }
+
+    public ProfilePage fillProfileConditionField(String condition) {
+        setElementText(profileConditionField, condition);
+        clickElement(profileConditionField);
+        return this;
+    }
+
+    public ProfilePage waitUntilRegProfPageIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(profileConditionField);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public void clickToSubmit() {
+        clickElement(saveProfileButton);
+        ProfilePage profilePage;
+        profilePage = PageFactory.initElements(driver, ProfilePage.class);
+    }
+
+
+
+
 
 
 

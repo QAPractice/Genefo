@@ -35,7 +35,7 @@ public class ProfilePage extends Page {
     @FindBy()
     WebElement profilePicture;
 
-    //dropboxes
+    //dropdown
     @FindBy()
     WebElement profilePatientDropdown;
     @FindBy()
@@ -51,12 +51,10 @@ public class ProfilePage extends Page {
     @FindBy()
     WebElement profileLocationToltip;
 
-
     public ProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -80,12 +78,12 @@ public class ProfilePage extends Page {
         return verifyTextBoolean(profileGender, value);
     }
 
-    public ProfilePage selectProfilePatient(String value) {
-        selectValueInDropdown(profilePatientDropdown, value);
+    public ProfilePage selectProfilePatient(String value2) {
+        selectValueInDropdown(profilePatientDropdown, value2);
         return this;
     }
-    public boolean isPatientSelected(String value){
-        return verifyTextBoolean(profilePatientDropdown, value)
+    public boolean isPatientSelected(String value2){
+        return verifyTextBoolean(profilePatientDropdown, value2)
     }
 
     public ProfilePage fillProfileFirstNameField(String firstName) {

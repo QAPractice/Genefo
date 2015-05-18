@@ -83,7 +83,7 @@ public class ProfilePage extends Page {
         return this;
     }
     public boolean isPatientSelected(String value2){
-        return verifyTextBoolean(profilePatientDropdown, value2)
+        return verifyTextBoolean(profilePatientDropdown, value2);
     }
 
     public ProfilePage fillProfileFirstNameField(String firstName) {

@@ -33,6 +33,7 @@ public class RegistrationTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
+        profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
         try {
             registrationPage

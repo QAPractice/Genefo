@@ -70,6 +70,7 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
 
+    //public ProfilePage profilePage;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -126,8 +127,8 @@ public class RegistrationPage extends Page {
 
     public void clickToSubmit() {
         clickElement(submitButton);
-        ProfilePage profilePage;
-        profilePage = PageFactory.initElements(driver, ProfilePage.class);
+
+
 
     }
 

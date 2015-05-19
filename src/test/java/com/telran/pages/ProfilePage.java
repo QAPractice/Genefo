@@ -1,5 +1,6 @@
 package com.telran.pages;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +37,7 @@ public class ProfilePage extends Page {
     WebElement profilePicture;
 
     //dropdown
-    @FindBy()
+    @FindBy(name = "relationID")
     WebElement profilePatientDropdown;
     @FindBy()
     WebElement profileGenderToltip;
@@ -46,9 +47,9 @@ public class ProfilePage extends Page {
     WebElement profileBirthdayToltipMonth;
     @FindBy()
     WebElement profileBirthdayToltipDay;
-    @FindBy()
+    @FindBy(name="birthmonth")
     WebElement profileBirthdayToltipYear;
-    @FindBy()
+    @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement profileLocationToltip;
 
     private String label; // Keeps last label from dropdown list.
@@ -78,6 +79,7 @@ public class ProfilePage extends Page {
     }
 
     public boolean isGenderSelected(String chosenOption) {
+
         return verifyTextBooleanInDropDown( label, chosenOption );
     }
 
@@ -122,6 +124,9 @@ public class ProfilePage extends Page {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
 
+    public String patientRelation (String value){
+        return selectValueInDropdown(profilePatientDropdown, value);
+    }
 
 
 

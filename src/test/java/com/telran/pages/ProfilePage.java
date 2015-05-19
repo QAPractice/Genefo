@@ -51,6 +51,8 @@ public class ProfilePage extends Page {
     WebElement profileBirthdayToltipYear;
     @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement profileLocationToltip;
+    @FindBy(xpath = "//*[@id='typeahead-15Z-4468-option-0']/*/strong")
+    WebElement tmp;
 
     private String label; // Keeps last label from dropdown list.
 
@@ -107,6 +109,12 @@ public class ProfilePage extends Page {
         return this;
     }
 
+    public ProfilePage autoFillCondition(String condition) {
+        clickElement(tmp);
+        selectValueInDropdown(profileConditionField, condition);
+        return this;
+    }
+
     public ProfilePage waitUntilRegProfPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(profileConditionField);
@@ -124,9 +132,6 @@ public class ProfilePage extends Page {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
 
-    public String patientRelation (String value){
-        return selectValueInDropdown(profilePatientDropdown, value);
-    }
 
 
 

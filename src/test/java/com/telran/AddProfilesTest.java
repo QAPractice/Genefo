@@ -54,9 +54,10 @@ public class AddProfilesTest {
         profilePage.isOnProfilePage();
         profilePage.fillProfileFirstNameField("AAAAA");
         profilePage.fillProfileLastNameField("123456");
-        profilePage.patientRelation("Friend");
-        profilePage.isPatientSelected("Friend");
+        profilePage.selectProfilePatient("2");
+   //     profilePage.isPatientSelected("Friend");
         profilePage.fillProfileConditionField("Alstrom");
+        profilePage.autoFillCondition("Alstrom syndrome");
         profilePage.selectGender("Male");
 
 

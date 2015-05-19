@@ -51,6 +51,8 @@ public class ProfilePage extends Page {
     @FindBy()
     WebElement profileLocationToltip;
 
+    private String label; // Keeps last label from dropdown list.
+
     public ProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -71,11 +73,12 @@ public class ProfilePage extends Page {
     }
 
     public ProfilePage selectGender(String value) {
-        selectValueInDropdown(profileGender, value);
+        label = selectValueInDropdown(profileGender, value);
         return this;
     }
-    public boolean isGenderSelected(String value) {
-        return verifyTextBoolean(profileGender, value);
+
+    public boolean isGenderSelected(String chosenOption) {
+        return verifyTextBooleanInDropDown( label, chosenOption );
     }
 
     public ProfilePage selectProfilePatient(String value2) {

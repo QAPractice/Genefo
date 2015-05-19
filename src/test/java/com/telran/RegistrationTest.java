@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -49,18 +50,19 @@ public class RegistrationTest {
     public void RegTestSuccess() {
 
         try {
+            String Name = randomAlphabetic(5);
             registrationPage
                     .fillFirstNameField("gggg")
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one@usgenefo.com")
+                    .fillEmailField("one" + Name + "@usgenefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
             assertTrue(profilePage.isOnProfilePage());
-            profilePage.selectGender("Other");
-            profilePage.isGenderSelected("Other");
+            profilePage.selectGender("2");
+            assertTrue(profilePage.isGenderSelected("Other"));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Л on 5/19/2015.
@@ -20,6 +20,7 @@ public class AddProfilesTest {
     ProfilePage profilePage;
     LoginPage loginPage;
     HomePage homePage;
+    SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -31,6 +32,7 @@ public class AddProfilesTest {
         homePage = PageFactory.initElements(driver, HomePage.class);
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
+        summaryPage = PageFactory.initElements(driver, SummaryPage.class);
 
         try {
             loginPage.openLoginPage()
@@ -53,15 +55,23 @@ public class AddProfilesTest {
         profilePage.waitUntilProfilePageIsLoaded();
         profilePage.isOnProfilePage();
         profilePage.fillProfileFirstNameField("AAAAA");
-        profilePage.fillProfileLastNameField("123456");
+        profilePage.fillProfileLastNameField("BBBBBB");
         profilePage.selectProfilePatient("2");
         profilePage.isPatientSelected("Friend");
         profilePage.selectGender("0");
         profilePage.isGenderSelected("Male");
         profilePage.fillProfileConditionField("Alstrom");
         profilePage.autoFillCondition();
-
-
+        profilePage.selectMonth("6");
+        profilePage.isMonthSelected("July");
+        profilePage.selectDay("0");
+        profilePage.isDaySelected("1");
+        profilePage.selectYear("5");
+        profilePage.isYearSelected("2010");
+        profilePage.selectDiagnosYear("1");
+        profilePage.isDiagnosYearSelected("2014");
+        profilePage.clickToSubmit();
+        assertTrue(summaryPage.isOnSummaryPage());
 
     }
 }

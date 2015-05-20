@@ -112,6 +112,14 @@ public abstract class Page {
       return false;
     }
   }
+    public boolean notExists(WebElement element) {
+        try {
+            element.isEnabled();
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            return false;
+        }
+    }
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
@@ -128,7 +136,7 @@ public abstract class Page {
     } catch (org.openqa.selenium.NoSuchElementException e) {
       return false;
     }
-  }
+    }
 
   // Pay attention: Works Only for first cell
   public boolean IsCellGreenAfterClick(WebElement locator) {

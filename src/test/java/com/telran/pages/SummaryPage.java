@@ -23,7 +23,8 @@ public class SummaryPage extends Page{
 
     @FindBy(xpath = "//*[@class = \"progress\"]")
     WebElement progressBar;
-
+    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
+    WebElement homeTitle;
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -37,5 +38,8 @@ public class SummaryPage extends Page{
     public boolean isOnSummaryPage() {
         waitUntilProfilePageIsLoaded();
         return exists(progressBar);
+    }
+    public void clickOnHome(){
+        clickElement(homeTitle);
     }
 }

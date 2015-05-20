@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 import static org.testng.AssertJUnit.assertTrue;
@@ -40,9 +41,6 @@ public class AddProfilesTest {
             loginPage.fillEmailField("ri-lopatina@yandex.ru")
                     .fillPasswordField("123456")
                     .clickToLogin();
-            homePage.isOnHomePage();
-            homePage.selectMyProfile();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,6 +48,8 @@ public class AddProfilesTest {
 
     @Test
     public void AddProfileSuccess() {
+        homePage.isOnHomePage();
+        homePage.selectMyProfile();
 //        myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
@@ -72,6 +72,32 @@ public class AddProfilesTest {
         profilePage.isDiagnosYearSelected("2014");
         profilePage.clickToSubmit();
         assertTrue(summaryPage.isOnSummaryPage());
-
+        summaryPage.clickOnHome();
+    }
+    //  Negative tests
+   @Test
+    public void AddProfileWithoutCondition() {
+         homePage.isOnHomePage();
+        homePage.selectMyProfile();
+//        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.waitUntilProfilePageIsLoaded();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField("AAAAA");
+        profilePage.fillProfileLastNameField("BBBBBB");
+        profilePage.selectProfilePatient("2");
+        profilePage.isPatientSelected("Friend");
+        profilePage.selectGender("0");
+        profilePage.isGenderSelected("Male");
+        profilePage.selectMonth("6");
+        profilePage.isMonthSelected("July");
+        profilePage.selectDay("0");
+        profilePage.isDaySelected("1");
+        profilePage.selectYear("5");
+        profilePage.isYearSelected("2010");
+        profilePage.selectDiagnosYear("1");
+        profilePage.isDiagnosYearSelected("2014");
+        profilePage.clickToSubmit();
+        assertTrue(profilePage.isNotOnProfilePage());
     }
 }

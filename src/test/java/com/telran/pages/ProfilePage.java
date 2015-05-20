@@ -15,7 +15,8 @@ public class ProfilePage extends Page {
     //Titles
     @FindBy(xpath = "//*[contains(text(),'Create New Profile')]")
     WebElement profileTitle;
-
+    @FindBy(xpath = "//*[@class = \"progress\"]")
+    WebElement progressBar;
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
@@ -25,7 +26,7 @@ public class ProfilePage extends Page {
     //fields
     @FindBy(name = "firstName")
     WebElement profileFirstNameField;
-    @FindBy(name  = "lastName")
+    @FindBy(name = "lastName")
     WebElement profileLastNameField;
     @FindBy(name = "condition")
     WebElement profileConditionField;
@@ -43,17 +44,17 @@ public class ProfilePage extends Page {
     WebElement profileGenderToltip;
     @FindBy()
     WebElement profileRaceToltip;
-    @FindBy(name="birthmonth")
+    @FindBy(name = "birthmonth")
     WebElement profileBirthdayToltipMonth;
-    @FindBy(name="birthday")
+    @FindBy(name = "birthday")
     WebElement profileBirthdayToltipDay;
-    @FindBy(name="birthyear")
+    @FindBy(name = "birthyear")
     WebElement profileBirthdayToltipYear;
     @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement profileLocationToltip;
     @FindBy(xpath = "//*[contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement conditionToltip;
-    @FindBy(name="diagnosisYear")
+    @FindBy(name = "diagnosisYear")
     WebElement profileDiagnosToltipYear;
 
     private String label; // Keeps last label from dropdown list.
@@ -65,13 +66,14 @@ public class ProfilePage extends Page {
 
     public void waitUntilProfilePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(profileTitle);
+            waitUntilElementIsLoaded(profilePatientDropdown);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
     public boolean isOnProfilePage() {
         waitUntilProfilePageIsLoaded();
         return exists(profileTitle);
@@ -83,42 +85,51 @@ public class ProfilePage extends Page {
     }
 
     public boolean isGenderSelected(String chosenOption) {
-        return verifyTextBooleanInDropDown(label, chosenOption );
+        return verifyTextBooleanInDropDown(label, chosenOption);
     }
 
     public ProfilePage selectProfilePatient(String value2) {
         selectValueInDropdown(profilePatientDropdown, value2);
         return this;
     }
-    public boolean isPatientSelected(String value2){
+
+    public boolean isPatientSelected(String value2) {
         return verifyTextBoolean(profilePatientDropdown, value2);
     }
+
     public ProfilePage selectMonth(String value) {
         selectValueInDropdown(profileBirthdayToltipMonth, value);
         return this;
     }
-    public boolean isMonthSelected(String value){
+
+    public boolean isMonthSelected(String value) {
         return verifyTextBoolean(profileBirthdayToltipMonth, value);
     }
+
     public ProfilePage selectDay(String value) {
         selectValueInDropdown(profileBirthdayToltipDay, value);
         return this;
     }
-    public boolean isDaySelected(String value){
+
+    public boolean isDaySelected(String value) {
         return verifyTextBoolean(profileBirthdayToltipDay, value);
     }
+
     public ProfilePage selectYear(String value) {
         selectValueInDropdown(profileBirthdayToltipYear, value);
         return this;
     }
-    public boolean isYearSelected(String value){
+
+    public boolean isYearSelected(String value) {
         return verifyTextBoolean(profileBirthdayToltipYear, value);
     }
+
     public ProfilePage selectDiagnosYear(String value) {
         selectValueInDropdown(profileDiagnosToltipYear, value);
         return this;
     }
-    public boolean isDiagnosYearSelected(String value){
+
+    public boolean isDiagnosYearSelected(String value) {
         return verifyTextBoolean(profileDiagnosToltipYear, value);
     }
 
@@ -159,15 +170,18 @@ public class ProfilePage extends Page {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public boolean isNotOnProfilePage() {
+        return notExists(progressBar);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

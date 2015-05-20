@@ -18,7 +18,7 @@ public class LoginPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[contains(text(),'GeneFo')]")
+    @FindBy(xpath = "//*[contains(text(),'Login to')]")
     WebElement loginTitle;
 
     @FindBy(name = "email")

@@ -33,8 +33,8 @@ public class AddProfilesTest {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
         try {
-            loginPage.openLoginPage();
-                 //   .isOnLoginPage();
+            loginPage.openLoginPage()
+                    .isOnLoginPage();
             loginPage.fillEmailField("ri-lopatina@yandex.ru")
                     .fillPasswordField("123456")
                     .clickToLogin();
@@ -55,10 +55,12 @@ public class AddProfilesTest {
         profilePage.fillProfileFirstNameField("AAAAA");
         profilePage.fillProfileLastNameField("123456");
         profilePage.selectProfilePatient("2");
-   //     profilePage.isPatientSelected("Friend");
+        profilePage.isPatientSelected("Friend");
+        profilePage.selectGender("0");
+        profilePage.isGenderSelected("Male");
         profilePage.fillProfileConditionField("Alstrom");
-        profilePage.autoFillCondition("Alstrom syndrome");
-        profilePage.selectGender("Male");
+        profilePage.autoFillCondition();
+
 
 
     }

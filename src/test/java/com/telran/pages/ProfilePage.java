@@ -51,8 +51,8 @@ public class ProfilePage extends Page {
     WebElement profileBirthdayToltipYear;
     @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement profileLocationToltip;
-    @FindBy(xpath = "//*[@id='typeahead-15Z-4468-option-0']/*/strong")
-    WebElement tmp;
+    @FindBy(xpath = "//*[contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]/*[1]")
+    WebElement conditionToltip;
 
     private String label; // Keeps last label from dropdown list.
 
@@ -81,8 +81,7 @@ public class ProfilePage extends Page {
     }
 
     public boolean isGenderSelected(String chosenOption) {
-
-        return verifyTextBooleanInDropDown( label, chosenOption );
+        return verifyTextBooleanInDropDown(label, chosenOption );
     }
 
     public ProfilePage selectProfilePatient(String value2) {
@@ -109,10 +108,8 @@ public class ProfilePage extends Page {
         return this;
     }
 
-    public ProfilePage autoFillCondition(String condition) {
-        clickElement(tmp);
-        selectValueInDropdown(profileConditionField, condition);
-        return this;
+    public void autoFillCondition() {
+        clickElement(conditionToltip);
     }
 
     public ProfilePage waitUntilRegProfPageIsLoaded() {

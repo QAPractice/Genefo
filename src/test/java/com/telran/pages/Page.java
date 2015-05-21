@@ -85,7 +85,6 @@ public abstract class Page {
     }
   }
 
-
   public void verifyText(WebElement element, String text) {
     try {
       Assert.assertEquals(text, element.getText());
@@ -93,7 +92,6 @@ public abstract class Page {
       verificationErrors.append(e.toString());
     }
   }
-
 
   public boolean verifyTextBoolean(WebElement element, String text) {
        return text.equals(element.getText());
@@ -112,14 +110,6 @@ public abstract class Page {
       return false;
     }
   }
-    public boolean notExists(WebElement element) {
-        try {
-            element.isEnabled();
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException ignored) {
-            return false;
-        }
-    }
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));

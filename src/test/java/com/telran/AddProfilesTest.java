@@ -75,7 +75,7 @@ public class AddProfilesTest {
         summaryPage.clickOnHome();
     }
     //  Negative tests
-   @Test
+   @Test      //Bug!!!
     public void AddProfileWithoutCondition() {
          homePage.isOnHomePage();
         homePage.selectMyProfile();
@@ -98,6 +98,42 @@ public class AddProfilesTest {
         profilePage.selectDiagnosYear("1");
         profilePage.isDiagnosYearSelected("2014");
         profilePage.clickToSubmit();
-        assertTrue(profilePage.isNotOnProfilePage());
+       try {
+           Thread.sleep(2000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+       assertTrue(profilePage.isOnProfilePage());
+    }
+    @Test
+    public void AddProfileWithoutFirstName() {
+        homePage.isOnHomePage();
+        homePage.selectMyProfile();
+//        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.waitUntilProfilePageIsLoaded();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileLastNameField("BBBBBB");
+        profilePage.selectProfilePatient("2");
+        profilePage.isPatientSelected("Friend");
+        profilePage.selectGender("0");
+        profilePage.isGenderSelected("Male");
+        profilePage.fillProfileConditionField("Alstrom");
+        profilePage.autoFillCondition();
+        profilePage.selectMonth("6");
+        profilePage.isMonthSelected("July");
+        profilePage.selectDay("0");
+        profilePage.isDaySelected("1");
+        profilePage.selectYear("5");
+        profilePage.isYearSelected("2010");
+        profilePage.selectDiagnosYear("1");
+        profilePage.isDiagnosYearSelected("2014");
+        profilePage.clickToSubmit();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertTrue(profilePage.isOnProfilePage());
     }
 }

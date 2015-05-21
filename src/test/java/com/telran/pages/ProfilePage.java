@@ -15,8 +15,6 @@ public class ProfilePage extends Page {
     //Titles
     @FindBy(xpath = "//*[contains(text(),'Create New Profile')]")
     WebElement profileTitle;
-    @FindBy(xpath = "//*[@class = \"progress\"]")
-    WebElement progressBar;
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
@@ -76,7 +74,7 @@ public class ProfilePage extends Page {
 
     public boolean isOnProfilePage() {
         waitUntilProfilePageIsLoaded();
-        return exists(profileTitle);
+        return exists(profilePatientDropdown);
     }
 
     public ProfilePage selectGender(String value) {
@@ -170,9 +168,7 @@ public class ProfilePage extends Page {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
 
-    public boolean isNotOnProfilePage() {
-        return notExists(progressBar);
-    }
+
 }
 
 

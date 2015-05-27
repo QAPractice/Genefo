@@ -26,7 +26,7 @@ public class RegistrationTest {
     RegistrationPage registrationPage;
     ProfilePage profilePage;
     private boolean acceptNextAlert = true;
-
+    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
@@ -50,12 +50,12 @@ public class RegistrationTest {
     public void RegTestSuccess() {
 
         try {
-            String Name = randomAlphabetic(5);
+            EmailNickname = randomAlphabetic(5);
             registrationPage
                     .fillFirstNameField("gggg")
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + Name + "@usgenefo.com")
+                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()

@@ -32,7 +32,7 @@ public class RegistrationPage extends Page {
     WebElement conditionToltip;
 
     //buttons
-    @FindBy(xpath = "html//ng-include//div//ul/li[1]/span/a")
+    @FindBy(xpath = "//*[contains(text(),'Sign Up')]")
     WebElement signUpReg;
 
     @FindBy(id = "submit")
@@ -74,12 +74,13 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo.com:8080/signup_regular";
+        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/login";
         PageFactory.initElements(driver, this);
-    }
+     }
 
     public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
+        clickElement(signUpReg);
         return this;
     }
 

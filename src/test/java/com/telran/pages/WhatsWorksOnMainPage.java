@@ -31,7 +31,7 @@ public class WhatsWorksOnMainPage extends Page {
     //Dropdown list
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]")
     WebElement selectItemList;
-    @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div")
+    @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
 
@@ -43,9 +43,13 @@ public class WhatsWorksOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemPsychotherapy;
 
-    //rating stars
-    @FindBy(name = "//*[@class=\"ng-isolate-scope ng-valid ng-dirty\"]/*[3]")
-    WebElement starsButton;
+    // Rating stars( marked ones. have asterisk sign in definition)
+    @FindBy(name = "//*[@class=\"ng-isolate-scope ng-valid ng-dirty\"]/*[3]/*[contains(text(),'*')]")
+    WebElement markedStarsButton;
+
+    // Rating stars( non-marked ones. do not have asterisk sign in definition)
+    @FindBy(name = "//*[@class=\"ng-isolate-scope ng-valid ng-dirty\"]/*[3]/*[not(contains(text(),'*'))]")
+    WebElement NonMarkedStarsButton;
 
 
     public WhatsWorksOnMainPage(WebDriver driver) {
@@ -53,6 +57,8 @@ public class WhatsWorksOnMainPage extends Page {
         PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
     }
+
+
 
 }
 

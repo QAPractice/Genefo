@@ -1,6 +1,5 @@
 package com.telran.pages;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +14,7 @@ public class ProfilePage extends Page {
     //Titles
     @FindBy(xpath = "//*[contains(text(),'Create New Profile')]")
     WebElement profileTitle;
+
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
@@ -32,26 +32,20 @@ public class ProfilePage extends Page {
     WebElement profileGender;
 
     //dropdown
-    @FindBy(name = "relationID")
+    @FindBy()
     WebElement profilePatientDropdown;
     @FindBy()
     WebElement profileGenderToltip;
     @FindBy()
     WebElement profileRaceToltip;
-    @FindBy(name = "birthmonth")
+    @FindBy()
     WebElement profileBirthdayToltipMonth;
-    @FindBy(name = "birthday")
+    @FindBy()
     WebElement profileBirthdayToltipDay;
-    @FindBy(name = "birthyear")
+    @FindBy()
     WebElement profileBirthdayToltipYear;
-    @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
+    @FindBy()
     WebElement profileLocationToltip;
-    @FindBy(xpath = "//*[contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]/*[1]")
-    WebElement conditionToltip;
-    @FindBy(name = "diagnosisYear")
-    WebElement profileDiagnosToltipYear;
-
-    private String label; // Keeps last label from dropdown list.
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -60,26 +54,25 @@ public class ProfilePage extends Page {
 
     public void waitUntilProfilePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(profilePatientDropdown);
+            waitUntilElementIsLoaded(profileTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
     public boolean isOnProfilePage() {
         waitUntilProfilePageIsLoaded();
-        return exists(profilePatientDropdown);
+        return exists(profileTitle);
     }
 
     public ProfilePage selectGender(String value) {
-        label = selectValueInDropdown(profileGender, value);
+        selectValueInDropdown(profileGender, value);
         return this;
     }
 
-    public boolean isGenderSelected(String chosenOption) {
-        return verifyTextBooleanInDropDown(label, chosenOption);
+    public boolean isGenderSelected(String value) {
+        return verifyTextBoolean(profileGender, value);
     }
 
     public ProfilePage selectProfilePatient(String value2) {
@@ -89,42 +82,6 @@ public class ProfilePage extends Page {
 
     public boolean isPatientSelected(String value2) {
         return verifyTextBoolean(profilePatientDropdown, value2);
-    }
-
-    public ProfilePage selectMonth(String value) {
-        selectValueInDropdown(profileBirthdayToltipMonth, value);
-        return this;
-    }
-
-    public boolean isMonthSelected(String value) {
-        return verifyTextBoolean(profileBirthdayToltipMonth, value);
-    }
-
-    public ProfilePage selectDay(String value) {
-        selectValueInDropdown(profileBirthdayToltipDay, value);
-        return this;
-    }
-
-    public boolean isDaySelected(String value) {
-        return verifyTextBoolean(profileBirthdayToltipDay, value);
-    }
-
-    public ProfilePage selectYear(String value) {
-        selectValueInDropdown(profileBirthdayToltipYear, value);
-        return this;
-    }
-
-    public boolean isYearSelected(String value) {
-        return verifyTextBoolean(profileBirthdayToltipYear, value);
-    }
-
-    public ProfilePage selectDiagnosYear(String value) {
-        selectValueInDropdown(profileDiagnosToltipYear, value);
-        return this;
-    }
-
-    public boolean isDiagnosYearSelected(String value) {
-        return verifyTextBoolean(profileDiagnosToltipYear, value);
     }
 
     public ProfilePage fillProfileFirstNameField(String firstName) {
@@ -141,10 +98,6 @@ public class ProfilePage extends Page {
         setElementText(profileConditionField, condition);
         clickElement(profileConditionField);
         return this;
-    }
-
-    public void autoFillCondition() {
-        clickElement(conditionToltip);
     }
 
     public ProfilePage waitUntilRegProfPageIsLoaded() {
@@ -166,14 +119,3 @@ public class ProfilePage extends Page {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-

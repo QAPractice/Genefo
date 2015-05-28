@@ -168,6 +168,7 @@ public class RegistrationTest {
             assertTrue(registrationPage.alertMessageNotValidPassword());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

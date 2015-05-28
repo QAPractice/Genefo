@@ -56,5 +56,8 @@ public class MilestoneOnMainPage {
     WebElement itemRuns;
     //for  button Eating
 
-
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemHoldsbottles;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemEatswithspoon;
 }

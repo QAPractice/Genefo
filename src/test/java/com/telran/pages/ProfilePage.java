@@ -61,6 +61,7 @@ public class ProfilePage extends Page {
             e.printStackTrace();
         }
     }
+
     public boolean isOnProfilePage() {
         waitUntilProfilePageIsLoaded();
         return exists(profileTitle);

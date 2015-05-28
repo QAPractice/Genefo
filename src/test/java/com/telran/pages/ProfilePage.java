@@ -18,7 +18,7 @@ public class ProfilePage extends Page {
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
-    @FindBy(xpath = "html/body/div[1]/div[1]/div/div[3]/ng-include[2]/div/div[2]/form/div[11]/div/button[1]")
+    @FindBy(xpath = "//*[@class=\"ng-click\"]/*[contains(text(),'button')]")
     WebElement cancelButton;
 
     //fields
@@ -30,10 +30,6 @@ public class ProfilePage extends Page {
     WebElement profileConditionField;
     @FindBy(name = "genderID")
     WebElement profileGender;
-    @FindBy(name = "bio")
-    WebElement profileBioField;
-    @FindBy()
-    WebElement profilePicture;
 
     //dropdown
     @FindBy(name = "relationID")

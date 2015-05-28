@@ -91,13 +91,10 @@ public class WhatsWorksOnMainPage extends Page {
         clickElement(equipmentButton);
     }
 
-    public void clickOnNutritionOption() {
-        clickElement(nutritionButton);
+    public void clickOnNutritionOption() {clickElement(nutritionButton);
     }
 
-    public void clickOnExercisesOption() {
-        clickElement(exercisesButton);
-    }
+    public void clickOnExercisesOption() {clickElement(exercisesButton);}
 
     public void clickOnAlternativeOption() {
         clickElement(alternativeButton);
@@ -111,9 +108,7 @@ public class WhatsWorksOnMainPage extends Page {
         clickElement(selectItemList);
     }
 
-    public void chooseFirstItemFromItemList() {
-        clickElement(itemPhysicalTherapy);
-    }
+    public void chooseFirstItemFromItemList() {clickElement(itemPhysicalTherapy);}
 
 }
 

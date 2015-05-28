@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MilestoneOnMainPage {
 
-    //Category Developmental Milestone buttons
+    //Category Symptom buttons
 
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
@@ -40,6 +40,7 @@ public class MilestoneOnMainPage {
     WebElement itemBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstword;
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemwords;
 
@@ -53,31 +54,10 @@ public class MilestoneOnMainPage {
     WebElement itemCrawls;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
-
     //for  button Eating
 
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsbottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatswithspoon;
-
-
-    //for button Toleiting
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemToilettrained;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemDressesalone;
-
-    //button of Treatment
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemSurgery;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemMedicaltrial;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemRemission;
-
-
-    //button of other
-
-
 }

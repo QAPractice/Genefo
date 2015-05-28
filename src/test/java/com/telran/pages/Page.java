@@ -63,18 +63,10 @@ public abstract class Page {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
   }
 
- // public void selectValueInDropdown(WebElement dropdown, String value) {
- //   Select select = new Select(dropdown);
-  //  select.selectByValue(value);
- // }
-
-    // Returns label that we chose
-   public String selectValueInDropdown(WebElement dropdown, String value) {
-        Select select = new Select(dropdown);
-        select.selectByValue(value);
-        WebElement option = select.getFirstSelectedOption(); // Chooses label that fits the value
-        return option.getText();
-    }
+  public void selectValueInDropdown(WebElement dropdown, String value) {
+    Select select = new Select(dropdown);
+    select.selectByValue(value);
+  }
 
   public boolean verifyElementIsPresent(WebElement element) {
     try {
@@ -84,6 +76,7 @@ public abstract class Page {
       return false;
     }
   }
+
 
   public void verifyText(WebElement element, String text) {
     try {
@@ -97,10 +90,6 @@ public abstract class Page {
        return text.equals(element.getText());
     }
 
-    // Verifies that we chose the label that we wanted.
-   public boolean verifyTextBooleanInDropDown(String label, String chosenOption) {
-       return chosenOption.equals(label);
-   }
 
   public boolean exists(WebElement element) {
     try {
@@ -126,7 +115,7 @@ public abstract class Page {
     } catch (org.openqa.selenium.NoSuchElementException e) {
       return false;
     }
-    }
+  }
 
   // Pay attention: Works Only for first cell
   public boolean IsCellGreenAfterClick(WebElement locator) {

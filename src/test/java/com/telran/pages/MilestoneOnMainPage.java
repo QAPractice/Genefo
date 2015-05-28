@@ -76,8 +76,16 @@ public class MilestoneOnMainPage {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRemission;
 
+    //Years-Month butoons
+    @FindBy(id = "milestone_years")
+    WebElement yearsButton;
 
-    //button of other
+
+    @FindBy(id = "milestone_months")
+    WebElement monthButton;
 
 
+    //button submit
+    @FindBy(id = "submit")
+    WebElement submitButton;
 }

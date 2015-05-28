@@ -27,6 +27,4 @@ public class MDRatingOnMainPage extends Page {
     @FindBy(id = "submit")
     WebElement postButton;
 
-
-
 }

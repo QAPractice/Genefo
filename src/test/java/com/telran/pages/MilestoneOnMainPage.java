@@ -61,6 +61,7 @@ public class MilestoneOnMainPage {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatswithspoon;
 
+
     //for button Toleiting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemToilettrained;

@@ -179,6 +179,4 @@ public class RegistrationPage extends Page {
     }
 
     public boolean notAvailableSignUpButton(){return exists(submitNotAvailable);}
-
-
 }

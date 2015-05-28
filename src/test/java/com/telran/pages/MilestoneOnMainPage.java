@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MilestoneOnMainPage {
 
-    //Category Symptom buttons
+    //Category Developmental Milestone buttons
 
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;

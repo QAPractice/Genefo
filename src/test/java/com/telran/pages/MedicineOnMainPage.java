@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -15,14 +16,15 @@ public class MedicineOnMainPage extends Page {
 
     //Fields
     @FindBy(id = "medicine_name")
-    WebElement nameOfMedicine;
+    WebElement nameOfMedicinefield;
     @FindBy(id = "medicine_reason")
     WebElement reasonForMedicine;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicine;
+
     //elements of dropdown list
     @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
-    WebElement itemNameOfMedicine;
+    WebElement tooltipNameOfMedicine;
     @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
     WebElement itemReasonForMedicine;
 
@@ -75,8 +77,16 @@ public class MedicineOnMainPage extends Page {
 
     //Methods
 
-    public MedicineOnMainPage typeNameOfMedicine(String fillNameMedicine) {
-        setElementText(nameOfMedicine, fillNameMedicine);
+    public MedicineOnMainPage fillExistingNameOfMedicine(String nameMedicineShort, String nameMedicineFull) throws IOException, InterruptedException {
+        setElementText(nameOfMedicinefield, nameMedicineShort);
+        waitUntilIsLoaded(tooltipNameOfMedicine);
+        clickElement(tooltipNameOfMedicine);
+        Assert.assertEquals(nameOfMedicinefield.getAttribute("value"), nameMedicineFull);
+        return this;
+    }
+
+    public MedicineOnMainPage fillNewNameOfMedicine(String nameMedicine) throws IOException, InterruptedException {
+        setElementText(nameOfMedicinefield, nameMedicine);
         return this;
     }
 

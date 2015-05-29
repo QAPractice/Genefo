@@ -96,17 +96,17 @@ public class SignUpHCP_Page extends Page{
             return this;
         }
 
-        public SignUpHCP_Page clickToSignUp() {
+        public SignUpHCP_Page clickOnSignUp() {
             clickElement(signUpHCP_Button);
             return this;
         }
 
-        public SignUpHCP_Page clickToCheckBox18() {
+        public SignUpHCP_Page clickOnCheckBox18() {
             clickElement(checkBox18);
             return this;
         }
 
-        public SignUpHCP_Page clickToCheckBoxAgree() {
+        public SignUpHCP_Page clickOnCheckBoxAgree() {
             clickElement(checkBoxAgree);
             return this;
         }

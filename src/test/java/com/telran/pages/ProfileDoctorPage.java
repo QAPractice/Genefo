@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by oshil on 29.05.2015.
+ * Created by Oleg on 29.05.2015.
  */
 public class ProfileDoctorPage extends Page{
 
@@ -49,7 +49,24 @@ public class ProfileDoctorPage extends Page{
         return this;
     }
 
+    public ProfileDoctorPage clickOnEditAccInf() {
+        clickElement(EditAccountInformationButton);
+        return this;
+    }
 
+    public ProfileDoctorPage clickOnEditBasInf() {
+        clickElement(EditBasicInformationButton);
+        return this;
+    }
 
+    public ProfileDoctorPage clickOnHealInf() {
+        clickElement(EditHealthcareProfessionalInformationButton);
+        return this;
+    }
+
+    public ProfileDoctorPage clickOnDisYourHP() {
+        clickElement(DiscoverYourHomePageButton);
+        return this;
+    }
 
 }

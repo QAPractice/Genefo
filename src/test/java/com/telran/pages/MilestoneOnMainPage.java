@@ -1,10 +1,11 @@
 package com.telran.pages;
 
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+
 import java.io.IOException;
 
 
@@ -14,9 +15,9 @@ import java.io.IOException;
  */
 public class MilestoneOnMainPage extends Page {
 
-    @FindBy(id = "milestone_type")
+    @FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement categoryDevelopmentalMilestoneTitle;
-    @FindBy(id = "milestone_type")
+    @FindBy(xpath = "//div [@class='col-sm-4']/label")
     WebElement categoryTreatmentMilestoneTitle;
 
 
@@ -49,14 +50,14 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemFirstword;
+    WebElement itemFirstWord;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemWords;
 
     //for button Movement
 
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldshead;
+    WebElement itemHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
@@ -67,33 +68,31 @@ public class MilestoneOnMainPage extends Page {
     //for  button Eating
 
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsbottles;
+    WebElement itemHoldsBottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemEatswithspoon;
+    WebElement itemEatsWithSpoon;
 
 
-    //for button Toleiting
+    //for button Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemToilettrained;
+    WebElement itemToiletTrained;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemDressesalone;
+    WebElement itemDressesAlone;
 
     //button of Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSurgery;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemMedicaltrial;
+    WebElement itemMedicalTrial;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRemission;
 
-    //Years-Month butoons
+    //Years-Month button
     @FindBy(id = "milestone_years")
     WebElement yearsButton;
 
-
     @FindBy(id = "milestone_months")
     WebElement monthButton;
-
 
     //button submit
     @FindBy(id = "submit")
@@ -130,6 +129,25 @@ public class MilestoneOnMainPage extends Page {
 
     public void clickOnToiletingOption() {clickElement(toiletingButton);}
 
+    public void clickOnOtherOption() {
+        clickElement(otherButton);
+    }
+
+    public void clickOnTreatmentOption() {
+        clickElement(treatmentButton);
+    }
+
+    public void clickOnYearsOption() {
+        clickElement(yearsButton);
+    }
+
+    public void clickOnMonthOption() {
+        clickElement(monthButton);
+    }
+
+    public void clickOnSubmitOption() {
+        clickElement(submitButton);
+    }
 
 
 }

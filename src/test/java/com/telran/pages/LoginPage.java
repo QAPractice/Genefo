@@ -75,5 +75,12 @@ public class LoginPage extends Page {
         return this;
     }
 
-
+    public LoginPage login(String email, String password) {
+        openLoginPage();
+        waitUntilLoginPageIsLoaded();
+        fillEmailField(email);
+        fillPasswordField(password);
+        clickToLogin();
+        return this;
+    }
 }

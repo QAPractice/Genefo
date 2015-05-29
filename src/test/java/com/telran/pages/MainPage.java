@@ -96,4 +96,8 @@ public class MainPage extends Page {
         return this;
     }
 
+    public boolean isOnMainPage() {
+        return exists(milestoneButton);
+    }
+
 }

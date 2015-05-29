@@ -13,6 +13,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by alex on 5/29/2015.
  */
@@ -20,12 +22,10 @@ public class WhatWorksOnMainTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
-    private boolean acceptNextAlert = true;
-
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public WhatWorksOnMainPage whatWorksOnMainPage;
-
+    private boolean acceptNextAlert = true;
 
     @BeforeClass
     public void setup() {
@@ -37,12 +37,8 @@ public class WhatWorksOnMainTest {
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
 
         try {
-            loginPage.openLoginPage()
-                            .waitUntilLoginPageIsLoaded()
-                            .fillEmailField("telrantests@yahoo.com")
-                            .fillPasswordField("12345.com")
-                            .clickToLogin();
-
+            loginPage.login("telrantests@yahoo.com", "12345.com");
+            assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                             .openWhatWorksButtonPanel();
             whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();

@@ -10,26 +10,25 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Sample page
+ * aka Landing page - first page of the website -  in our case http://genefo-env.elasticbeanstalk.com
  */
 public class HomePage extends Page {
 
   @FindBy(how = How.TAG_NAME, using = "h1")
   @CacheLookup
     public WebElement header;
-
-  public HomePage(WebDriver webDriver) {
-      super(webDriver);
-      PageFactory.initElements(driver, this);
-  }
     @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
     WebElement homeTitle;
     @FindBy(xpath = "//*[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
     @FindBy(xpath = "//*[@class=\"fa fa-cog fa-2x\"]")
     WebElement cogwheelButton;
-
     private String label;
+
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void waitUntilHomePageIsLoaded() {
         try {

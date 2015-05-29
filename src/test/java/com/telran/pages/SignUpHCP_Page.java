@@ -1,0 +1,164 @@
+package com.telran.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
+/**
+ * Created by Oleg on 29.05.2015.
+ */
+public class SignUpHCP_Page extends Page{
+
+
+        //fields
+        @FindBy(name = "email")
+        WebElement emailField;
+
+        @FindBy(name = "password")
+        WebElement passwordField;
+
+        @FindBy(name = "firstName")
+        WebElement firstNameField;
+
+        @FindBy(name = "lastName")
+        WebElement lastNameField;
+
+        //lables
+        @FindBy(xpath = "//*[@class='col-sm-2 control-label' and contains(.,'Last') and contains(.,'*')]")
+        WebElement lastNameLableHCP;
+
+        //buttons
+        @FindBy(id = "submit")
+        WebElement signUpHCP_Button;
+
+        //checkboxs
+        @FindBy(name = "isOver18")
+        WebElement checkBox18;
+
+        @FindBy(name = "TOS")
+        WebElement checkBoxAgree;
+
+        //alerts
+        @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'email')]")
+        WebElement nonValidEmail;
+
+        @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'password')]")
+        WebElement nonValidPassword;
+
+        @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'first name')]")
+        WebElement nonValidFirstName;
+
+        @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'last name')]")
+        WebElement nonValidLastName;
+
+        @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'18 or older')]")
+        WebElement alertToCheckBox18;
+
+        @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
+        WebElement alertToCheckBoxAgree;
+
+        public SignUpHCP_Page (WebDriver driver) {
+            super(driver);
+            this.PAGE_URL = "http://http://genefo-env.elasticbeanstalk.com/signup_hcp";
+            PageFactory.initElements(driver, this);
+        }
+
+        public SignUpHCP_Page openSignUpHCP_Page() {
+            driver.get(PAGE_URL);
+            clickElement(signUpHCP_Button);
+            return this;
+        }
+
+        public SignUpHCP_Page fillEmailField(String email) {
+            setElementText(emailField, email);
+            return this;
+        }
+
+        public SignUpHCP_Page fillPasswordField(String password) {
+            setElementText(passwordField, password);
+            return this;
+        }
+
+        public SignUpHCP_Page fillFirstNameField(String firstName) {
+            setElementText(firstNameField, firstName);
+            return this;
+        }
+
+        public SignUpHCP_Page fillLastNameField(String lastName) {
+            setElementText(lastNameField, lastName);
+            return this;
+        }
+
+        public SignUpHCP_Page waitUntilSignUpHCP_PageIsLoaded() {
+            try {
+                waitUntilElementIsLoaded(lastNameLableHCP);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return this;
+        }
+
+        public SignUpHCP_Page clickToSignUp() {
+            clickElement(signUpHCP_Button);
+            return this;
+        }
+
+        public SignUpHCP_Page clickToCheckBox18() {
+            clickElement(checkBox18);
+            return this;
+        }
+
+        public SignUpHCP_Page clickToCheckBoxAgree() {
+            clickElement(checkBoxAgree);
+            return this;
+        }
+
+
+        public boolean isOnRegistrationPage() {
+            return exists(checkBox18);
+        }
+
+        //check alert presence
+
+        public boolean alertMessageNotValidFirstName() {
+            return exists(nonValidFirstName);
+        }
+
+        public boolean alertMessageNotValidLastName() {
+            return exists(nonValidLastName);
+        }
+
+        public boolean alertMessageNotValidEmail() {
+            return exists(nonValidEmail);
+        }
+
+        public boolean alertMessageNotValidPassword() {
+            return exists(nonValidPassword);
+        }
+
+        public boolean alertMessageNonChecked18() {
+            return exists(alertToCheckBox18);
+        }
+
+        public boolean alertMessageNonCheckedTerms() {
+            return exists(alertToCheckBoxAgree);
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

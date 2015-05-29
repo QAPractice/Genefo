@@ -61,14 +61,8 @@ public class SignUpHCP_Page extends Page{
 
         public SignUpHCP_Page (WebDriver driver) {
             super(driver);
-            this.PAGE_URL = "http://http://genefo-env.elasticbeanstalk.com/signup_hcp";
+            this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/signup_hcp";
             PageFactory.initElements(driver, this);
-        }
-
-        public SignUpHCP_Page openSignUpHCP_Page() {
-            driver.get(PAGE_URL);
-            clickElement(signUpHCP_Button);
-            return this;
         }
 
         public SignUpHCP_Page fillEmailField(String email) {

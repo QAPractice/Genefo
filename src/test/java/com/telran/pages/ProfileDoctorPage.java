@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by oshil on 29.05.2015.
+ * Created by Oleg on 29.05.2015.
  */
 public class ProfileDoctorPage extends Page{
 

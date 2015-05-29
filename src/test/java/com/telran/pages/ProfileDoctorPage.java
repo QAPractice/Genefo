@@ -13,20 +13,20 @@ import java.io.IOException;
 public class ProfileDoctorPage extends Page{
 
     //lables
-    @FindBy(xpath = "//*[@class=\"ng-binding\" and contains(.,'HCP Account')]")
-    WebElement HCP_AccountLable;
+    @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
+    WebElement HCPAccountLable;
 
     //buttons
-    @FindBy(xpath = "//*[@class=\"btn btn-success\" and @ng-click=\"setProfileView('account_hcp_account')]")
+    @FindBy(xpath = "//*[@class='btn btn-success' and @ng-click= 'setProfileView('account_hcp_account')']")
     WebElement EditAccountInformationButton;
 
-    @FindBy(xpath = "//*[@class=\"btn btn-success\" and @ng-click=\"setProfileView('account_hcp_basic')\"]")
+    @FindBy(xpath = "//*[@class='btn btn-success' and @ng-click='setProfileView('account_hcp_basic')']")
     WebElement EditBasicInformationButton;
 
-    @FindBy(xpath = "//*[@class=\"btn btn-success ng-binding\"]")
+    @FindBy(xpath = "//*[@class='btn btn-success ng-binding']")
     WebElement EditHealthcareProfessionalInformationButton;
 
-    @FindBy(xpath = "//*[@class=\"btn btn-success btn-discover-homepage\"]")
+    @FindBy(xpath = "//*[@class='btn btn-success btn-discover-homepage']")
     WebElement DiscoverYourHomePageButton;
 
 
@@ -40,7 +40,7 @@ public class ProfileDoctorPage extends Page{
 
     public ProfileDoctorPage waitUntilProfileDoctorPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(HCP_AccountLable);
+            waitUntilElementIsLoaded(HCPAccountLable);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

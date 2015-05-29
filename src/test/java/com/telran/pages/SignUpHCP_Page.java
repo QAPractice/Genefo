@@ -31,7 +31,7 @@ public class SignUpHCP_Page extends Page{
 
         //buttons
         @FindBy(id = "submit")
-        WebElement signUpHCP_Button;
+        WebElement signUpHCPButton;
 
         //checkboxs
         @FindBy(name = "isOver18")
@@ -97,7 +97,7 @@ public class SignUpHCP_Page extends Page{
         }
 
         public SignUpHCP_Page clickOnSignUp() {
-            clickElement(signUpHCP_Button);
+            clickElement(signUpHCPButton);
             return this;
         }
 

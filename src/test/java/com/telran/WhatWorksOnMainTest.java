@@ -60,6 +60,8 @@ public class WhatWorksOnMainTest {
                     .clickOnTherapyOption()
                     .clickOnItemList()
                     .chooseFirstItemFromItemList()
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
                     .fillTextField("My First Post")
                     .sendPost();
 

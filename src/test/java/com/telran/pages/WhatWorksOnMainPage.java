@@ -46,17 +46,25 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemPsychotherapy;
 
-    // Rating stars( marked ones. Have asterisk sign in definition)
+    // Rating star( marked one. Have asterisk sign in definition)
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[contains(text(),'*')]")
-    WebElement markedStarsButton;
+    WebElement thirdMarkedRatingStar;
 
-    // Rating stars( non-marked ones. Do not have asterisk sign in definition)
+    // Rating star( non-marked one. Do not have asterisk sign in definition)
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
-    WebElement nonMarkedStarsButton;
+    WebElement thirdNonMarkedRatingStar;
+
+    // Rating star - marked and non-marked together
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
+    WebElement thirdRatingStar;
 
     // Serves as indication that we are on 'WhatWorks' Panel.
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
+
+    @FindBy(xpath = "//*[@ng-model=\"what_works_rating\"]//*[@class=\"sr-only ng-binding\"]")
+    WebElement allStarsTogether;
+
 
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
@@ -140,6 +148,18 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(submitButton);
         return this;
     }
+
+    // We need to click on all stars together to set free each one of them
+    public WhatWorksOnMainPage clickOnAllStarsTogether() {
+        clickElement(allStarsTogether);
+        return this;
+    }
+   // Click on the third star
+    public WhatWorksOnMainPage rateItThree() {
+        clickElement(thirdRatingStar);
+        return this;
+    }
+
 }
 
 

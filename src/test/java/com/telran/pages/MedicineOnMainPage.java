@@ -21,9 +21,9 @@ public class MedicineOnMainPage extends Page {
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicine;
     //elements of dropdown list
-    @FindBy(id = "typeahead-005-725-option-0")
+    @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
     WebElement itemNameOfMedicine;
-    @FindBy(id = "typeahead-006-9768-option-0")
+    @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
     WebElement itemReasonForMedicine;
 
     //Buttons
@@ -54,7 +54,7 @@ public class MedicineOnMainPage extends Page {
 
     // Waits until 'Medicine' Panel appears on the screen
 
-    public void waitUntilMedicinePanelIsLoaded() {
+    public MedicineOnMainPage waitUntilMedicinePanelIsLoaded() {
         try {
             waitUntilElementIsLoaded(nameOfMedicineTitle);
         } catch (IOException e) {
@@ -62,6 +62,7 @@ public class MedicineOnMainPage extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return this;
     }
 
 

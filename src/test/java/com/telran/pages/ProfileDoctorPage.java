@@ -49,7 +49,24 @@ public class ProfileDoctorPage extends Page{
         return this;
     }
 
+    public ProfileDoctorPage clickOnEditAccInf() {
+        clickElement(EditAccountInformationButton);
+        return this;
+    }
 
+    public ProfileDoctorPage clickOnEditBasInf() {
+        clickElement(EditBasicInformationButton);
+        return this;
+    }
 
+    public ProfileDoctorPage clickOnHealInf() {
+        clickElement(EditHealthcareProfessionalInformationButton);
+        return this;
+    }
+
+    public ProfileDoctorPage clickOnDisYourHP() {
+        clickElement(DiscoverYourHomePageButton);
+        return this;
+    }
 
 }

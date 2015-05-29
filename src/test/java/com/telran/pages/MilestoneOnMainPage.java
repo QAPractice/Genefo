@@ -3,14 +3,21 @@ package com.telran.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import java.io.IOException;
+
 
 /**
- * Created by Zizi78 on 5/28/2015.
+ * Created by Zizi, Christina and Mariya on 5/28/2015.
+ *
  */
-public class MilestoneOnMainPage {
+public class MilestoneOnMainPage extends Page {
+
+    @FindBy(id = "milestone_type")
+    WebElement categoryMilestoneTitle;
 
     //Category Developmental Milestone buttons
-
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
@@ -88,4 +95,28 @@ public class MilestoneOnMainPage {
     //button submit
     @FindBy(id = "submit")
     WebElement submitButton;
+
+    public MilestoneOnMainPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+    }
+
+    // Waits until title of our 'Milestone' Panel appears on the screen
+    public void waitUntilMilestonePanelIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(categoryMilestoneTitle);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Checks that title of our 'Milestone' Panel have appeared on the screen so we can work with it.
+    public boolean isOnMilestonePanel() {
+        waitUntilMilestonePanelIsLoaded();
+        return exists(categoryMilestoneTitle);
+    }
+
 }

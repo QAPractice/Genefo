@@ -14,8 +14,11 @@ import java.io.IOException;
  */
 public class MilestoneOnMainPage extends Page {
 
-    @FindBy(id = "milestone_type")
-    WebElement categoryMilestoneTitle;
+    @FindBy(xpath = "//*[@class='col-sm-8']//label[@for='milestone_type']")
+    WebElement categoryDevelopmentMilestoneTitle;
+
+    @FindBy(xpath = "//*[@class='col-sm-4']//label[@for='milestone_type']")
+    WebElement categoryTreatmentMilestoneTitle;
 
     //Category Developmental Milestone buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
@@ -105,7 +108,7 @@ public class MilestoneOnMainPage extends Page {
     // Waits until title of our 'Milestone' Panel appears on the screen
     public void waitUntilMilestonePanelIsLoaded() {
         try {
-            waitUntilElementIsLoaded(categoryMilestoneTitle);
+            waitUntilElementIsLoaded(categoryDevelopmentMilestoneTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -116,7 +119,7 @@ public class MilestoneOnMainPage extends Page {
     // Checks that title of our 'Milestone' Panel have appeared on the screen so we can work with it.
     public boolean isOnMilestonePanel() {
         waitUntilMilestonePanelIsLoaded();
-        return exists(categoryMilestoneTitle);
+        return exists(categoryDevelopmentMilestoneTitle);
     }
 
 }

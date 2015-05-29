@@ -74,13 +74,12 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/login";
+        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com//signup_regular";
         PageFactory.initElements(driver, this);
      }
 
     public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
-        clickElement(signUpReg);
         return this;
     }
 

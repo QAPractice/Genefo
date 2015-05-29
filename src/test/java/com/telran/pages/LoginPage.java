@@ -12,12 +12,6 @@ import java.io.IOException;
  */
 public class LoginPage extends Page {
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        this.PAGE_URL = "http://genefo.com:8080/login";
-        PageFactory.initElements(driver, this);
-    }
-
     @FindBy(xpath = "//*[contains(text(),'Login to')]")
     WebElement loginTitle;
 
@@ -30,20 +24,31 @@ public class LoginPage extends Page {
     @FindBy(id = "submit")
     WebElement loginButton;
 
+    @FindBy(xpath = "//*[contains(text(),'Sign Up')]")
+    WebElement signUpReg;
+
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
+        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/login";
+        PageFactory.initElements(driver, this);
+    }
+
     public LoginPage openLoginPage() {
         driver.get(PAGE_URL);
         return this;
     }
 
-    public void waitUntilLoginPageIsLoaded() {
+    public LoginPage waitUntilLoginPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(loginTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }return this;
     }
+
 
     public boolean isOnLoginPage() {
         waitUntilLoginPageIsLoaded();
@@ -64,4 +69,11 @@ public class LoginPage extends Page {
         clickElement(loginButton);
         return this;
     }
+
+    public LoginPage clickOnSignUpButton() {
+        clickElement(signUpReg);
+        return this;
+    }
+
+
 }

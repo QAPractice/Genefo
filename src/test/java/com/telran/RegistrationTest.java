@@ -1,5 +1,6 @@
 package com.telran;
 
+import com.telran.pages.LoginPage;
 import com.telran.pages.ProfilePage;
 import com.telran.pages.RegistrationPage;
 import org.openqa.selenium.Alert;
@@ -23,6 +24,7 @@ public class RegistrationTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public LoginPage loginPage;
     RegistrationPage registrationPage;
     ProfilePage profilePage;
     private boolean acceptNextAlert = true;
@@ -33,13 +35,15 @@ public class RegistrationTest {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        loginPage = PageFactory.initElements(driver,LoginPage.class);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
         try {
-            registrationPage
-                    .openRegistrationPage()
-                    .waitUntilRegPageIsLoaded();
+            loginPage.openLoginPage()
+                    .waitUntilLoginPageIsLoaded()
+                    .clickOnSignUpButton();
+            registrationPage.waitUntilRegPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }

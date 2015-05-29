@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 
 public class MainPage extends Page {
 
@@ -46,6 +48,18 @@ public class MainPage extends Page {
         driver.get(PAGE_URL);
          return this;
     }
+
+    // Waits until title of our 'What works' Panel appears on the screen
+    public MainPage waitUntilMainPageIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(whatWorksButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }return this;
+    }
+
 
     public MainPage openPostPanel() {
         clickElement(postButton);

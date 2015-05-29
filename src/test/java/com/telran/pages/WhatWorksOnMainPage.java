@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by Iakov Volf 27.05.15.
  */
-public class WhatsWorksOnMainPage extends Page {
+public class WhatWorksOnMainPage extends Page {
     //Category Symptom buttons
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Therapy')]")
     WebElement therapyButton;
@@ -47,69 +47,99 @@ public class WhatsWorksOnMainPage extends Page {
     WebElement itemPsychotherapy;
 
     // Rating stars( marked ones. Have asterisk sign in definition)
-    @FindBy(name = "//*[@class=\"ng-isolate-scope ng-valid ng-dirty\"]/*[3]/*[contains(text(),'*')]")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[contains(text(),'*')]")
     WebElement markedStarsButton;
 
     // Rating stars( non-marked ones. Do not have asterisk sign in definition)
-    @FindBy(name = "//*[@class=\"ng-isolate-scope ng-valid ng-dirty\"]/*[3]/*[not(contains(text(),'*'))]")
-    WebElement NonMarkedStarsButton;
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
+    WebElement nonMarkedStarsButton;
 
     // Serves as indication that we are on 'WhatWorks' Panel.
-    @FindBy(name = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
-    WebElement CategorySymptomTitle;
+    @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
+    WebElement categorySymptomTitle;
+
+    // text field for posting
+    @FindBy(xpath = "//textarea[@name = 'bio']")
+    WebElement postField;
+
+    @FindBy(xpath = "//button[@id='submit'][contains(text(),'Post')]")
+    WebElement submitButton;
 
 
 
-    public WhatsWorksOnMainPage(WebDriver driver) {
+    public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        //this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilWhatWorksPanelIsLoaded() {
         try {
-            waitUntilElementIsLoaded(CategorySymptomTitle);
+            waitUntilElementIsLoaded(categorySymptomTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
     // Checks that title of our 'What works' Panel have appeared on the screen so we can work with it.
     public boolean isOnWhatWorksPanel() {
         waitUntilWhatWorksPanelIsLoaded();
-        return exists(CategorySymptomTitle);
+        return exists(categorySymptomTitle);
     }
 
 
-    public void clickOnTherapyOption() {
+    public WhatWorksOnMainPage clickOnTherapyOption() {
         clickElement(therapyButton);
+        return this;
     }
 
-    public void clickOnEquipmentOption() {
+    public WhatWorksOnMainPage clickOnEquipmentOption() {
         clickElement(equipmentButton);
+        return this;
     }
 
-    public void clickOnNutritionOption() {clickElement(nutritionButton);
+    public WhatWorksOnMainPage clickOnNutritionOption() {
+        clickElement(nutritionButton);
+        return this;
     }
 
-    public void clickOnExercisesOption() {clickElement(exercisesButton);}
+    public WhatWorksOnMainPage clickOnExercisesOption() {
+        clickElement(exercisesButton);
+        return this;
+    }
 
-    public void clickOnAlternativeOption() {
+    public WhatWorksOnMainPage clickOnAlternativeOption() {
         clickElement(alternativeButton);
+        return this;
     }
 
-    public void clickOnOtherOption() {
+    public WhatWorksOnMainPage clickOnOtherOption() {
         clickElement(otherButton);
+        return this;
     }
 
-    public void clickOnItemList() {
+    public WhatWorksOnMainPage clickOnItemList() {
         clickElement(selectItemList);
+        return this;
     }
 
-    public void chooseFirstItemFromItemList() {clickElement(itemPhysicalTherapy);}
+    public WhatWorksOnMainPage chooseFirstItemFromItemList() {
+        clickElement(itemPhysicalTherapy);
+        return this;
+    }
 
+    public WhatWorksOnMainPage fillTextField(String post) {
+        setElementText(postField, post);
+        return this;
+    }
+
+    public WhatWorksOnMainPage sendPost() {
+        clickElement(submitButton);
+        return this;
+    }
 }
 
 

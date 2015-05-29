@@ -15,7 +15,10 @@ import java.io.IOException;
 public class MilestoneOnMainPage extends Page {
 
     @FindBy(id = "milestone_type")
-    WebElement categoryMilestoneTitle;
+    WebElement categoryDevelopmentalMilestoneTitle;
+    @FindBy(id = "milestone_type")
+    WebElement categoryTreatmentMilestoneTitle;
+
 
     //Category Developmental Milestone buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
@@ -23,13 +26,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
     WebElement movementButton;
     @FindBy(xpath = " //div [@class='btn-group']/button[contains(text(),'Eating')]")
-    WebElement eatingtButton;
+    WebElement eatingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")
     WebElement treatmentButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
-    WebElement othertButton;
+    WebElement otherButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Toileting')]")
-    WebElement toiletingtButton;
+    WebElement toiletingButton;
 
 
     //Dropdown list
@@ -48,14 +51,14 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstword;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemwords;
+    WebElement itemWords;
 
     //for button Movement
 
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldshead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemReachesforobjects;
+    WebElement itemReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
@@ -105,7 +108,7 @@ public class MilestoneOnMainPage extends Page {
     // Waits until title of our 'Milestone' Panel appears on the screen
     public void waitUntilMilestonePanelIsLoaded() {
         try {
-            waitUntilElementIsLoaded(categoryMilestoneTitle);
+            waitUntilElementIsLoaded(categoryDevelopmentalMilestoneTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -116,7 +119,17 @@ public class MilestoneOnMainPage extends Page {
     // Checks that title of our 'Milestone' Panel have appeared on the screen so we can work with it.
     public boolean isOnMilestonePanel() {
         waitUntilMilestonePanelIsLoaded();
-        return exists(categoryMilestoneTitle);
+        return exists(categoryDevelopmentalMilestoneTitle);
     }
+
+    public void clickOnLanguageOption() {clickElement(languageButton);}
+
+    public void clickOnMovementOption() {clickElement(movementButton);}
+
+    public void clickOnEatingOption() {clickElement(eatingButton);}
+
+    public void clickOnToiletingOption() {clickElement(toiletingButton);}
+
+
 
 }

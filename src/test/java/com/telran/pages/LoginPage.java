@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by Л on 5/19/2015.
+ * Created by Л,Oleg on 5/19/2015.
  */
 public class LoginPage extends Page {
 
@@ -25,7 +25,16 @@ public class LoginPage extends Page {
     WebElement loginButton;
 
     @FindBy(xpath = "//*[contains(text(),'Sign Up')]")
-    WebElement signUpReg;
+    WebElement signUpButton;
+
+    @FindBy(xpath = "//*[contains(text(),'Forgot')]")
+    WebElement forgotLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Invalid Password')]")
+    WebElement invalidPasswordAlert;
+
+    @FindBy(xpath = "//*[contains(text(),'Invalid Email')]")
+    WebElement invalidEmailAlert;
 
 
     public LoginPage(WebDriver driver) {
@@ -65,13 +74,13 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public LoginPage clickToLogin() {
+    public LoginPage clickOnLogin() {
         clickElement(loginButton);
         return this;
     }
 
     public LoginPage clickOnSignUpButton() {
-        clickElement(signUpReg);
+        clickElement(signUpButton);
         return this;
     }
 
@@ -80,7 +89,21 @@ public class LoginPage extends Page {
         waitUntilLoginPageIsLoaded();
         fillEmailField(email);
         fillPasswordField(password);
-        clickToLogin();
+        clickOnLogin();
         return this;
     }
+
+    public LoginPage clickOnForgotPasswordLink(){
+        clickElement(forgotLink);
+        return this;
+    }
+
+    public boolean alertMessageInvalidEmail() {
+        return exists(invalidEmailAlert);
+    }
+
+    public boolean alertMessageInvalidPassword() {
+        return exists(invalidPasswordAlert);
+    }
+
 }

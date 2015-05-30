@@ -47,6 +47,8 @@ public class MilestoneOnMainPage extends Page {
     //for button Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSmiles;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedSmiles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
@@ -151,6 +153,10 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
+    public MilestoneOnMainPage clickFirstItemFromLanguageItemList() {
+        clickElement(itemSmiles);
+        return this;
+    }
     public MilestoneOnMainPage chooseSecondItemFromLanguageList() {
         clickElement(itemBabbles);
         return this;

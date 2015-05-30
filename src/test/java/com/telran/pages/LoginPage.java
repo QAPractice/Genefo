@@ -106,4 +106,5 @@ public class LoginPage extends Page {
         return exists(invalidPasswordAlert);
     }
 
+
 }

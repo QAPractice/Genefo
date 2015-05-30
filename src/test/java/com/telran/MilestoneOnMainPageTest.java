@@ -53,9 +53,9 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnLanguageOption()
-                    .clickOnSelectItemOption()
                     .clickOnLanguageItemList()
                     .chooseFirstItemFromLanguageItemList()
+                    .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption()
                     .clickOnMonthOption()
                     .fillTextField("My Post in Language")

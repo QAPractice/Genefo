@@ -16,14 +16,13 @@ public class HomePage extends Page {
 
   @FindBy(how = How.TAG_NAME, using = "h1")
   @CacheLookup
-    public WebElement header;
-    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
-    WebElement homeTitle;
-    @FindBy(xpath = "//*[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
-    WebElement myProfilesButton;
-    @FindBy(xpath = "//*[@class=\"fa fa-cog fa-2x\"]")
-    WebElement cogwheelButton;
-    private String label;
+  public WebElement header;
+
+    //title
+  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Regular User')]")
+  WebElement regularUserButton;
+
+    //private String label;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -32,7 +31,7 @@ public class HomePage extends Page {
 
     public void waitUntilHomePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(homeTitle);
+            waitUntilElementIsLoaded(regularUserButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -41,12 +40,7 @@ public class HomePage extends Page {
     }
     public boolean isOnHomePage() {
         waitUntilHomePageIsLoaded();
-        return exists(homeTitle);
-    }
-    public HomePage selectMyProfile () {
-        clickElement(cogwheelButton);
-        clickElement(myProfilesButton);
-        return this;
+        return exists(regularUserButton);
     }
 
 

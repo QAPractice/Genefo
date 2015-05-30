@@ -35,7 +35,7 @@ public class ProfilePage extends Page {
     @FindBy(name = "relationID")
     WebElement profilePatientDropdown;
     @FindBy()
-    WebElement profileGenderToltip;
+    WebElement profileGenderTooltip;
     @FindBy()
     WebElement profileRaceToltip;
     @FindBy(name = "birthmonth")
@@ -47,9 +47,9 @@ public class ProfilePage extends Page {
     @FindBy(xpath = "//*[contains(@id,'typeahead-0LH-9401') and contains(@ng-show, 'isOpen()')]/*[1]")
     WebElement profileLocationToltip;
     @FindBy(xpath = "//*[contains(@id,'typeahead') and contains(@ng-show, 'isOpen()')]/*[1]")
-    WebElement conditionToltip;
+    WebElement conditionTooltip;
     @FindBy(name = "diagnosisYear")
-    WebElement profileDiagnosToltipYear;
+    WebElement profileDiagnoseTooltipYear;
 
     private String label; // Keeps last label from dropdown list.
 
@@ -118,13 +118,13 @@ public class ProfilePage extends Page {
         return verifyTextBoolean(profileBirthdayToltipYear, value);
     }
 
-    public ProfilePage selectDiagnosYear(String value) {
-        selectValueInDropdown(profileDiagnosToltipYear, value);
+    public ProfilePage selectDiagnoseYear(String value) {
+        selectValueInDropdown(profileDiagnoseTooltipYear, value);
         return this;
     }
 
-    public boolean isDiagnosYearSelected(String value) {
-        return verifyTextBoolean(profileDiagnosToltipYear, value);
+    public boolean isDiagnoseYearSelected(String value) {
+        return verifyTextBoolean(profileDiagnoseTooltipYear, value);
     }
 
     public ProfilePage fillProfileFirstNameField(String firstName) {
@@ -144,7 +144,7 @@ public class ProfilePage extends Page {
     }
 
     public void autoFillCondition() {
-        clickElement(conditionToltip);
+        clickElement(conditionTooltip);
     }
 
     public ProfilePage waitUntilRegProfPageIsLoaded() {

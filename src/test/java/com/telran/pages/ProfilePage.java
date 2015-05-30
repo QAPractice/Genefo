@@ -163,6 +163,9 @@ public class ProfilePage extends Page {
         ProfilePage profilePage;
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
     }
+    public String getProfileName(){
+        return profileFirstNameField.getText() + " " + profileLastNameField.getText();
+    }
 
 
 }

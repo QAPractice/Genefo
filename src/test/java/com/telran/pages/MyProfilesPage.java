@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,15 +23,12 @@ public class MyProfilesPage extends Page {
         return this;
     }
 
-    @FindBy(xpath = "//*[contains(text(),'My Profiles')]")
-    WebElement myProfilesButton;
-
     @FindBy(xpath = "//*[@class=\"btn-add-profile\"]/i")
     WebElement addPlusButton;
 
     public void waitUntilMyProfilesPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(myProfilesButton);
+            waitUntilElementIsLoaded(addPlusButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -39,10 +38,12 @@ public class MyProfilesPage extends Page {
 
     public boolean isOnMyProfilesPage() {
         waitUntilMyProfilesPageIsLoaded();
-        return exists(myProfilesButton);
+        return exists(addPlusButton);
     }
 
     public void clickToPlus() {
         clickElement(addPlusButton);
     }
+
+
 }

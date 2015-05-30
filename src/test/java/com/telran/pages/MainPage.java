@@ -36,7 +36,12 @@ public class MainPage extends Page {
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Question')]")
     WebElement questionButton;
 
+    //Buttons
+    @FindBy(xpath = "//i[@class=\"fa fa-cog fa-2x\"]")
+    WebElement cogwheelButton;
 
+    @FindBy(xpath = "//li[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
+    WebElement myProfilesButton;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -93,6 +98,16 @@ public class MainPage extends Page {
 
     public MainPage openQuestionButtonPanel() {
         clickElement(questionButton);
+        return this;
+    }
+
+    public boolean isOnMainPage() {
+        return exists(milestoneButton);
+    }
+
+    public MainPage selectMyProfile () {
+        clickElement(cogwheelButton);
+        clickElement(myProfilesButton);
         return this;
     }
 

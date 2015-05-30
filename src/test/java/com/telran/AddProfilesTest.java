@@ -20,7 +20,7 @@ public class AddProfilesTest {
     MyProfilesPage myProfilesPage;
     ProfilePage profilePage;
     LoginPage loginPage;
-    HomePage homePage;
+    MainPage mainPage;
     SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
 
@@ -30,7 +30,7 @@ public class AddProfilesTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        homePage = PageFactory.initElements(driver, HomePage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
         summaryPage = PageFactory.initElements(driver, SummaryPage.class);
@@ -48,14 +48,15 @@ public class AddProfilesTest {
 
     @Test
     public void AddProfileSuccess() {
-        homePage.isOnHomePage();
-        homePage.selectMyProfile();
-//        myProfilesPage.isOnMyProfilesPage();
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
         profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField("AAAAA");
-        profilePage.fillProfileLastNameField("BBBBBB");
+        profilePage.fillProfileFirstNameField("AAA");
+        profilePage.fillProfileLastNameField("BBBB");
+        String name = profilePage.getProfileName();
         profilePage.selectProfilePatient("2");
         profilePage.isPatientSelected("Friend");
         profilePage.selectGender("0");
@@ -72,14 +73,15 @@ public class AddProfilesTest {
         profilePage.isDiagnosYearSelected("2014");
         profilePage.clickToSubmit();
         assertTrue(summaryPage.isOnSummaryPage());
+        assertTrue(summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnHome();
     }
     //  Negative tests
    @Test      //Bug!!!
     public void AddProfileWithoutCondition() {
-         homePage.isOnHomePage();
-        homePage.selectMyProfile();
-//        myProfilesPage.isOnMyProfilesPage();
+         mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
         profilePage.isOnProfilePage();
@@ -107,9 +109,9 @@ public class AddProfilesTest {
     }
     @Test
     public void AddProfileWithoutFirstName() {
-        homePage.isOnHomePage();
-        homePage.selectMyProfile();
-//        myProfilesPage.isOnMyProfilesPage();
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
         profilePage.isOnProfilePage();

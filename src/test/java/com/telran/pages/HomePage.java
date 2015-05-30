@@ -10,30 +10,28 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Sample page
+ * aka Landing page - first page of the website -  in our case http://genefo-env.elasticbeanstalk.com
  */
 public class HomePage extends Page {
 
   @FindBy(how = How.TAG_NAME, using = "h1")
   @CacheLookup
-    public WebElement header;
+  public WebElement header;
 
-  public HomePage(WebDriver webDriver) {
-      super(webDriver);
-      PageFactory.initElements(driver, this);
-  }
-    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
-    WebElement homeTitle;
-    @FindBy(xpath = "//*[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
-    WebElement myProfilesButton;
-    @FindBy(xpath = "//*[@class=\"fa fa-cog fa-2x\"]")
-    WebElement cogwheelButton;
+    //title
+  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Regular User')]")
+  WebElement regularUserButton;
 
-    private String label;
+    //private String label;
+
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void waitUntilHomePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(homeTitle);
+            waitUntilElementIsLoaded(regularUserButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -42,12 +40,7 @@ public class HomePage extends Page {
     }
     public boolean isOnHomePage() {
         waitUntilHomePageIsLoaded();
-        return exists(homeTitle);
-    }
-    public HomePage selectMyProfile () {
-        clickElement(cogwheelButton);
-        clickElement(myProfilesButton);
-        return this;
+        return exists(regularUserButton);
     }
 
 

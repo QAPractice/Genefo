@@ -25,7 +25,7 @@ public class SymptomsOnMainPage  extends Page {
     WebElement symptomField;
 
     @FindBy(name = "bio")
-    WebElement tellUsMoreAboutThisMedicine;
+    WebElement tellUsMoreAboutThisSymptoms;
 
 
     //elements of dropdown list

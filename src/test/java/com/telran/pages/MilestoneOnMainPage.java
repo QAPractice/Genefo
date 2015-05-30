@@ -127,7 +127,9 @@ public class MilestoneOnMainPage extends Page {
 
     public void clickOnEatingOption() {clickElement(eatingButton);}
 
-    public void clickOnToiletingOption() {clickElement(toiletingButton);}
+    public void clickOnToiletingOption() {
+        clickElement(toiletingButton);
+    }
 
     public void clickOnOtherOption() {
         clickElement(otherButton);

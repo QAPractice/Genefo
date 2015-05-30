@@ -40,7 +40,7 @@ public class AddProfilesTest {
                     .isOnLoginPage();
             loginPage.fillEmailField("ri-lopatina@yandex.ru")
                     .fillPasswordField("123456")
-                    .clickToLogin();
+                    .clickOnLogin();
         } catch (Exception e) {
             e.printStackTrace();
         }

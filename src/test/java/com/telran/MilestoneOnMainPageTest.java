@@ -53,11 +53,10 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnLanguageOption()
-                    .clickOnLanguageItemList()
-                    .chooseFirstItemFromLanguageItemList()
+                    .clickOnSelectItemOption()
                     .clickFirstItemFromLanguageItemList()
-                    .clickOnYearsOption()
-                    .clickOnMonthOption()
+                    .clickOnYearsOption("7")
+                    .clickOnMonthOption("5")
                     .fillTextField("My Post in Language")
                     .sendPost();
         } catch (Exception e) {

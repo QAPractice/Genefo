@@ -288,8 +288,8 @@ public class MilestoneOnMainPage extends Page {
     }
 
     //for year
-    public MilestoneOnMainPage clickOnYearsOption() {
-        clickElement(yearsButton);
+    public MilestoneOnMainPage clickOnYearsOption(String year) {
+        setElementText(yearsButton, year);
         return this;
     }
 
@@ -298,8 +298,8 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickOnMonthOption() {
-        clickElement(monthButton);
+    public MilestoneOnMainPage clickOnMonthOption(String months) {
+        setElementText(monthButton, months);
         return this;
     }
 

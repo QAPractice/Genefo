@@ -18,7 +18,7 @@ public class ProfilePage extends Page {
     //buttons
     @FindBy(id = "submit")
     WebElement saveProfileButton;
-    @FindBy(xpath = "//*[@class=\"ng-click\"]/*[contains(text(),'button')]")
+    @FindBy(xpath = "//*[@class='ng-click']/*[contains(text(),'button')]")
     WebElement cancelButton;
 
     //fields

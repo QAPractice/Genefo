@@ -6,7 +6,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 import static org.testng.AssertJUnit.assertTrue;
@@ -40,7 +39,7 @@ public class AddProfilesTest {
                     .isOnLoginPage();
             loginPage.fillEmailField("ri-lopatina@yandex.ru")
                     .fillPasswordField("123456")
-                    .clickToLogin();
+                    .clickOnLogin();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +68,8 @@ public class AddProfilesTest {
         profilePage.isDaySelected("1");
         profilePage.selectYear("5");
         profilePage.isYearSelected("2010");
-        profilePage.selectDiagnosYear("1");
-        profilePage.isDiagnosYearSelected("2014");
+        profilePage.selectDiagnoseYear("1");
+        profilePage.isDiagnoseYearSelected("2014");
         profilePage.clickToSubmit();
         assertTrue(summaryPage.isOnSummaryPage());
         assertTrue(summaryPage.isProfileNamePresents(name));
@@ -97,8 +96,8 @@ public class AddProfilesTest {
         profilePage.isDaySelected("1");
         profilePage.selectYear("5");
         profilePage.isYearSelected("2010");
-        profilePage.selectDiagnosYear("1");
-        profilePage.isDiagnosYearSelected("2014");
+        profilePage.selectDiagnoseYear("1");
+        profilePage.isDiagnoseYearSelected("2014");
         profilePage.clickToSubmit();
        try {
            Thread.sleep(2000);
@@ -128,8 +127,8 @@ public class AddProfilesTest {
         profilePage.isDaySelected("1");
         profilePage.selectYear("5");
         profilePage.isYearSelected("2010");
-        profilePage.selectDiagnosYear("1");
-        profilePage.isDiagnosYearSelected("2014");
+        profilePage.selectDiagnoseYear("1");
+        profilePage.isDiagnoseYearSelected("2014");
         profilePage.clickToSubmit();
         try {
             Thread.sleep(2000);

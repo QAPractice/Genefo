@@ -18,15 +18,15 @@ public class MedicineOnMainPage extends Page {
     @FindBy(id = "medicine_name")
     WebElement nameOfMedicinefield;
     @FindBy(id = "medicine_reason")
-    WebElement reasonForMedicine;
+    WebElement reasonForMedicineField;
     @FindBy(name = "bio")
-    WebElement tellUsMoreAboutThisMedicine;
+    WebElement tellUsMoreAboutThisMedicineField;
 
     //elements of dropdown list
     @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
     WebElement tooltipNameOfMedicine;
     @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
-    WebElement itemReasonForMedicine;
+    WebElement tooltipReasonForMedicine;
 
     //Buttons
     @FindBy(id = "submit")
@@ -34,12 +34,28 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars
-    @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[3]")
-    WebElement RateBy3Stars;
-    @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[5]")
-    WebElement RateBy5Stars;
-    @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[1]")
-    WebElement RateBy1Star;
+    @FindBy(xpath = "//*[@ng-model=\"medicine_effect\"]//*[@class=\"sr-only ng-binding\"]")
+    WebElement allStarsTogether;
+
+    // Rating star( marked one. Have asterisk sign in definition)
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[contains(text(),'*')]")
+    WebElement thirdMarkedRatingStar;
+
+    // Rating star( non-marked one. Do not have asterisk sign in definition)
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
+    WebElement thirdNonMarkedRatingStar;
+
+    // Rating star - marked and non-marked together
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
+    WebElement thirdRatingStar;
+
+
+    // @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[3]")
+    // WebElement RateBy3Stars;
+    //  @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[5]")
+    //  WebElement RateBy5Stars;
+    //   @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[1]")
+    //   WebElement RateBy1Star;
 
 
     // Serves as indication that we are on 'Medicine' Panel
@@ -90,27 +106,37 @@ public class MedicineOnMainPage extends Page {
         return this;
     }
 
-    public MedicineOnMainPage typeReasonForMedicine(String fillReason) {
-        setElementText(reasonForMedicine, fillReason);
+    public MedicineOnMainPage fillExistingReasonForMedicine(String nameReasonShort, String nameReasonFull) throws IOException, InterruptedException {
+        setElementText(reasonForMedicineField, nameReasonShort);
+        waitUntilIsLoaded(tooltipReasonForMedicine);
+        clickElement(tooltipReasonForMedicine);
+        Assert.assertEquals(reasonForMedicineField.getAttribute("value"), nameReasonFull);
         return this;
     }
+
+
+    public MedicineOnMainPage fillNewReasonForMedicine(String nameReason) throws IOException, InterruptedException {
+        setElementText(reasonForMedicineField, nameReason);
+        return this;
+    }
+
 
     public MedicineOnMainPage typeTellUsMore(String fillTellUs) {
-        setElementText(tellUsMoreAboutThisMedicine, fillTellUs);
+        setElementText(tellUsMoreAboutThisMedicineField, fillTellUs);
         return this;
     }
 
 
-    public void clickOnOneStar() {
-        clickElement(RateBy1Star);
+    // We need to click on all stars together to set free each one of them
+    public MedicineOnMainPage clickOnAllStarsTogether() {
+        clickElement(allStarsTogether);
+        return this;
     }
 
-    public void clickOnFiveStar() {
-        clickElement(RateBy5Stars);
-    }
-
-    public void clickOnThreeStar() {
-        clickElement(RateBy3Stars);
+    // Click on the third star
+    public MedicineOnMainPage rateThreeStars() {
+        clickElement(thirdRatingStar);
+        return this;
     }
 
     public void clickOnPostButton() {

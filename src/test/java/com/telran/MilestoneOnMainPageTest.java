@@ -1,4 +1,4 @@
-package com.telran.util;
+package com.telran;
 
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
@@ -53,10 +53,10 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnLanguageOption()
-                    .clickOnLanguageItemList()
-                    .chooseFirstItemFromLanguageItemList()
-                    .clickOnYearsOption()
-                    .clickOnMonthOption()
+                    .clickOnSelectItemOption()
+                    .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("7")
+                    .clickOnMonthOption("5")
                     .fillTextField("My Post in Language")
                     .sendPost();
         } catch (Exception e) {

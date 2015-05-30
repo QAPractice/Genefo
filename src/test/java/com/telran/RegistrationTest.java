@@ -74,7 +74,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutCondition() {
+    public void RegTestWithoutCondition() {
 
         try {
             registrationPage
@@ -95,7 +95,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutLastName() {
+    public void RegTestWithoutLastName() {
 
         try {
             registrationPage
@@ -117,7 +117,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitLastName256() {
+    public void RegTestWithLastName256() {
 
         try {
             registrationPage
@@ -137,7 +137,7 @@ public class RegistrationTest {
         }
     }
     @Test
-    public void RegTestWhitoutFirstName() {
+    public void RegTestWithoutFirstName() {
 
         try {
             registrationPage
@@ -157,7 +157,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutPassword() {
+    public void RegTestWithoutPassword() {
 
         try {
             registrationPage
@@ -179,7 +179,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutEmail() {
+    public void RegTestWithoutEmail() {
 
         try {
             registrationPage
@@ -201,7 +201,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutCheckBox18() {
+    public void RegTestWithoutCheckBox18() {
 
         try {
             registrationPage
@@ -222,7 +222,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void RegTestWhitoutCheckBoxTerms() {
+    public void RegTestWithoutCheckBoxTerms() {
 
         try {
             registrationPage

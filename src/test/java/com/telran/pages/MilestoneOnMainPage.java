@@ -37,9 +37,9 @@ public class MilestoneOnMainPage extends Page {
     WebElement otherButton;
 
     //Dropdown list
-    @FindBy(xpath = "//*[contains(text(),'Select an Option')]")
+    @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]")
     WebElement selectItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select an Option')]/../div")
+    @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")
     WebElement selectItemListButton;
 
 
@@ -140,7 +140,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage chooseFirstItemFromLanguageList() {
+    public MilestoneOnMainPage chooseFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }

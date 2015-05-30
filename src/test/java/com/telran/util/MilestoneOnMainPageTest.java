@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +37,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
 
         try {
-            loginPage.login("zizi300", "zizi300");
+            loginPage.login("zizi300@gmail.com", "zizi300");
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMilestonePanel();
@@ -43,6 +45,28 @@ public class MilestoneOnMainPageTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void SendLanguagePostTest() {
+
+        try {
+            milestoneOnMainPage
+                    .clickOnLanguageOption()
+                    .clickOnLanguageItemList()
+                    .chooseFirstItemFromLanguageItemList()
+                    .clickOnYearsOption()
+                    .clickOnMonthOption()
+                    .fillTextField("My Post in Language")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void teardown() {
+        this.driver.quit();
     }
 
 }

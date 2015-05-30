@@ -17,6 +17,7 @@ public class MilestoneOnMainPage extends Page {
 
     @FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement categoryDevelopmentalMilestoneTitle;
+
     @FindBy(xpath = "//div [@class='col-sm-4']/label")
     WebElement categoryTreatmentMilestoneTitle;
 
@@ -94,6 +95,11 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(id = "milestone_months")
     WebElement monthButton;
 
+
+    @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
+    WebElement otherMilestoneFiled;
+    @FindBy(xpath = "//*[@placeholder='Tell us more about this milestone']")
+    WebElement postField;
     //button submit
     @FindBy(id = "submit")
     WebElement submitButton;
@@ -121,35 +127,72 @@ public class MilestoneOnMainPage extends Page {
         return exists(categoryDevelopmentalMilestoneTitle);
     }
 
-    public void clickOnLanguageOption() {clickElement(languageButton);}
+    public MilestoneOnMainPage clickOnLanguageOption() {
+        clickElement(languageButton);
+        return this;
+    }
 
-    public void clickOnMovementOption() {clickElement(movementButton);}
+    public MilestoneOnMainPage clickOnMovementOption() {
+        clickElement(movementButton);
+        return this;
 
-    public void clickOnEatingOption() {clickElement(eatingButton);}
+    }
 
-    public void clickOnToiletingOption() {
+    public MilestoneOnMainPage clickOnEatingOption() {
+        clickElement(eatingButton);
+        return this;
+
+
+    }
+
+    public MilestoneOnMainPage clickOnToiletingOption() {
         clickElement(toiletingButton);
+        return this;
     }
 
-    public void clickOnOtherOption() {
+    public MilestoneOnMainPage clickOnOtherOption() {
         clickElement(otherButton);
+        return this;
     }
 
-    public void clickOnTreatmentOption() {
+    public MilestoneOnMainPage clickOnTreatmentOption() {
         clickElement(treatmentButton);
+        return this;
     }
 
-    public void clickOnYearsOption() {
+    public MilestoneOnMainPage clickOnYearsOption() {
         clickElement(yearsButton);
+        return this;
     }
 
-    public void clickOnMonthOption() {
+    public MilestoneOnMainPage clickOnMonthOption() {
         clickElement(monthButton);
+        return this;
     }
 
-    public void clickOnSubmitOption() {
+    public MilestoneOnMainPage clickOnSubmitOption() {
         clickElement(submitButton);
+        return this;
     }
 
+    public MilestoneOnMainPage clickOnItemList() {
+        clickElement(selectItemList);
+        return this;
+    }
+
+    public MilestoneOnMainPage chooseFirstItemFromItemList() {
+        clickElement(itemSmiles);
+        return this;
+    }
+
+    public MilestoneOnMainPage fillTextField(String post) {
+        setElementText(postField, post);
+        return this;
+    }
+
+    public MilestoneOnMainPage sendPost() {
+        clickElement(submitButton);
+        return this;
+    }
 
 }

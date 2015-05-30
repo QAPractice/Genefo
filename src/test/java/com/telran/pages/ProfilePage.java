@@ -53,6 +53,8 @@ public class ProfilePage extends Page {
 
     private String label; // Keeps last label from dropdown list.
 
+
+
     public ProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -97,6 +99,7 @@ public class ProfilePage extends Page {
     }
 
     public boolean isMonthSelected(String value) {
+
         return verifyTextBoolean(profileBirthdayToltipMonth, value);
     }
 

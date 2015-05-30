@@ -54,8 +54,9 @@ public class AddProfilesTest {
         myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
         profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField("AAAAA");
-        profilePage.fillProfileLastNameField("BBBBBB");
+        profilePage.fillProfileFirstNameField("AAA");
+        profilePage.fillProfileLastNameField("BBBB");
+        String name = profilePage.getProfileName();
         profilePage.selectProfilePatient("2");
         profilePage.isPatientSelected("Friend");
         profilePage.selectGender("0");
@@ -72,7 +73,7 @@ public class AddProfilesTest {
         profilePage.isDiagnosYearSelected("2014");
         profilePage.clickToSubmit();
         assertTrue(summaryPage.isOnSummaryPage());
-
+        assertTrue(summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnHome();
     }
     //  Negative tests

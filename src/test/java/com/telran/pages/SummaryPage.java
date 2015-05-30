@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,5 +43,14 @@ public class SummaryPage extends Page{
     }
     public void clickOnHome(){
         clickElement(homeTitle);
+    }
+
+    public boolean isProfileNamePresents(String name) {
+        try {
+            driver.findElement(By.xpath("//*[contains(text(),\"" + name + "\")]"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

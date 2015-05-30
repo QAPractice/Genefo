@@ -104,7 +104,21 @@ public class LoginTest {
         }
     }
 
+    @Test
+    public void LoginWithEmptyFields() {
 
+        try {
+            loginPage
+                    .fillEmailField("")
+                    .fillPasswordField("")
+                    .clickOnLogin();
+            assertTrue(loginPage.alertMessageInvalidEmail());
+            assertTrue(loginPage.alertMessageInvalidPassword());
+            assertTrue(loginPage.isOnLoginPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @AfterClass(alwaysRun = true)

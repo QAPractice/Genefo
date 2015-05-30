@@ -135,6 +135,12 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
+    public MilestoneOnMainPage clickOnSelectItemOption() {
+        clickElement(selectItemListButton);
+        return this;
+    }
+
+
     public MilestoneOnMainPage clickOnLanguageItemList() {
         clickElement(selectItemList);
         return this;
@@ -291,9 +297,13 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
+
+
+
     public MilestoneOnMainPage chooseButtonMonthList() {
         clickElement(monthButton);
         return this;
+
     }
 
     //fill text

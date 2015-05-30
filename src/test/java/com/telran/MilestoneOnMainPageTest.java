@@ -53,6 +53,7 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnLanguageOption()
+                    .clickOnSelectItemOption()
                     .clickOnLanguageItemList()
                     .chooseFirstItemFromLanguageItemList()
                     .clickOnYearsOption()

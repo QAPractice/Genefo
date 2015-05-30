@@ -1,4 +1,4 @@
-package com.telran.util;
+package com.telran;
 
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;

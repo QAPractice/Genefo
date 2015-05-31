@@ -29,12 +29,14 @@ public class MDRatingOnMainPage extends Page {
     @FindBy(xpath = "//textarea[@name = 'bio']")
     WebElement postField;
 
-    // Rating star - marked and non-marked together
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid']/*[3]")
-    WebElement thirdRatingStar;
-
-    @FindBy(xpath = "//*[@class=\"glyphicon ng-scope fa fa-star post-fa-star\"]")
+   // @FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]//span[@class=\"sr-only ng-binding\"]")
+   @FindBy(xpath = "//*[@ng-model=\"what_works_rating\"]//*[@class=\"sr-only ng-binding\"]")
     WebElement allStarsTogether;
+
+    // Rating star - marked and non-marked together
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
+    //@FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]/i[3]/*")
+    WebElement thirdRatingStar;
 
     //Title
     @FindBy(xpath = "//label[@for = \"medical_facility\"]")

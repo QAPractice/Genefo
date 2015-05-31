@@ -65,7 +65,7 @@ public class MilestoneOnMainPageTest {
     }
 
 
-    @Test
+        @Test
     public void SendEatingPostTest() {
         try {
             milestoneOnMainPage
@@ -81,9 +81,26 @@ public class MilestoneOnMainPageTest {
         }
 
     }
-        @AfterClass(alwaysRun = true)
-        public void teardown () {
-            this.driver.quit();
+
+    @Test
+    public void SendToiletingPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnToiletingOption()
+                    .clickOnToiletingOption()
+                    .chooseFirstItemToiletingList()
+                    .clickOnYearsOption("2147483648")
+                    .clickOnMonthOption("37")
+                    .fillTextField("Dresses alone")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
+    @AfterClass(alwaysRun = true)
+    public void teardown () {
+        this.driver.quit();
+    }
+
+}

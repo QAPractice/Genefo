@@ -45,6 +45,11 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectEatingItemList;
     @FindBy(xpath = "//*[contains(text(),'Select an Eating Milestone ')/../div/b]")
     WebElement selectEatingItemButton;
+    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone ')]")
+    WebElement selectToiletingItemList;
+    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone ')/../div/b]")
+    WebElement selectToiletingItemButton;
+
     //elements of dropdown list
     //for button Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
@@ -81,10 +86,12 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectEatsWithSpoon;
 
     //for button Toileting
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemToiletTrained;
+    //@FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    //WebElement itemToiletTrained;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;
+    @FindBy(xpath= "//*[@class='chosen-single']/span")
+    WebElement itemToiletTrained;
 
     //for button  Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")

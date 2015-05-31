@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * aka Landing page - first page of the website -  in our case http://genefo-env.elasticbeanstalk.com
+ * Oleg
  */
 public class HomePage extends Page {
 
@@ -18,15 +19,24 @@ public class HomePage extends Page {
   @CacheLookup
   public WebElement header;
 
-    //title
+    //buttons
   @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Regular User')]")
   WebElement regularUserButton;
+
+  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Healthcare Professional')]")
+  WebElement doctorButton;
 
     //private String label;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com";
         PageFactory.initElements(driver, this);
+    }
+
+    public HomePage openHomePage() {
+        driver.get(PAGE_URL);
+        return this;
     }
 
     public void waitUntilHomePageIsLoaded() {
@@ -41,6 +51,11 @@ public class HomePage extends Page {
     public boolean isOnHomePage() {
         waitUntilHomePageIsLoaded();
         return exists(regularUserButton);
+    }
+
+    public HomePage clickOnSignUpDoctorButton() {
+        clickElement(doctorButton);
+        return this;
     }
 
 

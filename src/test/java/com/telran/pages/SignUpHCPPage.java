@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by Oleg on 29.05.2015.
  */
-public class SignUpHCP_Page extends Page{
+public class SignUpHCPPage extends Page{
 
 
         //fields
@@ -59,33 +59,33 @@ public class SignUpHCP_Page extends Page{
         @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
         WebElement alertToCheckBoxAgree;
 
-        public SignUpHCP_Page (WebDriver driver) {
+        public SignUpHCPPage(WebDriver driver) {
             super(driver);
             this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/signup_hcp";
             PageFactory.initElements(driver, this);
         }
 
-        public SignUpHCP_Page fillEmailField(String email) {
+        public SignUpHCPPage fillEmailField(String email) {
             setElementText(emailField, email);
             return this;
         }
 
-        public SignUpHCP_Page fillPasswordField(String password) {
+        public SignUpHCPPage fillPasswordField(String password) {
             setElementText(passwordField, password);
             return this;
         }
 
-        public SignUpHCP_Page fillFirstNameField(String firstName) {
+        public SignUpHCPPage fillFirstNameField(String firstName) {
             setElementText(firstNameField, firstName);
             return this;
         }
 
-        public SignUpHCP_Page fillLastNameField(String lastName) {
+        public SignUpHCPPage fillLastNameField(String lastName) {
             setElementText(lastNameField, lastName);
             return this;
         }
 
-        public SignUpHCP_Page waitUntilSignUpHCP_PageIsLoaded() {
+        public SignUpHCPPage waitUntilSignUpHCP_PageIsLoaded() {
             try {
                 waitUntilElementIsLoaded(lastNameLableHCP);
             } catch (IOException e) {
@@ -96,23 +96,23 @@ public class SignUpHCP_Page extends Page{
             return this;
         }
 
-        public SignUpHCP_Page clickOnSignUp() {
+        public SignUpHCPPage clickOnSignUp() {
             clickElement(signUpHCPButton);
             return this;
         }
 
-        public SignUpHCP_Page clickOnCheckBox18() {
+        public SignUpHCPPage clickOnCheckBox18() {
             clickElement(checkBox18);
             return this;
         }
 
-        public SignUpHCP_Page clickOnCheckBoxAgree() {
+        public SignUpHCPPage clickOnCheckBoxAgree() {
             clickElement(checkBoxAgree);
             return this;
         }
 
 
-        public boolean isOnRegistrationPage() {
+        public boolean isOnSignUpHCPPage() {
             return exists(checkBox18);
         }
 

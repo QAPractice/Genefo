@@ -47,7 +47,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+  /*  @Test
     public void SendLanguagePostTest() {
 
         try {
@@ -63,10 +63,27 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
+*/
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
+    @Test
+    public void SendEatingPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnEatingOption()
+                    .clickOnEatingOption()
+                    .chooseSecondItemFromEatingList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Holds bottle")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+        @AfterClass(alwaysRun = true)
+        public void teardown () {
+            this.driver.quit();
+        }
 
-}
+    }

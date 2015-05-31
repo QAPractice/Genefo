@@ -38,7 +38,7 @@ public class LoginTest {
 
         try {
             loginPage.openLoginPage()
-                    .waitUntilLoginPageIsLoaded();
+                     .waitUntilLoginPageIsLoaded();
             } catch (Exception e) {
               e.printStackTrace();
               }

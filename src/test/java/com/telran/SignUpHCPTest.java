@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 /**
- * Created by oshil on 31.05.2015.
+ * Created by Oleg on 31.05.2015.
  */
 public class SignUpHCPTest {
 

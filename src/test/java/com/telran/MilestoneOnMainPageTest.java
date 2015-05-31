@@ -47,7 +47,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-  /*  @Test
+    @Test
     public void SendLanguagePostTest() {
 
         try {
@@ -63,7 +63,7 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
-*/
+
 
     @Test
     public void SendEatingPostTest() {

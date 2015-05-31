@@ -34,7 +34,6 @@ public class SignUpHCPTest {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        //loginPage = PageFactory.initElements(driver,LoginPage.class);
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
 
         try {

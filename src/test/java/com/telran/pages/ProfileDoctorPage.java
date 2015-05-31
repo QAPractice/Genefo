@@ -38,6 +38,11 @@ public class ProfileDoctorPage extends Page{
         PageFactory.initElements(driver, this);
     }
 
+    public ProfileDoctorPage openProfileDoctorPage() {
+        driver.get(PAGE_URL);
+        return this;
+    }
+
     public ProfileDoctorPage waitUntilProfileDoctorPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(HCPAccountLable);

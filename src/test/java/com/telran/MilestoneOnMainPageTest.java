@@ -89,6 +89,39 @@ public class MilestoneOnMainPageTest {
                     .clickOnToiletingOption()
                     .clickOnToiletingOption()
                     .chooseFirstItemToiletingList()
+                    .clickOnYearsOption("21")
+                    .clickOnMonthOption("3")
+                    .fillTextField("Dresses alone")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void DeleteToiletingPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnToiletingOption()
+                    .clickOnToiletingOption()
+                    .chooseFirstItemToiletingList()
+                    .clickOnYearsOption("2147483648")
+                    .clickOnMonthOption("37")
+                    .fillTextField("Dresses alone")
+                    .deleteTextField();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Test
+    public void SendMovementPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnMovementOption()
+                    .chooseFirstItemToiletingList()
                     .clickOnYearsOption("2147483648")
                     .clickOnMonthOption("37")
                     .fillTextField("Dresses alone")
@@ -98,6 +131,7 @@ public class MilestoneOnMainPageTest {
         }
 
     }
+
     @AfterClass(alwaysRun = true)
     public void teardown () {
         this.driver.quit();

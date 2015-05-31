@@ -142,4 +142,5 @@ public abstract class Page {
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
 
+
 }

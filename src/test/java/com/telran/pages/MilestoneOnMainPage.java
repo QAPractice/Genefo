@@ -65,8 +65,12 @@ public class MilestoneOnMainPage extends Page {
 
     //for button Movement
 
+
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsHead;
+    @FindBy(xpath=" //*[@class='chosen-single']/span")
+    WebElement selectedHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
@@ -154,17 +158,14 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-
     public MilestoneOnMainPage clickOnLanguageItemList() {
         clickElement(selectItemList);
         return this;
     }
-
     public MilestoneOnMainPage chooseFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }
-
     public MilestoneOnMainPage clickFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
@@ -191,12 +192,24 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
+    public MilestoneOnMainPage clickOnSelectMovementItemList() {
+        clickElement(selectItemListButton);
+        return this;
+    }
+    public MilestoneOnMainPage clickOnSelectMovementItemOption() {
+        clickElement(selectItemListButton);
+        return this;
+    }
+
     public MilestoneOnMainPage clickOnMovementItemList() {
         clickElement(selectItemList);
         return this;
     }
-
     public MilestoneOnMainPage chooseFirstItemFromMovementList() {
+        clickElement(itemHoldsHead);
+        return this;
+    }
+    public MilestoneOnMainPage clickFirstItemFromMovementItemList() {
         clickElement(itemHoldsHead);
         return this;
     }
@@ -340,5 +353,10 @@ public class MilestoneOnMainPage extends Page {
     public MilestoneOnMainPage sendPost() {
         clickElement(submitButton);
         return this;
+    }
+
+
+    public void deleteTextField() {
+     return;
     }
 }

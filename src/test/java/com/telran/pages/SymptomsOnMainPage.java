@@ -47,6 +47,7 @@ public class SymptomsOnMainPage  extends Page {
     @FindBy(xpath = "")
     WebElement nameOfSymptomsTitle;
 
+    private String label; // Keeps last label from dropdown list.
 
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
@@ -54,8 +55,8 @@ public class SymptomsOnMainPage  extends Page {
         this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
     }
 
-
-    public SymptomsOnMainPage waitUntilSymptomsPanelIsLoaded(){
+    // Waits until title of our 'Symptoms' Panel appears on the screen
+    public void waitUntilSymptomsPanelIsLoaded(){
         try {
             waitUntilElementIsLoaded(nameOfSymptomsTitle);
         } catch (IOException e) {
@@ -63,7 +64,6 @@ public class SymptomsOnMainPage  extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return this;
 
     }
 
@@ -74,7 +74,7 @@ public class SymptomsOnMainPage  extends Page {
     }
 
     public SymptomsOnMainPage selectGeneralArea(String value) {
-        selectValueInDropdown(tooltipGeneralArea, value);
+        label=selectValueInDropdown(tooltipGeneralArea, value);
         return this;
     }
 
@@ -83,8 +83,20 @@ public class SymptomsOnMainPage  extends Page {
         return verifyTextBoolean(tooltipGeneralArea, value);
     }
 
+
+    public SymptomsOnMainPage selectSpecificArea(String value) {
+        label=selectValueInDropdown(tooltipSpecificArea, value);
+        return this;
+    }
+
+    public boolean isSpecificAreaSelected(String value) {
+
+        return verifyTextBoolean(tooltipSpecificArea, value);
+    }
+
+
     public SymptomsOnMainPage selectSymptoms(String value) {
-        selectValueInDropdown(tooltipSymptom, value);
+        label=selectValueInDropdown(tooltipSymptom, value);
         return this;
     }
 

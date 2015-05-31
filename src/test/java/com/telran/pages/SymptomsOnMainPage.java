@@ -44,7 +44,7 @@ public class SymptomsOnMainPage  extends Page {
     WebElement postButton;
 
     // Serves as indication that we are on 'Symptoms' Panel
-    @FindBy(xpath = "//div[@class='form-group']/label[@for='medicine_name']")
+    @FindBy(xpath = "")
     WebElement nameOfSymptomsTitle;
 
 
@@ -73,7 +73,15 @@ public class SymptomsOnMainPage  extends Page {
         return exists(nameOfSymptomsTitle);
     }
 
+    public SymptomsOnMainPage selectGeneralArea(String value) {
+        selectValueInDropdown(tooltipGeneralArea, value);
+        return this;
+    }
 
+    public boolean isGeneralAreaSelected(String value) {
+
+        return verifyTextBoolean(tooltipGeneralArea, value);
+    }
 
     public SymptomsOnMainPage selectSymptoms(String value) {
         selectValueInDropdown(tooltipSymptom, value);

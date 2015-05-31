@@ -38,6 +38,11 @@ public class MDRatingTest {
 
         try {
             loginPage.login("ri-lopatina@yandex.ru", "123456");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMDRatingButtonPanel();
@@ -53,9 +58,10 @@ public class MDRatingTest {
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField("MMM")
-                    .fillPhysicianField("PPP")
+                    .fillPhysicianField("PPP");
+            mdRatingOnMainPage
                     .clickOnAllStarsTogether()
-                    .rateItThree()                //Click on the third star
+                    .rateItThree()              //Click on the third star
                     .fillTextField("My First Post")
                     .sendPost();
 

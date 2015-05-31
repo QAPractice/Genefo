@@ -69,4 +69,9 @@ public class ProfileDoctorPage extends Page{
         return this;
     }
 
+    public boolean isOnProfileDoctorPage() {
+
+        return exists(HCPAccountLable);
+    }
+
 }

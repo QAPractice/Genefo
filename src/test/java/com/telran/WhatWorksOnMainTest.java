@@ -2,6 +2,7 @@ package com.telran;
 
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
+import com.telran.pages.UpperSentPostTabOnMainPage;
 import com.telran.pages.WhatWorksOnMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -24,6 +26,7 @@ public class WhatWorksOnMainTest {
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
+    public UpperSentPostTabOnMainPage upperSentPostTabOnMainPage;
     public WhatWorksOnMainPage whatWorksOnMainPage;
     private boolean acceptNextAlert = true;
 
@@ -35,6 +38,7 @@ public class WhatWorksOnMainTest {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
+        upperSentPostTabOnMainPage = PageFactory.initElements(driver,UpperSentPostTabOnMainPage.class);
 
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
@@ -50,7 +54,7 @@ public class WhatWorksOnMainTest {
 
     @Test
     public void SendTherapyPostTest() {
-
+        String text = "My Fifth Post" ;
         try {
             whatWorksOnMainPage
                     .clickOnTherapyOption()
@@ -58,9 +62,12 @@ public class WhatWorksOnMainTest {
                     .chooseFirstItemFromItemList()
                     .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
-                    .fillTextField("My First Post")
+                    .fillTextField(text)
                     .sendPost();
+            sleep(3000);
 
+            assertTrue(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertTrue(upperSentPostTabOnMainPage.verifyCategoryTherapyExists());
 
         } catch (Exception e) {
             e.printStackTrace();

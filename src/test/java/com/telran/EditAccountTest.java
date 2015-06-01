@@ -41,14 +41,16 @@ public class EditAccountTest {
         loginPage.openLoginPage();
         loginPage.login("lev.magazinnik@gmail.com","123qwee");
     }
-    //Google.docs: Edit#1
+    // Google.docs: Edit#1
+    // Condition:   Create account with valid information. 1.Click the button"Settings" in the upper right corner.
+    // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
     @Test
     public void createNewAccount(){
         assertEquals(driver.getTitle(),"");
     }
 
-    @AfterClass(alwaysRun=true)
-    public void quiteWindow(){
-        this.driver.quit();
-    }
+//    @AfterClass(alwaysRun=true)
+//    public void quiteWindow(){
+//        this.driver.quit();
+//    }
 }

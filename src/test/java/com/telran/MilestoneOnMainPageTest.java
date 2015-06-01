@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
+
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -25,8 +26,8 @@ public class MilestoneOnMainPageTest {
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
-    private boolean acceptNextAlert = true;
     public String someText;
+    private boolean acceptNextAlert = true;
 
     @BeforeClass
     public void setup() {
@@ -71,8 +72,8 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnEatingOption()
-                    .clickOnEatingOption()
-                    .chooseSecondItemFromEatingList()
+                    .clickOnSelectEatingItemOption()
+                    .clickFirstItemFromEatingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
                     .fillTextField("Holds bottle")
@@ -88,11 +89,11 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
-                    .clickOnToiletingOption()
-                    .chooseFirstItemToiletingList()
+                    .clickOnToiletingItemList()
+                    .clickFirstItemToiletingList()
                     .clickOnYearsOption("21")
                     .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
+                    .fillToiletingTextField("Dresses alone")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,12 +106,13 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
-                    .clickOnToiletingOption()
-                    .chooseFirstItemToiletingList()
-                    .clickOnYearsOption("2147483648")
-                    .clickOnMonthOption("37")
+                    .clickOnToiletingItemList()
+                    .clickFirstItemFromMovementList()
+                    .clickOnYearsOption("2")
+                    .clickOnMonthOption("3")
                     .fillTextField("Dresses alone")
-                    .deleteTextField();
+                    .sendPost();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,10 +123,10 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnMovementOption()
-                    .clickOnMovementOption()
-                    .chooseFirstItemToiletingList()
-                    .clickOnYearsOption("2147483648")
-                    .clickOnMonthOption("37")
+                    .clickOnSelectMovementItemOption()
+                    .clickFirstItemFromMovementList()
+                    .clickOnYearsOption("2")
+                    .clickOnMonthOption("3")
                     .fillTextField("Dresses alone")
                     .sendPost();
         } catch (Exception e) {

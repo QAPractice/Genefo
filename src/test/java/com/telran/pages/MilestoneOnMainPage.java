@@ -41,14 +41,30 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectItemList;
     @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")
     WebElement selectItemListButton;
-    @FindBy(xpath = "//*[contains(text(),'Select an Eating Milestone ')]")
+
+    @FindBy(xpath = "//*[contains(text(),'Select a Movement Milestone')]")
+    WebElement selectItemMovementList;
+    @FindBy(xpath = "//*[contains(text(),'Select a Movement Milestone')]/../div/b")
+    WebElement selectItemMovementButton;
+
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectEatingItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select an Eating Milestone ')/../div/b]")
+    @FindBy(xpath = "//*[@class='chosen-single']/span/../div/b")
     WebElement selectEatingItemButton;
-    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone ')]")
+
+    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone')]")
     WebElement selectToiletingItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone ')/../div/b]")
+    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone')/../div/b]")
     WebElement selectToiletingItemButton;
+
+    @FindBy(xpath = "//*[contains(text(),'Select a Treatment Milestone')]")
+    WebElement selectTreatmentItemList;
+    @FindBy(xpath = "//*[contains(text(),'Select a Treatment Milestone')/../div/b]")
+    WebElement selectTreatmentButton;
+
+    @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
+    WebElement fillOtherItemList;
+
 
     //elements of dropdown list
     //for button Language
@@ -58,31 +74,40 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectedSmiles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstWord;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedFirsWord;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemWords;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedWords;
+
 
     //for button Movement
-
-
-
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsHead;
-    @FindBy(xpath=" //*[@class='chosen-single']/span")
+    @FindBy(xpath = " //*[@class='chosen-single']/span")
     WebElement selectedHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemReachesForObjects;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedCraws;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
-
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedRuns;
     //for  button Eating
 
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsBottles;
-    @FindBy(xpath="//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectHoldsBottles;
     @FindBy(xpath = " //*[@class='chosen-single']/span")
     WebElement itemEatsWithSpoon;
@@ -90,20 +115,28 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectEatsWithSpoon;
 
     //for button Toileting
-    //@FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    //WebElement itemToiletTrained;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement selectToiletTrained;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;
-    @FindBy(xpath= "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement itemToiletTrained;
 
     //for button  Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSurgery;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedSurgery;
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemMedicalTrial;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedMedicalTrial;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRemission;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectedRemission;
+
 
     //fill Other field
     @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
@@ -167,14 +200,17 @@ public class MilestoneOnMainPage extends Page {
         clickElement(selectItemList);
         return this;
     }
+
     public MilestoneOnMainPage chooseFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }
+
     public MilestoneOnMainPage clickFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }
+
     public MilestoneOnMainPage chooseSecondItemFromLanguageList() {
         clickElement(itemBabbles);
         return this;
@@ -197,11 +233,12 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickOnSelectMovementItemList() {
-        clickElement(selectItemListButton);
+    public MilestoneOnMainPage clickOnSelectMovementItemOption() {
+        clickElement(selectItemMovementButton);
         return this;
     }
-    public MilestoneOnMainPage clickOnSelectMovementItemOption() {
+
+    public MilestoneOnMainPage clickOnSelectMovementItemList() {
         clickElement(selectItemListButton);
         return this;
     }
@@ -210,26 +247,28 @@ public class MilestoneOnMainPage extends Page {
         clickElement(selectItemList);
         return this;
     }
-    public MilestoneOnMainPage chooseFirstItemFromMovementList() {
+
+    public MilestoneOnMainPage clickFirstItemFromMovementList() {
         clickElement(itemHoldsHead);
         return this;
     }
+
     public MilestoneOnMainPage clickFirstItemFromMovementItemList() {
         clickElement(itemHoldsHead);
         return this;
     }
 
-    public MilestoneOnMainPage chooseSecondItemFromMovementList() {
+    public MilestoneOnMainPage clickSecondItemFromMovementList() {
         clickElement(itemReachesForObjects);
         return this;
     }
 
-    public MilestoneOnMainPage chooseFifthItemFromMovementList() {
+    public MilestoneOnMainPage clickFifthItemFromMovementList() {
         clickElement(itemCrawls);
         return this;
     }
 
-    public MilestoneOnMainPage chooseEighthItemFromMovementList() {
+    public MilestoneOnMainPage clickEighthItemFromMovementList() {
         clickElement(itemRuns);
         return this;
     }
@@ -239,14 +278,15 @@ public class MilestoneOnMainPage extends Page {
         clickElement(eatingButton);
         return this;
     }
+
     public MilestoneOnMainPage clickOnSelectEatingItemOption() {
-        clickElement(selectItemListButton);
+        clickElement(selectEatingItemButton);
         return this;
     }
 
 
     public MilestoneOnMainPage clickOnEatingItemList() {
-        clickElement(selectItemList);
+        clickElement(selectEatingItemList);
         return this;
     }
 
@@ -255,7 +295,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage chooseSecondItemFromEatingList() {
+    public MilestoneOnMainPage clickSecondItemFromEatingList() {
         clickElement(itemEatsWithSpoon);
         return this;
     }
@@ -269,17 +309,22 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public MilestoneOnMainPage clickOnToiletingItemList() {
-        clickElement(selectItemList);
+        clickElement(selectToiletingItemButton);
         return this;
     }
 
 
-    public MilestoneOnMainPage chooseFirstItemToiletingList() {
+    public MilestoneOnMainPage clickFirstItemToiletingList() {
         clickElement(itemToiletTrained);
         return this;
     }
 
-    public MilestoneOnMainPage chooseSecondItemToiletingList() {
+    public MilestoneOnMainPage fillToiletingTextField(String post) {
+        setElementText(postField, post);
+        return this;
+    }
+
+    public MilestoneOnMainPage clickSecondItemToiletingList() {
         clickElement(itemDressesAlone);
         return this;
     }
@@ -291,7 +336,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public MilestoneOnMainPage clickOnTreatmentItemList() {
-        clickElement(selectItemList);
+        clickElement(selectTreatmentButton);
         return this;
     }
 
@@ -328,7 +373,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage chooseButtonYearsList() {
+    public MilestoneOnMainPage chooseButtonYearsList(String year) {
         clickElement(yearsButton);
         return this;
     }
@@ -344,9 +389,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
 
-
-
-    public MilestoneOnMainPage chooseButtonMonthList() {
+    public MilestoneOnMainPage chooseButtonMonthList(String month) {
         clickElement(monthButton);
         return this;
 
@@ -365,8 +408,5 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-
-    public void deleteTextField() {
-     return;
-    }
 }
+

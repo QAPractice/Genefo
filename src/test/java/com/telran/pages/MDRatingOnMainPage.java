@@ -126,8 +126,19 @@ public class MDRatingOnMainPage extends Page {
         return verifyTextBoolean(facilityOnNewCreatedPost, name);
 
     }
-    public boolean isPhysicianNameCorrect(String name){
+
+    public boolean isPhysicianFirstNameCorrect(String name) {
         return verifyTextBoolean(physicianFirstNField, name);
+
+    }
+
+    public boolean isPhysicianLastNameCorrect(String name) {
+        return verifyTextBoolean(physicianFirstNField, name);
+
+    }
+
+    public boolean isTextCorrect(String name) {
+        return verifyTextBoolean(textInCreatedPost, name);
 
     }
 

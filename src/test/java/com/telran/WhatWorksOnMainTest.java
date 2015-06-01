@@ -35,12 +35,7 @@ public class WhatWorksOnMainTest {
 
     @BeforeClass
     public void setup() {
-//        this.driver = new FirefoxDriver();
-        File pathToBinary = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
-        FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);
-        FirefoxProfile firefoxProfile = new FirefoxProfile();
-        this.driver = new FirefoxDriver(ffBinary,firefoxProfile);
-
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver,LoginPage.class);

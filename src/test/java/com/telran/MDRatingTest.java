@@ -52,21 +52,24 @@ public class MDRatingTest {
     }
 
     @Test
-    public void sendMDRatingPostTest() {
+    //@Parameters("facilityname","physitianFirstName", "physitianLastName", "text")
+    public void sendMDRatingPostTest(String facilityname, String physitianFirstName, String physitianLastName, String text) {
 
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField("MMM")
-                    .fillPhysicianFields("PPP", "SSS")
+                    .fillMedicalFacilityField(facilityname)
+                    .fillPhysicianFields(physitianFirstName, physitianLastName)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField("My Second Post")
+                    .fillTextField(text)
                     .sendPost()
                     .waitUntilNewPostisLoaded();
 
-
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
-
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facilityname));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianFirstNameCorrect(physitianFirstName));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianLastNameCorrect(physitianLastName));
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text));
 
         } catch (Exception e) {
             e.printStackTrace();

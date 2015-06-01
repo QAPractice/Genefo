@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -58,8 +59,7 @@ public class MDRatingTest {
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField("MMM")
-                    .fillPhysicianField("PPP");
-            mdRatingOnMainPage
+                    .fillPhysicianFields("PPP", "SSS")
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
                     .fillTextField("My First Post")

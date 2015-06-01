@@ -65,6 +65,7 @@ public class MDRatingTest {
                     .rateItThree()              //Click on the third star
                     .fillTextField("My First Post")
                     .sendPost();
+
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
 
 

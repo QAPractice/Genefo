@@ -52,6 +52,16 @@ public class MDRatingOnMainPage extends Page {
     @FindBy(id = "submit")
     WebElement postButton;
 
+    @FindBy(xpath = "//div[@class='col-md-7 ng-isolate-scope']//span[@class='ng-isolate-scope ng-valid ng-dirty']/*[3][@class='glyphicon ng-scope fa post-fa-star fa-star']")
+    WebElement checkedThirdStar;
+
+    @FindBy(xpath = "//div[@class='col-md-7 ng-isolate-scope']//span[@class='ng-isolate-scope ng-valid ng-dirty']/*[3][@class='glyphicon ng-scope fa fa-star-o post-fa-star']")
+    WebElement unCheckedThirdStar;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model='medical_rating']")
+    WebElement allStarsTogetherInCreatedPost;
+
+
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilMDRatingPanelIsLoaded() {
         try {
@@ -101,7 +111,16 @@ public class MDRatingOnMainPage extends Page {
         return this;
     }
     public boolean isThirdStarYellow (){
-       //return Assert.assertTrue (verifyClass(thirdRatingStar, "glyphicon ng-scope fa post-fa-star fa-star"));
+       return exists(checkedThirdStar);
+    }
+    public void waitUntilNtwPostCreated() {
+        try {
+            waitUntilElementIsLoaded();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

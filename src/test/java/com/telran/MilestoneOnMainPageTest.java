@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
-
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -26,6 +26,7 @@ public class MilestoneOnMainPageTest {
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
     private boolean acceptNextAlert = true;
+    public String someText;
 
     @BeforeClass
     public void setup() {
@@ -131,6 +132,44 @@ public class MilestoneOnMainPageTest {
         }
 
     }
+
+    @Test
+    public void SendMilestoneNegativeTest1(){
+        try {
+            someText = randomAlphabetic(2256);
+            milestoneOnMainPage
+              //      .clickOnLanguageOption()
+               //     .clickOnSelectItemOption()
+               //     .clickFirstItemFromLanguageItemList()
+                    .clickOnMonthOption("abc")
+                    .clickOnYearsOption("")
+                    .fillTextField(someText)
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void SendMilestoneNegativeTest2(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                    .clickOnLanguageOption()
+                    .clickOnSelectItemOption()
+                    .clickOnLanguageItemOption("abc")
+                    .clickOnYearsOption("abc")
+                    .clickOnMonthOption("&^$")
+                    .fillTextField(someText)
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     @AfterClass(alwaysRun = true)
     public void teardown () {

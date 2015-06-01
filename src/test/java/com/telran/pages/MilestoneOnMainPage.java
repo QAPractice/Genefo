@@ -115,6 +115,11 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = ".//*[@id='milestone_months']")
     WebElement monthButton;
 
+    //field select language
+    @FindBy(xpath = "//*[@class='chosen-search']/input")
+    WebElement selectLanguageField;
+
+
     //field  post
     @FindBy(xpath = "//*[@placeholder='Tell us more about this milestone']")
     WebElement postField;
@@ -330,6 +335,11 @@ public class MilestoneOnMainPage extends Page {
 
     public MilestoneOnMainPage clickOnMonthOption(String months) {
         setElementText(monthButton, months);
+        return this;
+    }
+
+    public MilestoneOnMainPage clickOnLanguageItemOption(String text) {
+        setElementText(selectLanguageField, text);
         return this;
     }
 

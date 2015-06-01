@@ -52,10 +52,10 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='chosen-single']/span/../div/b")
     WebElement selectEatingItemButton;
 
-    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone')]")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectToiletingItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select an Toileting Milestone')/../div/b]")
-    WebElement selectToiletingItemButton;
+    @FindBy(xpath = "//*[@class='chosen-single']/span/../div/b")
+    WebElement selectToiletingItemListButton;
 
     @FindBy(xpath = "//*[contains(text(),'Select a Treatment Milestone')]")
     WebElement selectTreatmentItemList;
@@ -87,8 +87,11 @@ public class MilestoneOnMainPage extends Page {
 
 
     //for button Movement
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsHead;
+   /* @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemHoldsHead;*/
+    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")
+    WebElement ItemHoldsHead;
+
     @FindBy(xpath = " //*[@class='chosen-single']/span")
     WebElement selectedHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
@@ -117,6 +120,9 @@ public class MilestoneOnMainPage extends Page {
     //for button Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement selectToiletTrained;
+
+    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")
+    WebElement itemHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;
     @FindBy(xpath = "//*[@class='chosen-single']/span")
@@ -309,7 +315,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public MilestoneOnMainPage clickOnToiletingItemList() {
-        clickElement(selectToiletingItemButton);
+        clickElement(selectToiletingItemListButton);
         return this;
     }
 

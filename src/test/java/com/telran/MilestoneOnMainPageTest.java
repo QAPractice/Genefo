@@ -93,7 +93,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemToiletingList()
                     .clickOnYearsOption("21")
                     .clickOnMonthOption("3")
-                    .fillToiletingTextField("Dresses alone")
+                    .fillToiletingTextField("Toileting")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();

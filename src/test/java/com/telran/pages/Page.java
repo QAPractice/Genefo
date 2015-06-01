@@ -141,6 +141,13 @@ public abstract class Page {
     String cellColorAfterClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
+    public void verifyClass (WebElement element, String text) {
+        try {
+            Assert.assertEquals(text, element.getAttribute("class"));
+        } catch (Error e) {
+            verificationErrors.append(e.toString());
+        }
+    }
 
 
 }

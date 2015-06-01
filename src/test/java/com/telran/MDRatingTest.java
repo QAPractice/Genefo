@@ -3,12 +3,11 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MDRatingOnMainPage;
 import com.telran.pages.MainPage;
-import com.telran.pages.WhatWorksOnMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -53,17 +52,20 @@ public class MDRatingTest {
     }
 
     @Test
-    public void SendMDRatingPostTest() {
+    public void sendMDRatingPostTest() {
 
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField("MMM")
-                    .fillPhysicianField("PPP");
-            mdRatingOnMainPage
+                    .fillPhysicianFields("PPP", "SSS")
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField("My First Post")
-                    .sendPost();
+                    .fillTextField("My Second Post")
+                    .sendPost()
+                    .waitUntilNewPostisLoaded();
+
+
+            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
 
 
         } catch (Exception e) {

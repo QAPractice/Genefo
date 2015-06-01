@@ -12,41 +12,50 @@ import java.io.IOException;
  */
 public class MDRatingOnMainPage extends Page {
 
+    //fields
+    @FindBy(id = "medical_facility")
+    WebElement medicalFacilityField;
+    @FindBy(id = "medical_physician_first")
+    WebElement physicianFirstNField;
+    @FindBy(id = "medical_physician_last")
+    WebElement physicianLastNField;
+    // text field for posting
+    @FindBy(xpath = "//textarea[@name = 'bio']")
+    WebElement postField;
+    //Stars
+   @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']")
+    WebElement allStarsTogether;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']/*[3]")
+    WebElement thirdRatingStar;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[3][@class='glyphicon ng-scope fa fa-star post-fa-star']")
+    WebElement checkedThirdStarInPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[4][@class='glyphicon ng-scope fa fa-star-o post-fa-star']")
+    WebElement unCheckedThirdStarInPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model='medicalPro_effect']")
+    WebElement allStarsTogetherInCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    WebElement facilityOnNewCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement physicianOnNewCreatedPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    WebElement textInCreatedPost;
+    //Title
+    @FindBy(xpath = "//label[@for = 'medical_facility']")
+    WebElement medicalFacilityTitle;
+    //Buttons
+    @FindBy(id = "submit")
+    WebElement postButton;
+
+
+
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
     }
 
-    //fields
-    @FindBy(id = "medical_facility")
-    WebElement medicalFacilityField;
-
-    @FindBy(id = "medical_physician_first")
-    WebElement physicianField;
-
-    // text field for posting
-    @FindBy(xpath = "//textarea[@name = 'bio']")
-    WebElement postField;
-
-   // @FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]//span[@class=\"sr-only ng-binding\"]")
-   @FindBy(xpath = "//*[@ng-model=\"what_works_rating\"]//*[@class=\"sr-only ng-binding\"]")
-    WebElement allStarsTogether;
-
-    // Rating star - marked and non-marked together
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
-    //@FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]/i[3]/*")
-    WebElement thirdRatingStar;
-
-    //Title
-    @FindBy(xpath = "//label[@for = \"medical_facility\"]")
-    WebElement medicalFacilityTitle;
-
-    //Buttons
-    @FindBy(id = "submit")
-    WebElement postButton;
-
-    // Waits until title of our 'What works' Panel appears on the screen
+    // Waits until title of our 'MD Rating' Panel appears on the screen
     public void waitUntilMDRatingPanelIsLoaded() {
         try {
             waitUntilElementIsLoaded(medicalFacilityTitle);
@@ -57,7 +66,7 @@ public class MDRatingOnMainPage extends Page {
         }
     }
 
-    // Checks that title of our 'What works' Panel have appeared on the screen so we can work with it.
+    // Checks that title of our 'MD Rating' Panel have appeared on the screen so we can work with it.
     public boolean isOnMDRatingPanel() {
         waitUntilMDRatingPanelIsLoaded();
         return exists(medicalFacilityTitle);
@@ -68,8 +77,9 @@ public class MDRatingOnMainPage extends Page {
         return this;
     }
 
-    public MDRatingOnMainPage fillPhysicianField(String physician) {
-        setElementText(physicianField, physician);
+    public MDRatingOnMainPage fillPhysicianFields(String fNPhysician, String lNPhysician) {
+        setElementText(physicianFirstNField, fNPhysician);
+        setElementText(physicianLastNField, lNPhysician);
         return this;
     }
 
@@ -92,6 +102,33 @@ public class MDRatingOnMainPage extends Page {
     public MDRatingOnMainPage sendPost() {
         clickElement(postButton);
         return this;
+    }
+    public boolean isThirdStarYellow (){
+        return exists(checkedThirdStarInPost);
+    }
+
+    public void waitUntilNewPostisLoaded() {
+        try {
+            waitUntilElementIsLoaded(allStarsTogetherInCreatedPost);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isThirdStarChecked() {
+        waitUntilNewPostisLoaded();
+        return exists(checkedThirdStarInPost);
+    }
+
+    public boolean isFacilityNameCorrect(String name){
+        return verifyTextBoolean(facilityOnNewCreatedPost, name);
+
+    }
+    public boolean isPhysicianNameCorrect(String name){
+        return verifyTextBoolean(physicianFirstNField, name);
+
     }
 
 }

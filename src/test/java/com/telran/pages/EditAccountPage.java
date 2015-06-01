@@ -1,13 +1,17 @@
 package com.telran.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+
+
 public class EditAccountPage extends Page{
 
-//    fields
-     @FindBy(name="email")
+    //    fields
+    @FindBy(name="email")
     WebElement emailElement;
 
     @FindBy(name="newpassword")
@@ -26,8 +30,54 @@ public class EditAccountPage extends Page{
     @FindBy(xpath = "//*[@name='basic_form']/div[3]/div//*[@id='submit']")
     WebElement submitButton2;
 
+
     public EditAccountPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL="http://genefo-env.elasticbeanstalk.com/account";
     }
+
+    public EditAccountPage openEditAccountPage(){
+        loadPage();
+        return this;
+    }
+
+    public WebElement getNewPasswordElement() {
+        return newPasswordElement;
+    }
+
+    public WebElement getFirstNameElement() {
+        return firstNameElement;
+    }
+
+    public WebElement getLastNameElement() {
+        return lastNameElement;
+    }
+
+    public WebElement getEmailElement(){
+        return emailElement;
+    }
+
+
+
+    public EditAccountPage fillEmailField(String e_mail){
+        //Added because function "element.clean()" not worked for me!
+        cleanElement(emailElement);
+        setElementText(emailElement, e_mail);
+        return this;
+    }
+    private void cleanElement(WebElement element){
+
+        element.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys(Keys.DELETE);
+    }
+    public void waitUntilEditElementIsLoaded(){
+        try {
+            waitUntilElementIsLoaded(emailElement);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

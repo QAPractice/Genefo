@@ -43,6 +43,9 @@ public class MainPage extends Page {
     @FindBy(xpath = "//li[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
 
+    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'My Account')]")
+    WebElement myAccountButton;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -108,6 +111,11 @@ public class MainPage extends Page {
     public MainPage selectMyProfile () {
         clickElement(cogwheelButton);
         clickElement(myProfilesButton);
+        return this;
+    }
+    public MainPage selectMyAccount () {
+        clickElement(cogwheelButton);
+        clickElement(myAccountButton);
         return this;
     }
 

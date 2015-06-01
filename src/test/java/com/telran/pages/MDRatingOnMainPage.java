@@ -4,8 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Л on 5/28/2015.
@@ -96,6 +99,9 @@ public class MDRatingOnMainPage extends Page {
     public MDRatingOnMainPage sendPost() {
         clickElement(postButton);
         return this;
+    }
+    public boolean isThirdStarYellow (){
+       //return Assert.assertTrue (verifyClass(thirdRatingStar, "glyphicon ng-scope fa post-fa-star fa-star"));
     }
 
 }

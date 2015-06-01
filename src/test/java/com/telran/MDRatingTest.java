@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -64,6 +65,7 @@ public class MDRatingTest {
                     .rateItThree()              //Click on the third star
                     .fillTextField("My First Post")
                     .sendPost();
+            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
 
 
         } catch (Exception e) {

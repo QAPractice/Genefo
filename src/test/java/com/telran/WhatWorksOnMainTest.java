@@ -5,13 +5,16 @@ import com.telran.pages.MainPage;
 import com.telran.pages.UpperSentPostTabOnMainPage;
 import com.telran.pages.WhatWorksOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;

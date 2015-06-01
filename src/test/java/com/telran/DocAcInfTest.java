@@ -43,7 +43,7 @@ public class DocAcInfTest {
             e.printStackTrace();
         }
     }
-
+//positive
     @Test
     public void EditAccInfSuccess() {
 
@@ -54,6 +54,32 @@ public class DocAcInfTest {
                     .fillEmailField("one" + EmailNickname + "@usgenefo.com")
                     .clickOnSaveButton();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void ClickOnCancel() {
+
+        try {
+            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+//negative
+    @Test
+    public void EditAccInfEmptyFiels() {
+
+        try {
+            docAcInfPage
+                    .fillPasswordField("")
+                    .fillEmailField("")
+                    .clickOnSaveButton();
+            assertTrue(docAcInfPage.alertMessageInvalidEmail());
+            assertTrue(docAcInfPage.alertMessageInvalidPassword());
+            assertTrue(docAcInfPage.isOnDocAcInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

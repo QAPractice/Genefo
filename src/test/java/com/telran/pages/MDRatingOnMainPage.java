@@ -33,12 +33,21 @@ public class MDRatingOnMainPage extends Page {
     WebElement unCheckedThirdStarInPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model='medicalPro_effect']")
     WebElement allStarsTogetherInCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    WebElement facilityOnNewCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement physicianOnNewCreatedPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    WebElement textInCreatedPost;
     //Title
     @FindBy(xpath = "//label[@for = 'medical_facility']")
     WebElement medicalFacilityTitle;
     //Buttons
     @FindBy(id = "submit")
     WebElement postButton;
+
+
 
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
@@ -113,5 +122,13 @@ public class MDRatingOnMainPage extends Page {
         return exists(checkedThirdStarInPost);
     }
 
+    public boolean isFacilityNameCorrect(String name){
+        return verifyTextBoolean(facilityOnNewCreatedPost, name);
+
+    }
+    public boolean isPhysicianNameCorrect(String name){
+        return verifyTextBoolean(physicianFirstNField, name);
+
+    }
 
 }

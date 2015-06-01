@@ -62,7 +62,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']//*[@class='sr-only ng-binding']")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid'][@ng-model=\"what_works_rating\"]//span[@class='sr-only ng-binding']")
     WebElement allStarsTogether;
 
 

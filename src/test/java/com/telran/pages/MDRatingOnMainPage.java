@@ -23,23 +23,26 @@ public class MDRatingOnMainPage extends Page {
     WebElement medicalFacilityField;
 
     @FindBy(id = "medical_physician_first")
-    WebElement physicianField;
+    WebElement physicianFirstNField;
+
+    @FindBy(id = "medical_physician_last")
+    WebElement physicianLastNField;
+
 
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
     WebElement postField;
 
-   // @FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]//span[@class=\"sr-only ng-binding\"]")
-   @FindBy(xpath = "//*[@ng-model=\"what_works_rating\"]//*[@class=\"sr-only ng-binding\"]")
+
+   @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']")
     WebElement allStarsTogether;
 
     // Rating star - marked and non-marked together
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
-    //@FindBy(xpath = "//*[@class=\"ng-isolate-scope ng-pristine ng-valid\"]/i[3]/*")
+    @FindBy(xpath = "//div[@class='col-md-7 ng-isolate-scope']//span[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
     WebElement thirdRatingStar;
 
     //Title
-    @FindBy(xpath = "//label[@for = \"medical_facility\"]")
+    @FindBy(xpath = "//label[@for = 'medical_facility']")
     WebElement medicalFacilityTitle;
 
     //Buttons
@@ -68,8 +71,9 @@ public class MDRatingOnMainPage extends Page {
         return this;
     }
 
-    public MDRatingOnMainPage fillPhysicianField(String physician) {
-        setElementText(physicianField, physician);
+    public MDRatingOnMainPage fillPhysicianFields(String fNPhysician, String lNPhysician) {
+        setElementText(physicianFirstNField, fNPhysician);
+        setElementText(physicianLastNField, lNPhysician);
         return this;
     }
 

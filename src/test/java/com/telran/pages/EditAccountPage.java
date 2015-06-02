@@ -36,6 +36,10 @@ public class EditAccountPage extends Page{
     @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
     WebElement submitButtonOldPassword;
 
+// alerts
+
+    @FindBy(xpath = "//*[@class='alert alert-success alert-dismissible']/div")
+    WebElement changesSuccessAlert;
 
     public EditAccountPage(WebDriver driver) {
         super(driver);
@@ -109,5 +113,15 @@ public class EditAccountPage extends Page{
         return this;
     }
 
+    public boolean isSuccessAlert() {
+        try {
+            waitUntilElementIsLoaded(changesSuccessAlert);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return exists(changesSuccessAlert);
+    }
 
 }

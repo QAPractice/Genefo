@@ -23,10 +23,10 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='account-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
     WebElement cancelButton;
 
-    @FindBy(xpath ="//*[@id='submit' and @data-target='#loginModal'] ")
+    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal'][not(contains(@disabled,'disabled'))] ")
     WebElement saveButton;
 
-    @FindBy(xpath ="//*[@id='submit' and @data-target='#loginModal'and @disabled='disabled']")
+    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal' and @disabled='disabled']")
     WebElement saveDisablelButton;
 
     @FindBy(xpath = "//*[@class='errormsg']/*[@class='fa fa-times']")

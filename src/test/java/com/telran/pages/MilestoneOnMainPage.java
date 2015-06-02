@@ -163,7 +163,7 @@ public class MilestoneOnMainPage extends Page {
 
 
     //button submit
-    @FindBy(xpath = ".//*[@id='submit']")
+    @FindBy(xpath = "//*[@id='submit']")
     WebElement submitButton;
 
     //alerts
@@ -174,6 +174,15 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
     WebElement numbersOnlyForYears;
 
+    //elements in created post
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    WebElement ageOnNewCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement milestoneTypeOnNewCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
+    WebElement milestoneOnNewCreatedPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    WebElement textInCreatedPost;
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
@@ -424,7 +433,22 @@ public class MilestoneOnMainPage extends Page {
         return exists(alertRequiredFields);
     }
 
+// checking data in created post
 
+    public boolean isAgeIsCorrect(String age) {
+        return verifyTextBoolean(ageOnNewCreatedPost, age);
+
+    }
+
+    public boolean isTextCorrect(String name) {
+        return verifyTextBoolean(textInCreatedPost, name);
+
+    }
+
+    public boolean isMilestoneTypeCorrect() {
+
+        return verifyTextBoolean(textInCreatedPost, "smiles");
+    }
 
 }
 

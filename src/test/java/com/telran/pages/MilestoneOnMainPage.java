@@ -117,8 +117,8 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemHoldsBottles;
     @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
     WebElement selectHoldsBottles;
-   //@FindBy(xpath = " //*[@class='chosen-single']/span")      //?
-   //WebElement itemEatsWithSpoon;
+   // @FindBy(xpath = " //*[@class='chosen-single']/span")      //?
+  //  WebElement itemEatsWithSpoon;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
     @FindBy(xpath = " //*[@class='chosen-single']/span")         //?
@@ -176,7 +176,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement submitButton;
 
     //alerts
-    @FindBy(xpath= "//ng-include/div/div[2]")
+    @FindBy(xpath= "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
     WebElement alertRequiredFields;
     @FindBy(xpath = "//*[@style='padding-left: 5px;']/span")
     WebElement numbersOnlyForMonths;
@@ -429,5 +429,19 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
+
+    //check alert presence
+
+    public boolean alertMessageNotValidYear() {
+        return exists(numbersOnlyForYears);
+    }
+
+    public boolean alertMessageNotValidMonth() {
+        return exists(numbersOnlyForMonths);
+    }
+
+    public boolean alertMessageRequiredFields() {
+        return exists(alertRequiredFields);
+    }
 }
 

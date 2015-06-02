@@ -4,6 +4,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -134,43 +135,43 @@ public class MilestoneOnMainPageTest {
         }
 
     }
+             //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
     2)Months:abc
     3)Milestone:empty
     4)Message: Length>2252*/
     @Test
-    public void SendMilestoneNegativeTest1(){
+    public void MilestoneNegativeTest1(){
         try {
-            someText = randomAlphabetic(11);
+            someText = randomAlphabetic(22);
             milestoneOnMainPage
-              //      .clickOnLanguageOption()
-               //     .clickOnSelectItemOption()
-               //     .clickFirstItemFromLanguageItemList()
-                    .clickOnYearsOption("")
-                    .clickOnMonthOption("abc")
-                    .fillTextField(someText)
+                    .clickOnYearsOption("-1")
+                    .clickOnMonthOption("-1")
+                    .fillTextField("Hello")
                     .sendPost();
+                  assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                  assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                  assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    /*
-     1)Years:abc
+    /*1)Years:abc
      2)Months:&^$
      3)Milestone:Language:abc
      4)Message:Length:1126*/
     @Test
-    public void SendMilestoneNegativeTest2(){
+    public void MilestoneNegativeTest2(){
         try {
             someText = randomAlphabetic(11);
             milestoneOnMainPage
                     .clickOnLanguageOption()
                     .clickOnSelectItemOption()
                     .clickOnLanguageItemOption("abc")
-                    .clickOnYearsOption("abc")
+                    .clickOnYearsOption("3")
                     .clickOnMonthOption("&^$")
                     .fillTextField(someText)
                     .sendPost();
@@ -181,28 +182,28 @@ public class MilestoneOnMainPageTest {
     }
 
     /* 1)Years:Два
-   2)Months:-12
-   3)Milestone:Movement:Rolls over
-   4)Message:Length:length>2252*/
+    2)Months:-12
+    3)Milestone:Movement:Rolls over
+    4)Message:Length:length>2252*/
     @Test
     public void MilestoneNegativeTest3(){
         try {
-            someText = randomAlphabetic(3);
+            someText = randomAlphabetic(4);
             milestoneOnMainPage
                     .clickOnMovementOption()
                     .clickOnSelectItemOption()
                     .clickRollsOverFromMovementList()
                     .clickOnYearsOption("Два")
-                    .clickOnMonthOption("-12")
+                    .clickOnMonthOption("2")
                     .fillTextField(someText)
                     .sendPost();
+           // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /*
-    1)Years:שלושל
+    /*1)Years:שלושל
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
@@ -223,11 +224,90 @@ public class MilestoneOnMainPageTest {
         }
     }
 
+    /*1)Years:583687348237560327234686
+    2)Months:36
+    3)Milestone:empty
+    4)Message:Length:length>2252*/
+    @Test
+    public void MilestoneNegativeTest5(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                 //   .clickOnLanguageOption()
+                 //   .clickOnSelectItemOption()
+                 //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("583687348237560327234686")
+                    .clickOnMonthOption("36")
+                    .fillTextField("someText")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:עשרים ואחד
+    2)Months:00
+    3)Milestone:empty
+    4)Message::empty*/
+    @Test
+    public void MilestoneNegativeTest6(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                    //   .clickOnLanguageOption()
+                    //   .clickOnSelectItemOption()
+                    //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("עשרים ואחד")
+                    .clickOnMonthOption("00")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:-int
+    2)Months:16
+    3)Milestone:Toileting:dresses alone
+    4)Message:Length>2252*/
+    @Test
+    public void MilestoneNegativeTest7(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                      .clickOnToiletingOption()
+                    //   .clickOnSelectItemOption()
+                    //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("עשרים ואחד")
+                    .clickOnMonthOption("00")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     @AfterClass(alwaysRun = true)
     public void teardown () {
         this.driver.quit();
+    }
+
+    private String closeAlertAndGetItsText() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
+        }
     }
 
 }

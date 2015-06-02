@@ -335,7 +335,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
 
-    public MilestoneOnMainPage clickFirstItemFromTrratingItemList() {
+    public MilestoneOnMainPage clickFirstItemFromTreatmentItemList() {
         clickElement(itemSurgery);
         return this;
     }
@@ -393,8 +393,13 @@ public class MilestoneOnMainPage extends Page {
     //fill text
     //post
 
-    public MilestoneOnMainPage fillTextField(String s) {
+    public MilestoneOnMainPage fillTextField(String post) {
         setElementText(postField, post);
+        return this;
+    }
+
+    public MilestoneOnMainPage fillOtherField(String text) {
+        setElementText(postField, text);
         return this;
     }
 

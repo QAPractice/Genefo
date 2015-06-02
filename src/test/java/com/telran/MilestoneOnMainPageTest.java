@@ -184,10 +184,13 @@ public class MilestoneOnMainPageTest {
                     .clickOnLanguageOption()
                     .clickOnSelectItemOption()
                     .clickOnLanguageItemOption("abc")
-                    .clickOnYearsOption("3")
+                    .clickOnYearsOption("abc")
                     .clickOnMonthOption("&^$")
-                    .fillTextField("")
+                    .fillTextField("someText")
                     .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -31,8 +32,8 @@ public class EditAccountTest {
     public EditAccountPage editAccountPage;
     private static String MY_EMAIL="lev.magazinnik@gmail.com";
     private static String MY_Password="123qwee";
-    private static String MY_FirstName="Lev";
-    private static String MY_LastName="Magazinnik";
+    private static String MY_FirstName="lev";
+    private static String MY_LastName="magazinnik";
 
 
     @BeforeClass
@@ -62,25 +63,22 @@ public class EditAccountTest {
         mainPage.selectMyAccount();
     }
 
-    //    Edit 2	Verify that the user's information presents correctly in the opened window "Edit account".
-// 1.Click the button"Settings" and then click the button "My Account".
-// 1. The window "Edit Account" is opened and all fields: Email,password,First Name, Second Name are present correctly.
+    //    Edit 2	Verify that the user's information presents correctly
     @Test
     public void verifyUserInformation(){
         editAccountPage.openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
-        assertEquals(editAccountPage.getEmailElement().getAttribute("value"),MY_EMAIL);
-
-        assertEquals(editAccountPage.getFirstNameElement(),MY_FirstName);
-        assertEquals(editAccountPage.getLastNameElement(),MY_LastName);
-        assertEquals(editAccountPage.getNewPasswordElement(),MY_Password);
-
-
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(editAccountPage.getEmailElement().getAttribute("value"),MY_EMAIL);
+        softAssert.assertEquals(editAccountPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
+        softAssert.assertEquals(editAccountPage.getLastNameElement().getAttribute("value"), MY_LastName);
+        softAssert.assertAll();
     }
 
 
-//    @AfterClass(alwaysRun=true)
-//    public void quiteWindow(){
-//        this.driver.quit();
-//    }
+
+    @AfterClass(alwaysRun=true)
+    public void quiteWindow(){
+        this.driver.quit();
+    }
 }

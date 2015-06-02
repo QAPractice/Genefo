@@ -124,7 +124,7 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnTreatmentOption()
                     .clickOnSelectTreatmentItemOption()
-                    .clickFirstItemFromTrratingItemList()
+                    .clickFirstItemFromTreatmentItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
                     .fillTextField("Post5")

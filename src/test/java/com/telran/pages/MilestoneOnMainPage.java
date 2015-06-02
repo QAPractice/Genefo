@@ -393,7 +393,7 @@ public class MilestoneOnMainPage extends Page {
     //fill text
     //post
 
-    public MilestoneOnMainPage fillTextField(String post) {
+    public MilestoneOnMainPage fillTextField(String s) {
         setElementText(postField, post);
         return this;
     }

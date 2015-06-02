@@ -175,6 +175,14 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = ".//*[@id='submit']")
     WebElement submitButton;
 
+    //alerts
+    @FindBy(xpath= "//ng-include/div/div[2]")
+    WebElement alertRequiredFields;
+    @FindBy(xpath = "//*[@style='padding-left: 5px;']/span")
+    WebElement numbersOnlyForMonths;
+    @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
+    WebElement numbersOnlyForYears;
+
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
         super(driver);

@@ -30,7 +30,10 @@ public class EditAccountTest {
     public MainPage mainPage;
     public LoginPage loginPage;
     public EditAccountPage editAccountPage;
+    private static  SoftAssert softAssert;
+
     private static String MY_EMAIL="lev.magazinnik@gmail.com";
+    private static String MY_EMAIL_TO_UPDATE="attogroup.bgu@gmail.com";
     private static String MY_Password="123qwee";
     private static String MY_FirstName="lev";
     private static String MY_LastName="magazinnik";
@@ -51,6 +54,7 @@ public class EditAccountTest {
         loginPage.openLoginPage();
         loginPage.waitUntilLoginPageIsLoaded();
         loginPage.login(MY_EMAIL, MY_Password);
+        softAssert = new SoftAssert();
 
     }
 
@@ -68,17 +72,47 @@ public class EditAccountTest {
     public void verifyUserInformation(){
         editAccountPage.openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
-        SoftAssert softAssert = new SoftAssert();
+
         softAssert.assertEquals(editAccountPage.getEmailElement().getAttribute("value"),MY_EMAIL);
         softAssert.assertEquals(editAccountPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
         softAssert.assertEquals(editAccountPage.getLastNameElement().getAttribute("value"), MY_LastName);
-        softAssert.assertAll();
+
     }
 
+//Edit 3	Go to Edit Account. 1.Delete the current email.
+// 2.Type in the field "Email" another email (valid) and Click the button "Save".
+// 3.Enter the valid current password and click the button "Save".
+
+    @Test
+    public void updateEmail(){
+
+        editAccountPage
+                .openEditAccountPage()
+                .waitUntilEditElementIsLoaded();
+        editAccountPage
+                .fillEmailField(MY_EMAIL_TO_UPDATE)
+                .clickOnSubmitButton1()
+                .fillOldPasswordField(MY_Password)
+                .clickOnSubmitButtonOldPassword()
+                .openEditAccountPage()
+        .waitUntilEditElementIsLoaded();
+        softAssert.assertEquals(editAccountPage.getEmailElement().getAttribute("value"), MY_EMAIL_TO_UPDATE);
+
+
+// return old e-mail
+        editAccountPage
+                .fillEmailField(MY_EMAIL)
+                .clickOnSubmitButton1()
+                .fillOldPasswordField(MY_Password)
+                .clickOnSubmitButtonOldPassword();
+
+
+    }
 
 
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){
+        softAssert.assertAll();
         this.driver.quit();
     }
 }

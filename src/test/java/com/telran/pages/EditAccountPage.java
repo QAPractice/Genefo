@@ -23,12 +23,18 @@ public class EditAccountPage extends Page{
     @FindBy(name="lastName")
     WebElement lastNameElement;
 
+    @FindBy(name="oldpassword")
+    WebElement oldpasswordElement;
+
     //    buttons
     @FindBy(xpath = "//*[@name='info_form']/div[3]/div//*[@id='submit']")
     WebElement submitButton1;
 
     @FindBy(xpath = "//*[@name='basic_form']/div[3]/div//*[@id='submit']")
     WebElement submitButton2;
+
+    @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
+    WebElement submitButtonOldPassword;
 
 
     public EditAccountPage(WebDriver driver) {
@@ -79,5 +85,21 @@ public class EditAccountPage extends Page{
             e.printStackTrace();
         }
     }
+    public EditAccountPage fillOldPasswordField(String pass){
+
+        cleanElement(oldpasswordElement);
+        setElementText(oldpasswordElement, pass);
+        return this;
+    }
+
+    public EditAccountPage clickOnSubmitButton1(){
+        clickElement(submitButton1);
+        return this;
+    }
+    public EditAccountPage clickOnSubmitButtonOldPassword(){
+        clickElement(submitButtonOldPassword);
+        return this;
+    }
+
 
 }

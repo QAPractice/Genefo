@@ -60,7 +60,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("7")
                     .clickOnMonthOption("5")
-                    .fillTextField("My Post in Language")
+                    .fillTextField()
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromMovementList()
                     .clickOnYearsOption("2")
                     .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
+                    .fillTextField()
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +93,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromEatingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
-                    .fillTextField("Holds bottle")
+                    .fillTextField()
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +110,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemToiletingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
-                    .fillTextField("Holds")
+                    .fillTextField()
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,18 +123,29 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnTreatmentOption()
-                    .clickOnSelectTreatingitemOption()
+                    .clickOnSelectTreatmentItemOption()
                     .clickFirstItemFromTrratingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
-                    .fillTextField("Text")
+                    .fillTextField()
                     .sendPost();
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
+     @Test
+      public  void SendOtherPostTest() {
+         try {
+             milestoneOnMainPage
+                     .clickOnOtherOption()
+                     .clickOnSelectOtherItemOption()
+                     .fillTextField()
+                     .sendPost();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
@@ -148,7 +159,7 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnYearsOption("-1")
                     .clickOnMonthOption("-1")
-                    .fillTextField("Hello")
+                    .fillTextField()
                     .sendPost();
                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
@@ -173,7 +184,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnLanguageItemOption("abc")
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("&^$")
-                    .fillTextField(someText)
+                    .fillTextField()
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +206,7 @@ public class MilestoneOnMainPageTest {
                     .clickRollsOverFromMovementList()
                     .clickOnYearsOption("Два")
                     .clickOnMonthOption("2")
-                    .fillTextField(someText)
+                    .fillTextField()
                     .sendPost();
            // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -217,7 +228,7 @@ public class MilestoneOnMainPageTest {
                     .clickEatsWithSpoonFromEatingList()
                     .clickOnYearsOption("שלושל")
                     .clickOnMonthOption("-One")
-                    .fillTextField(someText)
+                    .fillTextField()
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -238,7 +249,7 @@ public class MilestoneOnMainPageTest {
                  //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
-                    .fillTextField("someText")
+                    .fillTextField()
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -259,7 +270,7 @@ public class MilestoneOnMainPageTest {
                     //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00")
-                    .fillTextField("")
+                    .fillTextField()
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -280,7 +291,7 @@ public class MilestoneOnMainPageTest {
                     //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00")
-                    .fillTextField("")
+                    .fillTextField()
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();

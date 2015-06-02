@@ -140,6 +140,7 @@ public class MilestoneOnMainPageTest {
              milestoneOnMainPage
                      .clickOnOtherOption()
                      .clickOnSelectOtherItemOption()
+                     .fillOtherField("hello")
                      .clickOnYearsOption("10")
                      .clickOnMonthOption("5")
                      .fillTextField("Post6")

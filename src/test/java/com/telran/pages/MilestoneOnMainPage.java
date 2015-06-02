@@ -158,8 +158,9 @@ public class MilestoneOnMainPage extends Page {
 
     @FindBy(xpath = "//*[@placeholder='Tell us more about this milestone']")
     WebElement postField;//*[@class='col-sm-12']/input
-    // @FindBy(xpath = "//*[@class='col-sm-12']/input")
-    // WebElement otherPostField;
+    @FindBy(xpath = "//*[@class='col-sm-12']/input")
+    WebElement textField;
+
 
     //button submit
     @FindBy(xpath = ".//*[@id='submit']")
@@ -399,7 +400,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public MilestoneOnMainPage fillOtherField(String text) {
-        setElementText(postField, text);
+        setElementText(textField, text);
         return this;
     }
 

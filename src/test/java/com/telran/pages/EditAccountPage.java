@@ -36,6 +36,7 @@ public class EditAccountPage extends Page{
     @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
     WebElement submitButtonOldPassword;
 
+
     public EditAccountPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL="http://genefo-env.elasticbeanstalk.com/account";

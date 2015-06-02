@@ -143,6 +143,97 @@ public class EditAccountTest {
 
     }
 
+// Edit 5	Go to Edit Account.
+// 1.Delete the current password and type new password in english and push the button "Save".
+// 2.Enter the valid current password. 3.Logout and Login with New password.
+    @Test
+    public void newPassword( ){
+        String testPass=TEMP_PASS;
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+
+    }
+
+
+//    Edit 10	Go to Edit Account.
+// 1.Delete the current password and type new password with length=12 and push the button "Save".
+// 2.Enter the valid current password. 3.Logout and Login with New password.
+    @Test
+    public void newPassword12( ){
+       String testPass="123456789111";
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+
+    }
+
+
+//    Edit 11	Go to Edit Account.
+// 1.Delete the current password and type new password with special symbols and push the button "Save".
+// !@#$%^&*()_+}{|":?><|\,./\';[]=-
+// 2.Enter the valid current password.
+// 3.Logout and Login with New password.
+    @Test
+    public void newPasswordSpecSimbols1( ) {
+        String testPass = "!@#$%^&*()_+";
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+    }
+    @Test
+    public void newPasswordSpecSimbols2( ) {
+        String testPass = "}{|\":?><|\\";
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+    }
+    @Test
+    public void newPasswordSpecSimbols3( ){
+        String testPass=",./\\';[]=-";
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+    }
+
+//Edit 12	Go to Edit Account.
+// 1.Delete the current password and type new password with Kapital and Lower Key text and push the button "Save".
+// 2.Enter the valid current password. 3.Logout and Login with New password.
+    @Test
+    public void newPasswordKapitalLower( ){
+        String testPass="ABCDabcd";
+        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(mainPage.isOnMainPage());
+        retainOldPassword(MY_Password, testPass);
+    }
+    private void retainOldPassword(String newPassword,String oldPassword){
+        editAccountPage.loadPage();
+        editAccountPage
+                .waitUntilEditElementIsLoaded()
+                .fillPasswordField(newPassword)
+                .clickOnSubmitButton1()
+                .fillOldPasswordField(oldPassword)
+                .clickOnSubmitButtonOldPassword();
+    }
+    private void updateAndCheckPassword(String evalPass){
+        editAccountPage
+                .openEditAccountPage()
+                .waitUntilEditElementIsLoaded()
+                .fillPasswordField(evalPass)
+                .clickOnSubmitButton1()
+                .fillOldPasswordField(MY_Password)
+                .clickOnSubmitButtonOldPassword();
+
+        mainPage
+                .openMainPage()
+                .selectLogOut();
+        loginPage
+                .openLoginPage()
+                .waitUntilLoginPageIsLoaded()
+                .login(MY_EMAIL, evalPass);
+
+    }
+
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){
         softAssert.assertAll();

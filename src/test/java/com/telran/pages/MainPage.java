@@ -51,7 +51,7 @@ public class MainPage extends Page {
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
     WebElement logOutButton;
 
-    @FindBy(xpath="")
+    @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
 
 

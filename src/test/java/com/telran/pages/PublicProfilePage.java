@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * Created by Л on 6/2/2015.
+ * Created by Л , Iakov Volf on 6/2/2015.
  */
 public class PublicProfilePage extends Page{
 

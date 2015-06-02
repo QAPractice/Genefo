@@ -60,13 +60,29 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("7")
                     .clickOnMonthOption("5")
-                    .fillTextField("My Post in Language")
+                    .fillTextField("Post1")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @Test
+    public void SendMovementPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectMovementItemOption()
+                    .clickFirstItemFromMovementList()
+                    .clickOnYearsOption("2")
+                    .clickOnMonthOption("3")
+                    .fillTextField("Post2")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
         @Test
     public void SendEatingPostTest() {
@@ -77,7 +93,7 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromEatingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
-                    .fillTextField("Holds bottle")
+                    .fillTextField("Post3")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,11 +106,11 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
-                    .clickOnToiletingItemList()
-                    .clickFirstItemToiletingList()
-                    .clickOnYearsOption("21")
-                    .clickOnMonthOption("3")
-                    .fillToiletingTextField("Toileting")
+                    .clickOnSelectItemToiletingItemOption()
+                    .clickFirstItemToiletingItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Post4")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,38 +119,35 @@ public class MilestoneOnMainPageTest {
     }
 
     @Test
-    public void DeleteToiletingPostTest() {
+    public void SendTreatmentPostTest(){
         try {
             milestoneOnMainPage
-                    .clickOnToiletingOption()
-                    .clickOnToiletingItemList()
-                    .clickFirstItemFromMovementList()
-                    .clickOnYearsOption("2")
-                    .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
+                    .clickOnTreatmentOption()
+                    .clickOnSelectTreatmentItemOption()
+                    .clickFirstItemFromTrratingItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Post5")
                     .sendPost();
-
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-    @Test
-    public void SendMovementPostTest() {
-        try {
-            milestoneOnMainPage
-                    .clickOnMovementOption()
-                    .clickOnSelectMovementItemOption()
-                    .clickFirstItemFromMovementList()
-                    .clickOnYearsOption("2")
-                    .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
-                    .sendPost();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
+     @Test
+      public  void SendOtherPostTest() {
+         try {
+             milestoneOnMainPage
+                     .clickOnOtherOption()
+                     .clickOnSelectOtherItemOption()
+                     .clickOnYearsOption("10")
+                     .clickOnMonthOption("5")
+                     .fillTextField("Post6")
+                     .sendPost();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
@@ -148,7 +161,7 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnYearsOption("-1")
                     .clickOnMonthOption("-1")
-                    .fillTextField("Hello")
+                    .fillTextField("")
                     .sendPost();
                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
@@ -173,7 +186,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnLanguageItemOption("abc")
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("&^$")
-                    .fillTextField(someText)
+                    .fillTextField("")
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +208,7 @@ public class MilestoneOnMainPageTest {
                     .clickRollsOverFromMovementList()
                     .clickOnYearsOption("Два")
                     .clickOnMonthOption("2")
-                    .fillTextField(someText)
+                    .fillTextField("")
                     .sendPost();
            // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -217,7 +230,7 @@ public class MilestoneOnMainPageTest {
                     .clickEatsWithSpoonFromEatingList()
                     .clickOnYearsOption("שלושל")
                     .clickOnMonthOption("-One")
-                    .fillTextField(someText)
+                    .fillTextField("")
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();
@@ -238,7 +251,7 @@ public class MilestoneOnMainPageTest {
                  //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
-                    .fillTextField("someText")
+                    .fillTextField("")
                     .sendPost();
         }  catch (Exception e) {
             e.printStackTrace();

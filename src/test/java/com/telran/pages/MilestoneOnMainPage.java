@@ -1,14 +1,10 @@
 package com.telran.pages;
-
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-
-
 /**
  * Created by Zizi, Christina and Mariya on 5/28/2015.
  *
@@ -39,8 +35,8 @@ public class MilestoneOnMainPage extends Page {
     //Dropdown list
     @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]")
     WebElement selectItemList;
-   // @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")    //?
-   // WebElement selectItemListButton;
+    // @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")    //?
+    // WebElement selectItemListButton;
     @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectItemListButton;
 
@@ -56,17 +52,16 @@ public class MilestoneOnMainPage extends Page {
 
     @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectToiletingItemList;
-    @FindBy(xpath = "//*[@class='chosen-single']/span/../div/b")
+    @FindBy(xpath = "//*[@class='chosen-single']//div/b")
     WebElement selectToiletingItemListButton;
 
-    @FindBy(xpath = "//*[contains(text(),'Select a Treatment Milestone')]")
+    @FindBy(xpath = "//*[@class='ng-binding'][contains(text(),'Select a Treatment Milestone')]")
     WebElement selectTreatmentItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select a Treatment Milestone')/../div/b]")
+    @FindBy(xpath = "//*[@class='chosen-single']//div/b")
     WebElement selectTreatmentButton;
 
     @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
     WebElement fillOtherItemList;
-
 
     //elements of dropdown list
     //for button Language
@@ -87,13 +82,11 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectedWords;
 
-
     //for button Movement
-   /* @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsHead;*/
-    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")
-    WebElement ItemHoldsHead;
-
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemHoldsHead;
+    // @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")
+    // WebElement ItemHoldsHead;
     @FindBy(xpath = " //*[@class='chosen-single']/span")
     WebElement selectedHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
@@ -101,47 +94,41 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRollsOver;
     @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
-    WebElement selectedReachesForObjects;
+            WebElement selectedReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
     @FindBy(xpath = "//*[@class='chosen-single']/span")         //?
-    WebElement selectedCraws;
+            WebElement selectedCraws;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
     @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
-    WebElement selectedRuns;
-
-
+            WebElement selectedRuns;
     //for  button Eating
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsBottles;
     @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
-    WebElement selectHoldsBottles;
-   // @FindBy(xpath = " //*[@class='chosen-single']/span")      //?
-  //  WebElement itemEatsWithSpoon;
+            WebElement selectHoldsBottles;
+    /*@FindBy(xpath = " //*[@class='chosen-single']/span")      //?
+    WebElement itemEatsWithSpoon;*/
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
     @FindBy(xpath = " //*[@class='chosen-single']/span")         //?
-    WebElement selectEatsWithSpoon;
+            WebElement selectEatsWithSpoon;
 
     //for button Toileting
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[@class='active-result result-selected']")
     WebElement selectToiletTrained;
-
-    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")    // IT IS NOT FOR TOILETING
-    WebElement itemHoldsHead;
-
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[@class='active-result']")
     WebElement itemDressesAlone;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']//span")
     WebElement itemToiletTrained;
-
+    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    WebElement selectItemToiletingListButton;
     //for button  Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSurgery;
     @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectedSurgery;
-
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemMedicalTrial;
     @FindBy(xpath = "//*[@class='chosen-single']/span")
@@ -153,7 +140,7 @@ public class MilestoneOnMainPage extends Page {
 
 
     //fill Other field
-    @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
+    @FindBy(xpath = "//*[@class='col-sm-12']/input']")
     WebElement otherMilestoneFiled;
 
     //Years-Month button
@@ -168,20 +155,24 @@ public class MilestoneOnMainPage extends Page {
 
 
     //field  post
+
     @FindBy(xpath = "//*[@placeholder='Tell us more about this milestone']")
-    WebElement postField;
+    WebElement postField;//*[@class='col-sm-12']/input
+    // @FindBy(xpath = "//*[@class='col-sm-12']/input")
+    // WebElement otherPostField;
 
     //button submit
     @FindBy(xpath = ".//*[@id='submit']")
     WebElement submitButton;
 
     //alerts
-    @FindBy(xpath= "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
+    @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
     WebElement alertRequiredFields;
     @FindBy(xpath = "//*[@style='padding-left: 5px;']/span")
     WebElement numbersOnlyForMonths;
     @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
     WebElement numbersOnlyForYears;
+
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
@@ -223,33 +214,27 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage chooseFirstItemFromLanguageItemList() {
-        clickElement(itemSmiles);
-        return this;
-    }
-
     public MilestoneOnMainPage clickFirstItemFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }
 
-    public MilestoneOnMainPage chooseSecondItemFromLanguageList() {
+    public MilestoneOnMainPage clickSecondItemFromLanguageList() {
         clickElement(itemBabbles);
         return this;
     }
 
-    public MilestoneOnMainPage chooseThirdItemFromLanguageList() {
+    public MilestoneOnMainPage clickThirdItemFromLanguageList() {
         clickElement(itemFirstWord);
         return this;
     }
 
-    public MilestoneOnMainPage chooseFourthItemFromLanguageList() {
+    public MilestoneOnMainPage clickFourthItemFromLanguageList() {
         clickElement(itemWords);
         return this;
     }
 
     //set for Movement
-
     public MilestoneOnMainPage clickOnMovementOption() {
         clickElement(movementButton);
         return this;
@@ -260,17 +245,12 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    /*public MilestoneOnMainPage clickOnMovementItemList() {
+    public MilestoneOnMainPage clickOnMovementItemList() {
         clickElement(selectItemList);
-        return this;
-    }*/
-
-    public MilestoneOnMainPage clickFirstItemFromMovementList() {
-        clickElement(itemHoldsHead);
         return this;
     }
 
-    public MilestoneOnMainPage clickFirstItemFromMovementItemList() {
+    public MilestoneOnMainPage clickFirstItemFromMovementList() {
         clickElement(itemHoldsHead);
         return this;
     }
@@ -323,25 +303,18 @@ public class MilestoneOnMainPage extends Page {
     }
 
     //for Toileting
-
     public MilestoneOnMainPage clickOnToiletingOption() {
         clickElement(toiletingButton);
         return this;
     }
 
-    public MilestoneOnMainPage clickOnToiletingItemList() {
-        clickElement(selectToiletingItemListButton);
+    public MilestoneOnMainPage clickOnSelectItemToiletingItemOption() {
+        clickElement(selectItemToiletingListButton);
         return this;
     }
 
-
-    public MilestoneOnMainPage clickFirstItemToiletingList() {
+    public MilestoneOnMainPage clickFirstItemToiletingItemList() {
         clickElement(itemToiletTrained);
-        return this;
-    }
-
-    public MilestoneOnMainPage fillToiletingTextField(String post) {
-        setElementText(postField, post);
         return this;
     }
 
@@ -356,23 +329,23 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickOnTreatmentItemList() {
+    public MilestoneOnMainPage clickOnSelectTreatmentItemOption() {
         clickElement(selectTreatmentButton);
         return this;
     }
 
 
-    public MilestoneOnMainPage chooseFirstItemTreatmentList() {
+    public MilestoneOnMainPage clickFirstItemFromTrratingItemList() {
         clickElement(itemSurgery);
         return this;
     }
 
-    public MilestoneOnMainPage chooseSecondItemTreatmentList() {
+    public MilestoneOnMainPage clickSecondItemTreatmentList() {
         clickElement(itemMedicalTrial);
         return this;
     }
 
-    public MilestoneOnMainPage chooseThirdItemTreatmentList() {
+    public MilestoneOnMainPage clickThirdItemTreatmentList() {
         clickElement(itemRemission);
         return this;
     }
@@ -383,10 +356,11 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage fillTextToOtherField(String post) {
-        setElementText(postField, post);
+    public MilestoneOnMainPage clickOnSelectOtherItemOption() {
+        clickElement(otherButton);
         return this;
     }
+
 
     //for year
     public MilestoneOnMainPage clickOnYearsOption(String year) {
@@ -419,7 +393,7 @@ public class MilestoneOnMainPage extends Page {
     //fill text
     //post
 
-    public MilestoneOnMainPage fillTextField(String post) {
+    public MilestoneOnMainPage fillTextField(String s) {
         setElementText(postField, post);
         return this;
     }
@@ -443,5 +417,8 @@ public class MilestoneOnMainPage extends Page {
     public boolean alertMessageRequiredFields() {
         return exists(alertRequiredFields);
     }
+
+
+
 }
 

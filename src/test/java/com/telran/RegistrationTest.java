@@ -25,10 +25,10 @@ public class RegistrationTest {
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
+    public String EmailNickname; // Keeps the part of email before sign @
     RegistrationPage registrationPage;
     ProfilePage profilePage;
     private boolean acceptNextAlert = true;
-    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
@@ -40,9 +40,7 @@ public class RegistrationTest {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
         try {
-            loginPage.openLoginPage()
-                    .waitUntilLoginPageIsLoaded()
-                    .clickOnSignUpButton();
+            registrationPage.openRegistrationPage();
             registrationPage.waitUntilRegPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,8 +52,10 @@ public class RegistrationTest {
     public void RegTestSuccess() {
 
         try {
+
             EmailNickname = randomAlphabetic(5);
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("gggg")
                     .fillLastNameField("")
                     .fillPasswordField("111111")
@@ -78,6 +78,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -99,6 +100,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
@@ -121,6 +123,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("ggg")
                     .fillPasswordField("111111")
@@ -141,6 +144,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("1")
                     .fillLastNameField("Pen").fillPasswordField("111111")
                     .fillEmailField("us000998@genefo.com")
@@ -161,6 +165,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
@@ -183,6 +188,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -205,6 +211,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -226,6 +233,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -249,6 +257,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -272,6 +281,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -295,6 +305,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -318,6 +329,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -342,6 +354,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -365,6 +378,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -388,6 +402,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -411,6 +426,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -439,6 +455,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
@@ -462,6 +479,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
@@ -486,6 +504,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -509,6 +528,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -532,6 +552,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -555,6 +576,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -579,6 +601,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
@@ -602,6 +625,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
@@ -625,6 +649,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
@@ -648,6 +673,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
@@ -671,6 +697,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -697,6 +724,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -718,6 +746,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -741,6 +770,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -763,6 +793,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -785,6 +816,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -807,6 +839,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -830,6 +863,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
@@ -850,7 +884,7 @@ public class RegistrationTest {
     public void RegTestPassword8Symbols() {
 
         try {
-            registrationPage
+            registrationPage.openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
@@ -872,6 +906,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -895,6 +930,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -916,6 +952,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -940,6 +977,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
@@ -961,6 +999,7 @@ public class RegistrationTest {
 
         try {
             registrationPage
+                    .openRegistrationPage()
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")

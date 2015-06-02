@@ -49,6 +49,8 @@ public class MainPage extends Page {
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
     WebElement logOutButton;
 
+    @FindBy(xpath="")
+    WebElement connectPeopleThisCondition1Button;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -129,4 +131,7 @@ public class MainPage extends Page {
         return this;
     }
 
+    public void openConnectPeopleThisConditionProfile() {
+        clickElement(connectPeopleThisCondition1Button);
+    }
 }

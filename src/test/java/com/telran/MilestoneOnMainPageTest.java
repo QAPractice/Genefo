@@ -67,6 +67,22 @@ public class MilestoneOnMainPageTest {
         }
     }
 
+    @Test
+    public void SendMovementPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectMovementItemOption()
+                    .clickFirstItemFromMovementList()
+                    .clickOnYearsOption("2")
+                    .clickOnMonthOption("3")
+                    .fillTextField("Dresses alone")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
         @Test
     public void SendEatingPostTest() {
@@ -90,11 +106,11 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
-                    .clickOnToiletingItemList()
-                    .clickFirstItemToiletingList()
-                    .clickOnYearsOption("21")
-                    .clickOnMonthOption("3")
-                    .fillToiletingTextField("Toileting")
+                    .clickOnSelectItemToiletingItemOption()
+                    .clickFirstItemToiletingItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Holds")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,38 +119,22 @@ public class MilestoneOnMainPageTest {
     }
 
     @Test
-    public void DeleteToiletingPostTest() {
+    public void SendTreatmentPostTest(){
         try {
             milestoneOnMainPage
-                    .clickOnToiletingOption()
-                    .clickOnToiletingItemList()
-                    .clickFirstItemFromMovementList()
-                    .clickOnYearsOption("2")
-                    .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
+                    .clickOnTreatmentOption()
+                    .clickOnSelectTreatingitemOption()
+                    .clickFirstItemFromTrratingItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Text")
                     .sendPost();
-
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-    @Test
-    public void SendMovementPostTest() {
-        try {
-            milestoneOnMainPage
-                    .clickOnMovementOption()
-                    .clickOnSelectMovementItemOption()
-                    .clickFirstItemFromMovementList()
-                    .clickOnYearsOption("2")
-                    .clickOnMonthOption("3")
-                    .fillTextField("Dresses alone")
-                    .sendPost();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
+
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty

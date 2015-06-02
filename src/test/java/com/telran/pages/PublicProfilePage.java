@@ -12,27 +12,25 @@ import java.io.IOException;
  */
 public class PublicProfilePage extends Page{
 
+    //Titles
+    @FindBy(xpath = "//div[@class='col-md-5']/div[@class='panel panel-default']")
+    WebElement publicProfilePanel;
+    @FindBy(xpath = "//div[@class='panel panel-default']/div[@class='panel-body'][@ng-click='removeNetwork()']")
+    WebElement unFollowPanel;
+    //Buttons
+    @FindBy(xpath = "//div[@ng-click='addNetwork()']/span[@class='fa-stack']")
+    WebElement plusFollowButton;
+    @FindBy(xpath = "//div[@ng-click='addNetwork()']/span[@class='removeNetwork']")
+    WebElement minusFollowButton;
+    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
+    WebElement homeTitle;
+    @FindBy(xpath = "//div[@class='panel-heading']/div[@class='profile_selector_name ng-binding']")
+    WebElement publicProfileName;
+
     public PublicProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    //Titles
-    @FindBy(xpath = "")
-    WebElement publicProfilePanel;
-
-    @FindBy(xpath = "")
-    WebElement unFollowPanel;
-
-    //Buttons
-    @FindBy(xpath = "")
-    WebElement plusFollowButton;
-
-    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
-    WebElement homeTitle;
-
-    @FindBy(xpath = "")
-    WebElement publicProfileName;
 
     public void waitUntilProfilePageIsLoaded() {
         try {

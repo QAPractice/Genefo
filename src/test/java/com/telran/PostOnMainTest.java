@@ -24,7 +24,6 @@ public class PostOnMainTest {
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
-    public UpperSentPostTabOnMainPage upperSentPostTabOnMainPage;
     public PostOnMainPage postOnMainPage;
     private boolean acceptNextAlert = true;
 
@@ -36,7 +35,6 @@ public class PostOnMainTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         postOnMainPage = PageFactory.initElements(driver, PostOnMainPage.class);
-        upperSentPostTabOnMainPage = PageFactory.initElements(driver,UpperSentPostTabOnMainPage.class);
 
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
@@ -60,7 +58,7 @@ public class PostOnMainTest {
                     .sendPost();
             sleep(3000);
 
-            assertTrue(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertTrue(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,7 +74,7 @@ public class PostOnMainTest {
                     .sendPost();
             sleep(3000);
 
-            assertFalse(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,7 +90,7 @@ public class PostOnMainTest {
                     .sendPost();
             sleep(3000);
 
-            assertFalse(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,7 +3,6 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MedicineOnMainPage;
-import com.telran.pages.UpperSentPostTabOnMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -26,7 +25,6 @@ public class MedicineOnMainPageTest {
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public MedicineOnMainPage medicineOnMainPage;
-    public UpperSentPostTabOnMainPage upperSentPostTabOnMainPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -37,7 +35,6 @@ public class MedicineOnMainPageTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         medicineOnMainPage = PageFactory.initElements(driver, MedicineOnMainPage.class);
-        upperSentPostTabOnMainPage = PageFactory.initElements(driver, UpperSentPostTabOnMainPage.class);
 
         try {
             loginPage.login("stritenko@gmail.com", "111111");
@@ -70,7 +67,7 @@ public class MedicineOnMainPageTest {
             sleep(3000);
 
 
-            assertTrue(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertTrue(mainPage.verifyTextFromSentPost(text));
 
 
         } catch (Exception e) {
@@ -93,7 +90,7 @@ public class MedicineOnMainPageTest {
             sleep(3000);
 
 
-            assertTrue(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
+            assertTrue(mainPage.verifyTextFromSentPost(text));
 
 
         } catch (Exception e) {

@@ -2,19 +2,15 @@ package com.telran;
 
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
-import com.telran.pages.UpperSentPostTabOnMainPage;
 import com.telran.pages.WhatWorksOnMainPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
@@ -29,7 +25,6 @@ public class WhatWorksOnMainTest {
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
-    public UpperSentPostTabOnMainPage upperSentPostTabOnMainPage;
     public WhatWorksOnMainPage whatWorksOnMainPage;
     private boolean acceptNextAlert = true;
 
@@ -41,7 +36,6 @@ public class WhatWorksOnMainTest {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
-        upperSentPostTabOnMainPage = PageFactory.initElements(driver,UpperSentPostTabOnMainPage.class);
 
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
@@ -53,7 +47,6 @@ public class WhatWorksOnMainTest {
             e.printStackTrace();
         }
     }
-
 
     @Test
     public void SendTherapyPostTest() {
@@ -69,9 +62,11 @@ public class WhatWorksOnMainTest {
                     .sendPost();
             sleep(3000);
 
-            assertTrue(upperSentPostTabOnMainPage.verifyTextFromSentPost(text));
-            assertTrue(upperSentPostTabOnMainPage.verifyCategoryTherapyExists());
-
+            assertTrue(mainPage.verifyTextFromSentPost(text) );
+            assertTrue(mainPage.verifyCategoryTherapyExistsInSentPost() );
+            assertTrue(mainPage.verifyThirdStarCheckedInSentPost() );
+            assertTrue(mainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(mainPage.verifyPhysicalTherapyItemExistsInSentPost());
         } catch (Exception e) {
             e.printStackTrace();
         }

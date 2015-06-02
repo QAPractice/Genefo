@@ -54,6 +54,27 @@ public class MainPage extends Page {
     @FindBy(xpath="")
     WebElement connectPeopleThisCondition1Button;
 
+
+    // Upper Tab of sent posts
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
+    WebElement  UpperSentPostTab;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
+    WebElement  SentPostText;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[contains(text(),'Category')]/../*[contains(text(),'Therapy')]")
+    WebElement  SentPostCategoryTherapy;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
+    WebElement  filledThirdStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
+    WebElement nonFilledFourthStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//td[@class=\"ng-binding\"][contains(text(),'Physical therapy')]")
+    WebElement itemPhysicalTherapyInSentPost;
+
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -144,4 +165,28 @@ public class MainPage extends Page {
             return false;
         }
     }
+
+
+// Methods for verifying items on sent upper post
+
+    public Boolean verifyTextFromSentPost(String text)  {
+        return verifyTextBoolean(SentPostText, text);
+    }
+
+    public Boolean verifyCategoryTherapyExistsInSentPost()  {
+        return exists(SentPostCategoryTherapy);
+    }
+
+    public Boolean verifyThirdStarCheckedInSentPost()  {
+        return exists(filledThirdStarInSentPost);
+    }
+
+    public Boolean verifyFourthStarNonCheckedInSentPost()  {
+        return exists(nonFilledFourthStarInSentPost);
+    }
+
+    public Boolean verifyPhysicalTherapyItemExistsInSentPost()  {
+        return exists(itemPhysicalTherapyInSentPost);
+    }
+
 }

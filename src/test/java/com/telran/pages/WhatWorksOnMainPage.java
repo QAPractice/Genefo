@@ -37,7 +37,6 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
-
     //elements of dropdown list
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemPhysicalTherapy;
@@ -47,11 +46,11 @@ public class WhatWorksOnMainPage extends Page {
     WebElement itemPsychotherapy;
 
     // Rating star( marked one. Have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[contains(text(),'*')]")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[contains(text(),'*')]")
     WebElement thirdMarkedRatingStar;
 
     // Rating star( non-marked one. Do not have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[not(contains(text(),'*'))]")
     WebElement thirdNonMarkedRatingStar;
 
     // Rating star - marked and non-marked together
@@ -62,7 +61,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
 
-    @FindBy(xpath = "//*[@ng-model=\"what_works_rating\"]//*[@class=\"sr-only ng-binding\"]")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid'][@ng-model=\"what_works_rating\"]//span[@class='sr-only ng-binding']")
     WebElement allStarsTogether;
 
 

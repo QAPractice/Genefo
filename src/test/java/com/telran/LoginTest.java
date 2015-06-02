@@ -1,8 +1,8 @@
 package com.telran;
 
 import com.telran.pages.LoginPage;
-import com.telran.pages.ResetYourPasswordPage;
 import com.telran.pages.MainPage;
+import com.telran.pages.ResetYourPasswordPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 30.05.2015.
@@ -49,6 +48,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
@@ -64,6 +64,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
@@ -79,8 +80,9 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
-                    .fillPasswordField("11111")
+                    .fillPasswordField("1")
                     .clickOnLogin();
             assertTrue(loginPage.alertMessageInvalidPassword());
             assertTrue(loginPage.isOnLoginPage());
@@ -90,11 +92,12 @@ public class LoginTest {
         }
     }
 
-    @Test
+    //@Test
     public void ForgotPassword() {
 
         try {
             loginPage
+                    .openLoginPage()
                     .clickOnForgotPasswordLink();
             assertTrue(resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
@@ -109,6 +112,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("")
                     .fillPasswordField("")
                     .clickOnLogin();

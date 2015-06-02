@@ -4,6 +4,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -25,6 +27,7 @@ public class MilestoneOnMainPageTest {
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
+    public String someText;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -37,7 +40,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
 
         try {
-            loginPage.login("zizi300@gmail.com", "zizi300");
+            loginPage.login("mili@mail.ru", "111111");
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMilestonePanel();
@@ -57,33 +60,271 @@ public class MilestoneOnMainPageTest {
                     .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("7")
                     .clickOnMonthOption("5")
-                    .fillTextField("My Post in Language")
+                    .fillTextField("Post1")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     @Test
+    public void SendMovementPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectMovementItemOption()
+                    .clickFirstItemFromMovementList()
+                    .clickOnYearsOption("2")
+                    .clickOnMonthOption("3")
+                    .fillTextField("Post2")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+        @Test
     public void SendEatingPostTest() {
         try {
             milestoneOnMainPage
                     .clickOnEatingOption()
-                    .clickOnEatingOption()
-                    .chooseSecondItemFromEatingList()
+                    .clickOnSelectEatingItemOption()
+                    .clickFirstItemFromEatingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
-                    .fillTextField("Holds bottle")
+                    .fillTextField("Post3")
                     .sendPost();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-        @AfterClass(alwaysRun = true)
-        public void teardown () {
-            this.driver.quit();
+
+    @Test
+    public void SendToiletingPostTest() {
+        try {
+            milestoneOnMainPage
+                    .clickOnToiletingOption()
+                    .clickOnSelectItemToiletingItemOption()
+                    .clickFirstItemToiletingItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Post4")
+                    .sendPost();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
+
+    @Test
+    public void SendTreatmentPostTest(){
+        try {
+            milestoneOnMainPage
+                    .clickOnTreatmentOption()
+                    .clickOnSelectTreatmentItemOption()
+                    .clickFirstItemFromTreatmentItemList()
+                    .clickOnYearsOption("3")
+                    .clickOnMonthOption("6")
+                    .fillTextField("Post5")
+                    .sendPost();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     @Test
+      public  void SendOtherPostTest() {
+         try {
+             milestoneOnMainPage
+                     .clickOnOtherOption()
+                     .clickOnSelectOtherItemOption()
+                     .fillOtherField("hello")
+                     .clickOnYearsOption("10")
+                     .clickOnMonthOption("5")
+                     .fillTextField("Post6")
+                     .sendPost();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+             //Send Post Milestone Negative Tests
+
+    /* 1)Years:empty
+    2)Months:abc
+    3)Milestone:empty
+    4)Message: Length>2252*/
+    @Test
+    public void MilestoneNegativeTest1(){
+        try {
+            someText = randomAlphabetic(22);
+            milestoneOnMainPage
+                    .clickOnYearsOption("-1")
+                    .clickOnMonthOption("-1")
+                    .fillTextField("")
+                    .sendPost();
+                  assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                  assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                  assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /*1)Years:abc
+     2)Months:&^$
+     3)Milestone:Language:abc
+     4)Message:Length:1126*/
+    @Test
+    public void MilestoneNegativeTest2(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                    .clickOnLanguageOption()
+                    .clickOnSelectItemOption()
+                    .clickOnLanguageItemOption("abc")
+                    .clickOnYearsOption("abc")
+                    .clickOnMonthOption("&^$")
+                    .fillTextField("someText")
+                    .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /* 1)Years:Два
+    2)Months:-12
+    3)Milestone:Movement:Rolls over
+    4)Message:Length:length>2252*/
+    @Test
+    public void MilestoneNegativeTest3(){
+        try {
+            someText = randomAlphabetic(4);
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectItemOption()
+                    .clickRollsOverFromMovementList()
+                    .clickOnYearsOption("Два")
+                    .clickOnMonthOption("2")
+                    .fillTextField("")
+                    .sendPost();
+           // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:שלושל
+    2)Months:-One
+    3)Milestone:Eating:Eats with spoon
+    4)Message:Length:length=1.*/
+    @Test
+    public void MilestoneNegativeTest4(){
+        try {
+            someText = randomAlphabetic(1);
+            milestoneOnMainPage
+                    .clickOnEatingOption()
+                    .clickOnSelectItemOption()
+                    .clickEatsWithSpoonFromEatingList()
+                    .clickOnYearsOption("שלושל")
+                    .clickOnMonthOption("-One")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:583687348237560327234686
+    2)Months:36
+    3)Milestone:empty
+    4)Message:Length:length>2252*/
+    @Test
+    public void MilestoneNegativeTest5(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                 //   .clickOnLanguageOption()
+                 //   .clickOnSelectItemOption()
+                 //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("583687348237560327234686")
+                    .clickOnMonthOption("36")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:עשרים ואחד
+    2)Months:00
+    3)Milestone:empty
+    4)Message::empty*/
+    @Test
+    public void MilestoneNegativeTest6(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                    //   .clickOnLanguageOption()
+                    //   .clickOnSelectItemOption()
+                    //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("עשרים ואחד")
+                    .clickOnMonthOption("00")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*1)Years:-int
+    2)Months:16
+    3)Milestone:Toileting:dresses alone
+    4)Message:Length>2252*/
+    @Test
+    public void MilestoneNegativeTest7(){
+        try {
+            someText = randomAlphabetic(11);
+            milestoneOnMainPage
+                      .clickOnToiletingOption()
+                    //   .clickOnSelectItemOption()
+                    //   .clickFirstItemFromLanguageItemList()
+                    .clickOnYearsOption("עשרים ואחד")
+                    .clickOnMonthOption("00")
+                    .fillTextField("")
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    @AfterClass(alwaysRun = true)
+    public void teardown () {
+        this.driver.quit();
+    }
+
+    private String closeAlertAndGetItsText() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
+        }
+    }
+
+}

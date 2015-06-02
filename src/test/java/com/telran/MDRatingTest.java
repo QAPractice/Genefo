@@ -3,12 +3,11 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MDRatingOnMainPage;
 import com.telran.pages.MainPage;
-import com.telran.pages.WhatWorksOnMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -53,18 +52,24 @@ public class MDRatingTest {
     }
 
     @Test
-    public void SendMDRatingPostTest() {
+    //@Parameters("facilityname","physitianFirstName", "physitianLastName", "text")
+    public void sendMDRatingPostTest(String facilityname, String physitianFirstName, String physitianLastName, String text) {
 
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField("MMM")
-                    .fillPhysicianField("PPP");
-            mdRatingOnMainPage
+                    .fillMedicalFacilityField(facilityname)
+                    .fillPhysicianFields(physitianFirstName, physitianLastName)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField("My First Post")
-                    .sendPost();
+                    .fillTextField(text)
+                    .sendPost()
+                    .waitUntilNewPostisLoaded();
 
+            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facilityname));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianFirstNameCorrect(physitianFirstName));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianLastNameCorrect(physitianLastName));
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text));
 
         } catch (Exception e) {
             e.printStackTrace();

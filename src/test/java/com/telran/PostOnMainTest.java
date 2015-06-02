@@ -1,8 +1,6 @@
 package com.telran;
 
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
-import com.telran.pages.WhatWorksOnMainPage;
+import com.telran.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,18 +12,19 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by alex on 5/29/2015.
+ * Created by alex on 01/06/2015.
  */
-public class WhatWorksOnMainTest {
+public class PostOnMainTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
-    public WhatWorksOnMainPage whatWorksOnMainPage;
+    public PostOnMainPage postOnMainPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -33,40 +32,65 @@ public class WhatWorksOnMainTest {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage = PageFactory.initElements(driver,LoginPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
-        whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
+        postOnMainPage = PageFactory.initElements(driver, PostOnMainPage.class);
 
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
-                            .openWhatWorksButtonPanel();
-            whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
+                    .openPostPanel();
+            postOnMainPage.waitUntilPostPanelIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void SendPostSuccessTest() {
+        String text = "My Seventh Post" ;
+
+        try {
+            postOnMainPage
+                    .fillTextField(text)
+                    .sendPost();
+            sleep(3000);
+
+            assertTrue(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void SendTherapyPostTest() {
-        String text = "My Fifth Post" ;
+    public void SendEmptyPostTest() {
+        String text = "" ;
+
         try {
-            whatWorksOnMainPage
-                    .clickOnTherapyOption()
-                    .clickOnItemList()
-                    .chooseFirstItemFromItemList()
-                    .clickOnAllStarsTogether()
-                    .rateItThree()                //Click on the third star
+            postOnMainPage
                     .fillTextField(text)
                     .sendPost();
             sleep(3000);
 
-            assertTrue(mainPage.verifyTextFromSentPost(text) );
-            assertTrue(mainPage.verifyCategoryTherapyExistsInSentPost() );
-            assertTrue(mainPage.verifyThirdStarCheckedInSentPost() );
-            assertTrue(mainPage.verifyFourthStarNonCheckedInSentPost() );
-            assertTrue(mainPage.verifyPhysicalTherapyItemExistsInSentPost());
+            assertFalse(mainPage.verifyTextFromSentPost(text));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void SendOneLetterPostTest() {
+        String text = "A" ;
+
+        try {
+            postOnMainPage
+                    .fillTextField(text)
+                    .sendPost();
+            sleep(3000);
+
+            assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,5 +101,7 @@ public class WhatWorksOnMainTest {
     public void teardown() {
         this.driver.quit();
     }
+
+
 
 }

@@ -36,7 +36,6 @@ public class EditAccountPage extends Page{
     @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
     WebElement submitButtonOldPassword;
 
-
     public EditAccountPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL="http://genefo-env.elasticbeanstalk.com/account";
@@ -71,19 +70,27 @@ public class EditAccountPage extends Page{
         setElementText(emailElement, e_mail);
         return this;
     }
+    public EditAccountPage fillPasswordField(String pass){
+        //Added because function "element.clean()" not worked for me!
+        cleanElement(newPasswordElement);
+        setElementText(newPasswordElement, pass);
+        return this;
+    }
     private void cleanElement(WebElement element){
 
         element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.DELETE);
     }
-    public void waitUntilEditElementIsLoaded(){
+    public  EditAccountPage waitUntilEditElementIsLoaded(){
         try {
             waitUntilElementIsLoaded(emailElement);
+            waitUntilElementIsLoaded(newPasswordElement);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return this;
     }
     public EditAccountPage fillOldPasswordField(String pass){
 

@@ -43,11 +43,12 @@ public class MainPage extends Page {
     @FindBy(xpath = "//li[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
 
-    @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Account')]")
+    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'My Account')]")
     WebElement myAccountButton;
 
-    @FindBy(xpath = "")
-    WebElement connectPeopleThisConditionFirst;
+    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
+    WebElement logOutButton;
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -57,7 +58,7 @@ public class MainPage extends Page {
 
     public MainPage openMainPage() {
         driver.get(PAGE_URL);
-        return this;
+         return this;
     }
 
     // Waits until title of our 'What works' Panel appears on the screen
@@ -68,8 +69,7 @@ public class MainPage extends Page {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        return this;
+        }return this;
     }
 
 
@@ -112,20 +112,20 @@ public class MainPage extends Page {
         return exists(milestoneButton);
     }
 
-    public MainPage selectMyProfile() {
+    public MainPage selectMyProfile () {
         clickElement(cogwheelButton);
         clickElement(myProfilesButton);
         return this;
     }
-
-    public MainPage selectMyAccount() {
+    public MainPage selectMyAccount () {
         clickElement(cogwheelButton);
         clickElement(myAccountButton);
         return this;
     }
 
-    public MainPage openConnectPeopleThisConditionProfile() {
-        clickElement(connectPeopleThisConditionFirst);
+    public MainPage selectLogOut () {
+        clickElement(cogwheelButton);
+        clickElement(logOutButton);
         return this;
     }
 

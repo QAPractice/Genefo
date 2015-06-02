@@ -39,7 +39,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
 
         try {
-            loginPage.login("zizi300@gmail.com", "zizi300");
+            loginPage.login("mili@mail.ru", "111111");
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMilestonePanel();
@@ -135,16 +135,20 @@ public class MilestoneOnMainPageTest {
 
     }
 
+    /* 1)Years:empty
+    2)Months:abc
+    3)Milestone:empty
+    4)Message: Length>2252*/
     @Test
     public void SendMilestoneNegativeTest1(){
         try {
-            someText = randomAlphabetic(2256);
+            someText = randomAlphabetic(11);
             milestoneOnMainPage
               //      .clickOnLanguageOption()
                //     .clickOnSelectItemOption()
                //     .clickFirstItemFromLanguageItemList()
-                    .clickOnMonthOption("abc")
                     .clickOnYearsOption("")
+                    .clickOnMonthOption("abc")
                     .fillTextField(someText)
                     .sendPost();
         }  catch (Exception e) {
@@ -153,6 +157,11 @@ public class MilestoneOnMainPageTest {
 
     }
 
+    /*
+     1)Years:abc
+     2)Months:&^$
+     3)Milestone:Language:abc
+     4)Message:Length:1126*/
     @Test
     public void SendMilestoneNegativeTest2(){
         try {
@@ -169,6 +178,49 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
 
+    }
+
+    /* 1)Years:Два
+   2)Months:-12
+   3)Milestone:Movement:Rolls over
+   4)Message:Length:length>2252*/
+    @Test
+    public void MilestoneNegativeTest3(){
+        try {
+            someText = randomAlphabetic(3);
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectItemOption()
+                    .clickRollsOverFromMovementList()
+                    .clickOnYearsOption("Два")
+                    .clickOnMonthOption("-12")
+                    .fillTextField(someText)
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    1)Years:שלושל
+    2)Months:-One
+    3)Milestone:Eating:Eats with spoon
+    4)Message:Length:length=1.*/
+    @Test
+    public void MilestoneNegativeTest4(){
+        try {
+            someText = randomAlphabetic(1);
+            milestoneOnMainPage
+                    .clickOnEatingOption()
+                    .clickOnSelectItemOption()
+                    .clickEatsWithSpoonFromEatingList()
+                    .clickOnYearsOption("שלושל")
+                    .clickOnMonthOption("-One")
+                    .fillTextField(someText)
+                    .sendPost();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

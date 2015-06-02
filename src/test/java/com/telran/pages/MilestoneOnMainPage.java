@@ -39,7 +39,9 @@ public class MilestoneOnMainPage extends Page {
     //Dropdown list
     @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]")
     WebElement selectItemList;
-    @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")
+   // @FindBy(xpath = "//*[contains(text(),'Select a Language Milestone')]/../div/b")    //?
+   // WebElement selectItemListButton;
+    @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectItemListButton;
 
     @FindBy(xpath = "//*[contains(text(),'Select a Movement Milestone')]")
@@ -96,33 +98,39 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectedHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemReachesForObjects;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemRollsOver;
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
     WebElement selectedReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")         //?
     WebElement selectedCraws;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
     WebElement selectedRuns;
-    //for  button Eating
 
+
+    //for  button Eating
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsBottles;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //?
     WebElement selectHoldsBottles;
-    @FindBy(xpath = " //*[@class='chosen-single']/span")
+   //@FindBy(xpath = " //*[@class='chosen-single']/span")      //?
+   //WebElement itemEatsWithSpoon;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
-    @FindBy(xpath = " //*[@class='chosen-single']/span")
+    @FindBy(xpath = " //*[@class='chosen-single']/span")         //?
     WebElement selectEatsWithSpoon;
 
     //for button Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement selectToiletTrained;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")
+    @FindBy(xpath = "//*[@class='chosen-single']/span[contains(text(),'Holds head')]")    // IT IS NOT FOR TOILETING
     WebElement itemHoldsHead;
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;
     @FindBy(xpath = "//*[@class='chosen-single']/span")
@@ -244,15 +252,10 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickOnSelectMovementItemList() {
-        clickElement(selectItemListButton);
-        return this;
-    }
-
-    public MilestoneOnMainPage clickOnMovementItemList() {
+    /*public MilestoneOnMainPage clickOnMovementItemList() {
         clickElement(selectItemList);
         return this;
-    }
+    }*/
 
     public MilestoneOnMainPage clickFirstItemFromMovementList() {
         clickElement(itemHoldsHead);
@@ -266,6 +269,11 @@ public class MilestoneOnMainPage extends Page {
 
     public MilestoneOnMainPage clickSecondItemFromMovementList() {
         clickElement(itemReachesForObjects);
+        return this;
+    }
+
+    public MilestoneOnMainPage clickRollsOverFromMovementList() {
+        clickElement(itemRollsOver);
         return this;
     }
 
@@ -301,11 +309,10 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickSecondItemFromEatingList() {
+    public MilestoneOnMainPage clickEatsWithSpoonFromEatingList() {
         clickElement(itemEatsWithSpoon);
         return this;
     }
-
 
     //for Toileting
 

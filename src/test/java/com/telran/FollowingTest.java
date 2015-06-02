@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Л on 6/2/2015.
  */
@@ -45,10 +47,12 @@ public class FollowingTest {
         mainPage.isOnMainPage();
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
+        String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
-        publicProfilePage.isUnFollowPanelOnPage();
+        assertTrue(publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
-
+        mainPage.isOnMainPage();
+        assertTrue(mainPage.isFollowingNamePresents(name));
 
     }
 }

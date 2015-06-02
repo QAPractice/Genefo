@@ -4,6 +4,8 @@ package com.telran.pages;
  * Created by alex on 28/05/2015.
  */
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -130,8 +132,16 @@ public class MainPage extends Page {
         clickElement(logOutButton);
         return this;
     }
-
+    //For Following tests
     public void openConnectPeopleThisConditionProfile() {
         clickElement(connectPeopleThisCondition1Button);
+    }
+    public boolean isFollowingNamePresents(String name) {
+        try {
+            driver.findElement(By.xpath(""));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

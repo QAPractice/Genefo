@@ -31,6 +31,9 @@ public class PublicProfilePage extends Page{
     @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
     WebElement homeTitle;
 
+    @FindBy(xpath = "")
+    WebElement publicProfileName;
+
     public void waitUntilProfilePageIsLoaded() {
         try {
             waitUntilElementIsLoaded(publicProfilePanel);
@@ -54,5 +57,8 @@ public class PublicProfilePage extends Page{
     }
     public void clickOnHome(){
         clickElement(homeTitle);
+    }
+    public String getPublicProfileName(){
+        return publicProfileName.getText();
     }
 }

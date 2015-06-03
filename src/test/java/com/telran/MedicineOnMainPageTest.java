@@ -52,14 +52,20 @@ public class MedicineOnMainPageTest {
         }
     }
 
+    //Positive tests
+
     @Test
     public void sendMedicineWithShortMedNameReasonTest() {
         String text = "take with food or milk";
+        String shortName = "adv";
+        String fullName = "advil";
+        String shortReason = "hea";
+        String fullReason = "headache";
 
         try {
             medicineOnMainPage
-                    .fillExistingNameOfMedicine("adv", "advil")
-                    .fillExistingReasonForMedicine("hea", "headache")
+                    .fillExistingNameOfMedicine(shortName, fullName)
+                    .fillExistingReasonForMedicine(shortReason, fullReason)
                     .clickOnAllStarsTogether()
                     .rateThreeStars()             //Click on the third star
                     .typeTellUsMore(text)
@@ -68,6 +74,38 @@ public class MedicineOnMainPageTest {
 
 
             assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
+            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // One star
+    @Test
+    public void sendMedicineWithFullMedNameReasonTest() {
+        String text = "take with food or milk";
+        String newName = "Aspirin";
+        String newReason = "pruritus";
+
+        try {
+            medicineOnMainPage
+                    .fillNewNameOfMedicine(newName)
+                    .fillNewReasonForMedicine(newReason)
+                    .clickOnAllStarsTogether()
+                    .rateOneStar()            //Click on the first star
+                    .typeTellUsMore(text)
+                    .clickOnPostButton();
+            sleep(3000);
+
+
+            assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
+            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
+            assertTrue(medicineOnMainPage.verifyFirstStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifySecondStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -76,13 +114,44 @@ public class MedicineOnMainPageTest {
     }
 
     @Test
-    public void sendMedicineWithFullMedNameReasonTest() {
-        String text = "take with food or milk";
+    public void sendMedicineWithShortUpperKeyMedNameReasonTest() {
+        String text = "TAKE WITH FOOD OR MILK";
+        String shortName = "ADV";
+        String fullName = "advil";
+        String shortReason = "HEA";
+        String fullReason = "headache";
 
         try {
             medicineOnMainPage
-                    .fillNewNameOfMedicine("Aspirin")
-                    .fillNewReasonForMedicine("pruritus")
+                    .fillExistingNameOfMedicine(shortName, fullName)
+                    .fillExistingReasonForMedicine(shortReason, fullReason)
+                    .clickOnAllStarsTogether()
+                    .rateFifeStars()            //Click on the fifth star
+                    .typeTellUsMore(text)
+                    .clickOnPostButton();
+            sleep(3000);
+
+
+            assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
+            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
+        String text = "take with food or milk";
+        String newName = "INSULIN";
+        String newReason = "HIGH BLOOD SUGAR";
+
+        try {
+            medicineOnMainPage
+                    .fillNewNameOfMedicine(newName)
+                    .fillNewReasonForMedicine(newReason)
                     .clickOnAllStarsTogether()
                     .rateThreeStars()             //Click on the third star
                     .typeTellUsMore(text)
@@ -91,6 +160,35 @@ public class MedicineOnMainPageTest {
 
 
             assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
+            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void sendMedicineWithSpecialCharactersTest() {
+        String text = "~`!@#$%^&*()_+<>?:\"{}[];’";
+        String newName = "~`!@#$%^&*()_+<>?:\"{}[];’";
+        String newReason = "~`!@#$%^&*()_+<>?:\"{}[];’";
+
+        try {
+            medicineOnMainPage
+                    .fillNewNameOfMedicine(newName)
+                    .fillNewReasonForMedicine(newReason)
+                    .clickOnAllStarsTogether()
+                    .rateThreeStars()             //Click on the third star
+                    .typeTellUsMore(text)
+                    .clickOnPostButton();
+            sleep(3000);
+
+
+            assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
+            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
 
 
         } catch (Exception e) {
@@ -98,6 +196,51 @@ public class MedicineOnMainPageTest {
         }
 
 
+    }
+
+    //Negative tests
+
+    @Test
+    public void sendMedicineWithBlankFieldTest() {
+
+
+        try {
+            medicineOnMainPage
+                    .fillNewNameOfMedicine(" ")
+                    .fillNewReasonForMedicine(" ")
+                    .typeTellUsMore(" ")
+                    .clickOnPostButton();
+            sleep(3000);
+
+            assertTrue(medicineOnMainPage.alertErrorMessageRequiredFields());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Rating with blank mandatory field
+    @Test
+    public void sendMedicineRatingWithBlankMandatoryFieldTest() {
+
+
+        try {
+            medicineOnMainPage
+                    .fillNewNameOfMedicine(" ")
+                    .fillNewReasonForMedicine(" ")
+                    .clickOnAllStarsTogether()
+                    .rateThreeStars()             //Click on the third star
+                    .typeTellUsMore(" ")
+                    .clickOnPostButton();
+            sleep(3000);
+
+
+            assertTrue(medicineOnMainPage.alertErrorMessageRequiredFields());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterClass(alwaysRun = true)
@@ -107,3 +250,4 @@ public class MedicineOnMainPageTest {
 
 
 }
+

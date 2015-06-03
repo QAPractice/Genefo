@@ -9,9 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.io.File;
@@ -60,7 +58,7 @@ public class EditAccountTest {
 
     }
 
-    // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
+        // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
     @Test
     public void dropDownMenuIsClickable(){
         mainPage.openMainPage()
@@ -196,33 +194,37 @@ public class EditAccountTest {
         retainOldPassword(MY_Password, testPass);
     }
 
-//Edit 12	Go to Edit Account.
+    //Edit 12	Go to Edit Account.
 // 1.Delete the current password and type new password with Kapital and Lower Key text and push the button "Save".
 // 2.Enter the valid current password. 3.Logout and Login with New password.
     @Test
     public void newPasswordKapitalLower( ){
         String testPass="ABCDabcd";
-        updateAndCheckPassword(testPass);
+        softAssert.assertTrue(updateAndCheckPassword(testPass));
         softAssert.assertTrue(mainPage.isOnMainPage());
-        retainOldPassword(MY_Password, testPass);
+        softAssert.assertTrue(retainOldPassword(MY_Password, testPass));
     }
-    private void retainOldPassword(String newPassword,String oldPassword){
+    private boolean retainOldPassword(String newPassword,String oldPassword){
+
         editAccountPage.loadPage();
-        editAccountPage
+        return editAccountPage
                 .waitUntilEditElementIsLoaded()
                 .fillPasswordField(newPassword)
                 .clickOnSubmitButton1()
                 .fillOldPasswordField(oldPassword)
-                .clickOnSubmitButtonOldPassword();
+                .clickOnSubmitButtonOldPassword()
+                .isSuccessAlert();
     }
-    private void updateAndCheckPassword(String evalPass){
-        editAccountPage
-                .openEditAccountPage()
-                .waitUntilEditElementIsLoaded()
-                .fillPasswordField(evalPass)
-                .clickOnSubmitButton1()
-                .fillOldPasswordField(MY_Password)
-                .clickOnSubmitButtonOldPassword();
+    private boolean updateAndCheckPassword(String evalPass){
+        boolean check =
+                editAccountPage
+                        .openEditAccountPage()
+                        .waitUntilEditElementIsLoaded()
+                        .fillPasswordField(evalPass)
+                        .clickOnSubmitButton1()
+                        .fillOldPasswordField(MY_Password)
+                        .clickOnSubmitButtonOldPassword()
+                        .isSuccessAlert();
 
         mainPage
                 .openMainPage()
@@ -232,6 +234,42 @@ public class EditAccountTest {
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, evalPass);
 
+        return check;
+    }
+
+
+//    Edit 29	Go to Edit Account.
+// 1.Delete the current First Name and type in the field new First Name in English.
+    @Parameters("db")
+    @Test
+    public void firstNameInput(@Optional("Vasia")String inputName){
+
+        editAccountPage.openEditAccountPage()
+                .waitUntilEditElementIsLoaded();
+
+        editAccountPage
+                .fillField(editAccountPage.getFirstNameElement(), inputName)
+                .clickOnSubmitButton2();
+        assertTrue(editAccountPage.isSuccessAlert());
+        editAccountPage
+                .fillField(editAccountPage.getFirstNameElement(), MY_FirstName)
+                .clickOnSubmitButton2();
+    }
+
+    @Parameters("db")
+    @Test
+    public void lastNameInput(@Optional("Pupkin")String inputName){
+
+        editAccountPage.openEditAccountPage()
+                .waitUntilEditElementIsLoaded();
+
+        editAccountPage
+                .fillField(editAccountPage.getLastNameElement(), inputName)
+                .clickOnSubmitButton2();
+        assertTrue(editAccountPage.isSuccessAlert());
+        editAccountPage
+                .fillField(editAccountPage.getLastNameElement(), MY_LastName)
+                .clickOnSubmitButton2();
     }
 
     @AfterClass(alwaysRun=true)
@@ -239,4 +277,5 @@ public class EditAccountTest {
         softAssert.assertAll();
         this.driver.quit();
     }
+
 }

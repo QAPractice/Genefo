@@ -81,6 +81,14 @@ public class EditAccountPage extends Page{
         setElementText(newPasswordElement, pass);
         return this;
     }
+
+    public EditAccountPage fillField(WebElement element, String str){
+        cleanElement(element);
+        setElementText(element, str);
+        return this;
+    }
+
+
     private void cleanElement(WebElement element){
 
         element.sendKeys(Keys.CONTROL + "a");
@@ -90,6 +98,8 @@ public class EditAccountPage extends Page{
         try {
             waitUntilElementIsLoaded(emailElement);
             waitUntilElementIsLoaded(newPasswordElement);
+            waitUntilElementIsLoaded(firstNameElement);
+            waitUntilElementIsLoaded(lastNameElement);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -108,20 +118,28 @@ public class EditAccountPage extends Page{
         clickElement(submitButton1);
         return this;
     }
+    public EditAccountPage clickOnSubmitButton2(){
+        clickElement(submitButton2);
+        return this;
+    }
+
     public EditAccountPage clickOnSubmitButtonOldPassword(){
         clickElement(submitButtonOldPassword);
         return this;
     }
 
     public boolean isSuccessAlert() {
+
         try {
             waitUntilElementIsLoaded(changesSuccessAlert);
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            return false;
         }
-        return exists(changesSuccessAlert);
+
+
+    return exists(changesSuccessAlert);
     }
 
 }

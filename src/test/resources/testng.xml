@@ -6,8 +6,14 @@
       <parameter name="physitianFirstName" value="Dr"/>
       <parameter name="physitianLastName" value="Pilulkin"/>
       <parameter name="text" value="Good treatment"/>
-    <classes>
-        <class name="com.telran.MDRatingTest"/>
+      <groups>
+          <run>
+              <include name="smoke"/>
+          </run>
+      </groups>
+
+      <classes>
+          <class name="com.telran.SignUpHCPTest"/>
     </classes>
 
 

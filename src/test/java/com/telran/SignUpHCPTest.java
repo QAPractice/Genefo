@@ -46,16 +46,16 @@ public class SignUpHCPTest {
     }
 
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void RegTestSuccess() {
 
         try {
 
             emailNickname = randomAlphabetic(5);
-            generatedEmail = "one" + emailNickname + "@usgenefo.com";
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
-                    .fillEmailField(generatedEmail)
                     .openHCPRegPage()
+                    .fillEmailField(email)
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")
                     .fillPasswordField("111111")
@@ -69,15 +69,15 @@ public class SignUpHCPTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutLastName() {
 
         try {
             emailNickname = randomAlphabetic(5);
             String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
-                    .fillEmailField(email)
                     .openHCPRegPage()
+                    .fillEmailField(email)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
@@ -91,15 +91,15 @@ public class SignUpHCPTest {
         }
     }
 
-   @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutFirstName() {
 
         try {
             emailNickname = randomAlphabetic(5);
             String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
-                    .fillEmailField(email)
                     .openHCPRegPage()
+                    .fillEmailField(email)
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .clickOnCheckBox18()
@@ -112,7 +112,7 @@ public class SignUpHCPTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutPassword() {
 
         try {
@@ -136,7 +136,7 @@ public class SignUpHCPTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutEmail() {
 
         try {
@@ -157,7 +157,7 @@ public class SignUpHCPTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBox18() {
 
         try {
@@ -180,7 +180,7 @@ public class SignUpHCPTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBoxTerms() {
 
         try {
@@ -204,7 +204,7 @@ public class SignUpHCPTest {
 
     //EmailField
     //1
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutAtInEmailField() {
 
         try {
@@ -228,7 +228,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithSpecialCharactersInEmailField() {
 
         try {
@@ -251,7 +251,7 @@ public class SignUpHCPTest {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithoutLocalPartInEmailField() {
 
         try {
@@ -273,7 +273,7 @@ public class SignUpHCPTest {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithoutDomainPartInEmailField() {
 
         try {
@@ -296,7 +296,7 @@ public class SignUpHCPTest {
 
     //5
 
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithConsecutiveDotsInEmailField() {
 
         try {
@@ -318,7 +318,7 @@ public class SignUpHCPTest {
     }
 
     //6
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningLocalPartEmailField() {
 
         try {
@@ -340,7 +340,7 @@ public class SignUpHCPTest {
     }
 
     //7
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningDomainPartEmailField() {
 
         try {
@@ -362,7 +362,7 @@ public class SignUpHCPTest {
     }
 
     //8
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithEmailContains256Symbols() {
 
         try {
@@ -389,7 +389,7 @@ public class SignUpHCPTest {
 
     //PasswordField
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains5Symbols() {
 
         try {
@@ -413,7 +413,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains13Symbols() {
 
         try {
@@ -438,7 +438,7 @@ public class SignUpHCPTest {
 
     //FirstName
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsSpecialCharacters() {
 
         try {
@@ -462,7 +462,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsDigits() {
 
         try {
@@ -486,7 +486,7 @@ public class SignUpHCPTest {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsUnderscore() {
 
         try {
@@ -510,7 +510,7 @@ public class SignUpHCPTest {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContains26Symbols() {
 
         try {
@@ -535,7 +535,7 @@ public class SignUpHCPTest {
 
     //LastName
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsSpecialCharacters() {
 
         try {
@@ -558,7 +558,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsDigits() {
 
         try {
@@ -582,7 +582,7 @@ public class SignUpHCPTest {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsUnderscore() {
 
         try {
@@ -605,7 +605,7 @@ public class SignUpHCPTest {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContains26Symbols() {
 
         try {
@@ -632,7 +632,7 @@ public class SignUpHCPTest {
     //Positive Tests emails variations
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailLocalPartBeginsNumber() {
 
         try {
@@ -656,7 +656,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailDomainNameBeginsNumber() {
 
         try {
@@ -682,7 +682,7 @@ public class SignUpHCPTest {
 
     //3
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithDotsLocalAndDomain() {
 
         try {
@@ -707,7 +707,7 @@ public class SignUpHCPTest {
 
     //4
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInLocalPart() {
 
         try {
@@ -732,7 +732,7 @@ public class SignUpHCPTest {
 
 
     //5
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInDomainPart() {
 
         try {
@@ -757,7 +757,7 @@ public class SignUpHCPTest {
 
     //6
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithUnderscoreInLocalPart() {
 
         try {
@@ -783,7 +783,7 @@ public class SignUpHCPTest {
     //Positive test for password
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword6Symbols() {
 
         try {
@@ -807,7 +807,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword8Symbols() {
 
         try {
@@ -831,7 +831,7 @@ public class SignUpHCPTest {
     }
 
     //3
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword12Symbols() {
 
         try {
@@ -857,7 +857,7 @@ public class SignUpHCPTest {
     //Positive Tests for FirstNameField
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestFirstName25Symbols() {
 
         try {
@@ -881,7 +881,7 @@ public class SignUpHCPTest {
     }
 
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestFirstName1Symbol() {
 
         try {
@@ -908,7 +908,7 @@ public class SignUpHCPTest {
     //Positive Tests for LastNameField
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestLastName25Symbols() {
 
         try {
@@ -932,7 +932,7 @@ public class SignUpHCPTest {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestLastName1Symbol() {
 
         try {

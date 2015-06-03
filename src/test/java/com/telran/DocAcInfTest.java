@@ -1,7 +1,7 @@
 package com.telran;
 
-import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocAcInfPage;
+import com.telran.pages.ProfileDoctorPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,16 +16,16 @@ import java.util.concurrent.TimeUnit;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 /**
- * Created by Oleg on 31.05.2015.
+ * Created by Oleg edited  Iakov Volf
  */
 public class DocAcInfTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public String EmailNickname; // Keeps the part of email before sign @
     ProfileDoctorPage profileDoctorPage;
     DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
-    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {

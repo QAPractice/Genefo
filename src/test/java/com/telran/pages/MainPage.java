@@ -148,10 +148,10 @@ public class MainPage extends Page {
         return this;
     }
 
-    public MainPage selectLogOut () {
+    public void logOut() {
         clickElement(cogwheelButton);
         clickElement(logOutButton);
-        return this;
+
     }
     //For Following tests
     public void openConnectPeopleThisConditionProfile() {

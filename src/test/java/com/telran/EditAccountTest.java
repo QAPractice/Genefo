@@ -15,29 +15,23 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
 public class EditAccountTest {
 
+    private static  SoftAssert softAssert;
+    private static String MY_EMAIL="lev.magazinnik@gmail.com";
+    private static String MY_Password="123qwee";
+    private static String TEMP_EMAIL ="333333@mail.ru";
+    private static String TEMP_PASS="111111";
+    private static String MY_FirstName="lev";
+    private static String MY_LastName="magazinnik";
     public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
     public LoginPage loginPage;
     public EditAccountPage editAccountPage;
-    private static  SoftAssert softAssert;
-
-    private static String MY_EMAIL="lev.magazinnik@gmail.com";
-    private static String MY_Password="123qwee";
-
-    private static String TEMP_EMAIL ="333333@mail.ru";
-    private static String TEMP_PASS="111111";
-
-    private static String MY_FirstName="lev";
-    private static String MY_LastName="magazinnik";
-
-
 
     @BeforeClass
     public void setup(){
@@ -121,7 +115,7 @@ public class EditAccountTest {
 
         mainPage
                 .openMainPage()
-                .selectLogOut();
+                .logOut();
         loginPage
                 .openLoginPage()
                 .waitUntilLoginPageIsLoaded()
@@ -228,7 +222,7 @@ public class EditAccountTest {
 
         mainPage
                 .openMainPage()
-                .selectLogOut();
+                .logOut();
         loginPage
                 .openLoginPage()
                 .waitUntilLoginPageIsLoaded()

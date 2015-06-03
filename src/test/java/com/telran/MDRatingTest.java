@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -80,10 +81,10 @@ public class MDRatingTest {
     }
 
 
-    /*@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
-    }*/
+    }
 
 }
 

@@ -62,6 +62,9 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
 
+    @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
+    WebElement  firstFollowed;
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -147,11 +150,18 @@ public class MainPage extends Page {
     }
     public boolean isFollowingNamePresents(String name) {
         try {
-            driver.findElement(By.xpath(""));
+            driver.findElement(By.xpath("//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    public MainPage openFollow(){
+        clickElement(firstFollowed);
+        return this;
+    }
+    public String followName(){
+        return firstFollowed.getText();
     }
 
 

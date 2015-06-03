@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -43,7 +44,7 @@ public class FollowingTest {
     }
 
     @Test
-    public void add1FollowSucess(){
+    public void add1FollowSuccess(){
         mainPage.isOnMainPage();
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
@@ -53,6 +54,24 @@ public class FollowingTest {
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertTrue(mainPage.isFollowingNamePresents(name));
-
     }
+
+    @Test
+    public void unFollowSuccess(){
+        mainPage.isOnMainPage();
+        String name = mainPage.followName();
+        mainPage.openFollow();
+        publicProfilePage.isOnPublicProfilePage();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+         publicProfilePage.removeFollow();
+       assertTrue(publicProfilePage.plusFollowPanel());
+        publicProfilePage.clickOnHome();
+        mainPage.isOnMainPage();
+  //      assertFalse(mainPage.isFollowingNamePresents(name));
+    }
+
 }

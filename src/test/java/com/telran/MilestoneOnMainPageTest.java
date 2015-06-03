@@ -3,8 +3,8 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,12 +28,13 @@ public class MilestoneOnMainPageTest {
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
     public String someText;
-    private boolean acceptNextAlert = true;
     public String  age;
     public String month;
     public String year;
     public String post;
     public String textOtherField;
+    private boolean acceptNextAlert = true;
+
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -78,6 +79,7 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
+
 
     @Test
     public void SendMovementPostTest() {
@@ -203,6 +205,33 @@ public class MilestoneOnMainPageTest {
              e.printStackTrace();
          }
      }
+
+    @Test
+    public void SendRollsOverPostTest() {
+        try {
+            year = "12";
+            month = "7";
+            age = year + " years " + month + " months";
+            post = "Post7";
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectItemOption()
+                    .clickRollsOverFromMovementList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty

@@ -1,7 +1,7 @@
 package com.telran;
 
-import com.telran.pages.DocAcInfPage;
 import com.telran.pages.ProfileDoctorPage;
+import com.telran.pages.DocAcInfPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,34 +10,42 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
 import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 /**
- * Created by Oleg edited  Iakov Volf
+ * Created by Oleg on 31.05.2015.
  */
 public class DocAcInfTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
-    public String EmailNickname; // Keeps the part of email before sign @
-    ProfileDoctorPage profileDoctorPage;
-    DocAcInfPage docAcInfPage;
+    public LoginPage loginPage;
+    public MainPage mainPage;
+    public ProfileDoctorPage profileDoctorPage;
+    public DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
+    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
         docAcInfPage = PageFactory.initElements(driver, DocAcInfPage.class);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            profileDoctorPage.openProfileDoctorPage()
-                             .waitUntilProfileDoctorPageIsLoaded()
-                             .clickOnEditAccInf();
+            loginPage.login("osh_il+4@yahoo.com","111111");
+            mainPage.waitUntilMainPageIsLoaded();
+            mainPage.selectMyAccount();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+            profileDoctorPage.clickOnEditAccInf();
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

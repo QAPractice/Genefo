@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.io.IOException;
 /**
@@ -120,7 +121,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectToiletTrained;
     @FindBy(xpath = "//*[@class='active-result']")
     WebElement itemDressesAlone;
-    @FindBy(xpath = "//*[@class='chosen-single']//span")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[2]")
     WebElement itemToiletTrained;
     @FindBy(xpath = "//*[@class='chosen-single']/span")
     WebElement selectItemToiletingListButton;
@@ -169,7 +170,8 @@ public class MilestoneOnMainPage extends Page {
     //alerts
     @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
     WebElement alertRequiredFields;
-    @FindBy(xpath = "//*[@style='padding-left: 5px;']/span")
+    //  @FindBy(xpath = "//*[@style='padding-left: 5px;']/span") //*[@class = 'form-group']/div[2]
+    @FindBy(xpath = "//*[@class='col-sm-2'][@style='padding-left: 5px;']/span")
     WebElement numbersOnlyForMonths;
     @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
     WebElement numbersOnlyForYears;
@@ -224,7 +226,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickFirstItemFromLanguageItemList() {
+    public MilestoneOnMainPage clickSmilesFromLanguageItemList() {
         clickElement(itemSmiles);
         return this;
     }
@@ -323,7 +325,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickFirstItemToiletingItemList() {
+    public MilestoneOnMainPage clickToiletTrainedFromToiletingItemList() {
         clickElement(itemToiletTrained);
         return this;
     }
@@ -421,22 +423,16 @@ public class MilestoneOnMainPage extends Page {
 
     //check alert presence
 
-    public boolean alertMessageNotValidYear() {
-        return exists(numbersOnlyForYears);
-    }
+    public boolean alertMessageNotValidYear() {return exists(numbersOnlyForYears);}
 
-    public boolean alertMessageNotValidMonth() {
-        return exists(numbersOnlyForMonths);
-    }
+    public boolean alertMessageNotValidMonth() {return exists(numbersOnlyForMonths);}
 
-    public boolean alertMessageRequiredFields() {
-        return exists(alertRequiredFields);
-    }
+    public boolean alertMessageRequiredFields() {return exists(alertRequiredFields);}
 
 // checking data in created post
 
     public boolean isAgeIsCorrect(String age) {
-        return verifyTextBoolean(ageOnNewCreatedPost, age);
+        return verifyTextBoolean(ageOnNewCreatedPost,age);
 
     }
 
@@ -446,9 +442,11 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public boolean isMilestoneTypeCorrect() {
-
-        return verifyTextBoolean(textInCreatedPost, "smiles");
+        return verifyTextBoolean(milestoneTypeOnNewCreatedPost, "");
     }
 
+    public boolean isMilestoneCorrect() {
+        return verifyTextBoolean(milestoneOnNewCreatedPost, "smiles");
+    }
 }
 

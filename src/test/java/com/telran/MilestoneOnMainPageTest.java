@@ -57,7 +57,7 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnLanguageOption()
                     .clickOnSelectItemOption()
-                    .clickFirstItemFromLanguageItemList()
+                    .clickSmilesFromLanguageItemList()
                     .clickOnYearsOption("7")
                     .clickOnMonthOption("5")
                     .fillTextField("Post1")
@@ -107,7 +107,7 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnToiletingOption()
                     .clickOnSelectItemToiletingItemOption()
-                    .clickFirstItemToiletingItemList()
+                    .clickToiletTrainedFromToiletingItemList()
                     .clickOnYearsOption("3")
                     .clickOnMonthOption("6")
                     .fillTextField("Post4")
@@ -152,21 +152,21 @@ public class MilestoneOnMainPageTest {
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
-    2)Months:abc
+    2)Months:
     3)Milestone:empty
     4)Message: Length>2252*/
     @Test
     public void MilestoneNegativeTest1(){
         try {
-            someText = randomAlphabetic(22);
+            someText = randomAlphabetic(3);
             milestoneOnMainPage
-                    .clickOnYearsOption("-1")
+                    .clickOnYearsOption("aaa")
                     .clickOnMonthOption("-1")
-                    .fillTextField("")
+                    .fillTextField("someText")
                     .sendPost();
-                  assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-                  assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
-                  assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,11 +187,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnLanguageItemOption("abc")
                     .clickOnYearsOption("abc")
                     .clickOnMonthOption("&^$")
-                    .fillTextField("someText")
+                    .fillTextField(someText)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,7 +211,6 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("2")
                     .fillTextField("")
                     .sendPost();
-           // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -250,9 +246,6 @@ public class MilestoneOnMainPageTest {
         try {
             someText = randomAlphabetic(11);
             milestoneOnMainPage
-                 //   .clickOnLanguageOption()
-                 //   .clickOnSelectItemOption()
-                 //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
                     .fillTextField("")
@@ -303,6 +296,11 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
+
+    /*1)Years:-int
+    2)Months:16
+    3)Milestone:Toileting:dresses alone
+    4)Message:Length>2252*/
 
 
 

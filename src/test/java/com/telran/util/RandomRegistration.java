@@ -19,7 +19,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 /**
  * Created by Marina on 5/20/2015.
  */
-public class RandomRegistrationTest {
+public class RandomRegistration {
     public WebDriver driver;
     public WebDriverWait wait;
     RegistrationPage registrationPage;

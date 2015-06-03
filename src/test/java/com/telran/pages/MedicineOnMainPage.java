@@ -33,7 +33,7 @@ public class MedicineOnMainPage extends Page {
     WebElement postButton;
 
 
-    //Rate Stars
+    //Rate Stars Sent Post
     @FindBy(xpath = "//*[@ng-model=\"medicine_effect\"]//*[@class=\"sr-only ng-binding\"]")
     WebElement allStarsTogether;
 
@@ -45,9 +45,39 @@ public class MedicineOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
     WebElement thirdNonMarkedRatingStar;
 
-    // Rating star - marked and non-marked together
+    // Rating marked First Star
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_rating\"]/i[1]/span[contains(text(),'*')]")
+    WebElement markedFirstStarInSentPost;
+
+    // Rating unmarked second Star
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_rating\"]/i[2]/span[not(contains(text(),'*'))]")
+    WebElement unmarkedSecondStarInSentPost;
+
+    // Rating star - third Rating Star Medicine
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
     WebElement thirdRatingStar;
+
+
+    // Rating star - first Rating Star Medicine
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[1]")
+    WebElement firstRatingStar;
+
+    // Rating star - fifth Rating Star Medicine
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[5]")
+    WebElement fifthRatingStar;
+
+    // fields for sent post
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement medicineName;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
+    WebElement reasonName;
+
+    //alerts
+    @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
+    WebElement errorRequiredFields;
+
+
 
 
     // @FindBy(xpath = "//div[3]/div[1]/div/form/div[2]/span[2]/span/i[3]")
@@ -139,9 +169,48 @@ public class MedicineOnMainPage extends Page {
         return this;
     }
 
+    // Click on the first star
+    public MedicineOnMainPage rateOneStar() {
+        clickElement(firstRatingStar);
+        return this;
+    }
+
+    // Click on the fifth star
+    public MedicineOnMainPage rateFifeStars() {
+        clickElement(fifthRatingStar);
+        return this;
+    }
+
     public void clickOnPostButton() {
         clickElement(postButton);
     }
 
 
+    // verify sent Post
+    public boolean verifyNewNameFromSentPost(String newName) {
+        return verifyTextBoolean(medicineName, newName);
+    }
+
+    public boolean verifyNewReasonFromSentPost(String newReason) {
+        return verifyTextBoolean(reasonName, newReason);
+    }
+
+    //verify error message
+
+    public boolean alertErrorMessageRequiredFields() {
+        return exists(errorRequiredFields);
+    }
+
+    public Boolean verifyFirstStarCheckedInSentPost() {
+        return exists(markedFirstStarInSentPost);
+    }
+
+    public Boolean verifySecondStarNonCheckedInSentPost() {
+        return exists(unmarkedSecondStarInSentPost);
+    }
+
+
 }
+
+
+

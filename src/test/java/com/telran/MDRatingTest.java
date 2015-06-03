@@ -52,7 +52,7 @@ public class MDRatingTest {
     }
 
     @Test
-    //@Parameters("facilityname","physitianFirstName", "physitianLastName", "text")
+    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
     public void sendMDRatingPostTest(String facilityname, String physitianFirstName, String physitianLastName, String text) {
         facilityname = "chicagoMed";
         physitianFirstName = "Phil";

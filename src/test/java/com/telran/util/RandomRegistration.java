@@ -4,7 +4,6 @@ import com.telran.pages.ProfilePage;
 import com.telran.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 /**
@@ -48,7 +46,7 @@ public class RandomRegistration {
     }
 
 
-    public String fillRandomFile() {
+    public static String fillRandomFile() {
         List<String> randoms = new ArrayList<String>();
         try {
 

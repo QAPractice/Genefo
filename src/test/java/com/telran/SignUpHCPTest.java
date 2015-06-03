@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,10 @@ public class SignUpHCPTest {
         }
     }
 
+    @BeforeMethod
+    public void beforemethodsetup() {
+        //  driver.manage().deleteAllCookies();
+    }
 
     @Test(groups = {"smoke", "positive"})
     public void RegTestSuccess() {

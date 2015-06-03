@@ -48,25 +48,25 @@ public class RandomRegistration {
     }
 
 
-    public void fillRandomFile() {
+    public String fillRandomFile() {
         List<String> randoms = new ArrayList<String>();
         try {
 
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 2; i++) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("gen");
                 sb.append(randomNumeric(5));
                 sb.append("@efo.com");
                 randoms.add(sb.toString());
             }
-            writeRandomDoublesToFile(randoms, "C:\\Users\\Marina\\Documents\\Random\\RandomForTest.txt");
+            writeRandomDoublesToFile(randoms, "util/RandomForTest.txt");
         } catch (Exception e) {
             e.printStackTrace();
 
         }
         finally {
-            randoms.get(0);
+        return   randoms.get(0);
         }
     }
 }

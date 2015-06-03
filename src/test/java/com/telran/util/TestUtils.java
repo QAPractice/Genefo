@@ -37,9 +37,8 @@ public class TestUtils {
 
             File f = new File(filePath);
             writer = new BufferedWriter(new FileWriter(f, true));
-            int i = 1;
             writer.write(email + newline);
-            i++;
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

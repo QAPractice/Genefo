@@ -23,7 +23,8 @@ public class SignUpHCPTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
-    public String EmailNickname; // Keeps the part of email before sign @
+    public String emailNickname;// Keeps the part of email before sign @
+    public String generatedEmail;
     HomePage homePage;
     SignUpHCPPage signUpHCPPage;
     ProfileDoctorPage profileDoctorPage;
@@ -50,13 +51,14 @@ public class SignUpHCPTest {
 
         try {
 
-            EmailNickname = randomAlphabetic(5);
+            emailNickname = randomAlphabetic(5);
+            generatedEmail = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
+                    .fillEmailField(generatedEmail)
                     .openHCPRegPage()
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -71,12 +73,14 @@ public class SignUpHCPTest {
     public void RegTestWithoutLastName() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
+                    .fillEmailField(email)
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -91,11 +95,13 @@ public class SignUpHCPTest {
     public void RegTestWithoutFirstName() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
+                    .fillEmailField(email)
                     .openHCPRegPage()
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -110,12 +116,15 @@ public class SignUpHCPTest {
     public void RegTestWithoutPassword() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -152,12 +161,15 @@ public class SignUpHCPTest {
     public void RegTestWithoutCheckBox18() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
+
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             assertTrue(signUpHCPPage.alertMessageNonChecked18());
@@ -172,12 +184,14 @@ public class SignUpHCPTest {
     public void RegTestWithoutCheckBoxTerms() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnSignUp();
             assertTrue(signUpHCPPage.alertMessageNonCheckedTerms());
@@ -194,12 +208,14 @@ public class SignUpHCPTest {
     public void RegTestWithoutAtInEmailField() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -216,6 +232,7 @@ public class SignUpHCPTest {
     public void RegTestWithSpecialCharactersInEmailField() {
 
         try {
+
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -376,12 +393,14 @@ public class SignUpHCPTest {
     public void RegTestWithPasswordContains5Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -398,12 +417,14 @@ public class SignUpHCPTest {
     public void RegTestWithPasswordContains13Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -421,12 +442,14 @@ public class SignUpHCPTest {
     public void RegTestWithFirstNameContainsSpecialCharacters() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -443,12 +466,14 @@ public class SignUpHCPTest {
     public void RegTestWithFirstNameContainsDigits() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -465,12 +490,14 @@ public class SignUpHCPTest {
     public void RegTestWithFirstNameContainsUnderscore() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -487,12 +514,14 @@ public class SignUpHCPTest {
     public void RegTestWithFirstNameContains26Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -510,12 +539,14 @@ public class SignUpHCPTest {
     public void RegTestWithLastNameContainsSpecialCharacters() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -531,6 +562,8 @@ public class SignUpHCPTest {
     public void RegTestWithLastNameContainsDigits() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -553,6 +586,8 @@ public class SignUpHCPTest {
     public void RegTestWithLastNameContainsUnderscore() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -574,6 +609,8 @@ public class SignUpHCPTest {
     public void RegTestWithLastNameContains26Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -599,12 +636,14 @@ public class SignUpHCPTest {
     public void RegTestEmailLocalPartBeginsNumber() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "99" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("99piter@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -621,12 +660,14 @@ public class SignUpHCPTest {
     public void RegTestEmailDomainNameBeginsNumber() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@33usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter@77genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -645,12 +686,14 @@ public class SignUpHCPTest {
     public void RegTestEmailWithDotsLocalAndDomain() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@22.usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter.pen.21@77.genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -668,12 +711,14 @@ public class SignUpHCPTest {
     public void RegTestEmailWithHypenInLocalPart() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one-two" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter-pen@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -691,12 +736,14 @@ public class SignUpHCPTest {
     public void RegTestEmailWithHypenInDomainPart() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@us-genefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter@ru-genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -714,12 +761,14 @@ public class SignUpHCPTest {
     public void RegTestEmailWithUnderscoreInLocalPart() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one_pem" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter_pen@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -738,12 +787,14 @@ public class SignUpHCPTest {
     public void RegTestPassword6Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -760,12 +811,14 @@ public class SignUpHCPTest {
     public void RegTestPassword8Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -782,12 +835,14 @@ public class SignUpHCPTest {
     public void RegTestPassword12Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -806,12 +861,14 @@ public class SignUpHCPTest {
     public void RegTestFirstName25Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -828,12 +885,14 @@ public class SignUpHCPTest {
     public void RegTestFirstName1Symbol() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -853,12 +912,14 @@ public class SignUpHCPTest {
     public void RegTestLastName25Symbols() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -875,12 +936,14 @@ public class SignUpHCPTest {
     public void RegTestLastName1Symbol() {
 
         try {
+            emailNickname = randomAlphabetic(5);
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();

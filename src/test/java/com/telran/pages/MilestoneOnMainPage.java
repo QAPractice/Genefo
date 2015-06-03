@@ -11,6 +11,7 @@ import java.io.IOException;
  *
  */
 public class MilestoneOnMainPage extends Page {
+    public String textWebElement;
 
     @FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement categoryDevelopmentalMilestoneTitle;
@@ -262,7 +263,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickFirstItemFromMovementList() {
+    public MilestoneOnMainPage clickHoldHeadFromMovementList() {
         clickElement(itemHoldsHead);
         return this;
     }
@@ -304,7 +305,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickFirstItemFromEatingItemList() {
+    public MilestoneOnMainPage clickHoldsBottleFromEatingItemList() {
         clickElement(itemHoldsBottles);
         return this;
     }
@@ -347,7 +348,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
 
-    public MilestoneOnMainPage clickFirstItemFromTreatmentItemList() {
+    public MilestoneOnMainPage clickTreatmentFromTreatmentItemList() {
         clickElement(itemSurgery);
         return this;
     }
@@ -431,6 +432,13 @@ public class MilestoneOnMainPage extends Page {
 
 // checking data in created post
 
+
+    public String getTextFromWebElement(WebElement element){
+        textWebElement=element.getText();
+        return textWebElement;
+    }
+
+
     public boolean isAgeIsCorrect(String age) {
         return verifyTextBoolean(ageOnNewCreatedPost,age);
 
@@ -442,11 +450,38 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public boolean isMilestoneTypeCorrect() {
-        return verifyTextBoolean(milestoneTypeOnNewCreatedPost, "");
-    }
+        if (textWebElement.equals("Language")) {
+            getTextFromWebElement(languageButton);}
+        if (textWebElement.equals("Movement")){
+            getTextFromWebElement(movementButton);}
+        if (textWebElement.equals("Eating")){
+            getTextFromWebElement( eatingButton);}
+        if (textWebElement.equals("Treatment")){
+            getTextFromWebElement(treatmentButton);}
+        if (textWebElement.equals("Toileting")){
+            getTextFromWebElement(toiletingButton);}
+        if (textWebElement.equals("Other")){
+            getTextFromWebElement(otherButton);}
+        return verifyTextBoolean(milestoneTypeOnNewCreatedPost, textWebElement);
+        }
 
     public boolean isMilestoneCorrect() {
-        return verifyTextBoolean(milestoneOnNewCreatedPost, "smiles");
+        if(textWebElement.equals("Smiles")){
+            getTextFromWebElement(itemSmiles);}
+        if(textWebElement.equals("Holds head")){
+            getTextFromWebElement(itemHoldsHead);}
+        if(textWebElement.equals("Holds bottle")){
+            getTextFromWebElement(itemHoldsBottles);}
+        if(textWebElement.equals("Toilet trained")){
+            getTextFromWebElement(itemToiletTrained);}
+        if(textWebElement.equals("Surgery")){
+            getTextFromWebElement(itemSurgery);}
+        return verifyTextBoolean(milestoneOnNewCreatedPost,textWebElement);
     }
+    public boolean isOtherTextCorrect(String name) {
+        return verifyTextBoolean(textInCreatedPost, name);
+
+    }
+
 }
 

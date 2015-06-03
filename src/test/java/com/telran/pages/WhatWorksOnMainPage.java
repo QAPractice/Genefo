@@ -12,6 +12,8 @@ import java.io.IOException;
  * Created by Iakov Volf 27.05.15.
  */
 public class WhatWorksOnMainPage extends Page {
+
+
     //Category Symptom buttons
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Therapy')]")
     WebElement therapyButton;
@@ -32,18 +34,37 @@ public class WhatWorksOnMainPage extends Page {
     WebElement otherButton;
 
     //Dropdown list
+    @FindBy(xpath = "//*[@placeholder = 'Please Specify Your Item']")
+    WebElement selectItemListForOtherOption;
+
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]")
     WebElement selectItemList;
+
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
     //elements of dropdown list
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemPhysicalTherapy;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
-    WebElement itemSpeechTherapy;
+    WebElement firstItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement secondItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement thirdItemInList;
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemPsychotherapy;
+    WebElement fourthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement fifthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement sixthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement seventhItemInList;
+
 
     // Rating star( marked one. Have asterisk sign in definition)
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[contains(text(),'*')]")
@@ -73,6 +94,27 @@ public class WhatWorksOnMainPage extends Page {
     WebElement submitButton;
 
 
+    // Upper Tab of sent posts
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
+    WebElement  UpperSentPostTab;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
+    WebElement  SentPostText;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    WebElement  SentPostCategory;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
+    WebElement  filledThirdStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
+    WebElement nonFilledFourthStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement ListItemInSentPost;
+
+    private String textInListItem;
+
 
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
@@ -98,43 +140,68 @@ public class WhatWorksOnMainPage extends Page {
     }
 
 
-    public WhatWorksOnMainPage clickOnTherapyOption() {
-        clickElement(therapyButton);
+    public WhatWorksOnMainPage clickOnOption(String option) {
+
+        WebElement optionChooser;
+        int optionNumber;
+        if (option.equals("Therapy")) optionNumber = 1;
+        else if (option.equals("Equipment")) optionNumber = 2;
+        else if(option.equals("Nutrition")) optionNumber = 3;
+        else if(option.equals("Exercises")) optionNumber = 4;
+        else if(option.equals("Alternative")) optionNumber = 5;
+        else if(option.equals("Other")) optionNumber = 6;
+        else optionNumber = 0;
+
+        switch (optionNumber) {
+            case 1: optionChooser = therapyButton;
+                break;
+            case 2: optionChooser = equipmentButton;
+                break;
+            case 3: optionChooser = nutritionButton;
+                break;
+            case 4: optionChooser = exercisesButton;
+                break;
+            case 5: optionChooser = alternativeButton;
+                break;
+            case 6: optionChooser = otherButton;
+                break;
+            default: { System.out.println(" Such option is not exist" ); return null; }
+        }
+        if(optionChooser != null)  clickElement(optionChooser);
+        else System.out.println(" Such option is not exist" );
         return this;
     }
 
-    public WhatWorksOnMainPage clickOnEquipmentOption() {
-        clickElement(equipmentButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnNutritionOption() {
-        clickElement(nutritionButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnExercisesOption() {
-        clickElement(exercisesButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnAlternativeOption() {
-        clickElement(alternativeButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnOtherOption() {
-        clickElement(otherButton);
-        return this;
-    }
 
     public WhatWorksOnMainPage clickOnItemList() {
         clickElement(selectItemList);
         return this;
     }
 
-    public WhatWorksOnMainPage chooseFirstItemFromItemList() {
-        clickElement(itemPhysicalTherapy);
+    public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
+
+        WebElement optionChooser;
+
+        switch (itemNumber) {
+            case 1: optionChooser = firstItemInList;
+                break;
+            case 2: optionChooser = secondItemInList;
+                break;
+            case 3: optionChooser = thirdItemInList;
+                break;
+            case 4: optionChooser = fourthItemInList;
+                break;
+            case 5: optionChooser = fifthItemInList;
+                break;
+            case 6: optionChooser = sixthItemInList;
+                break;
+            case 7: optionChooser = seventhItemInList;
+                break;
+            default: { System.out.println(" Such option is not exist" ); return null; }
+        }
+
+        textInListItem = optionChooser.getText();
+        clickElement(optionChooser);
         return this;
     }
 
@@ -142,6 +209,8 @@ public class WhatWorksOnMainPage extends Page {
         setElementText(postField, post);
         return this;
     }
+
+
 
     public WhatWorksOnMainPage sendPost() {
         clickElement(submitButton);
@@ -158,6 +227,39 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(thirdRatingStar);
         return this;
     }
+
+    // Methods for verifying items on sent upper post for What Works Tab
+
+    public Boolean verifyTextFromSentPost(String text)  {
+        return verifyTextBoolean(SentPostText, text);
+    }
+
+
+    public Boolean verifyCategoryExistsInSentPost(String category)  {
+
+        return verifyTextBoolean(SentPostCategory, category);
+    }
+
+
+    // Use it after 'chooseFirstItemFromItemList()' method: First you choose item, put it
+    // in variable firstItemInListText ,
+    // then you verify that it is seen on Sent Post Panel(on ListItemInSentPost WebElement).
+    public Boolean verifyListItemCorrectInSentPost()  {
+
+        return verifyTextBoolean(ListItemInSentPost, textInListItem );
+    }
+
+
+
+    public Boolean verifyThirdStarCheckedInSentPost()  {
+        return exists(filledThirdStarInSentPost);
+    }
+
+    public Boolean verifyFourthStarNonCheckedInSentPost()  {
+        return exists(nonFilledFourthStarInSentPost);
+    }
+
+
 
 }
 

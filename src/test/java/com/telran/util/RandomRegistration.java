@@ -4,6 +4,7 @@ import com.telran.pages.ProfilePage;
 import com.telran.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,7 +28,9 @@ public class RandomRegistration {
         String newline = System.getProperty("line.separator");
         BufferedWriter writer = null;
         try {
+            // String email = TestUtils.randomEmail();
 
+            //TestUtils.writeEmailToFile(email, filePath);
             File f = new File(filePath);
             writer = new BufferedWriter(new FileWriter(f, true));
             int i = 1;
@@ -45,7 +48,6 @@ public class RandomRegistration {
         }
     }
 
-
     public static String fillRandomFile() {
         List<String> randoms = new ArrayList<String>();
         try {
@@ -62,11 +64,23 @@ public class RandomRegistration {
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
-        finally {
-        return   randoms.get(0);
+        } finally {
+            return randoms.get(0);
         }
     }
+
+    @Test
+    public void testExample() {
+        String email = TestUtils.randomEmail();
+
+        // register
+        // assert 1
+        // assert 2
+        // assert 3
+
+        TestUtils.writeEmailToFile(email, "path");
+    }
+
 }
 
 

@@ -4,7 +4,6 @@ import com.telran.pages.ProfilePage;
 import com.telran.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +17,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 /**
  * Created by Marina on 5/20/2015.
  */
-public class RandomRegistrationTest {
+public class RandomRegistration {
     public WebDriver driver;
     public WebDriverWait wait;
     RegistrationPage registrationPage;
@@ -46,21 +45,24 @@ public class RandomRegistrationTest {
         }
     }
 
-    @Test
+
     public void fillRandomFile() {
         try {
             List<String> randoms = new ArrayList<String>();
-            for (int i = 0; i < 10; i++) {
-                StringBuilder sb = new StringBuilder();
+            StringBuilder sb;
+            for (int i = 0; i <= 1; i++) {
+                sb = new StringBuilder();
                 sb.append("gen");
                 sb.append(randomNumeric(5));
                 sb.append("@efo.com");
                 randoms.add(sb.toString());
             }
-            writeRandomDoublesToFile(randoms, "C:\\Users\\Marina\\Documents\\Random\\RandomForTest.txt");
+            writeRandomDoublesToFile(randoms, "utils/RandomForTest.txt");
         } catch (Exception e) {
             e.printStackTrace();
+
         }
+
     }
 }
 

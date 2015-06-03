@@ -52,6 +52,8 @@ public class SignUpHCPTest {
     @BeforeMethod
     public void beforemethodsetup() {
         signUpHCPPage.openHCPRegPage();
+        // String email = ();
+
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -83,6 +85,7 @@ public class SignUpHCPTest {
         try {
             emailNickname = randomAlphabetic(5);
             String email = "one" + emailNickname + "@usgenefo.com";
+
             signUpHCPPage
                     .openHCPRegPage()
                     .fillEmailField(email)

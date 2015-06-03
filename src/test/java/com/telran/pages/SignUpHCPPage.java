@@ -65,6 +65,12 @@ public class SignUpHCPPage extends Page{
             PageFactory.initElements(driver, this);
         }
 
+    public SignUpHCPPage openHCPRegPage() {
+        driver.get(PAGE_URL);
+        waitUntilSignUpHCP_PageIsLoaded();
+        return this;
+    }
+
         public SignUpHCPPage fillEmailField(String email) {
             setElementText(emailField, email);
             return this;

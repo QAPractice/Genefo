@@ -16,8 +16,10 @@ public class DocBasInfPage extends Page{
     WebElement basInfTitle;
 
     //buttons
-    @FindBy(xpath ="//*[@id='submit' and @disabled='disabled']" )
+    @FindBy(xpath ="//*[@id='submit' and contains(@ng-disabled,'profile_hcp')]/span" )
     WebElement saveButton;
+    @FindBy(xpath ="//*[@id='submit' and @disabled='disabled']" )
+    WebElement saveDisableButton;
     @FindBy(xpath = "//*[@class='profile-info-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
     WebElement cancelButton;
     @FindBy (xpath = "//*[@style='overflow: hidden;']")
@@ -28,6 +30,8 @@ public class DocBasInfPage extends Page{
     WebElement firstNameField;
     @FindBy(name = "lastName")
     WebElement lastNameField;
+    @FindBy(xpath = "//*[@name='location']")
+    WebElement locationField;
 
     //dropdown
     @FindBy(name = "birthmonth")
@@ -36,8 +40,9 @@ public class DocBasInfPage extends Page{
     WebElement birthdayToltipDay;
     @FindBy(name = "birthyear")
     WebElement birthyearToltipYear;
-    @FindBy(xpath = "//*[@class='form-control ng-dirty ng-invalid ng-invalid-editable error']")
+    @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
     WebElement locationToltip;
+
 
     //Allerts
     @FindBy(xpath = "//*[contains(@ng-show,'firstName')]/*[@class='fa fa-times']")
@@ -80,6 +85,47 @@ public class DocBasInfPage extends Page{
         return this;
     }
 
+    public DocBasInfPage selectMonth(String value) {
+        selectValueInDropdown(birthmonthToltipMonth, value);
+        return this;
+    }
+
+    public boolean isMonthSelected(String value) {
+
+        return verifyTextBoolean(birthmonthToltipMonth, value);
+    }
+
+    public DocBasInfPage selectDay(String value) {
+        selectValueInDropdown(birthdayToltipDay, value);
+        return this;
+    }
+
+    public boolean isDaySelected(String value) {
+
+        return verifyTextBoolean(birthdayToltipDay, value);
+    }
+
+    public DocBasInfPage selectYear(String value) {
+        selectValueInDropdown(birthyearToltipYear, value);
+        return this;
+    }
+
+    public boolean isYearSelected(String value) {
+
+        return verifyTextBoolean(birthyearToltipYear, value);
+    }
+
+    public DocBasInfPage fillLocationField(String location) {
+        setElementText(locationField, location);
+        clickElement(locationToltip);
+        return this;
+    }
+
+    public DocBasInfPage clickOnAddPicture() {
+        clickElement(addProfilePicture);
+        return this;
+    }
+
     public DocBasInfPage clickOnCancel() {
         clickElement(cancelButton);
         return this;
@@ -87,6 +133,11 @@ public class DocBasInfPage extends Page{
 
     public DocBasInfPage clickOnSaveButton() {
         clickElement(saveButton);
+        return this;
+    }
+
+    public DocBasInfPage clickOnSaveDisableButton() {
+        clickElement(saveDisableButton);
         return this;
     }
 

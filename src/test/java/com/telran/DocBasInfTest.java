@@ -1,7 +1,7 @@
 package com.telran;
 
 import com.telran.pages.ProfileDoctorPage;
-import com.telran.pages.DocAcInfPage;
+import com.telran.pages.DocBasInfPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,19 +16,19 @@ import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
-/**
- * Created by Oleg on 31.05.2015.
- */
-public class DocAcInfTest {
 
+/**
+ * Created by Oleg on 03.06.2015.
+ */
+public class DocBasInfTest {
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
-    public DocAcInfPage docAcInfPage;
+    public DocBasInfPage docBasInfPage;
     private boolean acceptNextAlert = true;
-    public String EmailNickname; // Keeps the part of email before sign @
+
 
     @BeforeClass
     public void setup() {
@@ -37,7 +37,7 @@ public class DocAcInfTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
-        docAcInfPage = PageFactory.initElements(driver, DocAcInfPage.class);
+        docBasInfPage = PageFactory.initElements(driver, DocBasInfPage.class);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
@@ -45,21 +45,25 @@ public class DocAcInfTest {
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            profileDoctorPage.clickOnEditAccInf();
-            docAcInfPage.waitUntilDocAcInfPageIsLoaded();
+            profileDoctorPage.clickOnEditBasInf();
+            docBasInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-//positive
+
+    //positive
     @Test
-    public void EditAccInfSuccess() {
+    public void EditBasicInfSuccess() {
 
         try {
-            EmailNickname = randomAlphabetic(5);
-            docAcInfPage
-                    .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+            docBasInfPage
+                    .fillFirstNameField("Doctor")
+                    .fillLastNameField("House")
+                    .selectMonth("0")
+                    .selectDay("5")
+                    .selectYear("70")
+                    .fillLocationField("afr")
                     .clickOnSaveButton();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
@@ -76,23 +80,23 @@ public class DocAcInfTest {
             e.printStackTrace();
         }
     }
-//negative
+
+    //negative
     @Test
-    public void EditAccInfEmptyFiels() {
+    public void EditBasicInfEmptyFiels() {
 
         try {
-            docAcInfPage
-                    .fillPasswordField("")
-                    .fillEmailField("")
-                    .clickOnSaveButton();
-            assertTrue(docAcInfPage.alertMessageInvalidEmail());
-            assertTrue(docAcInfPage.alertMessageInvalidPassword());
-            assertTrue(docAcInfPage.isOnDocAcInfPage());
+            docBasInfPage
+                    .fillFirstNameField("")
+                    .fillLastNameField("")
+                    .clickOnSaveDisableButton();
+            assertTrue(docBasInfPage.alertMessageInvalidFirstName());
+            assertTrue(docBasInfPage.alertMessageInvalidLastName());
+            assertTrue(docBasInfPage.isOnDocBasInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

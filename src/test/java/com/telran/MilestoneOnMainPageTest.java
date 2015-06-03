@@ -3,8 +3,8 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,6 +28,11 @@ public class MilestoneOnMainPageTest {
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
     public String someText;
+    public String  age;
+    public String month;
+    public String year;
+    public String post;
+    public String textOtherField;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -54,31 +59,49 @@ public class MilestoneOnMainPageTest {
     public void SendLanguagePostTest() {
 
         try {
+            year="7";
+            month="5";
+            age=year+" years "+month+" months";
+            post="Post1";
             milestoneOnMainPage
                     .clickOnLanguageOption()
                     .clickOnSelectItemOption()
-                    .clickFirstItemFromLanguageItemList()
-                    .clickOnYearsOption("7")
-                    .clickOnMonthOption("5")
-                    .fillTextField("Post1")
+                    .clickSmilesFromLanguageItemList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
                     .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+
     @Test
     public void SendMovementPostTest() {
+        year="2";
+        month="3";
+        age=year+" years "+month+" months";
+        post="Post2";
         try {
             milestoneOnMainPage
                     .clickOnMovementOption()
                     .clickOnSelectMovementItemOption()
-                    .clickFirstItemFromMovementList()
-                    .clickOnYearsOption("2")
-                    .clickOnMonthOption("3")
-                    .fillTextField("Post2")
+                    .clickHoldHeadFromMovementList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
                     .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
+
             e.printStackTrace();
         }
 
@@ -86,15 +109,23 @@ public class MilestoneOnMainPageTest {
 
         @Test
     public void SendEatingPostTest() {
+            year="3";
+            month="6";
+            age=year+" years "+month+" months";
+            post="Post3";
         try {
             milestoneOnMainPage
                     .clickOnEatingOption()
                     .clickOnSelectEatingItemOption()
-                    .clickFirstItemFromEatingItemList()
-                    .clickOnYearsOption("3")
-                    .clickOnMonthOption("6")
-                    .fillTextField("Post3")
+                    .clickHoldsBottleFromEatingItemList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
                     .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,15 +134,23 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendToiletingPostTest() {
+        year="3";
+        month="6";
+        age=year+" years "+month+" months";
+        post="Post4";
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
                     .clickOnSelectItemToiletingItemOption()
-                    .clickFirstItemToiletingItemList()
-                    .clickOnYearsOption("3")
-                    .clickOnMonthOption("6")
-                    .fillTextField("Post4")
+                    .clickToiletTrainedFromToiletingItemList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
                     .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,15 +159,23 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendTreatmentPostTest(){
+        year="3";
+        month="6";
+        age=year+" years "+month+" months";
+        post="Post5";
         try {
             milestoneOnMainPage
                     .clickOnTreatmentOption()
                     .clickOnSelectTreatmentItemOption()
-                    .clickFirstItemFromTreatmentItemList()
-                    .clickOnYearsOption("3")
-                    .clickOnMonthOption("6")
-                    .fillTextField("Post5")
+                    .clickTreatmentFromTreatmentItemList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
                     .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,37 +183,73 @@ public class MilestoneOnMainPageTest {
 
      @Test
       public  void SendOtherPostTest() {
+         year="10";
+         month="5";
+         age=year+" years "+month+" months";
+         post="Post6";
+         textOtherField="ABCD";
          try {
              milestoneOnMainPage
                      .clickOnOtherOption()
                      .clickOnSelectOtherItemOption()
-                     .fillOtherField("hello")
-                     .clickOnYearsOption("10")
-                     .clickOnMonthOption("5")
-                     .fillTextField("Post6")
+                     .fillOtherField(textOtherField)
+                     .clickOnYearsOption(year)
+                     .clickOnMonthOption(month)
+                     .fillTextField(post)
                      .sendPost();
+             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+             assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+             assertTrue(milestoneOnMainPage.isTextCorrect(post));
+             assertTrue(milestoneOnMainPage.isOtherTextCorrect(textOtherField));
          } catch (Exception e) {
              e.printStackTrace();
          }
      }
+
+    @Test
+    public void SendRollsOverPostTest() {
+        try {
+            year = "12";
+            month = "7";
+            age = year + " years " + month + " months";
+            post = "Post7";
+            milestoneOnMainPage
+                    .clickOnMovementOption()
+                    .clickOnSelectItemOption()
+                    .clickRollsOverFromMovementList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
              //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
-    2)Months:abc
+    2)Months:
     3)Milestone:empty
     4)Message: Length>2252*/
     @Test
     public void MilestoneNegativeTest1(){
         try {
-            someText = randomAlphabetic(22);
+            someText = randomAlphabetic(3);
             milestoneOnMainPage
-                    .clickOnYearsOption("-1")
+                    .clickOnYearsOption("aaa")
                     .clickOnMonthOption("-1")
-                    .fillTextField("")
+                    .fillTextField("someText")
                     .sendPost();
-                  assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-                  assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
-                  assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,11 +270,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnLanguageItemOption("abc")
                     .clickOnYearsOption("abc")
                     .clickOnMonthOption("&^$")
-                    .fillTextField("someText")
+                    .fillTextField(someText)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,7 +294,6 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("2")
                     .fillTextField("")
                     .sendPost();
-           // assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -250,9 +329,6 @@ public class MilestoneOnMainPageTest {
         try {
             someText = randomAlphabetic(11);
             milestoneOnMainPage
-                 //   .clickOnLanguageOption()
-                 //   .clickOnSelectItemOption()
-                 //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
                     .fillTextField("")
@@ -303,6 +379,11 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
+
+    /*1)Years:-int
+    2)Months:16
+    3)Milestone:Toileting:dresses alone
+    4)Message:Length>2252*/
 
 
 

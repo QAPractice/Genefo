@@ -30,7 +30,7 @@ public class TestUtils {
      * @param email    - an email to write
      * @param filePath - a path to file
      */
-    private static void writeEmailToFile(String email, String filePath) {
+    public static void writeEmailToFile(String email, String filePath) {
         String newline = System.getProperty("line.separator");
         BufferedWriter writer = null;
         try {

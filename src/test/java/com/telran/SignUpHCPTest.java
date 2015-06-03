@@ -6,6 +6,7 @@ import com.telran.pages.SignUpHCPPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -33,7 +34,9 @@ public class SignUpHCPTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
+        DesiredCapabilities dc = DesiredCapabilities.firefox();
+        dc.setCapability("applicationCacheEnabled", "false");
+        this.driver = new FirefoxDriver(dc);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
@@ -48,7 +51,7 @@ public class SignUpHCPTest {
 
     @BeforeMethod
     public void beforemethodsetup() {
-        //  driver.manage().deleteAllCookies();
+        signUpHCPPage.openHCPRegPage();
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -59,7 +62,7 @@ public class SignUpHCPTest {
             emailNickname = randomAlphabetic(5);
             String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
-                    .openHCPRegPage()
+
                     .fillEmailField(email)
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")

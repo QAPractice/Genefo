@@ -62,9 +62,8 @@ public class RandomRegistration {
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
-        finally {
-        return   randoms.get(0);
+        } finally {
+            return randoms.get(0);
         }
     }
 }

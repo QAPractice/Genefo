@@ -35,6 +35,7 @@ public class SignUpHCPTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
+        profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
 
         try {
 
@@ -59,6 +60,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -606,6 +608,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -627,6 +630,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -650,6 +654,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -672,6 +677,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -694,6 +700,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -716,6 +723,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -739,6 +747,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -760,6 +769,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -781,6 +791,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -804,6 +815,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -825,6 +837,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -849,6 +862,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
@@ -870,6 +884,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue(profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {

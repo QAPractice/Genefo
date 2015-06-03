@@ -13,6 +13,14 @@ import java.io.IOException;
  * Created by Л on 5/19/2015.
  */
 public class MyProfilesPage extends Page {
+
+    //Labels
+    @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
+    WebElement MyProfilesLable;
+
+    //Button
+    @FindBy(xpath = "//*[@class=\"btn-add-profile\"]/i")
+    WebElement addPlusButton;
     public MyProfilesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -23,10 +31,7 @@ public class MyProfilesPage extends Page {
         return this;
     }
 
-    @FindBy(xpath = "//*[@class=\"btn-add-profile\"]/i")
-    WebElement addPlusButton;
-
-    public void waitUntilMyProfilesPageIsLoaded() {
+        public void waitUntilMyProfilesPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(addPlusButton);
         } catch (IOException e) {

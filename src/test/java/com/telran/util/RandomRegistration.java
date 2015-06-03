@@ -47,7 +47,7 @@ public class RandomRegistrationTest {
         }
     }
 
-    @Test
+
     public void fillRandomFile() {
         List<String> randoms = new ArrayList<String>();
         try {

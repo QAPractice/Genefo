@@ -80,6 +80,7 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
+
         return this;
     }
 

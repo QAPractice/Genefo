@@ -1,8 +1,8 @@
 package com.telran;
 
 import com.telran.pages.HomePage;
-import com.telran.pages.SignUpHCPPage;
 import com.telran.pages.ProfileDoctorPage;
+import com.telran.pages.SignUpHCPPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,11 +23,11 @@ public class SignUpHCPTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public String EmailNickname; // Keeps the part of email before sign @
     HomePage homePage;
     SignUpHCPPage signUpHCPPage;
     ProfileDoctorPage profileDoctorPage;
     private boolean acceptNextAlert = true;
-    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
@@ -37,10 +37,7 @@ public class SignUpHCPTest {
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
 
         try {
-            homePage.openHomePage()
-                    .waitUntilHomePageIsLoaded();
-            homePage.clickOnSignUpDoctorButton();
-            signUpHCPPage.waitUntilSignUpHCP_PageIsLoaded();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,8 +48,10 @@ public class SignUpHCPTest {
     public void RegTestSuccess() {
 
         try {
+
             EmailNickname = randomAlphabetic(5);
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")
                     .fillPasswordField("111111")
@@ -71,6 +70,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
@@ -90,6 +90,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("us000998@genefo.com")
@@ -108,6 +109,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
@@ -128,6 +130,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -148,6 +151,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -167,6 +171,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -188,6 +193,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -209,6 +215,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -230,6 +237,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -251,6 +259,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -273,6 +282,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -294,6 +304,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -315,6 +326,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -336,6 +348,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -362,6 +375,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
@@ -383,6 +397,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
@@ -405,6 +420,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -426,6 +442,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -447,6 +464,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -468,6 +486,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -490,6 +509,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
@@ -510,6 +530,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
@@ -531,6 +552,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
@@ -551,6 +573,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
@@ -575,6 +598,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -595,6 +619,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -617,6 +642,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -638,6 +664,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -659,6 +686,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -680,6 +708,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -702,6 +731,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
@@ -722,6 +752,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
@@ -742,6 +773,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -764,6 +796,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -784,6 +817,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -807,6 +841,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
@@ -827,6 +862,7 @@ public class SignUpHCPTest {
 
         try {
             signUpHCPPage
+                    .openHCPRegPage()
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")

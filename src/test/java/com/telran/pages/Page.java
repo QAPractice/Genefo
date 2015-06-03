@@ -126,7 +126,7 @@ public abstract class Page {
     } catch (org.openqa.selenium.NoSuchElementException e) {
       return false;
     }
-    }
+  }
 
   // Pay attention: Works Only for first cell
   public boolean IsCellGreenAfterClick(WebElement locator) {

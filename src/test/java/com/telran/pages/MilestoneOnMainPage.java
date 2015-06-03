@@ -1,9 +1,9 @@
 package com.telran.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Wait;
 
 import java.io.IOException;
 /**
@@ -476,6 +476,9 @@ public class MilestoneOnMainPage extends Page {
             getTextFromWebElement(itemToiletTrained);}
         if(textWebElement.equals("Surgery")){
             getTextFromWebElement(itemSurgery);}
+        if (textWebElement.equals("Rolls over")) {
+            getTextFromWebElement(itemRollsOver);
+        }
         return verifyTextBoolean(milestoneOnNewCreatedPost,textWebElement);
     }
     public boolean isOtherTextCorrect(String name) {

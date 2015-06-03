@@ -21,6 +21,11 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class WhatWorksOnMainTest {
 
+    public enum Option {
+        Therapy, Equipment, Nutrition, Exercises,
+        Alternative, Other
+    }
+
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -51,27 +56,27 @@ public class WhatWorksOnMainTest {
     @Test
     public void SendTherapyPostTest() {
         String text = "My Fifth Post" ;
+        String category = "Nutrition";
         try {
             whatWorksOnMainPage
-                    .clickOnTherapyOption()
+                    .clickOnOption(category)
                     .clickOnItemList()
-                    .chooseFirstItemFromItemList()
+                    .chooseItemFromItemList(3)
                     .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
                     .fillTextField(text)
                     .sendPost();
             sleep(3000);
 
-            assertTrue(mainPage.verifyTextFromSentPost(text) );
-            assertTrue(mainPage.verifyCategoryTherapyExistsInSentPost() );
-            assertTrue(mainPage.verifyThirdStarCheckedInSentPost() );
-            assertTrue(mainPage.verifyFourthStarNonCheckedInSentPost() );
-            assertTrue(mainPage.verifyPhysicalTherapyItemExistsInSentPost());
+            assertTrue(whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue(whatWorksOnMainPage.verifyCategoryExistsInSentPost(category) );
+            assertTrue(whatWorksOnMainPage.verifyThirdStarCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

@@ -21,15 +21,17 @@ import static org.testng.Assert.assertTrue;
 
 public class EditAccountTest {
 
+    private static final String SPEC_SYMBOLS ="~!@#$%^&*()_+}{|\":?><|\\,./;'\\[]=-`.";
     public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
     public LoginPage loginPage;
-    public EditAccountPage editAccountPage;
+    public EditAccountPage thisPage;
     private static  SoftAssert softAssert;
 
     private static String MY_EMAIL="lev.magazinnik@gmail.com";
     private static String MY_Password="123qwee";
+    private static int VALID_INPUT_LENGTH=25;
 
     private static String TEMP_EMAIL ="333333@mail.ru";
     private static String TEMP_PASS="111111";
@@ -50,7 +52,7 @@ public class EditAccountTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         loginPage = PageFactory.initElements(driver,LoginPage.class);
-        editAccountPage = PageFactory.initElements(driver,EditAccountPage.class);
+        thisPage = PageFactory.initElements(driver,EditAccountPage.class);
         loginPage.openLoginPage()
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
@@ -70,12 +72,12 @@ public class EditAccountTest {
     //    Edit 2	Verify that the user's information presents correctly
     @Test
     public void verifyUserInformation(){
-        editAccountPage.openEditAccountPage()
+        thisPage.openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
 
-        softAssert.assertEquals(editAccountPage.getEmailElement().getAttribute("value"),MY_EMAIL);
-        softAssert.assertEquals(editAccountPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
-        softAssert.assertEquals(editAccountPage.getLastNameElement().getAttribute("value"), MY_LastName);
+        softAssert.assertEquals(thisPage.getEmailElement().getAttribute("value"), MY_EMAIL);
+        softAssert.assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
+        softAssert.assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
 
     }
 
@@ -85,19 +87,19 @@ public class EditAccountTest {
     @Test
     public void updateEmail(){
 
-        editAccountPage
+        thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
-        editAccountPage
+        thisPage
                 .fillEmailField(TEMP_EMAIL)
                 .clickOnSubmitButton1()
                 .fillOldPasswordField(MY_Password)
                 .clickOnSubmitButtonOldPassword()
                 .openEditAccountPage()
         .waitUntilEditElementIsLoaded();
-        softAssert.assertEquals(editAccountPage.getEmailElement().getAttribute("value"), TEMP_EMAIL);
+        softAssert.assertEquals(thisPage.getEmailElement().getAttribute("value"), TEMP_EMAIL);
 // return old e-mail
-        editAccountPage
+        thisPage
                 .fillEmailField(MY_EMAIL)
                 .clickOnSubmitButton1()
                 .fillOldPasswordField(MY_Password)
@@ -110,7 +112,7 @@ public class EditAccountTest {
 // 3.Logout and login with the e-mail:333333@mail.ru and password:111111.
     @Test
     public void newEmailPassword(){
-        editAccountPage
+        thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded()
                 .fillEmailField(TEMP_EMAIL)
@@ -130,8 +132,8 @@ public class EditAccountTest {
         softAssert.assertTrue(mainPage.isOnMainPage());
 
         // return old e-mail
-        editAccountPage.loadPage();
-        editAccountPage
+        thisPage.loadPage();
+        thisPage
                 .waitUntilEditElementIsLoaded()
                 .fillEmailField(MY_EMAIL)
                 .fillPasswordField(MY_Password)
@@ -206,8 +208,8 @@ public class EditAccountTest {
     }
     private boolean retainOldPassword(String newPassword,String oldPassword){
 
-        editAccountPage.loadPage();
-        return editAccountPage
+        thisPage.loadPage();
+        return thisPage
                 .waitUntilEditElementIsLoaded()
                 .fillPasswordField(newPassword)
                 .clickOnSubmitButton1()
@@ -217,7 +219,7 @@ public class EditAccountTest {
     }
     private boolean updateAndCheckPassword(String evalPass){
         boolean check =
-                editAccountPage
+                thisPage
                         .openEditAccountPage()
                         .waitUntilEditElementIsLoaded()
                         .fillPasswordField(evalPass)
@@ -238,39 +240,55 @@ public class EditAccountTest {
     }
 
 
-//    Edit 29	Go to Edit Account.
-// 1.Delete the current First Name and type in the field new First Name in English.
-    @Parameters("db")
-    @Test
-    public void firstNameInput(@Optional("Vasia")String inputName){
-
-        editAccountPage.openEditAccountPage()
-                .waitUntilEditElementIsLoaded();
-
-        editAccountPage
-                .fillField(editAccountPage.getFirstNameElement(), inputName)
-                .clickOnSubmitButton2();
-        assertTrue(editAccountPage.isSuccessAlert());
-        editAccountPage
-                .fillField(editAccountPage.getFirstNameElement(), MY_FirstName)
-                .clickOnSubmitButton2();
-    }
 
     @Parameters("db")
     @Test
-    public void lastNameInput(@Optional("Pupkin")String inputName){
+    public void fakeFirstName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
 
-        editAccountPage.openEditAccountPage()
-                .waitUntilEditElementIsLoaded();
 
-        editAccountPage
-                .fillField(editAccountPage.getLastNameElement(), inputName)
-                .clickOnSubmitButton2();
-        assertTrue(editAccountPage.isSuccessAlert());
-        editAccountPage
-                .fillField(editAccountPage.getLastNameElement(), MY_LastName)
+        thisPage
+                .openEditAccountPage()
+                .waitUntilEditElementIsLoaded()
+                .fillField(thisPage.getFirstNameElement(), str);
+        if(str.length()<=VALID_INPUT_LENGTH&&!containsSpecSymbols(str))
+            assertTrue(thisPage.isButton2Clickable());
+        else
+            assertTrue(!thisPage.isButton2Clickable());
+
+        thisPage
+                .fillField(thisPage.getFirstNameElement(), MY_FirstName)
                 .clickOnSubmitButton2();
     }
+    @Parameters("db")
+    @Test
+    public void fakeLastName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
+
+
+        thisPage
+                .openEditAccountPage()
+                .waitUntilEditElementIsLoaded()
+                .fillField(thisPage.getLastNameElement(), str);
+
+        if(str.length()<=VALID_INPUT_LENGTH)
+            assertTrue(thisPage.isButton2Clickable());
+        else
+            assertTrue(!thisPage.isButton2Clickable());
+
+        thisPage
+                .fillField(thisPage.getLastNameElement(), MY_LastName)
+                .clickOnSubmitButton2();
+    }
+
+    private boolean containsSpecSymbols(String str) {
+
+        for (int i = 0; i < SPEC_SYMBOLS.length(); i++) {
+            if (str.contains(SPEC_SYMBOLS.substring(i, i + 1)))
+                return true;
+
+        }
+        return false;
+    }
+
 
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){

@@ -27,10 +27,11 @@ public class EditAccountPage extends Page{
     WebElement oldpasswordElement;
 
     //    buttons
-    @FindBy(xpath = "//*[@name='info_form']/div[3]/div//*[@id='submit']")
+
+    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal'][not(contains(@disabled,'disabled'))]")
     WebElement submitButton1;
 
-    @FindBy(xpath = "//*[@name='basic_form']/div[3]/div//*[@id='submit']")
+    @FindBy(xpath = "//button[@id='submit' and @class='btn btn-primary'][not(contains(@disabled,'disabled'))]")
     WebElement submitButton2;
 
     @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
@@ -137,9 +138,14 @@ public class EditAccountPage extends Page{
         } catch (InterruptedException e) {
             return false;
         }
-
-
     return exists(changesSuccessAlert);
+    }
+
+    public boolean isButton1Clickable(){
+        return exists(submitButton1);
+    }
+    public boolean isButton2Clickable(){
+        return exists(submitButton2);
     }
 
 }

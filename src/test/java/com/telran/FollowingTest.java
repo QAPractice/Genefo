@@ -59,7 +59,7 @@ public class FollowingTest {
     @Test
     public void unFollowSuccess(){
         mainPage.isOnMainPage();
-        String name = mainPage.followName();
+        String name = mainPage.getFollowName();
         mainPage.openFollow();
         publicProfilePage.isOnPublicProfilePage();
         try {
@@ -71,7 +71,6 @@ public class FollowingTest {
        assertTrue(publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-  //      assertFalse(mainPage.isFollowingNamePresents(name));
+        assertFalse(mainPage.isFollowingNamePresents(name));
     }
-
 }

@@ -48,7 +48,7 @@ public class PostOnMainTest {
     }
 
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void SendPostSuccessTest() {
         String text = "My Seventh Post" ;
 
@@ -64,7 +64,7 @@ public class PostOnMainTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void SendEmptyPostTest() {
         String text = "" ;
 
@@ -80,7 +80,7 @@ public class PostOnMainTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void SendOneLetterPostTest() {
         String text = "A" ;
 

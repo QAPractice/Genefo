@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Iakov Volf 27.05.15.
@@ -113,7 +115,10 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement ListItemInSentPost;
 
-    private String textInListItem;
+    private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.
+
+    private HashMap<String,WebElement>optionsLocator = new HashMap<String,WebElement>();
+    private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
 
 
     public WhatWorksOnMainPage(WebDriver driver) {
@@ -139,36 +144,60 @@ public class WhatWorksOnMainPage extends Page {
         return exists(categorySymptomTitle);
     }
 
+    public void defineOptionsLocatorAndItemList(){
+        optionsLocator.put("Therapy",therapyButton);
+        optionsLocator.put("Equipment",equipmentButton);
+        optionsLocator.put("Nutrition",nutritionButton);
+        optionsLocator.put("Exercises",exercisesButton);
+        //optionsLocator.put("",alternativeButton);
+        optionsLocator.put("Alternative",alternativeButton);
+        optionsLocator.put("Other",otherButton);
+        itemsInListById.add(null);
+        itemsInListById.add(firstItemInList);
+        itemsInListById.add(secondItemInList);
+        itemsInListById.add(thirdItemInList);
+        itemsInListById.add(fourthItemInList);
+        itemsInListById.add(fifthItemInList);
+        itemsInListById.add(sixthItemInList);
+        itemsInListById.add(seventhItemInList);
+    }
 
     public WhatWorksOnMainPage clickOnOption(String option) {
 
-        WebElement optionChooser;
-        int optionNumber;
-        if (option.equals("Therapy")) optionNumber = 1;
-        else if (option.equals("Equipment")) optionNumber = 2;
-        else if(option.equals("Nutrition")) optionNumber = 3;
-        else if(option.equals("Exercises")) optionNumber = 4;
-        else if(option.equals("Alternative")) optionNumber = 5;
-        else if(option.equals("Other")) optionNumber = 6;
-        else optionNumber = 0;
-
-        switch (optionNumber) {
-            case 1: optionChooser = therapyButton;
-                break;
-            case 2: optionChooser = equipmentButton;
-                break;
-            case 3: optionChooser = nutritionButton;
-                break;
-            case 4: optionChooser = exercisesButton;
-                break;
-            case 5: optionChooser = alternativeButton;
-                break;
-            case 6: optionChooser = otherButton;
-                break;
-            default: { System.out.println(" Such option is not exist" ); return null; }
+//        WebElement optionChooser;
+//        int optionNumber;
+//        if (option.equals("Therapy")) optionNumber = 1;
+//        else if (option.equals("Equipment")) optionNumber = 2;
+//        else if(option.equals("Nutrition")) optionNumber = 3;
+//        else if(option.equals("Exercises")) optionNumber = 4;
+//        else if(option.equals("Alternative")) optionNumber = 5;
+//        else if(option.equals("Other")) optionNumber = 6;
+//        else optionNumber = 0;
+//
+//        switch (optionNumber) {
+//            case 1: optionChooser = therapyButton;
+//                break;
+//            case 2: optionChooser = equipmentButton;
+//                break;
+//            case 3: optionChooser = nutritionButton;
+//                break;
+//            case 4: optionChooser = exercisesButton;
+//                break;
+//            case 5: optionChooser = alternativeButton;
+//                break;
+//            case 6: optionChooser = otherButton;
+//                break;
+//            default: { System.out.println(" Such option is not exist" ); return null; }
+//        }
+//        if(optionChooser != null)  clickElement(optionChooser);
+//        else System.out.println(" Such option is not exist" );
+        try{
+            clickElement(optionsLocator.get(option));
         }
-        if(optionChooser != null)  clickElement(optionChooser);
-        else System.out.println(" Such option is not exist" );
+        catch (Exception e){  e.printStackTrace();
+            System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
+        }
+
         return this;
     }
 
@@ -182,26 +211,33 @@ public class WhatWorksOnMainPage extends Page {
 
         WebElement optionChooser;
 
-        switch (itemNumber) {
-            case 1: optionChooser = firstItemInList;
-                break;
-            case 2: optionChooser = secondItemInList;
-                break;
-            case 3: optionChooser = thirdItemInList;
-                break;
-            case 4: optionChooser = fourthItemInList;
-                break;
-            case 5: optionChooser = fifthItemInList;
-                break;
-            case 6: optionChooser = sixthItemInList;
-                break;
-            case 7: optionChooser = seventhItemInList;
-                break;
-            default: { System.out.println(" Such option is not exist" ); return null; }
+//        switch (itemNumber) {
+//            case 1: optionChooser = firstItemInList;
+//                break;
+//            case 2: optionChooser = secondItemInList;
+//                break;
+//            case 3: optionChooser = thirdItemInList;
+//                break;
+//            case 4: optionChooser = fourthItemInList;
+//                break;
+//            case 5: optionChooser = fifthItemInList;
+//                break;
+//            case 6: optionChooser = sixthItemInList;
+//                break;
+//            case 7: optionChooser = seventhItemInList;
+//                break;
+//            default: { System.out.println(" Such option is not exist" ); return null; }
+//        }
+        try {
+            optionChooser=itemsInListById.get(itemNumber);
+            textInListItem = optionChooser.getText();
+            clickElement(optionChooser);
         }
 
-        textInListItem = optionChooser.getText();
-        clickElement(optionChooser);
+        catch (Exception e){ e.printStackTrace();
+            System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
+        }
+
         return this;
     }
 
@@ -222,7 +258,7 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(allStarsTogether);
         return this;
     }
-   // Click on the third star
+    // Click on the third star
     public WhatWorksOnMainPage rateItThree() {
         clickElement(thirdRatingStar);
         return this;

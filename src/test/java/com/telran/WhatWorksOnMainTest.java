@@ -51,12 +51,17 @@ public class WhatWorksOnMainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        whatWorksOnMainPage.defineOptionsLocatorAndItemList();
     }
 
     @Test
-    public void SendTherapyPostTest() {
+    public void SendPostTest() {
         String text = "My Fifth Post" ;
-        String category = "Nutrition";
+       // String category = "Therapy";
+       // String category = "Equipment";
+       // String category = "Nutrition";
+       // String category = "Exercises";
+        String category = "Alternative";
         try {
             whatWorksOnMainPage
                     .clickOnOption(category)
@@ -69,8 +74,8 @@ public class WhatWorksOnMainTest {
             sleep(3000);
 
             assertTrue(whatWorksOnMainPage.verifyTextFromSentPost(text) );
-            assertTrue(whatWorksOnMainPage.verifyCategoryExistsInSentPost(category) );
-            assertTrue(whatWorksOnMainPage.verifyThirdStarCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue(whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
             assertTrue(whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
             assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
         } catch (Exception e) {

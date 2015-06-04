@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class TestUtils {
 
@@ -18,8 +19,8 @@ public class TestUtils {
         StringBuilder sb = new StringBuilder();
         sb.append("gen");
         sb.append(randomNumeric(5));
+        sb.append(randomAlphabetic(3));
         sb.append("@efo.com");
-
         return sb.toString();
     }
 

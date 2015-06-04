@@ -274,9 +274,9 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-1")
                     .fillTextField("someText")
                     .sendPost();
-                   assertFalse(milestoneOnMainPage.alertMessageRequiredFields());
-                   assertFalse(milestoneOnMainPage.alertMessageNotValidYear());
-                   assertFalse(milestoneOnMainPage.alertMessageNotValidMonth());
+                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }

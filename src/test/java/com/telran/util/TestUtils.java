@@ -9,7 +9,8 @@ import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 public class TestUtils {
 
-    private static String FILE_PATH="src\\test\\resources\\registed_e-mails.txt";
+    private static String FILE_PATH_PAT="src\\test\\resources\\registed_e-mails_pat.txt";
+    private static String FILE_PATH_DOC="src\\test\\resources\\registed_e-mails_doc.txt";
     /**
      * Generates random email
      */
@@ -27,12 +28,12 @@ public class TestUtils {
      *
      * @param email    - an email to write
      */
-    public static void writeEmailToFile(String email) {
+    public static void writeEmailToFileForPatient(String email) {
         String newline = System.getProperty("line.separator");
         BufferedWriter writer = null;
         try {
 
-            File f = new File(FILE_PATH);
+            File f = new File(FILE_PATH_PAT);
             writer = new BufferedWriter(new FileWriter(f, true));
             writer.write(email + newline);
 
@@ -43,7 +44,31 @@ public class TestUtils {
             if (writer != null) {
                 try {
                     writer.close();
-                    System.out.println("Success!\n e-mail: "+email+" \n was added to file: "+FILE_PATH);
+                    System.out.println("Success!\n e-mail: "+email+" \n was added to file: "+FILE_PATH_PAT);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void writeEmailToFileForDoctor(String email) {
+        String newline = System.getProperty("line.separator");
+        BufferedWriter writer = null;
+        try {
+
+            File f = new File(FILE_PATH_DOC);
+            writer = new BufferedWriter(new FileWriter(f, true));
+            writer.write(email + newline);
+
+        } catch (Exception e) {
+            System.out.println("Error in writing file class TestUtil.java: " + e.getMessage());
+
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                    System.out.println("Success!\n e-mail: "+email+" \n was added to file: "+FILE_PATH_DOC);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

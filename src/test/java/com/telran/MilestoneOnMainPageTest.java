@@ -5,6 +5,7 @@ import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -33,7 +35,12 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
-    private boolean acceptNextAlert = true;
+    /*private boolean acceptNextAlert = true;*/
+
+
+
+
+
 
     @BeforeClass
     public void setup() {
@@ -138,6 +145,7 @@ public class MilestoneOnMainPageTest {
         month="6";
         age=year+" years "+month+" months";
         post="Post4";
+        ;;
         try {
             milestoneOnMainPage
                     .clickOnToiletingOption()
@@ -230,6 +238,30 @@ public class MilestoneOnMainPageTest {
         }
     }
 
+    @Test
+    public void SendTwoThreeWordsPostTest() {
+        try {
+            year = "12";
+            month = "7";
+            age = year + " years " + month + " months";
+            post = "Post8";
+            milestoneOnMainPage
+                    .clickOnLanguageOption()
+                    .clickOnSelectItemOption()
+                    .clickTwoThreeWordsFromLanguageList()
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost();
+            assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
              //Send Post Milestone Negative Tests
@@ -243,7 +275,7 @@ public class MilestoneOnMainPageTest {
         try {
             someText = randomAlphabetic(3);
             milestoneOnMainPage
-                    .clickOnYearsOption("aaa")
+                    .clickOnYearsOption("-1")
                     .clickOnMonthOption("-1")
                     .fillTextField("someText")
                     .sendPost();
@@ -393,7 +425,7 @@ public class MilestoneOnMainPageTest {
         this.driver.quit();
     }
 
-    private String closeAlertAndGetItsText() {
+   /* private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
@@ -407,5 +439,5 @@ public class MilestoneOnMainPageTest {
             acceptNextAlert = true;
         }
     }
-
+*/
 }

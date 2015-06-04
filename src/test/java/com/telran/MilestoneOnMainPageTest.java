@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
@@ -35,7 +36,12 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
-    private boolean acceptNextAlert = true;
+    /*private boolean acceptNextAlert = true;*/
+
+
+
+
+
 
     @BeforeClass
     public void setup() {
@@ -98,6 +104,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption(month)
                     .fillTextField(post)
                     .sendPost();
+            sleep(3000);
             assertTrue(milestoneOnMainPage.isMilestoneCorrect());
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
@@ -124,6 +131,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption(month)
                     .fillTextField(post)
                     .sendPost();
+            sleep(3000);
             assertTrue(milestoneOnMainPage.isMilestoneCorrect());
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
@@ -270,13 +278,13 @@ public class MilestoneOnMainPageTest {
         try {
             someText = randomAlphabetic(3);
             milestoneOnMainPage
-                    .clickOnYearsOption("-1")
+                    .clickOnYearsOption("")
                     .clickOnMonthOption("-1")
                     .fillTextField("someText")
                     .sendPost();
-                   assertFalse(milestoneOnMainPage.alertMessageRequiredFields());
-                   assertFalse(milestoneOnMainPage.alertMessageNotValidYear());
-                   assertFalse(milestoneOnMainPage.alertMessageNotValidMonth());
+                   assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+                   assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -420,7 +428,7 @@ public class MilestoneOnMainPageTest {
         this.driver.quit();
     }
 
-    private String closeAlertAndGetItsText() {
+   /* private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
@@ -434,5 +442,18 @@ public class MilestoneOnMainPageTest {
             acceptNextAlert = true;
         }
     }
-
+*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

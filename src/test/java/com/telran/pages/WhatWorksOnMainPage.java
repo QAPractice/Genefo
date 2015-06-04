@@ -117,7 +117,12 @@ public class WhatWorksOnMainPage extends Page {
 
     private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.
 
+    // Data structure that keeps button( type WebElement )and what is written on it (String)
+    // row by row. Has two methods - put() and get() (see below)
     private HashMap<String,WebElement>optionsLocator = new HashMap<String,WebElement>();
+
+    // Sort of array but without size limits. Keeps only variables of  WebElement type.
+    // has two methods - add() and put()  (see below)
     private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
 
 
@@ -143,7 +148,8 @@ public class WhatWorksOnMainPage extends Page {
         waitUntilWhatWorksPanelIsLoaded();
         return exists(categorySymptomTitle);
     }
-
+    // Fills data structure optionsLocator (has type HashMap<String,WebElement>)
+    // and data structure itemsInListById ( has type ArrayList<WebElement> )
     public void defineOptionsLocatorAndItemList(){
         optionsLocator.put("Therapy",therapyButton);
         optionsLocator.put("Equipment",equipmentButton);
@@ -168,7 +174,7 @@ public class WhatWorksOnMainPage extends Page {
         try{
             clickElement(optionsLocator.get(option));
         }
-        catch (Exception e){  e.printStackTrace();
+        catch (Exception e){  e.printStackTrace();  // In this way we define our oun exception
             System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
         }
 
@@ -188,11 +194,9 @@ public class WhatWorksOnMainPage extends Page {
             textInListItem = optionChooser.getText();
             clickElement(optionChooser);
         }
-
-        catch (Exception e){ e.printStackTrace();
+        catch (Exception e){ e.printStackTrace();           // In this way we define our oun exception
             System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
         }
-
         return this;
     }
 
@@ -200,7 +204,6 @@ public class WhatWorksOnMainPage extends Page {
         setElementText(postField, post);
         return this;
     }
-
 
 
     public WhatWorksOnMainPage sendPost() {

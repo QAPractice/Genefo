@@ -50,7 +50,7 @@ public class WhatWorksOnMainTest {
             whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }   // We fill data structures, that we defined in whatWorksOnMainPage class.
         whatWorksOnMainPage.defineOptionsLocatorAndItemList();
     }
 

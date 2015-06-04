@@ -24,7 +24,6 @@ public class PostOnMainPage extends Page{
     WebElement submitButton;
 
 
-
     public PostOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

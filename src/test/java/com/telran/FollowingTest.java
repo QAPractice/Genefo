@@ -58,7 +58,7 @@ public class FollowingTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue(mainPage.isFollowingNamePresents(name));
     }
 
     @Test (groups = {"smoke", "positive"})
@@ -88,6 +88,6 @@ public class FollowingTest {
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        //assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue(mainPage.isFollowingNamePresents(name));
     }
 }

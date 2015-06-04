@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 /**
  * Created by Zizi, Christina and Mariya on 5/28/2015.
  *
@@ -184,6 +186,49 @@ public class MilestoneOnMainPage extends Page {
     WebElement milestoneOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
     WebElement textInCreatedPost;
+
+    HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
+
+//--------------Lev added------------------------------------------------------------------
+    private WebElement getWebElementByName(String name){
+        return buttonsAndItemsMap.get(name);
+    }
+
+    public MilestoneOnMainPage clickOnElement(String name){
+        WebElement element=getWebElementByName(name);
+        element.click();
+        return this;
+    }
+
+    public void FillAllElementsAndItemsToMap(){
+
+//        buttons with names from WebPage
+        buttonsAndItemsMap.put("Language",languageButton);
+        buttonsAndItemsMap.put("Movement",movementButton);
+        buttonsAndItemsMap.put("Eating",eatingButton);
+        buttonsAndItemsMap.put("Treatment",treatmentButton);
+        buttonsAndItemsMap.put("Toileting",toiletingButton);
+        buttonsAndItemsMap.put("Other",otherButton);
+//        items with names from WebPage
+        buttonsAndItemsMap.put("Smiles",itemSmiles);
+        buttonsAndItemsMap.put("Babbles",itemBabbles);
+        buttonsAndItemsMap.put("FirstWord",itemFirstWord);
+        buttonsAndItemsMap.put("TwoThreeWords",itemTwoThreeWords);
+        buttonsAndItemsMap.put("Surgery",itemSurgery);
+        buttonsAndItemsMap.put("MedicalTrial",itemMedicalTrial);
+        buttonsAndItemsMap.put("Remission",itemRemission);
+
+
+//need to add all other items from other categories
+
+    }
+    public boolean isMilstoneTrue(String name){
+        return this.verifyTextBoolean(milestoneOnNewCreatedPost,name);
+    }
+    public boolean isTypeTrue(String name){
+        return this.verifyTextBoolean(milestoneTypeOnNewCreatedPost,name);
+    }
+//-------------------------------------------------------------------------------
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
@@ -461,7 +506,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public boolean isMilestoneTypeCorrect() {
-           String text = textWebElementType ;
+        String text = textWebElementType ;
         if(textWebElementType.equals("Language")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
         else if(textWebElementType.equals("Movement")){
@@ -469,7 +514,7 @@ public class MilestoneOnMainPage extends Page {
         else if(textWebElementType.equals("Eating")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
         return false;
-}
+    }
 
 
     public boolean isMilestoneCorrect() {
@@ -491,7 +536,17 @@ public class MilestoneOnMainPage extends Page {
             return verifyTextBoolean(milestoneOnNewCreatedPost, textWebElement);
         }*/
         return false;
+    }
+
+    public void waitForPostLoaded() {
+        try {
+            this.waitUntilElementIsLoaded(milestoneOnNewCreatedPost);
+        } catch (IOException e) {
+            System.out.println("no post loaded error:"+e.getMessage());
+        } catch (InterruptedException e) {
+            System.out.println("no post loaded error:"+e.getMessage());
         }
+    }
 
 
 
@@ -499,6 +554,8 @@ public class MilestoneOnMainPage extends Page {
         return verifyTextBoolean(textInCreatedPost, name);
 
     }
+
+
 
 }
 

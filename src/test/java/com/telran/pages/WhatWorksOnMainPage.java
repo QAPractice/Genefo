@@ -172,9 +172,9 @@ public class WhatWorksOnMainPage extends Page {
 
 
         try{
-            clickElement(optionsLocator.get(option));
+            clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
         }
-        catch (Exception e){  e.printStackTrace();  // In this way we define our oun exception
+        catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
             System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
         }
 
@@ -190,11 +190,11 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
         WebElement optionChooser;
         try {
-            optionChooser=itemsInListById.get(itemNumber);
+            optionChooser=itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
             textInListItem = optionChooser.getText();
             clickElement(optionChooser);
         }
-        catch (Exception e){ e.printStackTrace();           // In this way we define our oun exception
+        catch (Exception e){ e.printStackTrace();           // In this way we define our own exception
             System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
         }
         return this;

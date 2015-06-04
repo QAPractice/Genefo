@@ -211,7 +211,7 @@ public class MilestoneOnMainPage extends Page {
 
     //set for language
     public MilestoneOnMainPage clickOnLanguageOption() {
-        textWebElementType = languageButton.getText();
+       /* textWebElementType = languageButton.getText();*/
         clickElement(languageButton);
         return this;
     }
@@ -294,6 +294,7 @@ public class MilestoneOnMainPage extends Page {
     //for eating
 
     public MilestoneOnMainPage clickOnEatingOption() {
+        textWebElementType = eatingButton.getText();
         clickElement(eatingButton);
         return this;
     }
@@ -310,6 +311,7 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public MilestoneOnMainPage clickHoldsBottleFromEatingItemList() {
+        textWebElement = itemHoldsBottles.getText();
         clickElement(itemHoldsBottles);
         return this;
     }
@@ -443,11 +445,10 @@ public class MilestoneOnMainPage extends Page {
 // checking data in created post
 
 
-   /* public String getTextFromWebElement(WebElement element) {
+    /*public String getTextFromWebElement(WebElement element) {
         textWebElement = element.getText();
         return textWebElement;
-    }
-*/
+    }*/
 
     public boolean isAgeIsCorrect(String age) {
         return verifyTextBoolean(ageOnNewCreatedPost, age);
@@ -463,7 +464,9 @@ public class MilestoneOnMainPage extends Page {
            String text = textWebElementType ;
         if(textWebElementType.equals("Language")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
-        if(textWebElementType.equals("Movement")){
+        else if(textWebElementType.equals("Movement")){
+            return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
+        else if(textWebElementType.equals("Eating")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
         return false;
 }
@@ -473,8 +476,11 @@ public class MilestoneOnMainPage extends Page {
         String text = textWebElement;
         if (text.equals("Smiles")) {
             return verifyTextBoolean(milestoneOnNewCreatedPost, text);}
-        if (text.equals("Holds head")) {
+        else if (text.equals("Holds head")) {
             return verifyTextBoolean(milestoneOnNewCreatedPost, text);}
+        else if (text.equals("Holds bottle")) {
+            return verifyTextBoolean(milestoneOnNewCreatedPost, text);}
+
         /*} else if (textWebElement.equals("Holds head")) {
             return verifyTextBoolean(milestoneOnNewCreatedPost, textWebElement);
         } else if (textWebElement.equals("Holds bottle")) {

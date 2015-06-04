@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
@@ -103,6 +104,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption(month)
                     .fillTextField(post)
                     .sendPost();
+            sleep(3000);
             assertTrue(milestoneOnMainPage.isMilestoneCorrect());
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
@@ -129,6 +131,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption(month)
                     .fillTextField(post)
                     .sendPost();
+            sleep(3000);
             assertTrue(milestoneOnMainPage.isMilestoneCorrect());
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
@@ -275,7 +278,7 @@ public class MilestoneOnMainPageTest {
         try {
             someText = randomAlphabetic(3);
             milestoneOnMainPage
-                    .clickOnYearsOption("-1")
+                    .clickOnYearsOption("")
                     .clickOnMonthOption("-1")
                     .fillTextField("someText")
                     .sendPost();
@@ -441,3 +444,16 @@ public class MilestoneOnMainPageTest {
     }
 */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

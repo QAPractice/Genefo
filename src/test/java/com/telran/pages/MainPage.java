@@ -67,6 +67,17 @@ public class MainPage extends Page {
     @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
     WebElement  firstFollowed;
 
+    @FindBy(xpath = "//div[@class='col-md-10']/input")
+    WebElement  viewConditionFieldForDoctor;
+
+    @FindBy(xpath = "//div[@class='top-row']//a[@class='ng-scope ng-binding']")
+    WebElement  dropDownConditionDoctor;
+
+    @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
+    WebElement  viewButton;
+
+
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -170,6 +181,18 @@ public class MainPage extends Page {
         clickElement(firstPostNameLink);
         return this;
     }
+    public void chooseConditionForDoctor(String condition){
+        setElementText(viewConditionFieldForDoctor,condition);
+    }
+    public MainPage chooseConditionFromDropDown(){
+        clickElement(dropDownConditionDoctor);
+        return this;
+    }
+    public MainPage clickViewButton(){
+        clickElement(viewButton);
+        return this;
+    }
+
 
 // Methods for verifying items on sent upper post
 

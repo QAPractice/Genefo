@@ -39,7 +39,7 @@ public class MDRatingTest {
         try {
             loginPage.login("ri-lopatina@yandex.ru", "123456");
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

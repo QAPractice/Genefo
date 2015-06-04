@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +16,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 6/2/2015.
  */
-public class FollowingTest {
+public class FollowingDoctorTest {
     public WebDriver driver;
     public WebDriverWait wait;
     LoginPage loginPage;
@@ -35,7 +36,7 @@ public class FollowingTest {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded()
-                    .login("ri-lopatina@yandex.ru", "123456");
+                    .login("ri-lopatina1@yandex.ru", "123456");
             mainPage.waitUntilMainPageIsLoaded();
 
         } catch (Exception e) {
@@ -46,6 +47,9 @@ public class FollowingTest {
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromConnectPeopleConditionField(){
         mainPage.isOnMainPage();
+        mainPage.chooseConditionForDoctor("Insomnia");
+        mainPage.chooseConditionFromDropDown();
+        mainPage.clickViewButton();
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
         String name = publicProfilePage.getPublicProfileName();
@@ -64,6 +68,9 @@ public class FollowingTest {
     @Test (groups = {"smoke", "positive"})
     public void unFollowSuccess(){
         mainPage.isOnMainPage();
+        mainPage.chooseConditionForDoctor("Insomnia");
+        mainPage.chooseConditionFromDropDown();
+        mainPage.clickViewButton();
         String name = mainPage.getFollowName();
         mainPage.openFollow();
         publicProfilePage.isOnPublicProfilePage();
@@ -72,8 +79,8 @@ public class FollowingTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-         publicProfilePage.removeFollow();
-       assertTrue(publicProfilePage.plusFollowPanel());
+        publicProfilePage.removeFollow();
+        assertTrue(publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertFalse(mainPage.isFollowingNamePresents(name));
@@ -81,6 +88,9 @@ public class FollowingTest {
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
         mainPage.isOnMainPage();
+        mainPage.chooseConditionForDoctor("Insomnia");
+        mainPage.chooseConditionFromDropDown();
+        mainPage.clickViewButton();
         mainPage.openPostNameLink();
         publicProfilePage.isOnPublicProfilePage();
         String name = publicProfilePage.getPublicProfileName();
@@ -89,5 +99,9 @@ public class FollowingTest {
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertTrue(mainPage.isFollowingNamePresents(name));
+    }
+    @AfterClass(alwaysRun = true)
+    public void teardown() {
+        this.driver.quit();
     }
 }

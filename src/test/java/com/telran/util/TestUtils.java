@@ -10,8 +10,8 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class TestUtils {
 
-    private static String FILE_PATH_PAT="src\\test\\resources\\registed_e-mails_pat.txt";
-    private static String FILE_PATH_DOC="src\\test\\resources\\registed_e-mails_doc.txt";
+    private static String FILE_PATH_PAT="src\\test\\resources\\registered_e-mails_pat.txt";
+    private static String FILE_PATH_DOC="src\\test\\resources\\registered_e-mails_doc.txt";
     /**
      * Generates random email
      */

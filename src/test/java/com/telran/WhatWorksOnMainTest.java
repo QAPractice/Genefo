@@ -51,6 +51,7 @@ public class WhatWorksOnMainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        whatWorksOnMainPage.defineOptionsLocatorAndItemList();
     }
 
     @Test

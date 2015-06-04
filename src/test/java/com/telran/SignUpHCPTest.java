@@ -3,7 +3,6 @@ package com.telran;
 import com.telran.pages.HomePage;
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
-import com.telran.util.RandomRegistration;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -53,7 +52,7 @@ public class SignUpHCPTest {
     @BeforeMethod
     public void beforemethodsetup() {
         signUpHCPPage.openHCPRegPage();
-        String email = RandomRegistration.fillRandomFile();
+//        String email = RandomRegistration.fillRandomFile();
 
     }
 

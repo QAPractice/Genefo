@@ -7,15 +7,13 @@ import java.io.IOException;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
-/**
- * Created by Marina on 6/3/2015.
- */
 public class TestUtils {
 
+    private static String FILE_PATH="src\\test\\resources\\registed_e-mails.txt";
     /**
      * Generates random email
      */
-    public static String randomEmail() {
+    public static String getRandomEmail() {
         StringBuilder sb = new StringBuilder();
         sb.append("gen");
         sb.append(randomNumeric(5));
@@ -28,23 +26,24 @@ public class TestUtils {
      * Writes email to the specified file
      *
      * @param email    - an email to write
-     * @param filePath - a path to file
      */
-    public static void writeEmailToFile(String email, String filePath) {
+    public static void writeEmailToFile(String email) {
         String newline = System.getProperty("line.separator");
         BufferedWriter writer = null;
         try {
 
-            File f = new File(filePath);
+            File f = new File(FILE_PATH);
             writer = new BufferedWriter(new FileWriter(f, true));
             writer.write(email + newline);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error in writing file class TestUtil.java: " + e.getMessage());
+
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
+                    System.out.println("Success!\n e-mail: "+email+" \n was added to file: "+FILE_PATH);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

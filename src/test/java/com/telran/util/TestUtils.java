@@ -1,10 +1,9 @@
 package com.telran.util;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TestUtils {
 
@@ -15,10 +14,62 @@ public class TestUtils {
     private static StringBuilder logTests;
     private static BufferedWriter writeLogToFile;
 
+
+    public static String getRandomEmail(boolean isDoctor) {
+        //Generate random email
+        String randomEmail = getRandomEmail();
+        Set<String> fileContent;
+        if (isDoctor) {
+            // get the contents of doctors file
+            fileContent = readFileToSet(FILE_PATH_DOC);
+        } else {
+            // get the contents of doctors file
+            fileContent = readFileToSet(FILE_PATH_PAT);
+        }
+        // check the generated email is not already in file. \if not - return generated email
+        if (!fileContent.contains(randomEmail)) {
+            return randomEmail;
+        }
+        //Email already in file. try again  by recursive call
+        else {
+            return getRandomEmail(isDoctor);
+
+        }
+    }
+
+    /**
+     * Read the specified file to HashSet
+     *
+     * @param filePath
+     * @return
+     */
+    private static Set<String> readFileToSet(String filePath) {
+        BufferedReader reader = null;
+        String line = null;
+        Set<String> fileLines = new HashSet<String>();
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            while ((line = reader.readLine()) != null) {
+                fileLines.add(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return fileLines;
+    }
+
     /**
      * Generates random email
      */
-    public static String getRandomEmail() {
+    private static String getRandomEmail() {
         StringBuilder sb = new StringBuilder();
         sb.append("gen");
         sb.append((new Date()).getTime());
@@ -105,6 +156,7 @@ public class TestUtils {
         }
 
     }
+
     public static void logPrint() {
         try {
             String str="-------------------------------------------------------------------\n";

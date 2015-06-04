@@ -164,33 +164,7 @@ public class WhatWorksOnMainPage extends Page {
 
     public WhatWorksOnMainPage clickOnOption(String option) {
 
-//        WebElement optionChooser;
-//        int optionNumber;
-//        if (option.equals("Therapy")) optionNumber = 1;
-//        else if (option.equals("Equipment")) optionNumber = 2;
-//        else if(option.equals("Nutrition")) optionNumber = 3;
-//        else if(option.equals("Exercises")) optionNumber = 4;
-//        else if(option.equals("Alternative")) optionNumber = 5;
-//        else if(option.equals("Other")) optionNumber = 6;
-//        else optionNumber = 0;
-//
-//        switch (optionNumber) {
-//            case 1: optionChooser = therapyButton;
-//                break;
-//            case 2: optionChooser = equipmentButton;
-//                break;
-//            case 3: optionChooser = nutritionButton;
-//                break;
-//            case 4: optionChooser = exercisesButton;
-//                break;
-//            case 5: optionChooser = alternativeButton;
-//                break;
-//            case 6: optionChooser = otherButton;
-//                break;
-//            default: { System.out.println(" Such option is not exist" ); return null; }
-//        }
-//        if(optionChooser != null)  clickElement(optionChooser);
-//        else System.out.println(" Such option is not exist" );
+
         try{
             clickElement(optionsLocator.get(option));
         }
@@ -208,26 +182,7 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
-
         WebElement optionChooser;
-
-//        switch (itemNumber) {
-//            case 1: optionChooser = firstItemInList;
-//                break;
-//            case 2: optionChooser = secondItemInList;
-//                break;
-//            case 3: optionChooser = thirdItemInList;
-//                break;
-//            case 4: optionChooser = fourthItemInList;
-//                break;
-//            case 5: optionChooser = fifthItemInList;
-//                break;
-//            case 6: optionChooser = sixthItemInList;
-//                break;
-//            case 7: optionChooser = seventhItemInList;
-//                break;
-//            default: { System.out.println(" Such option is not exist" ); return null; }
-//        }
         try {
             optionChooser=itemsInListById.get(itemNumber);
             textInListItem = optionChooser.getText();

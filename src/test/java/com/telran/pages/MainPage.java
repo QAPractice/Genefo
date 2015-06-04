@@ -152,7 +152,7 @@ public class MainPage extends Page {
     }
     public boolean isFollowingNamePresents(String name) {
         try {
-            driver.findElement(By.xpath("//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding'][contains(text(),\"" + name + "\")]"));
+            driver.findElement(By.xpath("//div[@class=\"panel panel-primary\"]/../div[7]//li[last()]//span[@class=\"profileName ng-binding\"][contains(text(),\"" + name + "\")]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;

@@ -115,10 +115,10 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement ListItemInSentPost;
 
-    private String textInListItem;
+    private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.
 
-    private HashMap<String,WebElement>optionsLocator;
-    private ArrayList<WebElement> itemsInListById;
+    private HashMap<String,WebElement>optionsLocator = new HashMap<String,WebElement>();
+    private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
 
 
     public WhatWorksOnMainPage(WebDriver driver) {
@@ -149,7 +149,7 @@ public class WhatWorksOnMainPage extends Page {
         optionsLocator.put("Equipment",equipmentButton);
         optionsLocator.put("Nutrition",nutritionButton);
         optionsLocator.put("Exercises",exercisesButton);
-        optionsLocator.put("",alternativeButton);
+        //optionsLocator.put("",alternativeButton);
         optionsLocator.put("Alternative",alternativeButton);
         optionsLocator.put("Other",otherButton);
         itemsInListById.add(null);
@@ -160,8 +160,8 @@ public class WhatWorksOnMainPage extends Page {
         itemsInListById.add(fifthItemInList);
         itemsInListById.add(sixthItemInList);
         itemsInListById.add(seventhItemInList);
-
     }
+
     public WhatWorksOnMainPage clickOnOption(String option) {
 
 //        WebElement optionChooser;
@@ -194,7 +194,7 @@ public class WhatWorksOnMainPage extends Page {
         try{
             clickElement(optionsLocator.get(option));
         }
-        catch (Exception e){
+        catch (Exception e){  e.printStackTrace();
             System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
         }
 
@@ -234,7 +234,7 @@ public class WhatWorksOnMainPage extends Page {
             clickElement(optionChooser);
         }
 
-        catch (Exception e){
+        catch (Exception e){ e.printStackTrace();
             System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
         }
 

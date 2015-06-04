@@ -211,7 +211,7 @@ public class MilestoneOnMainPage extends Page {
 
     //set for language
     public MilestoneOnMainPage clickOnLanguageOption() {
-        textWebElementType = languageButton.getText();
+       /* textWebElementType = languageButton.getText();*/
         clickElement(languageButton);
         return this;
     }
@@ -443,11 +443,10 @@ public class MilestoneOnMainPage extends Page {
 // checking data in created post
 
 
-   /* public String getTextFromWebElement(WebElement element) {
+    /*public String getTextFromWebElement(WebElement element) {
         textWebElement = element.getText();
         return textWebElement;
-    }
-*/
+    }*/
 
     public boolean isAgeIsCorrect(String age) {
         return verifyTextBoolean(ageOnNewCreatedPost, age);

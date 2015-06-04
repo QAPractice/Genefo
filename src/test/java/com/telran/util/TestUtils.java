@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -18,8 +19,7 @@ public class TestUtils {
     public static String getRandomEmail() {
         StringBuilder sb = new StringBuilder();
         sb.append("gen");
-        sb.append(randomNumeric(5));
-        sb.append(randomAlphabetic(3));
+        sb.append((new Date()).getTime());
         sb.append("@efo.com");
         return sb.toString();
     }

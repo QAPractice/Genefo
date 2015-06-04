@@ -52,7 +52,7 @@ public class MDRatingTest {
         }
     }
 
-    @Test
+    @Test (groups = {"smoke", "positive"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
     public void sendMDRatingPostTest(String facilityname, String physitianFirstName, String physitianLastName, String text) {
         facilityname = "chicagoMed";
@@ -75,6 +75,29 @@ public class MDRatingTest {
             Assert.assertTrue(mdRatingOnMainPage.isPhysicianLastNameCorrect(physitianLastName));
             Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text));
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test (groups = {"smoke", "negative"})
+    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
+    public void sendMDRatingPostTestWoutFacilityName(String physitianFirstName, String physitianLastName, String text) {
+        physitianFirstName = "Phil";
+        physitianLastName = "Richards";
+        text = "post";
+        try {
+            mdRatingOnMainPage
+                    .fillPhysicianFields(physitianFirstName, physitianLastName)
+                    .clickOnAllStarsTogether()
+                    .rateItThree()              //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
         } catch (Exception e) {
             e.printStackTrace();
         }

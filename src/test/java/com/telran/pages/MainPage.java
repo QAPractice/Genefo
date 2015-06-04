@@ -54,6 +54,8 @@ public class MainPage extends Page {
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
 
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
+    WebElement firstPostNameLink;
 
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
@@ -163,7 +165,10 @@ public class MainPage extends Page {
     public String getFollowName(){
         return firstFollowed.getText();
     }
-
+    public MainPage openPostNameLink() {
+        clickElement(firstPostNameLink);
+        return this;
+    }
 
 // Methods for verifying items on sent upper post
 

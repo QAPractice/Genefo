@@ -63,6 +63,7 @@ public class SignUpHCPTest {
 
             emailNickname = randomAlphabetic(5);
             String email = "one" + emailNickname + "@usgenefo.com";
+
             signUpHCPPage
 
                     .fillEmailField(email)

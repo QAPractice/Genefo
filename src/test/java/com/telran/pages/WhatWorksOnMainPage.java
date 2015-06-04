@@ -177,7 +177,6 @@ public class WhatWorksOnMainPage extends Page {
         catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
             System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
         }
-
         return this;
     }
 

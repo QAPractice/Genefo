@@ -3,6 +3,7 @@ package com.telran;
 import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
+import com.telran.util.TestUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,20 +11,19 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
 public class EditAccountTest {
 
-    private static  SoftAssert softAssert;
     private static int VALID_INPUT_LENGTH=25;
-    private static String SPEC_SYMBOLS="~!@#$%^&*()_+}{|\":?><|\\,./;'\\[]=-`.";
-    private static String MY_EMAIL="lev.magazinnik@gmail.com";
+
+    private static String MY_EMAIL="123qweee@mail.ru";
     private static String MY_Password="123qwee";
     private static String TEMP_EMAIL ="333333@mail.ru";
     private static String TEMP_PASS="111111";
@@ -35,9 +35,12 @@ public class EditAccountTest {
     public LoginPage loginPage;
     public EditAccountPage thisPage;
 
+
+
     @BeforeClass
     public void setup(){
 
+        TestUtils.addTestToLog();
         File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
         FirefoxBinary binary = new FirefoxBinary(file);
         FirefoxProfile profile = new FirefoxProfile();
@@ -50,37 +53,42 @@ public class EditAccountTest {
         loginPage.openLoginPage()
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
-        softAssert = new SoftAssert();
 
     }
 
-        // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
-    @Test
+    // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
+    @Test(groups={"smoke","positive"})
     public void dropDownMenuIsClickable(){
+        TestUtils.addTestToLog();
+
         mainPage.openMainPage()
                 .waitUntilMainPageIsLoaded();
         assertTrue(mainPage.isOnMainPage());
         mainPage.selectMyAccount();
+
     }
 
+
     //    Edit 2	Verify that the user's information presents correctly
-    @Test
+    @Test(groups={"smoke","positive"})
     public void verifyUserInformation(){
+        TestUtils.addTestToLog();
         thisPage.openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
 
-        softAssert.assertEquals(thisPage.getEmailElement().getAttribute("value"),MY_EMAIL);
-        softAssert.assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
-        softAssert.assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
+
+        assertEquals(thisPage.getEmailElement().getAttribute("value"), MY_EMAIL);
+        assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
+        assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
 
     }
 
-//Edit 3	Go to Edit Account. 1.Delete the current email.
+    //Edit 3	Go to Edit Account. 1.Delete the current email.
 // 2.Type in the field "Email" another email (valid) and Click the button "Save".
 // 3.Enter the valid current password and click the button "Save".
-    @Test
+    @Test(groups={"smoke","positive"})
     public void updateEmail(){
-
+        TestUtils.addTestToLog();
         thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
@@ -90,8 +98,8 @@ public class EditAccountTest {
                 .fillOldPasswordField(MY_Password)
                 .clickOnSubmitButtonOldPassword()
                 .openEditAccountPage()
-        .waitUntilEditElementIsLoaded();
-        softAssert.assertEquals(thisPage.getEmailElement().getAttribute("value"), TEMP_EMAIL);
+                .waitUntilEditElementIsLoaded();
+        assertEquals(thisPage.getEmailElement().getAttribute("value"), TEMP_EMAIL);
 // return old e-mail
         thisPage
                 .fillEmailField(MY_EMAIL)
@@ -104,8 +112,9 @@ public class EditAccountTest {
 // 1.Delete the current email and type in the field "email" another one."333333@mail.ru" and Click "Save" button.
 // 2.Enter the valid current password and click the button "Save".
 // 3.Logout and login with the e-mail:333333@mail.ru and password:111111.
-    @Test
+    @Test(groups={"smoke","positive"})
     public void newEmailPassword(){
+        TestUtils.addTestToLog();
         thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded()
@@ -123,7 +132,7 @@ public class EditAccountTest {
                 .waitUntilLoginPageIsLoaded()
                 .login(TEMP_EMAIL, TEMP_PASS);
 
-        softAssert.assertTrue(mainPage.isOnMainPage());
+        assertTrue(mainPage.isOnMainPage());
 
         // return old e-mail
         thisPage.loadPage();
@@ -137,68 +146,76 @@ public class EditAccountTest {
 
     }
 
-// Edit 5	Go to Edit Account.
-// 1.Delete the current password and type new password in english and push the button "Save".
-// 2.Enter the valid current password. 3.Logout and Login with New password.
-    @Test
-    public void newPassword( ){
-        String testPass=TEMP_PASS;
-        updateAndCheckPassword(testPass);
-        softAssert.assertTrue(mainPage.isOnMainPage());
-        retainOldPassword(MY_Password, testPass);
-
-    }
-
-
-//    Edit 10	Go to Edit Account.
-// 1.Delete the current password and type new password with length=12 and push the button "Save".
-// 2.Enter the valid current password. 3.Logout and Login with New password.
-    @Test
-    public void newPassword12( ){
-       String testPass="123456789111";
-        updateAndCheckPassword(testPass);
-        softAssert.assertTrue(mainPage.isOnMainPage());
-        retainOldPassword(MY_Password, testPass);
-
-    }
+//    // Edit 5	Go to Edit Account.
+//// 1.Delete the current password and type new password in english and push the button "Save".
+//// 2.Enter the valid current password. 3.Logout and Login with New password.
+//    @Test(groups={"positive"})
+//    public void newPassword( ){
+//        TestUtils.addTestToLog();
+//        String testPass=TEMP_PASS;
+//        updateAndCheckPassword(testPass);
+//        assertTrue(mainPage.isOnMainPage());
+//        retainOldPassword(MY_Password, testPass);
+//
+//    }
 
 
-//    Edit 11	Go to Edit Account.
+//    //    Edit 10	Go to Edit Account.
+//// 1.Delete the current password and type new password with length=12 and push the button "Save".
+//// 2.Enter the valid current password. 3.Logout and Login with New password.
+//    @Test(groups={"positive"})
+//    public void newPassword12( ){
+//        TestUtils.addTestToLog();
+//        String testPass="123456789111";
+//        updateAndCheckPassword(testPass);
+//        assertTrue(mainPage.isOnMainPage());
+//        retainOldPassword(MY_Password, testPass);
+//
+//    }
+
+
+    //    Edit 11	Go to Edit Account.
 // 1.Delete the current password and type new password with special symbols and push the button "Save".
 // !@#$%^&*()_+}{|":?><|\,./\';[]=-
 // 2.Enter the valid current password.
 // 3.Logout and Login with New password.
-    @Test
+    @Test(groups={"positive"})
     public void newPasswordSpecSimbols1( ) {
+        TestUtils.addTestToLog();
         String testPass = "!@#$%^&*()_+";
         updateAndCheckPassword(testPass);
-        softAssert.assertTrue(mainPage.isOnMainPage());
+        assertTrue(mainPage.isOnMainPage());
+//    Profile should be complited, otherwise it will get to the Profile page.
         retainOldPassword(MY_Password, testPass);
     }
-    @Test
+    @Test(groups={"positive"})
     public void newPasswordSpecSimbols2( ) {
         String testPass = "}{|\":?><|\\";
         updateAndCheckPassword(testPass);
-        softAssert.assertTrue(mainPage.isOnMainPage());
+        assertTrue(mainPage.isOnMainPage());
+        //    Profile should be complited, otherwise it will get to the Profile page.
         retainOldPassword(MY_Password, testPass);
     }
-    @Test
+    @Test(groups={"positive"})
     public void newPasswordSpecSimbols3( ){
+        TestUtils.addTestToLog();
         String testPass=",./\\';[]=-";
         updateAndCheckPassword(testPass);
-        softAssert.assertTrue(mainPage.isOnMainPage());
+        assertTrue(mainPage.isOnMainPage());
+        //    Profile should be complited, otherwise it will get to the Profile page.
         retainOldPassword(MY_Password, testPass);
     }
 
     //Edit 12	Go to Edit Account.
 // 1.Delete the current password and type new password with Kapital and Lower Key text and push the button "Save".
 // 2.Enter the valid current password. 3.Logout and Login with New password.
-    @Test
+    @Test(groups={"positive"})
     public void newPasswordKapitalLower( ){
+        TestUtils.addTestToLog();
         String testPass="ABCDabcd";
-        softAssert.assertTrue(updateAndCheckPassword(testPass));
-        softAssert.assertTrue(mainPage.isOnMainPage());
-        softAssert.assertTrue(retainOldPassword(MY_Password, testPass));
+        assertTrue(updateAndCheckPassword(testPass));
+        assertTrue(mainPage.isOnMainPage());
+        assertTrue(retainOldPassword(MY_Password, testPass));
     }
     private boolean retainOldPassword(String newPassword,String oldPassword){
 
@@ -236,15 +253,15 @@ public class EditAccountTest {
 
 
     @Parameters("db")
-    @Test
+    @Test(groups={"negative"})
     public void fakeFirstName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
-
+        TestUtils.addTestToLog();
 
         thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded()
                 .fillField(thisPage.getFirstNameElement(), str);
-        if(str.length()<=VALID_INPUT_LENGTH&&!containsSpecSymbols(str))
+        if(str.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(str))
             assertTrue(thisPage.isButton2Clickable());
         else
             assertTrue(!thisPage.isButton2Clickable());
@@ -254,9 +271,9 @@ public class EditAccountTest {
                 .clickOnSubmitButton2();
     }
     @Parameters("db")
-    @Test
+    @Test(groups={"negative"})
     public void fakeLastName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
-
+        TestUtils.addTestToLog();
 
         thisPage
                 .openEditAccountPage()
@@ -273,21 +290,16 @@ public class EditAccountTest {
                 .clickOnSubmitButton2();
     }
 
-    private boolean containsSpecSymbols(String str) {
 
-        for (int i = 0; i < SPEC_SYMBOLS.length(); i++) {
-            if (str.contains(SPEC_SYMBOLS.substring(i, i + 1)))
-                return true;
 
-        }
-        return false;
-    }
 
 
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){
-        softAssert.assertAll();
+
         this.driver.quit();
+        TestUtils.addTestToLog();
+        TestUtils.logPrint();
     }
 
 }

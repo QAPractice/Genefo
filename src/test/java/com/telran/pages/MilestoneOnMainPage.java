@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class MilestoneOnMainPage extends Page {
 
-    public String texWebElementType;
+    public String textWebElementType;
     public String textWebElement;
 
     @FindBy(xpath = "//div [@class='col-sm-8']/label")
@@ -211,7 +211,7 @@ public class MilestoneOnMainPage extends Page {
 
     //set for language
     public MilestoneOnMainPage clickOnLanguageOption() {
-        texWebElementType = languageButton.getText();
+        textWebElementType = languageButton.getText();
         clickElement(languageButton);
         return this;
     }
@@ -251,7 +251,7 @@ public class MilestoneOnMainPage extends Page {
 
     //set for Movement
     public MilestoneOnMainPage clickOnMovementOption() {
-        texWebElementType = movementButton.getText();
+        textWebElementType = movementButton.getText();
         clickElement(movementButton);
         return this;
     }
@@ -460,10 +460,10 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public boolean isMilestoneTypeCorrect() {
-           String text = texWebElementType ;
-        if(texWebElementType.equals("Language")){
+           String text = textWebElementType ;
+        if(textWebElementType.equals("Language")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
-        if(texWebElementType.equals("Movement")){
+        if(textWebElementType.equals("Movement")){
             return verifyTextBoolean(milestoneTypeOnNewCreatedPost,text);}
         return false;
 }
@@ -474,8 +474,7 @@ public class MilestoneOnMainPage extends Page {
         if (text.equals("Smiles")) {
             return verifyTextBoolean(milestoneOnNewCreatedPost, text);}
         if (text.equals("Holds head")) {
-            return verifyTextBoolean(milestoneOnNewCreatedPost, text);
-        }
+            return verifyTextBoolean(milestoneOnNewCreatedPost, text);}
         /*} else if (textWebElement.equals("Holds head")) {
             return verifyTextBoolean(milestoneOnNewCreatedPost, textWebElement);
         } else if (textWebElement.equals("Holds bottle")) {

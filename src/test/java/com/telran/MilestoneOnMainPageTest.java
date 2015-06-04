@@ -35,7 +35,12 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
-    private boolean acceptNextAlert = true;
+    /*private boolean acceptNextAlert = true;*/
+
+
+
+
+
 
     @BeforeClass
     public void setup() {
@@ -420,7 +425,7 @@ public class MilestoneOnMainPageTest {
         this.driver.quit();
     }
 
-    private String closeAlertAndGetItsText() {
+   /* private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
@@ -434,5 +439,5 @@ public class MilestoneOnMainPageTest {
             acceptNextAlert = true;
         }
     }
-
+*/
 }

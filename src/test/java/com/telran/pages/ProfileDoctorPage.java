@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import com.telran.pages.LoginPage;
 import java.io.IOException;
 
 /**
@@ -17,10 +17,10 @@ public class ProfileDoctorPage extends Page{
     WebElement HCPAccountLable;
 
     //buttons
-    @FindBy(xpath = "//*[@class='btn btn-success' and @ng-click= 'setProfileView('account_hcp_account')']")
+    @FindBy(xpath = "//*[contains(@ng-click,'account_hcp_account')]")
     WebElement EditAccountInformationButton;
 
-    @FindBy(xpath = "//*[@class='btn btn-success' and @ng-click='setProfileView('account_hcp_basic')']")
+    @FindBy(xpath = "//*[contains(@ng-click,'account_hcp_basic')]")
     WebElement EditBasicInformationButton;
 
     @FindBy(xpath = "//*[@class='btn btn-success ng-binding']")

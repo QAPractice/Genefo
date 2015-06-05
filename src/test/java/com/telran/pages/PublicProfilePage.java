@@ -20,12 +20,14 @@ public class PublicProfilePage extends Page{
     //Buttons
     @FindBy(xpath = "//div[@ng-click='addNetwork()']/span[@class='fa-stack']")
     WebElement plusFollowButton;
-    @FindBy(xpath = "//div[@ng-click='addNetwork()']/span[@class='removeNetwork']")
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='panel-body']")
     WebElement minusFollowButton;
-    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
+    @FindBy(xpath = "//*[@class=\"navbar-header\"]/a")
     WebElement homeTitle;
     @FindBy(xpath = "//div[@class='panel-heading']/div[@class='profile_selector_name ng-binding']")
     WebElement publicProfileName;
+    @FindBy(xpath = "//div[@class='profilePic']")
+    WebElement profilePicture;
 
     public PublicProfilePage(WebDriver driver) {
         super(driver);
@@ -34,7 +36,7 @@ public class PublicProfilePage extends Page{
 
     public void waitUntilProfilePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(publicProfilePanel);
+            waitUntilElementIsLoaded(profilePicture);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -44,7 +46,7 @@ public class PublicProfilePage extends Page{
 
     public boolean isOnPublicProfilePage() {
         waitUntilProfilePageIsLoaded();
-        return exists(publicProfilePanel);
+        return exists(profilePicture);
     }
     public PublicProfilePage addFollow(){
         clickElement(plusFollowButton);
@@ -58,5 +60,12 @@ public class PublicProfilePage extends Page{
     }
     public String getPublicProfileName(){
         return publicProfileName.getText();
+    }
+    public PublicProfilePage removeFollow(){
+        clickElement(minusFollowButton);
+        return this;
+    }
+    public boolean plusFollowPanel() {
+        return exists(plusFollowButton);
     }
 }

@@ -7,11 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Iakov Volf 27.05.15.
  */
 public class WhatWorksOnMainPage extends Page {
+
+
     //Category Symptom buttons
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Therapy')]")
     WebElement therapyButton;
@@ -28,22 +32,41 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Alternative')]")
     WebElement alternativeButton;
 
-    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Other')]")
+    @FindBy(xpath = "//div[@class='btn-group']/button[6][contains(text(),'Other')]")
     WebElement otherButton;
 
     //Dropdown list
+    @FindBy(xpath = "//*[@placeholder = 'Please Specify Your Item']")
+    WebElement specifyItemForOtherOption;
+
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]")
     WebElement selectItemList;
+
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
     //elements of dropdown list
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemPhysicalTherapy;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
-    WebElement itemSpeechTherapy;
+    WebElement firstItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement secondItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement thirdItemInList;
+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemPsychotherapy;
+    WebElement fourthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement fifthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement sixthItemInList;
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement seventhItemInList;
+
 
     // Rating star( marked one. Have asterisk sign in definition)
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[contains(text(),'*')]")
@@ -73,6 +96,35 @@ public class WhatWorksOnMainPage extends Page {
     WebElement submitButton;
 
 
+    // Upper Tab of sent posts
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
+    WebElement  UpperSentPostTab;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
+    WebElement  SentPostText;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    WebElement  SentPostCategory;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
+    WebElement  filledThirdStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
+    WebElement nonFilledFourthStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    WebElement ListItemInSentPost;
+
+    private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.
+
+    // Data structure that keeps button( type WebElement )and what is written on it (String)
+    // row by row. Has two methods - put() and get() (see below)
+    private HashMap<String,WebElement>optionsLocator = new HashMap<String,WebElement>();
+
+    // Sort of array but without size limits. Keeps only variables of  WebElement type.
+    // has two methods - add() and put()  (see below)
+    private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
+
 
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
@@ -96,50 +148,63 @@ public class WhatWorksOnMainPage extends Page {
         waitUntilWhatWorksPanelIsLoaded();
         return exists(categorySymptomTitle);
     }
+    // Fills data structure optionsLocator (has type HashMap<String,WebElement>)
+    // and data structure itemsInListById ( has type ArrayList<WebElement> )
+    public void defineOptionsLocatorAndItemList(){
+        optionsLocator.put("Therapy",therapyButton);
+        optionsLocator.put("Equipment",equipmentButton);
+        optionsLocator.put("Nutrition",nutritionButton);
+        optionsLocator.put("Exercises",exercisesButton);
+        //optionsLocator.put("",alternativeButton);
+        optionsLocator.put("Alternative",alternativeButton);
+        optionsLocator.put("Other",otherButton);
+        itemsInListById.add(null);
+        itemsInListById.add(firstItemInList);
+        itemsInListById.add(secondItemInList);
+        itemsInListById.add(thirdItemInList);
+        itemsInListById.add(fourthItemInList);
+        itemsInListById.add(fifthItemInList);
+        itemsInListById.add(sixthItemInList);
+        itemsInListById.add(seventhItemInList);
+    }
 
-
-    public WhatWorksOnMainPage clickOnTherapyOption() {
-        clickElement(therapyButton);
+    public WhatWorksOnMainPage clickOnOption(String option) {
+        try{
+            clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
+        }
+        catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
+            System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
+        }
         return this;
     }
 
-    public WhatWorksOnMainPage clickOnEquipmentOption() {
-        clickElement(equipmentButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnNutritionOption() {
-        clickElement(nutritionButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnExercisesOption() {
-        clickElement(exercisesButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnAlternativeOption() {
-        clickElement(alternativeButton);
-        return this;
-    }
-
-    public WhatWorksOnMainPage clickOnOtherOption() {
-        clickElement(otherButton);
-        return this;
-    }
 
     public WhatWorksOnMainPage clickOnItemList() {
         clickElement(selectItemList);
         return this;
     }
 
-    public WhatWorksOnMainPage chooseFirstItemFromItemList() {
-        clickElement(itemPhysicalTherapy);
+    public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
+        WebElement optionChooser;
+        try {
+            optionChooser=itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
+            textInListItem = optionChooser.getText();
+            clickElement(optionChooser);
+        }
+        catch (Exception e){ e.printStackTrace();           // In this way we define our own exception
+            System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
+        }
         return this;
     }
 
     public WhatWorksOnMainPage fillTextField(String post) {
         setElementText(postField, post);
+        return this;
+    }
+
+
+    public WhatWorksOnMainPage fillItemForOtherOption(String item) {
+        setElementText(specifyItemForOtherOption, item);
         return this;
     }
 
@@ -153,11 +218,47 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(allStarsTogether);
         return this;
     }
-   // Click on the third star
+
+    // Click on the third star
     public WhatWorksOnMainPage rateItThree() {
         clickElement(thirdRatingStar);
         return this;
     }
+
+    // Methods for verifying items on sent upper post for What Works Tab
+
+    public Boolean verifyTextFromSentPost(String text)  {
+        return verifyTextBoolean(SentPostText, text);
+    }
+
+
+    public Boolean verifyCategoryExistsInSentPost(String category)  {
+
+        return verifyTextBoolean(SentPostCategory, category);
+    }
+
+
+    // Use it after 'chooseFirstItemFromItemList()' method: First you choose item, put it
+    // in variable firstItemInListText ,
+    // then you verify that it is seen on Sent Post Panel(on ListItemInSentPost WebElement).
+    public Boolean verifyListItemCorrectInSentPost()  {
+        return verifyTextBoolean(ListItemInSentPost, textInListItem );
+    }
+
+    public Boolean verifyOtherItemCorrectInSentPost(String item)  {
+        return verifyTextBoolean(ListItemInSentPost, item );
+    }
+
+
+    public Boolean verifyThirdStarCheckedInSentPost()  {
+        return exists(filledThirdStarInSentPost);
+    }
+
+    public Boolean verifyFourthStarNonCheckedInSentPost()  {
+        return exists(nonFilledFourthStarInSentPost);
+    }
+
+
 
 }
 

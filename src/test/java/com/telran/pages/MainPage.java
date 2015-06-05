@@ -54,6 +54,8 @@ public class MainPage extends Page {
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
 
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
+    WebElement firstPostNameLink;
 
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
@@ -62,17 +64,19 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[contains(text(),'Category')]/../*[contains(text(),'Therapy')]")
-    WebElement  SentPostCategoryTherapy;
+    @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
+    WebElement  firstFollowed;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
-    WebElement  filledThirdStarInSentPost;
+    @FindBy(xpath = "//div[@class='col-md-10']/input")
+    WebElement  viewConditionFieldForDoctor;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
-    WebElement nonFilledFourthStarInSentPost;
+    @FindBy(xpath = "//div[@class='top-row']//a[@class='ng-scope ng-binding']")
+    WebElement  dropDownConditionDoctor;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//td[@class=\"ng-binding\"][contains(text(),'Physical therapy')]")
-    WebElement itemPhysicalTherapyInSentPost;
+    @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
+    WebElement  viewButton;
+
+
 
 
     public MainPage(WebDriver driver) {
@@ -148,10 +152,10 @@ public class MainPage extends Page {
         return this;
     }
 
-    public MainPage selectLogOut () {
+    public void logOut() {
         clickElement(cogwheelButton);
         clickElement(logOutButton);
-        return this;
+
     }
     //For Following tests
     public void openConnectPeopleThisConditionProfile() {
@@ -159,11 +163,34 @@ public class MainPage extends Page {
     }
     public boolean isFollowingNamePresents(String name) {
         try {
-            driver.findElement(By.xpath(""));
+            String[] arrName = name.split(" ");
+            driver.findElement(By.xpath("//div[@class=\"panel panel-primary\"]/../div[7]//li[last()]//span[@class=\"profileName ng-binding\"][contains(text()," + arrName[0] + ")]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    public MainPage openFollow(){
+        clickElement(firstFollowed);
+        return this;
+    }
+    public String getFollowName(){
+        return firstFollowed.getText();
+    }
+    public MainPage openPostNameLink() {
+        clickElement(firstPostNameLink);
+        return this;
+    }
+    public void chooseConditionForDoctor(String condition){
+        setElementText(viewConditionFieldForDoctor,condition);
+    }
+    public MainPage chooseConditionFromDropDown(){
+        clickElement(dropDownConditionDoctor);
+        return this;
+    }
+    public MainPage clickViewButton(){
+        clickElement(viewButton);
+        return this;
     }
 
 
@@ -171,22 +198,6 @@ public class MainPage extends Page {
 
     public Boolean verifyTextFromSentPost(String text)  {
         return verifyTextBoolean(SentPostText, text);
-    }
-
-    public Boolean verifyCategoryTherapyExistsInSentPost()  {
-        return exists(SentPostCategoryTherapy);
-    }
-
-    public Boolean verifyThirdStarCheckedInSentPost()  {
-        return exists(filledThirdStarInSentPost);
-    }
-
-    public Boolean verifyFourthStarNonCheckedInSentPost()  {
-        return exists(nonFilledFourthStarInSentPost);
-    }
-
-    public Boolean verifyPhysicalTherapyItemExistsInSentPost()  {
-        return exists(itemPhysicalTherapyInSentPost);
     }
 
 }

@@ -27,10 +27,11 @@ public class EditAccountPage extends Page{
     WebElement oldpasswordElement;
 
     //    buttons
-    @FindBy(xpath = "//*[@name='info_form']/div[3]/div//*[@id='submit']")
+
+    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal'][not(contains(@disabled,'disabled'))]")
     WebElement submitButton1;
 
-    @FindBy(xpath = "//*[@name='basic_form']/div[3]/div//*[@id='submit']")
+    @FindBy(xpath = "//button[@id='submit' and @class='btn btn-primary'][not(contains(@disabled,'disabled'))]")
     WebElement submitButton2;
 
     @FindBy(xpath="//div[@class='modal-footer']/a[contains(text(),'Save')]")
@@ -81,6 +82,14 @@ public class EditAccountPage extends Page{
         setElementText(newPasswordElement, pass);
         return this;
     }
+
+    public EditAccountPage fillField(WebElement element, String str){
+        cleanElement(element);
+        setElementText(element, str);
+        return this;
+    }
+
+
     private void cleanElement(WebElement element){
 
         element.sendKeys(Keys.CONTROL + "a");
@@ -90,6 +99,8 @@ public class EditAccountPage extends Page{
         try {
             waitUntilElementIsLoaded(emailElement);
             waitUntilElementIsLoaded(newPasswordElement);
+            waitUntilElementIsLoaded(firstNameElement);
+            waitUntilElementIsLoaded(lastNameElement);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -108,20 +119,33 @@ public class EditAccountPage extends Page{
         clickElement(submitButton1);
         return this;
     }
+    public EditAccountPage clickOnSubmitButton2(){
+        clickElement(submitButton2);
+        return this;
+    }
+
     public EditAccountPage clickOnSubmitButtonOldPassword(){
         clickElement(submitButtonOldPassword);
         return this;
     }
 
     public boolean isSuccessAlert() {
+
         try {
             waitUntilElementIsLoaded(changesSuccessAlert);
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            return false;
         }
-        return exists(changesSuccessAlert);
+    return exists(changesSuccessAlert);
+    }
+
+    public boolean isButton1Clickable(){
+        return exists(submitButton1);
+    }
+    public boolean isButton2Clickable(){
+        return exists(submitButton2);
     }
 
 }

@@ -21,6 +21,11 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class WhatWorksOnMainTest {
 
+    public enum Option {
+        Therapy, Equipment, Nutrition, Exercises,
+        Alternative, Other
+    }
+
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -45,33 +50,54 @@ public class WhatWorksOnMainTest {
             whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }   // We fill data structures, that we defined in whatWorksOnMainPage class.
+        whatWorksOnMainPage.defineOptionsLocatorAndItemList();
     }
 
     @Test
-    public void SendTherapyPostTest() {
+    public void SendPostTest() {
         String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+       // String category = "Therapy";
+       // String category = "Equipment";
+       // String category = "Nutrition";
+       // String category = "Exercises";
+        //String category = "Alternative";
+        String category = "Other";
         try {
-            whatWorksOnMainPage
-                    .clickOnTherapyOption()
+          if(category.equals("Other")) // 'Other' option is different. It has no predetermined list
+              whatWorksOnMainPage
+                      .clickOnOption(category)
+                      .fillItemForOtherOption(otherItem)
+                      .clickOnAllStarsTogether()
+                      .rateItThree()                //Click on the third star
+                      .fillTextField(text)
+                      .sendPost();
+          else
+              whatWorksOnMainPage
+                    .clickOnOption(category)
                     .clickOnItemList()
-                    .chooseFirstItemFromItemList()
+                    .chooseItemFromItemList(3)
                     .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
                     .fillTextField(text)
                     .sendPost();
-            sleep(3000);
 
-            assertTrue(mainPage.verifyTextFromSentPost(text) );
-            assertTrue(mainPage.verifyCategoryTherapyExistsInSentPost() );
-            assertTrue(mainPage.verifyThirdStarCheckedInSentPost() );
-            assertTrue(mainPage.verifyFourthStarNonCheckedInSentPost() );
-            assertTrue(mainPage.verifyPhysicalTherapyItemExistsInSentPost());
+          sleep(3000); // wait  to see sent post.
+
+            assertTrue(whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue(whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue(whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            if(category.equals("Other"))
+                assertTrue(whatWorksOnMainPage.verifyOtherItemCorrectInSentPost(otherItem));
+            else
+                assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

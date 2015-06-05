@@ -88,7 +88,7 @@ public class SignUpHCPTest {
                     .openHCPRegPage()
                     .fillEmailField(email)
                     .fillFirstNameField("Piter")
-                    .fillLastNameField("222")
+                    .fillLastNameField("")
                     .fillPasswordField("111111")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
@@ -109,6 +109,7 @@ public class SignUpHCPTest {
             signUpHCPPage
                     .openHCPRegPage()
                     .fillEmailField(email)
+                    .fillFirstNameField("")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .clickOnCheckBox18()
@@ -218,7 +219,7 @@ public class SignUpHCPTest {
 
         try {
             emailNickname = randomAlphabetic(5);
-            String email = "one" + emailNickname + "@usgenefo.com";
+            String email = "one" + emailNickname + "usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -384,7 +385,7 @@ public class SignUpHCPTest {
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
-                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@.genefo.com")
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@usgenefo.com")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();

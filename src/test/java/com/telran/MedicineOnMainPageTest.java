@@ -54,7 +54,7 @@ public class MedicineOnMainPageTest {
 
     //Positive tests
 
-    @Test(groups = {"smoke", "positive"})
+    @Test
     public void sendMedicineWithShortMedNameReasonTest() {
         String text = "take with food or milk";
         String shortName = "adv";
@@ -76,6 +76,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -83,8 +85,8 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    // One star
-    @Test(groups = {"smoke", "positive"})
+
+    @Test
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
         String newName = "Aspirin";
@@ -113,8 +115,7 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    // Fifth star
-    @Test(groups = {"positive"})
+    @Test
     public void sendMedicineWithShortUpperKeyMedNameReasonTest() {
         String text = "TAKE WITH FOOD OR MILK";
         String shortName = "ADV";
@@ -136,6 +137,7 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
+            assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -143,7 +145,7 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    @Test(groups = {"positive"})
+    @Test
     public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
         String text = "take with food or milk";
         String newName = "INSULIN";
@@ -170,7 +172,7 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    @Test(groups = {"positive"})
+    @Test
     public void sendMedicineWithSpecialCharactersTest() {
         String text = "~`!@#$%^&*()_+<>?:\"{}[];’";
         String newName = "~`!@#$%^&*()_+<>?:\"{}[];’";
@@ -201,7 +203,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test(groups = {"smoke", "negative"})
+    @Test
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -221,7 +223,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test(groups = {"smoke", "negative"})
+    @Test
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

@@ -54,7 +54,7 @@ public class MedicineOnMainPageTest {
 
     //Positive tests
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithShortMedNameReasonTest() {
         String text = "take with food or milk";
         String shortName = "adv";
@@ -84,7 +84,7 @@ public class MedicineOnMainPageTest {
     }
 
     // One star
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
         String newName = "Aspirin";
@@ -113,7 +113,8 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    @Test
+    // Fifth star
+    @Test(groups = {"positive"})
     public void sendMedicineWithShortUpperKeyMedNameReasonTest() {
         String text = "TAKE WITH FOOD OR MILK";
         String shortName = "ADV";
@@ -142,7 +143,7 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(groups = {"positive"})
     public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
         String text = "take with food or milk";
         String newName = "INSULIN";
@@ -169,7 +170,7 @@ public class MedicineOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(groups = {"positive"})
     public void sendMedicineWithSpecialCharactersTest() {
         String text = "~`!@#$%^&*()_+<>?:\"{}[];’";
         String newName = "~`!@#$%^&*()_+<>?:\"{}[];’";
@@ -200,7 +201,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -220,7 +221,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

@@ -201,11 +201,11 @@ public class MedicineOnMainPage extends Page {
         return exists(errorRequiredFields);
     }
 
-    public Boolean verifyFirstStarCheckedInSentPost() {
+    public boolean verifyFirstStarCheckedInSentPost() {
         return exists(markedFirstStarInSentPost);
     }
 
-    public Boolean verifySecondStarNonCheckedInSentPost() {
+    public boolean verifySecondStarNonCheckedInSentPost() {
         return exists(unmarkedSecondStarInSentPost);
     }
 

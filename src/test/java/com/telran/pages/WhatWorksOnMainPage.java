@@ -32,12 +32,12 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Alternative')]")
     WebElement alternativeButton;
 
-    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Other')]")
+    @FindBy(xpath = "//div[@class='btn-group']/button[6][contains(text(),'Other')]")
     WebElement otherButton;
 
     //Dropdown list
     @FindBy(xpath = "//*[@placeholder = 'Please Specify Your Item']")
-    WebElement selectItemListForOtherOption;
+    WebElement specifyItemForOtherOption;
 
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]")
     WebElement selectItemList;
@@ -169,8 +169,6 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     public WhatWorksOnMainPage clickOnOption(String option) {
-
-
         try{
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
         }
@@ -205,6 +203,11 @@ public class WhatWorksOnMainPage extends Page {
     }
 
 
+    public WhatWorksOnMainPage fillItemForOtherOption(String item) {
+        setElementText(specifyItemForOtherOption, item);
+        return this;
+    }
+
     public WhatWorksOnMainPage sendPost() {
         clickElement(submitButton);
         return this;
@@ -215,6 +218,7 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(allStarsTogether);
         return this;
     }
+
     // Click on the third star
     public WhatWorksOnMainPage rateItThree() {
         clickElement(thirdRatingStar);
@@ -238,10 +242,12 @@ public class WhatWorksOnMainPage extends Page {
     // in variable firstItemInListText ,
     // then you verify that it is seen on Sent Post Panel(on ListItemInSentPost WebElement).
     public Boolean verifyListItemCorrectInSentPost()  {
-
         return verifyTextBoolean(ListItemInSentPost, textInListItem );
     }
 
+    public Boolean verifyOtherItemCorrectInSentPost(String item)  {
+        return verifyTextBoolean(ListItemInSentPost, item );
+    }
 
 
     public Boolean verifyThirdStarCheckedInSentPost()  {

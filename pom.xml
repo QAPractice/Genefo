@@ -17,6 +17,17 @@
       <artifactId>webdriver-factory</artifactId>
       <version>LATEST</version>
     </dependency>
+    <dependency>
+      <groupId>org.uncommons</groupId>
+      <artifactId>reportng</artifactId>
+      <version>1.1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>3.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <resources>
@@ -50,6 +61,13 @@
           <systemPropertyVariables>
             <application.properties>/application.properties</application.properties>
           </systemPropertyVariables>
+          <properties>
+            <!-- Setting ReportNG listeners -->
+            <property>
+              <name>listener</name>
+              <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
+            </property>
+          </properties>
         </configuration>
       </plugin>
       <plugin>

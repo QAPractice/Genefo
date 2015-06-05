@@ -16,8 +16,7 @@
           <class name="com.telran.RegistrationTest"/>
           <class name="com.telran.SignUpHCPTest"/>
           <class name="com.telran.MDRatingTest"/>
-          <class name="com.telran.SignUpHCPTest"/>
-          <class name="com.telran.SignUpHCPTest"/>
+          <class name="com.telran.MilestoneOnMainPageTest"/>
       </classes>
 
 

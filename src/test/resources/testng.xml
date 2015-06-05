@@ -18,7 +18,7 @@
           <class name="com.telran.MDRatingTest"/>
           <class name="com.telran.SignUpHCPTest"/>
           <class name="com.telran.SignUpHCPTest"/>
-    </classes>
+      </classes>
 
 
   </test>

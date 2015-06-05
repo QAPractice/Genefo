@@ -27,7 +27,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")         //+
     WebElement movementButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")          //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")           //+
     WebElement eatingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")        //+
     WebElement treatmentButton;
@@ -41,23 +41,23 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectDropDownListButton;
 
 
-   /* @FindBy(xpath = "/*//*[contains(text(),'Select a Language Milestone')]")            //What is it field?
+   /* @FindBy(xpath = "/*//*[contains(text(),'Select a Language Milestone')]")            //What is the field?
     WebElement selectItemList;*/
-    /*@FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]")           //What is it field?
+    /*@FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]")            //What is the field?
     WebElement selectItemMovementList;    //?
-    @FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]/../div/b"  //This is  Web Element "selectDropDownListButton"
+    @FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]/../div/b"      //This is  Web Element "selectDropDownListButton"
     WebElement selectItemMovementButton;  //?*/
     @FindBy(xpath = "//*[@class='chosen-single']/span")  //?
     WebElement selectEatingItemList;
-   /* @FindBy(xpath = "/*//*[@class='chosen-single']/span/../div/b")     //This is  Web Element "selectDropDownListButton"
+   /* @FindBy(xpath = "/*//*[@class='chosen-single']/span/../div/b")                       //This is  Web Element "selectDropDownListButton"
     WebElement selectEatingItemButton;*/
     @FindBy(xpath = "//*[@class='chosen-single']/span")    //?
     WebElement selectToiletingItemList;
-    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")         //This is  Web Element "selectDropDownListButton"
+    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")                              //This is  Web Element "selectDropDownListButton"
     WebElement selectToiletingItemListButton;*/
     @FindBy(xpath = "//*[@class='ng-binding'][contains(text(),'Select a Treatment Milestone')]") //?
     WebElement selectTreatmentItemList;
-    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")       //This is  Web Element "selectDropDownListButton"
+    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")                              //This is  Web Element "selectDropDownListButton"
     WebElement selectTreatmentButton;*/
 
     // DropdownList elements of Language
@@ -72,13 +72,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")        //+
     WebElement itemSpeaksInFullSentences;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedSmiles;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedBabbles;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedFirsWord;
-    @FindBy(xpath = "//*[@class='chosen-results']/li[5]")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-results']/li[5]")      //What is the field?
     WebElement selectedTwoThreeWords;
 
     // DropdownList elements of Movement
@@ -99,13 +99,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")        //+
     WebElement itemRuns;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedReachesForObjects;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedCraws;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
     WebElement selectedHoldsHead;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedRuns;
 
 
@@ -116,9 +116,9 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemEatsWithSpoon;
 
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")     //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")     //What is the field?
             WebElement selectHoldsBottles;
-    @FindBy(xpath = " //*[@class='chosen-single']/span")     //What is it field?
+    @FindBy(xpath = " //*[@class='chosen-single']/span")     //What is the field?
             WebElement selectEatsWithSpoon;
 
     // DropdownList elements of Toileting
@@ -127,9 +127,9 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")    //+
     WebElement itemDressesAlone;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")           //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")              //What is the field?
     WebElement selectItemToiletingListButton;
-    @FindBy(xpath = "//*[@class='active-result result-selected']")   //What is it field?
+    @FindBy(xpath = "//*[@class='active-result result-selected']")   //What is the field?
     WebElement selectToiletTrained;
 
 
@@ -142,11 +142,11 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemRemission;
 
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")         //What is the field?
     WebElement selectedRemission;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is the field?
     WebElement selectedSurgery;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")         //What is the field?
     WebElement selectedMedicalTrial;
 
 
@@ -172,7 +172,7 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='form-group']/textarea")
     WebElement inputTextPostField;
 
-    @FindBy(xpath = "//*[@class='col-sm-12']/input")    // //What is it field?
+    @FindBy(xpath = "//*[@class='col-sm-12']/input")             //What is the field?
     WebElement textField;
 
 
@@ -231,7 +231,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public MilestoneOnMainPage clickOnSelectItemOption() {     //кнопка, открыващая дроп даун лист
+    public MilestoneOnMainPage clickOnSelectItemOption() {          //button opens DropDown list
         clickElement(selectDropDownListButton);
         return this;
     }

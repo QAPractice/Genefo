@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -35,6 +34,8 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
+    public String type;
+    String milestone;
 
 
     @BeforeClass
@@ -60,8 +61,8 @@ public class MilestoneOnMainPageTest {
 
     @Test(groups={"smoke","positive"})
     public void SendLanguagePostTest() {
-        String type="Language";
-        String milestone="Smiles";
+        type="Language";
+        milestone="Smiles";
         year="2";
         month="3";
         age=year+" years "+month+" months";
@@ -145,7 +146,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendToiletingPostTest() {
         year="3";
         month="6";
@@ -170,7 +171,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendTreatmentPostTest(){
         year="3";
         month="6";
@@ -194,7 +195,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public  void SendOtherPostTest() {
         year="10";
         month="5";
@@ -219,7 +220,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendRollsOverPostTest() {
         try {
             year = "12";
@@ -243,7 +244,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendTwoThreeWordsPostTest() {
         try {
             year = "12";
@@ -275,7 +276,7 @@ public class MilestoneOnMainPageTest {
     2)Months:
     3)Milestone:empty
     4)Message: Length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest1(){
         try {
             someText = randomAlphabetic(3);
@@ -297,7 +298,7 @@ public class MilestoneOnMainPageTest {
      2)Months:&^$
      3)Milestone:Language:abc
      4)Message:Length:1126*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest2(){
         try {
             someText = randomAlphabetic(11);
@@ -319,7 +320,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-12
     3)Milestone:Movement:Rolls over
     4)Message:Length:length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest3(){
         try {
             someText = randomAlphabetic(4);
@@ -340,7 +341,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest4(){
         try {
             someText = randomAlphabetic(1);
@@ -361,7 +362,7 @@ public class MilestoneOnMainPageTest {
     2)Months:36
     3)Milestone:empty
     4)Message:Length:length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest5(){
         try {
             someText = randomAlphabetic(11);
@@ -379,7 +380,7 @@ public class MilestoneOnMainPageTest {
     2)Months:00
     3)Milestone:empty
     4)Message::empty*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest6(){
         try {
             someText = randomAlphabetic(11);
@@ -400,7 +401,7 @@ public class MilestoneOnMainPageTest {
     2)Months:16
     3)Milestone:Toileting:dresses alone
     4)Message:Length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest7(){
         try {
             someText = randomAlphabetic(11);

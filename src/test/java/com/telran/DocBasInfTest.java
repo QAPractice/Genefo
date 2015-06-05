@@ -52,8 +52,7 @@ public class DocBasInfTest {
         }
     }
 
-    //positive
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void EditBasicInfSuccess() {
 
         try {
@@ -71,7 +70,7 @@ public class DocBasInfTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {
 
         try {
@@ -81,8 +80,7 @@ public class DocBasInfTest {
         }
     }
 
-    //negative
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void EditBasicInfEmptyFiels() {
 
         try {

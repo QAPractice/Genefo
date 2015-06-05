@@ -51,8 +51,8 @@ public class DocAcInfTest {
             e.printStackTrace();
         }
     }
-//positive
-    @Test
+
+    @Test(groups = {"smoke", "positive"})
     public void EditAccInfSuccess() {
 
         try {
@@ -67,7 +67,7 @@ public class DocAcInfTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {
 
         try {
@@ -76,8 +76,8 @@ public class DocAcInfTest {
             e.printStackTrace();
         }
     }
-//negative
-    @Test
+
+    @Test(groups = {"smoke", "negative"})
     public void EditAccInfEmptyFiels() {
 
         try {

@@ -25,10 +25,10 @@ public class SymptomsOnMainPage  extends Page {
     WebElement symptomField;
 
     @FindBy(name = "bio")
-    WebElement tellUsMoreAboutThisSymptom;
+    WebElement tellUsMoreAboutThisSymptomField;
 
 
-    //elements of dropdown list
+    //elements of Symptoms area
     @FindBy
     WebElement tooltipGeneralArea;
 
@@ -38,6 +38,20 @@ public class SymptomsOnMainPage  extends Page {
     @FindBy
     WebElement tooltipSymptom;
 
+    //element of tooltip General area
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemGrowth;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement itemAbdomen;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='11']")
+    WebElement itemTumors;
+
+    //element of tooltip Specific area
+
+
+    // //element of tooltip Symptom area
 
     //Buttons
     @FindBy(id = "submit")
@@ -47,7 +61,7 @@ public class SymptomsOnMainPage  extends Page {
     @FindBy(xpath = "")
     WebElement nameOfSymptomsTitle;
 
-    private String label; // Keeps last label from dropdown list.
+
 
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
@@ -73,19 +87,19 @@ public class SymptomsOnMainPage  extends Page {
         return exists(nameOfSymptomsTitle);
     }
 
-    public SymptomsOnMainPage selectGeneralArea(String value) {
-        label=selectValueInDropdown(tooltipGeneralArea, value);
+    public SymptomsOnMainPage selectGeneralArea() {
+        clickElement(tooltipGeneralArea);
         return this;
     }
 
-    public boolean isGeneralAreaSelected(String value) {
 
-        return verifyTextBoolean(tooltipGeneralArea, value);
+    public SymptomsOnMainPage selectGrowthFromGeneralArea() {
+        clickElement(itemGrowth);
+        return this;
     }
 
-
     public SymptomsOnMainPage selectSpecificArea(String value) {
-        label=selectValueInDropdown(tooltipSpecificArea, value);
+        selectValueInDropdown(tooltipSpecificArea, value);
         return this;
     }
 
@@ -95,13 +109,22 @@ public class SymptomsOnMainPage  extends Page {
     }
 
 
-    public SymptomsOnMainPage selectSymptoms(String value) {
-        label=selectValueInDropdown(tooltipSymptom, value);
+    public SymptomsOnMainPage selectSymptoms() {
+        selectValueInDropdown(tooltipSymptom);
         return this;
     }
 
     public boolean isSymptomSelected(String value) {
         return verifyTextBoolean(tooltipSymptom, value);
+    }
+
+    public SymptomsOnMainPage typeTellUsMore(String fillTellUs) {
+        setElementText(tellUsMoreAboutThisSymptomField, fillTellUs);
+        return this;
+    }
+
+    public void clickOnPostButton() {
+        clickElement(postButton);
     }
 
 

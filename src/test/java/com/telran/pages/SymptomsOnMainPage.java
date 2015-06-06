@@ -14,29 +14,33 @@ import java.io.IOException;
  */
 public class SymptomsOnMainPage  extends Page {
 
-    //Fields
-    @FindBy(id = "general_area")
-    WebElement generalAreaField;
+    //Labels of categories
+    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'General Area')]")
+    WebElement generalArea;
 
-    @FindBy(id = "specific_area")
-    WebElement specificAreaField;
+    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Specific Area')]")
+    WebElement specificArea;
 
-    @FindBy(id = "symptoms_name")
-    WebElement symptomField;
-
-    @FindBy(name = "bio")
-    WebElement tellUsMoreAboutThisSymptomField;
+    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
+    WebElement symptom;
 
 
-    //elements of Symptoms area
-    @FindBy
+    //feilds  of Symptoms area
+    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a General Area')]")
     WebElement tooltipGeneralArea;
 
-    @FindBy
+  // @FindBy(xpath="")
+
+    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Specific Area')]")
     WebElement tooltipSpecificArea;
 
-    @FindBy
+    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Symptom')]")
     WebElement tooltipSymptom;
+
+    //Field for input PostText
+    @FindBy(xpath = "//*[@class='form-group']/textarea")
+    WebElement tellUsMoreAboutThisSymptomField;
+
 
     //element of tooltip General area
     @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
@@ -49,16 +53,32 @@ public class SymptomsOnMainPage  extends Page {
     WebElement itemTumors;
 
     //element of tooltip Specific area
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemGrowthSpesific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemAbdomenSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemTumorsSpecific;
 
 
-    // //element of tooltip Symptom area
+    //element of tooltip Symptom area
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemLargeBirthWeight;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement itemTallStature;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
+    WebElement itemOther;
 
     //Buttons
-    @FindBy(id = "submit")
+    @FindBy(xpath = "//*[@id='submit']")
     WebElement postButton;
 
     // Serves as indication that we are on 'Symptoms' Panel
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
     WebElement nameOfSymptomsTitle;
 
 
@@ -98,24 +118,26 @@ public class SymptomsOnMainPage  extends Page {
         return this;
     }
 
-    public SymptomsOnMainPage selectSpecificArea(String value) {
-        selectValueInDropdown(tooltipSpecificArea, value);
+    public SymptomsOnMainPage selectSpecificArea() {
+        clickElement(tooltipSpecificArea);
         return this;
     }
 
-    public boolean isSpecificAreaSelected(String value) {
 
-        return verifyTextBoolean(tooltipSpecificArea, value);
-    }
-
-
-    public SymptomsOnMainPage selectSymptoms() {
-        selectValueInDropdown(tooltipSymptom);
+    public SymptomsOnMainPage selectGrowthFromSpecificArea(){
+        clickElement(itemGrowthSpesific);
         return this;
     }
 
-    public boolean isSymptomSelected(String value) {
-        return verifyTextBoolean(tooltipSymptom, value);
+
+    public SymptomsOnMainPage selectSymptom() {
+        clickElement(tooltipSymptom);
+        return this;
+    }
+
+    public SymptomsOnMainPage selectLargeBirthWeightFromSymptom(){
+        clickElement(itemLargeBirthWeight);
+        return this;
     }
 
     public SymptomsOnMainPage typeTellUsMore(String fillTellUs) {

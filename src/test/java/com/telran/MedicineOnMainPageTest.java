@@ -165,6 +165,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -192,6 +194,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -203,7 +207,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -223,7 +227,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

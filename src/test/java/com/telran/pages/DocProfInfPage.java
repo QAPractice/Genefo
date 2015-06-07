@@ -1,11 +1,11 @@
 package com.telran.pages;
 
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.support.FindBy;
-        import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-        import java.io.IOException;
+import java.io.IOException;
 /**
  * Created by Oleg on 02.06.2015.
  */
@@ -16,50 +16,40 @@ public class DocProfInfPage extends Page{
     WebElement profInfTitle;
 
     //buttons
-    @FindBy(xpath ="//*[@ng-click='addHCPspecialty()' and not(@disabled='disabled')]" )
+    @FindBy(xpath = "//*[@ng-click='addHCPspecialty()']")
     WebElement addSpecButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPspecialty()' and @disabled='disabled']" )
-    WebElement addSpecDisButton;
     @FindBy(xpath ="//*[@ng-click='checkDelete(specialty)']")
     WebElement delSpecButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(specialty)']")
     WebElement cancelSpecButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPspecialty($index)']")
     WebElement confirmSpecButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPsubspecialty()'and not(@disabled='disabled')]" )
+    @FindBy(xpath = "//*[@ng-click='addHCPsubspecialty()']")
     WebElement addSubButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPsubspecialty()'and @disabled='disabled']" )
-    WebElement addSubDisButton;
     @FindBy(xpath ="//*[@ng-click='checkDelete(subspecialty)']" )
     WebElement delSubButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(subspecialty)']" )
     WebElement cancelSubButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPsubspecialty($index)']" )
     WebElement confirmSubButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPtitle()'and not(@disabled='disabled')]" )
+    @FindBy(xpath = "//*[@ng-click='addHCPtitle()']")
     WebElement addTitleButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPtitle()'and @disabled='disabled']" )
-    WebElement addTitleDisButton;
     @FindBy(xpath ="//*[@ng-click='checkDelete(hcptitle)']" )
     WebElement delTitleButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(hcptitle)']" )
     WebElement cancelTitleButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPtitle($index)']" )
     WebElement confirmTitleButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPareaofinterest()'and not(@disabled='disabled')]" )
+    @FindBy(xpath = "//*[@ng-click='addHCPareaofinterest()']")
     WebElement addAreasButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPareaofinterest()'and @disabled='disabled']" )
-    WebElement addAreasDisButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(areaofinterest)']" )
     WebElement cancelAreasButton;
     @FindBy(xpath ="//*[@ng-click='checkDelete(areaofinterest)']" )
     WebElement delAreasButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPareaofinterest($index)']" )
     WebElement confirmAreasButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPworkplace()'and not(@disabled='disabled')]" )
+    @FindBy(xpath = "//*[@ng-click='addHCPworkplace()']")
     WebElement addWorkPlacesButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPworkplace()'and @disabled='disabled']" )
-    WebElement addWorkPlacesDisButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(workplace)']" )
     WebElement cancelWorkPlacesButton;
     @FindBy(xpath ="//*[@ng-click='checkDelete(workplace)']" )
@@ -122,10 +112,10 @@ public class DocProfInfPage extends Page{
         return this;
     }
 
-    public DocProfInfPage clickOnAddSpecialtiesDisButton() {
-        clickElement(addSpecDisButton);
-        return this;
-    }
+    // public DocProfInfPage clickOnAddSpecialtiesDisButton() {
+    //   clickElement(addSpecDisButton);
+    // return this;
+    //}
 
     public DocProfInfPage fillSubspecialtiesField(String subspecialties) {
         setElementText(subspecField, subspecialties);

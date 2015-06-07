@@ -6,6 +6,7 @@ import com.telran.pages.SignUpHCPPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -33,8 +34,9 @@ public class SignUpHCPTest {
 
     @BeforeClass
     public void setup() {
-
-        this.driver = new FirefoxDriver();
+        DesiredCapabilities dc = DesiredCapabilities.firefox();
+        dc.setCapability("applicationCacheEnabled", "false");
+        this.driver = new FirefoxDriver(dc);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
@@ -63,6 +65,7 @@ public class SignUpHCPTest {
             String email = "one" + emailNickname + "@usgenefo.com";
 
             signUpHCPPage
+
                     .fillEmailField(email)
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")
@@ -88,7 +91,7 @@ public class SignUpHCPTest {
                     .openHCPRegPage()
                     .fillEmailField(email)
                     .fillFirstNameField("Piter")
-                    .fillLastNameField("")
+                    .fillLastNameField("222")
                     .fillPasswordField("111111")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
@@ -109,7 +112,6 @@ public class SignUpHCPTest {
             signUpHCPPage
                     .openHCPRegPage()
                     .fillEmailField(email)
-                    .fillFirstNameField("")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .clickOnCheckBox18()
@@ -219,7 +221,7 @@ public class SignUpHCPTest {
 
         try {
             emailNickname = randomAlphabetic(5);
-            String email = "one" + emailNickname + "usgenefo.com";
+            String email = "one" + emailNickname + "@usgenefo.com";
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
@@ -385,7 +387,7 @@ public class SignUpHCPTest {
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +
-                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@usgenefo.com")
+                            "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@.genefo.com")
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();

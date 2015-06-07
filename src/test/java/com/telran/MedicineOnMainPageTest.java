@@ -207,7 +207,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -227,7 +227,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

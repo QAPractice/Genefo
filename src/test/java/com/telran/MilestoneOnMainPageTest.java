@@ -145,23 +145,27 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendToiletingPostTest() {
+        String type = "Toileting";
+        String milestone = "ToiletTrained";
         year="3";
         month="6";
         age=year+" years "+month+" months";
         post="Post4";
         try {
             milestoneOnMainPage
-                    .clickOnToiletingOption()
-                    .clickOnSelectItemToiletingItemOption()
-                    .clickToiletTrainedFromToiletingItemList()
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-            /*assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,7 +181,7 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnTreatmentOption()
-                  //  .clickOnSelectTreatmentItemOption()
+                            //  .clickOnSelectTreatmentItemOption()
                     .clickTreatmentFromTreatmentItemList()
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)

@@ -37,14 +37,14 @@ public class LoginTest {
 
         try {
             loginPage.openLoginPage()
-                     .waitUntilLoginPageIsLoaded();
-            } catch (Exception e) {
-              e.printStackTrace();
-              }
+                    .waitUntilLoginPageIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @Test
-     public void LoginSuccess() {
+    @Test(groups = {"smoke", "positive"})
+    public void LoginSuccess() {
 
         try {
             loginPage
@@ -59,8 +59,8 @@ public class LoginTest {
         }
     }
 
-    @Test
-    public void LoginWithNotValidEmail() {
+    @Test(groups = {"smoke", "negative"})
+    public void LoginWithoutAtInEmailField() {
 
         try {
             loginPage
@@ -75,9 +75,8 @@ public class LoginTest {
             e.printStackTrace();
         }
     }
-
-    @Test
-    public void LoginWithNotValidPassword() {
+    @Test(groups = {"smoke", "negative"})
+    public void LoginWithPasswordContains1Symbol() {
 
         try {
             loginPage
@@ -93,7 +92,7 @@ public class LoginTest {
         }
     }
 
-    //@Test
+    @Test(groups = {"smoke", "positive"})
     public void ForgotPassword() {
 
         try {
@@ -108,7 +107,7 @@ public class LoginTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void LoginWithEmptyFields() {
 
         try {

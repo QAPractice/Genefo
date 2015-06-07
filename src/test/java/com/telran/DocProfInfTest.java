@@ -1,9 +1,6 @@
 package com.telran;
 
-import com.telran.pages.DocProfInfPage;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
-import com.telran.pages.ProfileDoctorPage;
+import com.telran.pages.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -97,9 +95,9 @@ public class DocProfInfTest {
     public void AddEmptySpecialtiesFields() {
 
         try {
-            //     docProfInfPage
-            // .fillSpecialtiesField("")
-            //.clickOnAddSpecialtiesDisButton();
+            docProfInfPage
+                    .fillSpecialtiesField("")
+                    .clickOnAddSpecialtiesDisButton();
             assertTrue(docProfInfPage.isOnDocProfInfPage());
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,9 +1,7 @@
 package com.telran;
 
-import com.telran.pages.DocAcInfPage;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
+import com.telran.pages.DocAcInfPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,7 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
 import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -28,8 +27,8 @@ public class DocAcInfTest {
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
     public DocAcInfPage docAcInfPage;
-    public String EmailNickname; // Keeps the part of email before sign @
     private boolean acceptNextAlert = true;
+    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
@@ -53,8 +52,7 @@ public class DocAcInfTest {
         }
     }
 
-    //positive
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void EditAccInfSuccess() {
 
         try {
@@ -69,7 +67,7 @@ public class DocAcInfTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {
 
         try {
@@ -79,8 +77,7 @@ public class DocAcInfTest {
         }
     }
 
-    //negative
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void EditAccInfEmptyFiels() {
 
         try {

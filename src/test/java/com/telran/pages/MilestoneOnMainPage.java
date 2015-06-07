@@ -458,45 +458,41 @@ public class MilestoneOnMainPage extends Page {
     }
 
     public void FillAllElementsAndItemsToMap(){
-
         // buttons with names from WebPage
-        buttonsAndItemsMap.put("Language",languageButton);
-        buttonsAndItemsMap.put("Movement",movementButton);
-        buttonsAndItemsMap.put("Eating",eatingButton);
-        buttonsAndItemsMap.put("Treatment",treatmentButton);
-        buttonsAndItemsMap.put("Toileting",toiletingButton);
-        buttonsAndItemsMap.put("Other",otherButton);
+        buttonsAndItemsMap.put(languageButton.getText(),languageButton);
+        buttonsAndItemsMap.put(movementButton.getText(),movementButton);
+        buttonsAndItemsMap.put(eatingButton.getText(),eatingButton);
+        buttonsAndItemsMap.put(treatmentButton.getText(),treatmentButton);
+        buttonsAndItemsMap.put(toiletingButton.getText(),toiletingButton);
+        buttonsAndItemsMap.put(otherButton.getText(),otherButton);
         // items with names from category "Language"
-        buttonsAndItemsMap.put("Smiles",itemSmiles);
-        buttonsAndItemsMap.put("Babbles",itemBabbles);
-        buttonsAndItemsMap.put("First word",itemFirstWord);
-        buttonsAndItemsMap.put("2-3 words",itemTwoThreeWords);
-        buttonsAndItemsMap.put("Speaks in full sentences",itemSpeaksInFullSentences);
+        buttonsAndItemsMap.put(itemSmiles.getText(),itemSmiles);
+        buttonsAndItemsMap.put(itemBabbles.getText(),itemBabbles);
+        buttonsAndItemsMap.put(itemFirstWord.getText(),itemFirstWord);
+        buttonsAndItemsMap.put(itemTwoThreeWords.getText(),itemTwoThreeWords);
+        buttonsAndItemsMap.put(itemSpeaksInFullSentences.getText(),itemSpeaksInFullSentences);
         // items with names from category "Movement"
-        buttonsAndItemsMap.put("Holds head",itemHoldsHead);
-        buttonsAndItemsMap.put("Reaches for objects",itemReachesForObjects);
-        buttonsAndItemsMap.put("Rolls over",itemRollsOver);
-        buttonsAndItemsMap.put("Sits without support",itemSitsWithoutSupport);
-        buttonsAndItemsMap.put("Crawls",itemCrawls);
-        buttonsAndItemsMap.put("Pulls to stand",itemPullsToStand);
-        buttonsAndItemsMap.put("Walk",itemWalk);
-        buttonsAndItemsMap.put("Runs",itemRuns);
+        buttonsAndItemsMap.put(itemHoldsHead.getText(),itemHoldsHead);
+        buttonsAndItemsMap.put(itemReachesForObjects.getText(),itemReachesForObjects);
+        buttonsAndItemsMap.put(itemRollsOver.getText(),itemRollsOver);
+        buttonsAndItemsMap.put(itemSitsWithoutSupport.getText(),itemSitsWithoutSupport);
+        buttonsAndItemsMap.put(itemCrawls.getText(),itemCrawls);
+        buttonsAndItemsMap.put(itemPullsToStand.getText(),itemPullsToStand);
+        buttonsAndItemsMap.put(itemWalk.getText(),itemWalk);
+        buttonsAndItemsMap.put(itemWalk.getText(),itemRuns);
         // items with names from category "Eating"
-        buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
-        buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
+        buttonsAndItemsMap.put(itemHoldsBottles.getText(),itemHoldsBottles);
+        buttonsAndItemsMap.put(itemEatsWithSpoon.getText(),itemEatsWithSpoon);
         // items with names from category "Toileting"
-        buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
-        buttonsAndItemsMap.put("Dresses alone",itemDressesAlone);
+        buttonsAndItemsMap.put(itemToiletTrained.getText(),itemToiletTrained);
+        buttonsAndItemsMap.put(itemDressesAlone.getText(),itemDressesAlone);
         // items with names from category "Treatment"
-        buttonsAndItemsMap.put("Surgery",itemSurgery);
-        buttonsAndItemsMap.put("Medical trial",itemMedicalTrial);
-        buttonsAndItemsMap.put("Remission",itemRemission);
-
-
-
-
-
+        buttonsAndItemsMap.put(itemSurgery.getText(),itemSurgery);
+        buttonsAndItemsMap.put(itemMedicalTrial.getText(),itemMedicalTrial);
+        buttonsAndItemsMap.put(itemRemission.getText(),itemRemission);
     }
+
+
     public boolean isMilestoneTrue(String name){return this.verifyTextBoolean(milestoneOnNewCreatedPost,name);}
 
     public boolean isTypeTrue(String name){return this.verifyTextBoolean(milestoneTypeOnNewCreatedPost,name);}

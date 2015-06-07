@@ -86,7 +86,7 @@ public class SymptomsOnMainPage  extends Page {
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        this.PAGE_URL = "http://www.genefo.com";
     }
 
     // Waits until title of our 'Symptoms' Panel appears on the screen

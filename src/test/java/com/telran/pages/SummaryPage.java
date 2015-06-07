@@ -47,7 +47,7 @@ public class SummaryPage extends Page{
 
     public boolean isProfileNamePresents(String name) {
         try {
-            driver.findElement(By.xpath("//*[contains(text(),\"" + name + "\")]"));
+            driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;

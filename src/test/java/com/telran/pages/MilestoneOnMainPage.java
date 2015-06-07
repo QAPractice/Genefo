@@ -457,7 +457,7 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public void FillAllElementsAndItemsToMap(){
+    public void fillAllElementsAndItemsToMap(){
         // buttons with names from WebPage
         buttonsAndItemsMap.put(languageButton.getText(),languageButton);
         buttonsAndItemsMap.put(movementButton.getText(),movementButton);

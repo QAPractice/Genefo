@@ -94,7 +94,7 @@ public class MedicineOnMainPage extends Page {
     public MedicineOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        this.PAGE_URL = "http://genefo.com/home";
     }
 
 

@@ -39,7 +39,7 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/login";
+        this.PAGE_URL = "http://genefo.com/login";
         PageFactory.initElements(driver, this);
     }
 

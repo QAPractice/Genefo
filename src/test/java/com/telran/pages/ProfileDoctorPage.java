@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.telran.pages.LoginPage;
+
 import java.io.IOException;
 
 /**
@@ -34,7 +34,7 @@ public class ProfileDoctorPage extends Page{
 
     public ProfileDoctorPage (WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/account_hcp";
+        this.PAGE_URL = "http://genefo.com/account_hcp";
         PageFactory.initElements(driver, this);
     }
 

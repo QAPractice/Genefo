@@ -76,8 +76,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            //assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -137,7 +137,7 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            // assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -165,8 +165,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -194,8 +194,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            //    assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {

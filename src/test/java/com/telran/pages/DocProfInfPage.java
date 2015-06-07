@@ -1,11 +1,11 @@
 package com.telran.pages;
 
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.support.FindBy;
-        import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-        import java.io.IOException;
+import java.io.IOException;
 /**
  * Created by Oleg on 02.06.2015.
  */

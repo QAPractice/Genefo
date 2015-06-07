@@ -37,14 +37,14 @@ public class LoginTest {
 
         try {
             loginPage.openLoginPage()
-                     .waitUntilLoginPageIsLoaded();
-            } catch (Exception e) {
-              e.printStackTrace();
-              }
+                    .waitUntilLoginPageIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test(groups = {"smoke", "positive"})
-     public void LoginSuccess() {
+    public void LoginSuccess() {
 
         try {
             loginPage

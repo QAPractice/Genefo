@@ -77,8 +77,6 @@ public class MainPage extends Page {
     WebElement  viewButton;
 
 
-
-
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

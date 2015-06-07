@@ -91,38 +91,38 @@ public class AddProfilesTest {
         profilePage.clickToSubmit();
         assertTrue(summaryPage.isOnSummaryPage());
         assertTrue(summaryPage.isProfileNamePresents(name));
-        summaryPage.clickOnHome();
+        summaryPage.clickOnDiscoverHome();
     }
     //  Negative tests
-   @Test (groups = {"smoke", "negative"})    //Bug!!!
+    @Test (groups = {"smoke", "negative"})    //Bug!!!
     public void AddProfileWithoutCondition() {
-         mainPage.isOnMainPage();
-       mainPage.selectMyProfile();
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
-       myProfilesPage.clickToPlus();
+        myProfilesPage.clickToPlus();
         profilePage.waitUntilProfilePageIsLoaded();
-       profilePage.isOnProfilePage();
+        profilePage.isOnProfilePage();
         profilePage.fillProfileFirstNameField(FIRST_MAME);
         profilePage.fillProfileLastNameField(LAST_NAME);
-       profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-       profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-       profilePage.selectGender(GENDER);
-       profilePage.isGenderSelected(GENDER_CHECK);
-       profilePage.selectMonth(MONTH);
-       profilePage.isMonthSelected(MONTH_CHECK);
-       profilePage.selectDay(DAY);
-       profilePage.isDaySelected(DAY_CHECK);
-       profilePage.selectYear(YEAR);
-       profilePage.isYearSelected(YEAR_CHECK);
-       profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
+        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
+        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
+        profilePage.selectGender(GENDER);
+        profilePage.isGenderSelected(GENDER_CHECK);
+        profilePage.selectMonth(MONTH);
+        profilePage.isMonthSelected(MONTH_CHECK);
+        profilePage.selectDay(DAY);
+        profilePage.isDaySelected(DAY_CHECK);
+        profilePage.selectYear(YEAR);
+        profilePage.isYearSelected(YEAR_CHECK);
+        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
         profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-       profilePage.clickToSubmit();
-       try {
-           Thread.sleep(2000);
-       } catch (InterruptedException e) {
-           e.printStackTrace();
-       }
-       assertTrue(profilePage.isOnProfilePage());
+        profilePage.clickToSubmit();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertTrue(profilePage.isOnProfilePage());
     }
     @Test (groups = {"smoke", "negative"})
     public void AddProfileWoutLastName() {
@@ -186,7 +186,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutPatientType() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -216,7 +216,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutGender() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -246,7 +246,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutMonth() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -276,7 +276,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutDay() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -306,7 +306,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutYear() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -336,7 +336,7 @@ public class AddProfilesTest {
         }
         assertTrue(profilePage.isOnProfilePage());
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     public void AddProfileWoutDiagnoseYear() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();

@@ -11,7 +11,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
@@ -34,8 +33,6 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
-    public String type;
-    String milestone;
 
 
     @BeforeClass
@@ -61,8 +58,8 @@ public class MilestoneOnMainPageTest {
 
     @Test(groups={"smoke","positive"})
     public void SendLanguagePostTest() {
-        type="Language";
-        milestone="Smiles";
+        String type = "Language";
+        String milestone = "Smiles";
         year="2";
         month="3";
         age=year+" years "+month+" months";
@@ -146,32 +143,36 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test(enabled = false)
+    @Test
     public void SendToiletingPostTest() {
+        String type = "Toileting";
+        String milestone = "ToiletTrained";
         year="3";
         month="6";
         age=year+" years "+month+" months";
         post="Post4";
         try {
             milestoneOnMainPage
-                    .clickOnToiletingOption()
-                    .clickOnSelectItemToiletingItemOption()
-                    .clickToiletTrainedFromToiletingItemList()
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-            /*assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    @Test(enabled = false)
+    @Test
     public void SendTreatmentPostTest(){
         year="3";
         month="6";
@@ -180,7 +181,7 @@ public class MilestoneOnMainPageTest {
         try {
             milestoneOnMainPage
                     .clickOnTreatmentOption()
-                  //  .clickOnSelectTreatmentItemOption()
+                            //  .clickOnSelectTreatmentItemOption()
                     .clickTreatmentFromTreatmentItemList()
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
@@ -195,7 +196,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(enabled = false)
+    @Test
     public  void SendOtherPostTest() {
         year="10";
         month="5";
@@ -220,7 +221,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(enabled = false)
+    @Test
     public void SendRollsOverPostTest() {
         try {
             year = "12";
@@ -244,7 +245,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(enabled = false)
+    @Test
     public void SendTwoThreeWordsPostTest() {
         try {
             year = "12";
@@ -276,7 +277,7 @@ public class MilestoneOnMainPageTest {
     2)Months:
     3)Milestone:empty
     4)Message: Length>2252*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest1(){
         try {
             someText = randomAlphabetic(3);
@@ -298,7 +299,7 @@ public class MilestoneOnMainPageTest {
      2)Months:&^$
      3)Milestone:Language:abc
      4)Message:Length:1126*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest2(){
         try {
             someText = randomAlphabetic(11);
@@ -320,7 +321,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-12
     3)Milestone:Movement:Rolls over
     4)Message:Length:length>2252*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest3(){
         try {
             someText = randomAlphabetic(4);
@@ -341,7 +342,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest4(){
         try {
             someText = randomAlphabetic(1);
@@ -362,7 +363,7 @@ public class MilestoneOnMainPageTest {
     2)Months:36
     3)Milestone:empty
     4)Message:Length:length>2252*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest5(){
         try {
             someText = randomAlphabetic(11);
@@ -380,7 +381,7 @@ public class MilestoneOnMainPageTest {
     2)Months:00
     3)Milestone:empty
     4)Message::empty*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest6(){
         try {
             someText = randomAlphabetic(11);
@@ -401,7 +402,7 @@ public class MilestoneOnMainPageTest {
     2)Months:16
     3)Milestone:Toileting:dresses alone
     4)Message:Length>2252*/
-    @Test(enabled = false)
+    @Test
     public void MilestoneNegativeTest7(){
         try {
             someText = randomAlphabetic(11);

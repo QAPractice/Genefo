@@ -23,10 +23,10 @@ public class SummaryPage extends Page{
         return this;
     }
 
-    @FindBy(xpath = "//*[@class = \"progress\"]")
+    @FindBy(xpath = "//div[@class='panel panel-default panel-profile-header']//div[@class = 'progress']")
     WebElement progressBar;
-    @FindBy(xpath = "//*[contains(text(),'MY HOME')]")
-    WebElement homeTitle;
+    @FindBy(xpath = "//a[@class='btn btn-success btn-discover-homepage']")
+    WebElement discoverHomePage;
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -41,13 +41,13 @@ public class SummaryPage extends Page{
         waitUntilProfilePageIsLoaded();
         return exists(progressBar);
     }
-    public void clickOnHome(){
-        clickElement(homeTitle);
+    public void clickOnDiscoverHome(){
+        clickElement(discoverHomePage);
     }
 
     public boolean isProfileNamePresents(String name) {
         try {
-            driver.findElement(By.xpath("//*[contains(text(),\"" + name + "\")]"));
+            driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;

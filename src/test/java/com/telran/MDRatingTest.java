@@ -20,6 +20,12 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Л on 5/30/2015.
  */
 public class MDRatingTest {
+    private static String EMAIL = "ri-lopatina@yandex.ru";
+    private static String PASSWORD = "123456";
+    private static String FACILITY_NAME = "chicagoMed";
+    private static String PHYSICIAN_FNAME = "Phil";
+    private static String PHYSICIAN_LNAME = "Richards";
+    private static String TEXT = "post";
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -37,7 +43,7 @@ public class MDRatingTest {
         mdRatingOnMainPage = PageFactory.initElements(driver, MDRatingOnMainPage.class);
 
         try {
-            loginPage.login("ri-lopatina@yandex.ru", "123456");
+            loginPage.login(EMAIL, PASSWORD);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -54,26 +60,21 @@ public class MDRatingTest {
 
     @Test (groups = {"smoke", "positive"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostTest(String facilityname, String physitianFirstName, String physitianLastName, String text) {
-        facilityname = "chicagoMed";
-        physitianFirstName = "Phil";
-        physitianLastName = "Richards";
-        text = "post";
+    public void sendMDRatingPostSuccess() {
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields(physitianFirstName, physitianLastName)
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField(text)
+                    .fillTextField(TEXT)
                     .sendPost()
                     .waitUntilNewPostisLoaded();
 
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
-            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facilityname));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianFirstNameCorrect(physitianFirstName));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianLastNameCorrect(physitianLastName));
-            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text));
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(TEXT));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,85 +82,75 @@ public class MDRatingTest {
     }
     @Test (groups = {"smoke", "negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostTestWoutFacilityName(String physitianFirstName, String physitianLastName, String text) {
-        physitianFirstName = "Phil";
-        physitianLastName = "Richards";
-        text = "post";
+    public void sendMDRatingPostTestWoutFacilityName() {
         try {
             mdRatingOnMainPage
-                    .fillPhysicianFields(physitianFirstName, physitianLastName)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField(text)
+                    .fillTextField(TEXT)
                     .sendPost();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
+            assertTrue(mdRatingOnMainPage.errorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     //@Parameters({"facilityname", "physitianLastName", "text"})
-    public void sendMDRatingPostWoutPhysitianFName(String facilityname, String physitianLastName, String text) {
-        facilityname = "chicagoMed";
-        physitianLastName = "Richards";
-        text = "post";
+    public void sendMDRatingPostWoutPhysitianFName() {
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields("", physitianLastName)
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields("", PHYSICIAN_LNAME)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField(text)
+                    .fillTextField(TEXT)
                     .sendPost();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
+            assertTrue(mdRatingOnMainPage.errorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "text"})
-    public void sendMDRatingPostWoutPhysitianLName(String facilityname, String physitianFirstName, String text) {
-        facilityname = "chicagoMed";
-        physitianFirstName = "Phil";
-        text = "post";
+    public void sendMDRatingPostWoutPhysitianLName() {
+
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields(physitianFirstName, "")
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, "")
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField(text)
+                    .fillTextField(TEXT)
                     .sendPost();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
+            assertTrue(mdRatingOnMainPage.errorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName"})
-    public void sendMDRatingWithEmptyPost(String facilityname, String physitianFirstName, String physitianLastName, String text) {
-        facilityname = "chicagoMed";
-        physitianFirstName = "Phil";
-        physitianLastName = "Richards";
+    public void sendMDRatingWithEmptyPost() {
+
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields(physitianFirstName, physitianLastName)
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
                     .sendPost();
@@ -168,56 +159,49 @@ public class MDRatingTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
+            assertTrue(mdRatingOnMainPage.errorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "negative"})
+    @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostWoutRating(String facilityname, String physitianFirstName, String physitianLastName, String text) {
-        facilityname = "chicagoMed";
-        physitianFirstName = "Phil";
-        physitianLastName = "Richards";
-        text = "post";
+    public void sendMDRatingPostWoutRating() {
+
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields(physitianFirstName, physitianLastName)
-                    .fillTextField(text)
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
+                    .fillTextField(TEXT)
                     .sendPost();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mdRatingOnMainPage.isOnMDRatingPanel());
+            assertTrue(mdRatingOnMainPage.errorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     @Test (groups = {"positive"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRating1LatterPost(String facilityname, String physitianFirstName, String physitianLastName, String text) {
-        facilityname = "chicagoMed";
-        physitianFirstName = "Phil";
-        physitianLastName = "Richards";
-        text = "p";
+    public void sendMDRating1LatterPost() {
+
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(facilityname)
-                    .fillPhysicianFields(physitianFirstName, physitianLastName)
+                    .fillMedicalFacilityField(FACILITY_NAME)
+                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
-                    .fillTextField(text)
+                    .fillTextField("p")
                     .sendPost()
                     .waitUntilNewPostisLoaded();
 
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
-            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facilityname));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianFirstNameCorrect(physitianFirstName));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianLastNameCorrect(physitianLastName));
-            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text));
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect("p"));
 
         } catch (Exception e) {
             e.printStackTrace();

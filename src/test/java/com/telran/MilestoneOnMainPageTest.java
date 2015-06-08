@@ -151,8 +151,8 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendToiletingPostTest() {
-        String type = "Toileting";
-        String milestone = "ToiletTrained";
+        type = "Toileting";
+        milestone = "Toilet trained";
         year="3";
         month="6";
         age=year+" years "+month+" months";
@@ -180,23 +180,27 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendTreatmentPostTest(){
+        type = "Treatment";
+        milestone = "Surgery";
         year="3";
         month="6";
         age=year+" years "+month+" months";
         post="Post5";
         try {
             milestoneOnMainPage
-                    .clickOnTreatmentOption()
-                            //  .clickOnSelectTreatmentItemOption()
-                    .clickTreatmentFromTreatmentItemList()
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-            /*assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         }catch (Exception e) {
             e.printStackTrace();
         }

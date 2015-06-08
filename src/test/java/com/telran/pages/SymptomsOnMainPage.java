@@ -14,83 +14,48 @@ import java.io.IOException;
  */
 public class SymptomsOnMainPage  extends Page {
 
-    //Labels of categories
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'General Area')]")
-    WebElement generalArea;
+    //Fields
+    @FindBy(id = "general_area")
+    WebElement generalAreaField;
 
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Specific Area')]")
-    WebElement specificArea;
+    @FindBy(id = "specific_area")
+    WebElement specificAreaField;
 
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
-    WebElement symptom;
+    @FindBy(id = "symptoms_name")
+    WebElement symptomField;
+
+    @FindBy(name = "bio")
+    WebElement tellUsMoreAboutThisSymptom;
 
 
-    //feilds  of Symptoms area
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a General Area')]")
+    //elements of dropdown list
+    @FindBy
     WebElement tooltipGeneralArea;
 
-  // @FindBy(xpath="")
-
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Specific Area')]")
+    @FindBy
     WebElement tooltipSpecificArea;
 
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Symptom')]")
+    @FindBy
     WebElement tooltipSymptom;
 
-    //Field for input PostText
-    @FindBy(xpath = "//*[@class='form-group']/textarea")
-    WebElement tellUsMoreAboutThisSymptomField;
-
-
-    //element of tooltip General area
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemGrowth;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
-    WebElement itemAbdomen;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='11']")
-    WebElement itemTumors;
-
-    //element of tooltip Specific area
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemGrowthSpesific;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemAbdomenSpecific;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemTumorsSpecific;
-
-
-    //element of tooltip Symptom area
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemLargeBirthWeight;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
-    WebElement itemTallStature;
-
-    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
-    WebElement itemOther;
 
     //Buttons
-    @FindBy(xpath = "//*[@id='submit']")
+    @FindBy(id = "submit")
     WebElement postButton;
 
     // Serves as indication that we are on 'Symptoms' Panel
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
+    @FindBy(xpath = "//div[@class='form-group']/label[@for='medicine_name']")
     WebElement nameOfSymptomsTitle;
-
 
 
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://www.genefo.com";
+        this.PAGE_URL = "http://genefo.com/home";
     }
 
-    // Waits until title of our 'Symptoms' Panel appears on the screen
-    public void waitUntilSymptomsPanelIsLoaded(){
+
+    public SymptomsOnMainPage waitUntilSymptomsPanelIsLoaded(){
         try {
             waitUntilElementIsLoaded(nameOfSymptomsTitle);
         } catch (IOException e) {
@@ -98,6 +63,7 @@ public class SymptomsOnMainPage  extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return this;
 
     }
 
@@ -107,46 +73,15 @@ public class SymptomsOnMainPage  extends Page {
         return exists(nameOfSymptomsTitle);
     }
 
-    public SymptomsOnMainPage selectGeneralArea() {
-        clickElement(tooltipGeneralArea);
+
+
+    public SymptomsOnMainPage selectSymptoms(String value) {
+        selectValueInDropdown(tooltipSymptom, value);
         return this;
     }
 
-
-    public SymptomsOnMainPage selectGrowthFromGeneralArea() {
-        clickElement(itemGrowth);
-        return this;
-    }
-
-    public SymptomsOnMainPage selectSpecificArea() {
-        clickElement(tooltipSpecificArea);
-        return this;
-    }
-
-
-    public SymptomsOnMainPage selectGrowthFromSpecificArea(){
-        clickElement(itemGrowthSpesific);
-        return this;
-    }
-
-
-    public SymptomsOnMainPage selectSymptom() {
-        clickElement(tooltipSymptom);
-        return this;
-    }
-
-    public SymptomsOnMainPage selectLargeBirthWeightFromSymptom(){
-        clickElement(itemLargeBirthWeight);
-        return this;
-    }
-
-    public SymptomsOnMainPage typeTellUsMore(String fillTellUs) {
-        setElementText(tellUsMoreAboutThisSymptomField, fillTellUs);
-        return this;
-    }
-
-    public void clickOnPostButton() {
-        clickElement(postButton);
+    public boolean isSymptomSelected(String value) {
+        return verifyTextBoolean(tooltipSymptom, value);
     }
 
 

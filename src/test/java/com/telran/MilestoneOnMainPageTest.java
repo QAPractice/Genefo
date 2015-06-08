@@ -33,6 +33,8 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
+    String type;
+    String milestone;
 
 
     @BeforeClass
@@ -53,13 +55,17 @@ public class MilestoneOnMainPageTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        milestoneOnMainPage.FillAllElementsAndItemsToMap();
+        milestoneOnMainPage.fillAllElementsAndItemsToMap();
     }
 
+   /* void tearDown(){
+        .clear();
+    }*/
+
     @Test(groups={"smoke","positive"})
-    public void SendLanguagePostTest() {
-        String type = "Language";
-        String milestone = "Smiles";
+    public void sendLanguagePostTest() {
+        type = "Language";
+        milestone = "Smiles";
         year="2";
         month="3";
         age=year+" years "+month+" months";
@@ -86,8 +92,8 @@ public class MilestoneOnMainPageTest {
 
     @Test(groups={"smoke","positive"})
     public void SendMovementPostTest() {
-        String type="Movement";
-        String milestone="Holds head";
+        type="Movement";
+        milestone="Holds head";
         year="7";
         month="5";
         age=year+" years "+month+" months";
@@ -116,8 +122,8 @@ public class MilestoneOnMainPageTest {
 
     @Test(groups={"smoke","positive"})
     public void SendEatingPostTest() {
-        String type="Eating";
-        String milestone="Holds bottle";
+        type="Eating";
+        milestone="Holds bottle";
         year="3";
         month="6";
         age=year+" years "+month+" months";
@@ -277,7 +283,7 @@ public class MilestoneOnMainPageTest {
     2)Months:
     3)Milestone:empty
     4)Message: Length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest1(){
         try {
             someText = randomAlphabetic(3);
@@ -299,7 +305,7 @@ public class MilestoneOnMainPageTest {
      2)Months:&^$
      3)Milestone:Language:abc
      4)Message:Length:1126*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest2(){
         try {
             someText = randomAlphabetic(11);
@@ -321,7 +327,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-12
     3)Milestone:Movement:Rolls over
     4)Message:Length:length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest3(){
         try {
             someText = randomAlphabetic(4);
@@ -342,7 +348,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest4(){
         try {
             someText = randomAlphabetic(1);
@@ -363,7 +369,7 @@ public class MilestoneOnMainPageTest {
     2)Months:36
     3)Milestone:empty
     4)Message:Length:length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest5(){
         try {
             someText = randomAlphabetic(11);
@@ -381,7 +387,7 @@ public class MilestoneOnMainPageTest {
     2)Months:00
     3)Milestone:empty
     4)Message::empty*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest6(){
         try {
             someText = randomAlphabetic(11);
@@ -402,7 +408,7 @@ public class MilestoneOnMainPageTest {
     2)Months:16
     3)Milestone:Toileting:dresses alone
     4)Message:Length>2252*/
-    @Test
+    @Test(enabled = false)
     public void MilestoneNegativeTest7(){
         try {
             someText = randomAlphabetic(11);

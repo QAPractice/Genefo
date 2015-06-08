@@ -39,10 +39,10 @@ public class MainPage extends Page {
     WebElement questionButton;
 
     //Buttons
-    @FindBy(xpath = "//i[@class=\"fa fa-cog fa-2x\"]")
+    @FindBy(xpath = "//i[@class='fa fa-cog fa-2x']")
     WebElement cogwheelButton;
 
-    @FindBy(xpath = "//li[ @class=\"ng-scope\"]/*[contains(text(),'My Profiles')]")
+    @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
 
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'My Account')]")
@@ -80,7 +80,7 @@ public class MainPage extends Page {
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        this.PAGE_URL = "http://genefo.com/home";
     }
 
     public MainPage openMainPage() {

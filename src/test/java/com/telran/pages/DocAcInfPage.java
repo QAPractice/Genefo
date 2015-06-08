@@ -37,7 +37,7 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/account_hcp/account";
+        this.PAGE_URL = "http://genefo.com/account_hcp/account";
         PageFactory.initElements(driver, this);
     }
 

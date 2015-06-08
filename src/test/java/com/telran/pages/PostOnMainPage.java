@@ -27,7 +27,7 @@ public class PostOnMainPage extends Page{
     public PostOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        //this.PAGE_URL = "http://genefo.com/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

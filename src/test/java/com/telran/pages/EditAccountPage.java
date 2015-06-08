@@ -44,7 +44,7 @@ public class EditAccountPage extends Page{
 
     public EditAccountPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL="http://genefo-env.elasticbeanstalk.com/account";
+        this.PAGE_URL = "http://genefo.com/account";
     }
 
     public EditAccountPage openEditAccountPage(){

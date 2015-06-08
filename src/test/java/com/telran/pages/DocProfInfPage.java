@@ -92,7 +92,7 @@ public class DocProfInfPage extends Page{
 
     public DocProfInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/account_hcp/hcp";
+        this.PAGE_URL = "http://genefo.com/account_hcp/hcp";
         PageFactory.initElements(driver, this);
     }
 

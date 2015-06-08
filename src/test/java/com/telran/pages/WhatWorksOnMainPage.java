@@ -84,7 +84,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
 
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid'][@ng-model=\"what_works_rating\"]//span[@class='sr-only ng-binding']")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid'][@ng-model='what_works_rating']//span[@class='sr-only ng-binding']")
     WebElement allStarsTogether;
 
 
@@ -129,7 +129,7 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/home";
+        //this.PAGE_URL = "http://genefo.com/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

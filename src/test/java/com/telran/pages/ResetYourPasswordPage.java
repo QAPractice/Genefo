@@ -36,7 +36,7 @@ public class ResetYourPasswordPage extends Page{
 
     public ResetYourPasswordPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo-env.elasticbeanstalk.com/reset";
+        this.PAGE_URL = "http://genefo.com/reset";
         PageFactory.initElements(driver, this);
     }
 

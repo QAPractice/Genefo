@@ -15,6 +15,8 @@ import java.util.HashMap;
 public class MilestoneOnMainPage extends Page {
 
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
+
+
     //Labels of categories
     @FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement developmentalMilestoneTitle;
@@ -40,25 +42,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@class ='chosen-single']/div/b")                                     //+
     WebElement selectDropDownListButton;
 
-
-    /* @FindBy(xpath = "/*//*[contains(text(),'Select a Language Milestone')]")            //What is it field?
-    WebElement selectItemList;*/
-    /*@FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]")           //What is it field?
-    WebElement selectItemMovementList;    //?
-    @FindBy(xpath = "/*//*[contains(text(),'Select a Movement Milestone')]/../div/b"  //This is  Web Element "selectDropDownListButton"
-    WebElement selectItemMovementButton;  //?*/
     @FindBy(xpath = "//*[@class='chosen-single']/span")  //?
     WebElement selectEatingItemList;
-    /* @FindBy(xpath = "/*//*[@class='chosen-single']/span/../div/b")     //This is  Web Element "selectDropDownListButton"
-    WebElement selectEatingItemButton;*/
+
     @FindBy(xpath = "//*[@class='chosen-single']/span")    //?
     WebElement selectToiletingItemList;
-    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")         //This is  Web Element "selectDropDownListButton"
-    WebElement selectToiletingItemListButton;*/
     @FindBy(xpath = "//*[@class='ng-binding'][contains(text(),'Select a Treatment Milestone')]") //?
     WebElement selectTreatmentItemList;
-    /*@FindBy(xpath = "/*//*[@class='chosen-single']//div/b")       //This is  Web Element "selectDropDownListButton"
-    WebElement selectTreatmentButton;*/
 
     // DropdownList elements of Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")        //+
@@ -72,13 +62,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")        //+
     WebElement itemSpeaksInFullSentences;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedSmiles;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedBabbles;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedFirsWord;
-    @FindBy(xpath = "//*[@class='chosen-results']/li[5]")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-results']/li[5]")      //What is the field?
     WebElement selectedTwoThreeWords;
 
     // DropdownList elements of Movement
@@ -99,13 +89,13 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")        //+
     WebElement itemRuns;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedReachesForObjects;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedCraws;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
     WebElement selectedHoldsHead;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")      //What is the field?
             WebElement selectedRuns;
 
 
@@ -116,9 +106,9 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemEatsWithSpoon;
 
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")     //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")     //What is the field?
             WebElement selectHoldsBottles;
-    @FindBy(xpath = " //*[@class='chosen-single']/span")     //What is it field?
+    @FindBy(xpath = " //*[@class='chosen-single']/span")     //What is the field?
             WebElement selectEatsWithSpoon;
 
     // DropdownList elements of Toileting
@@ -127,9 +117,9 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")    //+
     WebElement itemDressesAlone;
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")           //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")           //What is the field?
     WebElement selectItemToiletingListButton;
-    @FindBy(xpath = "//*[@class='active-result result-selected']")   //What is it field?
+    @FindBy(xpath = "//*[@class='active-result result-selected']")   //What the it field?
     WebElement selectToiletTrained;
 
 
@@ -142,11 +132,11 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemRemission;
 
 
-    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")        //What is the field?
     WebElement selectedRemission;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is the field?
     WebElement selectedSurgery;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is it field?
+    @FindBy(xpath = "//*[@class='chosen-single']/span")          //What is the field?
     WebElement selectedMedicalTrial;
 
 
@@ -457,39 +447,39 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    public void fillAllElementsAndItemsToMap(){
+    public void fillAllElementsAndItemsToMap() {
         // buttons with names from WebPage
-        buttonsAndItemsMap.put(languageButton.getText(),languageButton);
-        buttonsAndItemsMap.put(movementButton.getText(),movementButton);
-        buttonsAndItemsMap.put(eatingButton.getText(),eatingButton);
-        buttonsAndItemsMap.put(treatmentButton.getText(),treatmentButton);
-        buttonsAndItemsMap.put(toiletingButton.getText(),toiletingButton);
-        buttonsAndItemsMap.put(otherButton.getText(),otherButton);
-        // items with names from category "Language"
-        buttonsAndItemsMap.put(itemSmiles.getText(),itemSmiles);
-        buttonsAndItemsMap.put(itemBabbles.getText(),itemBabbles);
-        buttonsAndItemsMap.put(itemFirstWord.getText(),itemFirstWord);
-        buttonsAndItemsMap.put(itemTwoThreeWords.getText(),itemTwoThreeWords);
-        buttonsAndItemsMap.put(itemSpeaksInFullSentences.getText(),itemSpeaksInFullSentences);
+        buttonsAndItemsMap.put(languageButton.getText(), languageButton);
+        buttonsAndItemsMap.put(movementButton.getText(), movementButton);
+        buttonsAndItemsMap.put(eatingButton.getText(), eatingButton);
+        buttonsAndItemsMap.put(treatmentButton.getText(), treatmentButton);
+        buttonsAndItemsMap.put(toiletingButton.getText(), toiletingButton);
+        buttonsAndItemsMap.put(otherButton.getText(), otherButton);
+        //items with names from category "Language"
+        buttonsAndItemsMap.put("Smiles",itemSmiles);
+        buttonsAndItemsMap.put("Babbles",itemBabbles);
+        buttonsAndItemsMap.put("First Word",itemFirstWord);
+        buttonsAndItemsMap.put("2-3 words",itemTwoThreeWords);
+        buttonsAndItemsMap.put("Speaks in full Sentences",itemSpeaksInFullSentences);
         // items with names from category "Movement"
-        buttonsAndItemsMap.put(itemHoldsHead.getText(),itemHoldsHead);
-        buttonsAndItemsMap.put(itemReachesForObjects.getText(),itemReachesForObjects);
-        buttonsAndItemsMap.put(itemRollsOver.getText(),itemRollsOver);
-        buttonsAndItemsMap.put(itemSitsWithoutSupport.getText(),itemSitsWithoutSupport);
-        buttonsAndItemsMap.put(itemCrawls.getText(),itemCrawls);
-        buttonsAndItemsMap.put(itemPullsToStand.getText(),itemPullsToStand);
-        buttonsAndItemsMap.put(itemWalk.getText(),itemWalk);
-        buttonsAndItemsMap.put(itemWalk.getText(),itemRuns);
+        buttonsAndItemsMap.put("Holds head",itemHoldsHead);
+        buttonsAndItemsMap.put("Reaches for Objects",itemReachesForObjects);
+        buttonsAndItemsMap.put("Rolls over",itemRollsOver);
+        buttonsAndItemsMap.put("Sits without support",itemSitsWithoutSupport);
+        buttonsAndItemsMap.put("Crawls",itemCrawls);
+        buttonsAndItemsMap.put("Pulls to stand",itemPullsToStand);
+        buttonsAndItemsMap.put("Walk",itemWalk);
+        buttonsAndItemsMap.put("Runs",itemRuns);
         // items with names from category "Eating"
-        buttonsAndItemsMap.put(itemHoldsBottles.getText(),itemHoldsBottles);
-        buttonsAndItemsMap.put(itemEatsWithSpoon.getText(),itemEatsWithSpoon);
+        buttonsAndItemsMap.put("Holds bottles",itemHoldsBottles);
+        buttonsAndItemsMap.put("Eats With Spoon",itemEatsWithSpoon);
         // items with names from category "Toileting"
-        buttonsAndItemsMap.put(itemToiletTrained.getText(),itemToiletTrained);
-        buttonsAndItemsMap.put(itemDressesAlone.getText(),itemDressesAlone);
+        buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
+        buttonsAndItemsMap.put("Dresses alone",itemDressesAlone);
         // items with names from category "Treatment"
-        buttonsAndItemsMap.put(itemSurgery.getText(),itemSurgery);
-        buttonsAndItemsMap.put(itemMedicalTrial.getText(),itemMedicalTrial);
-        buttonsAndItemsMap.put(itemRemission.getText(),itemRemission);
+        buttonsAndItemsMap.put("Surgery",itemSurgery);
+        buttonsAndItemsMap.put("Medical trial",itemMedicalTrial);
+        buttonsAndItemsMap.put("Remission",itemRemission);
     }
 
 

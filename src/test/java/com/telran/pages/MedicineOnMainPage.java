@@ -34,7 +34,7 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars Sent Post
-    // @FindBy(xpath = "//*[@ng-model=\"medicine_effect\"]//*[@class=\"sr-only ng-binding\"]")
+    @FindBy(xpath = "//*[@ng-model=\"medicine_effect\"]//*[@class=\"sr-only ng-binding\"]")
     WebElement allStarsTogether;
 
     // Rating star( marked one. Have asterisk sign in definition)
@@ -52,6 +52,17 @@ public class MedicineOnMainPage extends Page {
     // Rating unmarked second Star
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_rating\"]/i[2]/span[not(contains(text(),'*'))]")
     WebElement unmarkedSecondStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[3]/span[contains(text(),'*')]")
+    WebElement markedThirdStarInSentPost;
+
+    //Rating unmarked fourth star in the post
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[4]/span[not(contains(text(),'*'))]")
+    WebElement unmarkedFourthStarInSentPost;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[5]/span[contains(text(),'*')]")
+    WebElement markedFifthStarInSentPost;
+
 
     // Rating star - third Rating Star Medicine
     @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
@@ -205,6 +216,19 @@ public class MedicineOnMainPage extends Page {
 
     public Boolean verifySecondStarNonCheckedInSentPost() {
         return exists(unmarkedSecondStarInSentPost);
+    }
+
+    public boolean verifyThirdStarCheckedInSentPost() {
+        return exists(markedThirdStarInSentPost);
+
+    }
+
+    public boolean verifyFourthStarNonCheckedInSentPost() {
+        return exists(unmarkedFourthStarInSentPost);
+    }
+
+    public boolean verifyFifthStarCheckedInSentPost() {
+        return exists(markedFifthStarInSentPost);
     }
 
 

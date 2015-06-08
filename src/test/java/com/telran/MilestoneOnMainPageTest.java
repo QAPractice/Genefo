@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -33,8 +34,8 @@ public class MilestoneOnMainPageTest {
     public String year;
     public String post;
     public String textOtherField;
-    String type;
-    String milestone;
+    public String type;
+    public String milestone;
 
 
     @BeforeClass
@@ -45,7 +46,6 @@ public class MilestoneOnMainPageTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
-
         try {
             loginPage.login("mili@mail.ru", "111111");
             assertTrue(mainPage.isOnMainPage());
@@ -56,14 +56,18 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
         milestoneOnMainPage.fillAllElementsAndItemsToMap();
-    }
 
-   /* void tearDown(){
-        .clear();
+    }
+    /*@BeforeTest(alwaysRun = true)
+    public void tearDown(){
+        if(driver!=null){
+            driver.quit();
+        }
+
     }*/
 
     @Test(groups={"smoke","positive"})
-    public void sendLanguagePostTest() {
+    public void SendLanguagePostTest() {
         type = "Language";
         milestone = "Smiles";
         year="2";
@@ -71,7 +75,7 @@ public class MilestoneOnMainPageTest {
         age=year+" years "+month+" months";
         post="Post1";
         try {
-        milestoneOnMainPage
+            milestoneOnMainPage
                 .clickOnElement(type)
                 .clickOnSelectItemOption()
                 .clickOnElement(milestone)
@@ -86,7 +90,8 @@ public class MilestoneOnMainPageTest {
         assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
         assertTrue(milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
-            e.printStackTrace();
+         //   e.printStackTrace();
+            System.out.print("SendLanguagePostTest is error");
         }
     }
 
@@ -151,8 +156,8 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendToiletingPostTest() {
-        String type = "Toileting";
-        String milestone = "ToiletTrained";
+        type = "Toileting";
+        milestone = "Toilet trained";
         year="3";
         month="6";
         age=year+" years "+month+" months";
@@ -180,23 +185,27 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public void SendTreatmentPostTest(){
+        type = "Treatment";
+        milestone = "Surgery";
         year="3";
         month="6";
         age=year+" years "+month+" months";
         post="Post5";
         try {
             milestoneOnMainPage
-                    .clickOnTreatmentOption()
-                            //  .clickOnSelectTreatmentItemOption()
-                    .clickTreatmentFromTreatmentItemList()
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-            /*assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,6 +213,7 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public  void SendOtherPostTest() {
+        type = "Other";
         year="10";
         month="5";
         age=year+" years "+month+" months";
@@ -217,36 +227,42 @@ public class MilestoneOnMainPageTest {
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-           /* assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+           // assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isTextCorrect(post));
-            assertTrue(milestoneOnMainPage.isOtherTextCorrect(textOtherField));*/
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
     public void SendRollsOverPostTest() {
+        type = "Movement";
+        milestone = "RollsOver";
         try {
             year = "12";
             month = "7";
             age = year + " years " + month + " months";
             post = "Post7";
             milestoneOnMainPage
-                    .clickOnMovementOption()
+                    .clickOnElement(type)
                     .clickOnSelectItemOption()
-                    .clickRollsOverFromMovementList()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-           /* assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
-        } catch (Exception e) {
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -285,6 +301,8 @@ public class MilestoneOnMainPageTest {
     4)Message: Length>2252*/
     @Test(enabled = false)
     public void MilestoneNegativeTest1(){
+        type = "Movement";
+        milestone = "  ";
         try {
             someText = randomAlphabetic(3);
             milestoneOnMainPage

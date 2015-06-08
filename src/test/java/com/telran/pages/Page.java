@@ -14,7 +14,6 @@ import java.util.NoSuchElementException;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
- *
  */
 public abstract class Page {
 
@@ -22,74 +21,44 @@ public abstract class Page {
   public String PAGE_TITLE;
   protected WebDriver driver;
   protected StringBuffer verificationErrors = new StringBuffer();
-
-  /**
+  /*
    * Constructor injecting the WebDriver interface
-   *
-   * @param driver
+   * 
+   * @param webDriver
    */
   public Page(WebDriver driver) {
 
       this.driver = driver;
   }
 
-  /**
-   *
-   * @return
-   */
   public String getTitle() {
     return driver.getTitle();
   }
 
-  /**
-   *
-   * @return
-   */
   public String getPageUrl() {
     return PAGE_URL;
   }
 
-  /**
-   *
-   * @return
-   */
   public String getPageTitle() {
     return PAGE_TITLE;
   }
 
-  /**
-   *
-   */
   public void loadPage() {
     driver.get(getPageUrl());
     //assertEquals(getTitle(), getPageTitle());
   }
 
-  /**
-   *
-   * @param element
-   * @param text
-   */
   public void setElementText(WebElement element, String text) {
     element.clear();
     element.sendKeys(text);
     Assert.assertEquals(element.getAttribute("value"), text);
   }
 
-  /**
-   *
-   * @param element
-   */
+
   public void clickElement(WebElement element) {
     element.click();
   }
 
-  /**
-   *
-   * @param element
-   * @throws IOException
-   * @throws InterruptedException
-   */
   public void waitUntilIsLoaded(WebElement element) throws IOException, InterruptedException {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
   }
@@ -99,13 +68,7 @@ public abstract class Page {
   //  select.selectByValue(value);
  // }
 
-  /**
-   * Returns label that we chose
-   *
-   * @param dropdown
-   * @param value
-   * @return
-   */
+    // Returns label that we chose
    public String selectValueInDropdown(WebElement dropdown, String value) {
         Select select = new Select(dropdown);
         select.selectByValue(value);
@@ -113,11 +76,6 @@ public abstract class Page {
         return option.getText();
     }
 
-  /**
-   *
-   * @param element
-   * @return
-   */
   public boolean verifyElementIsPresent(WebElement element) {
     try {
       element.getTagName();
@@ -127,11 +85,6 @@ public abstract class Page {
     }
   }
 
-  /**
-   *
-   * @param element
-   * @param text
-   */
   public void verifyText(WebElement element, String text) {
     try {
       Assert.assertEquals(text, element.getText());
@@ -140,32 +93,15 @@ public abstract class Page {
     }
   }
 
-  /**
-   *
-   * @param element
-   * @param text
-   * @return
-   */
   public boolean verifyTextBoolean(WebElement element, String text) {
        return text.equals(element.getText());
     }
 
-  /**
-   * Verifies that we chose the label that we wanted
-   *
-   * @param label
-   * @param chosenOption
-   * @return
-   */
+    // Verifies that we chose the label that we wanted.
    public boolean verifyTextBooleanInDropDown(String label, String chosenOption) {
        return chosenOption.equals(label);
    }
 
-  /**
-   *
-   * @param element
-   * @return
-   */
   public boolean exists(WebElement element) {
     try {
       element.isDisplayed();
@@ -175,30 +111,14 @@ public abstract class Page {
     }
   }
 
-  /**
-   *
-   * @param element
-   * @throws IOException
-   * @throws InterruptedException
-   */
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
   }
 
-  /**
-   *
-   * @param wait
-   * @param element
-   */
   public void waitForElement(WebDriverWait wait, String element) {
     wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(element)));
   }
 
-  /**
-   *
-   * @param by
-   * @return
-   */
   protected boolean isElementPresent(By by) {
     try {
       driver.findElement(by);
@@ -208,35 +128,19 @@ public abstract class Page {
     }
   }
 
-  /**
-   * Pay attention: Works Only for first cell
-   *
-   * @param locator
-   * @return
-   */
+  // Pay attention: Works Only for first cell
   public boolean IsCellGreenAfterClick(WebElement locator) {
     clickElement(locator);
     // Is it Green?
     return "#008000".equals(Color.fromString(locator.getCssValue("background-color")).asHex());
   }
 
-  /**
-   *
-   * @param cell
-   * @return
-   */
   public boolean IsCellColorChangedAfterClick(WebElement cell) {
     String cellColorBeforeClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     clickElement(cell);
     String cellColorAfterClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
-
-  /**
-   *
-   * @param element
-   * @param text
-   */
     public void verifyClass (WebElement element, String text) {
         try {
             Assert.assertEquals(text, element.getAttribute("class"));

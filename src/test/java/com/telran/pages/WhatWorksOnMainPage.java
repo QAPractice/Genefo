@@ -45,6 +45,11 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
+    // Here we distinguish list that chosen, from list that is not chosen
+    @FindBy(xpath = "//div[contains(@class,'chosen-with-drop chosen-container-active')]//span[contains(text(),'Please select a specific item')]")
+    WebElement ItemListButtonThatChosen;
+
+
     //elements of dropdown list
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement firstItemInList;
@@ -256,6 +261,10 @@ public class WhatWorksOnMainPage extends Page {
 
     public Boolean verifyFourthStarNonCheckedInSentPost()  {
         return exists(nonFilledFourthStarInSentPost);
+    }
+
+    public Boolean verifyItemListIsChosen()  {
+        return exists(ItemListButtonThatChosen);
     }
 
 

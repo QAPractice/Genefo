@@ -76,8 +76,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            //assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -89,8 +89,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "Aspirin";
-        String newReason = "pruritus";
+        String newName = "Aaffa";
+        String newReason = "parur";
 
         try {
             medicineOnMainPage
@@ -137,7 +137,7 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            // assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -165,8 +165,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -194,8 +194,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            //    assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -207,7 +207,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -227,7 +227,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

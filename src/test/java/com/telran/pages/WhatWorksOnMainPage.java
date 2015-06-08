@@ -45,7 +45,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
-
+    // Here we distinguish list that chosen, from list that is not chosen
     @FindBy(xpath = "//div[contains(@class,'chosen-with-drop chosen-container-active')]//span[contains(text(),'Please select a specific item')]")
     WebElement ItemListButtonThatChosen;
 

@@ -213,6 +213,7 @@ public class MilestoneOnMainPageTest {
 
     @Test
     public  void SendOtherPostTest() {
+        type = "Other";
         year="10";
         month="5";
         age=year+" years "+month+" months";
@@ -226,36 +227,42 @@ public class MilestoneOnMainPageTest {
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-           /* assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+           // assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isTextCorrect(post));
-            assertTrue(milestoneOnMainPage.isOtherTextCorrect(textOtherField));*/
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
     public void SendRollsOverPostTest() {
+        type = "Movement";
+        milestone = "RollsOver";
         try {
             year = "12";
             month = "7";
             age = year + " years " + month + " months";
             post = "Post7";
             milestoneOnMainPage
-                    .clickOnMovementOption()
+                    .clickOnElement(type)
                     .clickOnSelectItemOption()
-                    .clickRollsOverFromMovementList()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)
                     .fillTextField(post)
-                    .sendPost();
-           /* assertTrue(milestoneOnMainPage.isMilestoneCorrect());
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isMilestoneTypeCorrect());
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));*/
-        } catch (Exception e) {
+            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -294,6 +301,8 @@ public class MilestoneOnMainPageTest {
     4)Message: Length>2252*/
     @Test(enabled = false)
     public void MilestoneNegativeTest1(){
+        type = "Movement";
+        milestone = "  ";
         try {
             someText = randomAlphabetic(3);
             milestoneOnMainPage

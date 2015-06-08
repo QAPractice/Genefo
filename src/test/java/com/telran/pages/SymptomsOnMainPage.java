@@ -117,9 +117,40 @@ public class SymptomsOnMainPage  extends Page {
     WebElement itemBloodSpesific;
 
     @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemChestSpesific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemLungsSpesific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemAbdomenSpecific;
 
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemGenetaliaSpesific;
 
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemKidneySpesific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemScullSpesific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemBackSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemArmsHandsSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemLegsSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemSkinSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemNailSpecific;
+
+    @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemHairSpecific;
 
     @FindBy(xpath= "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemTumorsSpecific;

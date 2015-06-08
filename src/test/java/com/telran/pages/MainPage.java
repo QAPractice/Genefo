@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.internal.FindsByClassName;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -76,7 +77,8 @@ public class MainPage extends Page {
     @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
     WebElement  viewButton;
 
-
+    @FindBy(xpath = "//a[@class=\"btn btn-primary\"][contains(text(),'See More Graphs')]")
+    WebElement  seeMoreGrafsButton;
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -191,7 +193,10 @@ public class MainPage extends Page {
         return this;
     }
 
+    public void clickseeMoreGrafsButton(){
+        clickElement(seeMoreGrafsButton);
 
+    }
 // Methods for verifying items on sent upper post
 
     public Boolean verifyTextFromSentPost(String text)  {

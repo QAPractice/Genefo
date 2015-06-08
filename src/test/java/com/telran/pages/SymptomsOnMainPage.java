@@ -98,6 +98,7 @@ public class SymptomsOnMainPage  extends Page {
 
 
     /**
+     * constructor
      *
      * @param driver
      */

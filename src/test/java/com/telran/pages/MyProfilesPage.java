@@ -19,7 +19,7 @@ public class MyProfilesPage extends Page {
     WebElement MyProfilesLable;
 
     //Button
-    @FindBy(xpath = "//*[@class=\"btn-add-profile\"]/i")
+    @FindBy(xpath = "//div[@class='panel-body']//div[@class='btn-add-profile']/i")
     WebElement addPlusButton;
     public MyProfilesPage(WebDriver driver) {
         super(driver);

@@ -52,6 +52,11 @@ public class FollowingDoctorTest {
         mainPage.clickViewButton();
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());
@@ -93,6 +98,11 @@ public class FollowingDoctorTest {
         mainPage.clickViewButton();
         mainPage.openPostNameLink();
         publicProfilePage.isOnPublicProfilePage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());

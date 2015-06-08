@@ -25,7 +25,7 @@ public class SummaryPage extends Page{
 
     @FindBy(xpath = "//div[@class='panel panel-default panel-profile-header']//div[@class = 'progress']")
     WebElement progressBar;
-    @FindBy(xpath = "//a[@class='btn btn-success btn-discover-homepage']")
+    @FindBy(xpath = "//div[@class='profile-summary-section ng-scope\"]//a [@class=\"btn btn-success btn-discover-homepage']")
     WebElement discoverHomePage;
 
     public void waitUntilProfilePageIsLoaded() {

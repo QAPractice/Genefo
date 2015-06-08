@@ -369,6 +369,4 @@ public class AddProfilesTest {
     public void teardown() {
         this.driver.quit();
     }
-
-
 }

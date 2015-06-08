@@ -39,7 +39,7 @@ public class MainPage extends Page {
     WebElement questionButton;
 
     //Buttons
-    @FindBy(xpath = "//i[@class='fa fa-cog fa-2x']")
+    @FindBy(xpath = "//div[@class='container']//i[@class='fa fa-cog fa-2x']")
     WebElement cogwheelButton;
 
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Profiles')]")
@@ -76,6 +76,8 @@ public class MainPage extends Page {
     @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
     WebElement  viewButton;
 
+    @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
+    WebElement errorMessage;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -162,7 +164,7 @@ public class MainPage extends Page {
     public boolean isFollowingNamePresents(String name) {
         try {
             String[] arrName = name.split(" ");
-            driver.findElement(By.xpath("//div[@class=\"panel panel-primary\"]/../div[7]//li[last()]//span[@class=\"profileName ng-binding\"][contains(text()," + arrName[0] + ")]"));
+            driver.findElement(By.xpath("//div[@class='panel panel-primary']/../div[7]//li[last()]//span[@class='profileName ng-binding'][contains(text()," + arrName[0] + ")]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -198,4 +200,8 @@ public class MainPage extends Page {
         return verifyTextBoolean(SentPostText, text);
     }
 
+
+    public boolean isErrorMessage (){
+        return exists(errorMessage);
+    }
 }

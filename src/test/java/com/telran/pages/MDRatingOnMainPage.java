@@ -37,7 +37,6 @@ public class MDRatingOnMainPage extends Page {
     WebElement facilityOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement physicianOnNewCreatedPost;
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
     WebElement textInCreatedPost;
     //Title
@@ -46,8 +45,6 @@ public class MDRatingOnMainPage extends Page {
     //Buttons
     @FindBy(id = "submit")
     WebElement postButton;
-
-
 
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
@@ -127,18 +124,8 @@ public class MDRatingOnMainPage extends Page {
 
     }
 
-    public boolean isPhysicianFirstNameCorrect(String name) {
-        return verifyTextBoolean(physicianFirstNField, name);
-
-    }
-
     public boolean isPhysicianNameCorrect(String name) {
-        return verifyTextBoolean(physicianFirstNField, name);
-
-    }
-
-    public boolean isPhysicianLastNameCorrect(String name) {
-        return verifyTextBoolean(physicianFirstNField, name);
+        return verifyTextBoolean(physicianOnNewCreatedPost, name);
 
     }
 

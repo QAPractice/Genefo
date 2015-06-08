@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -27,6 +28,7 @@ public class PostOnMainTest {
     public PostOnMainPage postOnMainPage;
     private boolean acceptNextAlert = true;
 
+
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -39,13 +41,25 @@ public class PostOnMainTest {
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
             assertTrue(mainPage.isOnMainPage());
-            mainPage.waitUntilMainPageIsLoaded()
-                    .openPostPanel();
-            postOnMainPage.waitUntilPostPanelIsLoaded();
+            mainPage.waitUntilMainPageIsLoaded();
+     //               .openPostPanel();
+//            postOnMainPage.waitUntilPostPanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    @BeforeMethod
+        public void beforemethodsetup() {
+
+             mainPage.openMainPage();
+             assertTrue(mainPage.isOnMainPage());
+             mainPage.waitUntilMainPageIsLoaded()
+                    .openPostPanel();
+             postOnMainPage.waitUntilPostPanelIsLoaded();
+    }
+
 
 
     @Test(groups = {"smoke", "positive"})
@@ -98,7 +112,7 @@ public class PostOnMainTest {
 
 
     @AfterClass(alwaysRun = true)
-    public void teardown() {
+     public void teardown() {
         this.driver.quit();
     }
 

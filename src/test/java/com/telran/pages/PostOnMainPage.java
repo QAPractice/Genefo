@@ -13,7 +13,7 @@ import java.io.IOException;
 public class PostOnMainPage extends Page{
 
     // Serves as indication that we are on 'Post' Panel.
-    //@FindBy(xpath = "//a[@class='active'][@ng-click='setType('general')']")
+    @FindBy(xpath = "//a[@class='active'][@ng-click=\"setType('general')\"]")
     WebElement postButtonChecked;
 
     // text field for posting

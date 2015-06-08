@@ -59,7 +59,7 @@ public class MDRatingTest {
     }
 
     @Test (groups = {"smoke", "positive"})
-    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
+    //@Parameters({"facilityname","physicianFirstName", "physitianLastName", "text"})
     public void sendMDRatingPostSuccess() {
         try {
             mdRatingOnMainPage

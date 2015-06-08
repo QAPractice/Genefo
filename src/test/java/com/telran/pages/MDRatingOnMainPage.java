@@ -132,6 +132,11 @@ public class MDRatingOnMainPage extends Page {
 
     }
 
+    public boolean isPhysicianNameCorrect(String name) {
+        return verifyTextBoolean(physicianFirstNField, name);
+
+    }
+
     public boolean isPhysicianLastNameCorrect(String name) {
         return verifyTextBoolean(physicianFirstNField, name);
 

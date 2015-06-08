@@ -21,10 +21,11 @@ public abstract class Page {
   public String PAGE_TITLE;
   protected WebDriver driver;
   protected StringBuffer verificationErrors = new StringBuffer();
-  /*
+
+  /**
    * Constructor injecting the WebDriver interface
-   * 
-   * @param webDriver
+   *
+   * @param driver
    */
   public Page(WebDriver driver) {
 

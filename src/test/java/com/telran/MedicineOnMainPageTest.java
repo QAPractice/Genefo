@@ -89,8 +89,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "Aaffa";
-        String newReason = "parur";
+        String newName = "laugh";
+        String newReason = "melancholy";
 
         try {
             medicineOnMainPage

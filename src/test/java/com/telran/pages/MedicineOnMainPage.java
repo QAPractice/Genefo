@@ -46,11 +46,11 @@ public class MedicineOnMainPage extends Page {
     WebElement thirdNonMarkedRatingStar;
 
     // Rating marked First Star
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_rating\"]/i[1]/span[contains(text(),'*')]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[1]/span[contains(text(),'*')]")
     WebElement markedFirstStarInSentPost;
 
     // Rating unmarked second Star
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_rating\"]/i[2]/span[not(contains(text(),'*'))]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[2]/span[not(contains(text(),'*'))]")
     WebElement unmarkedSecondStarInSentPost;
 
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"medicine_effect\"]/i[3]/span[contains(text(),'*')]")

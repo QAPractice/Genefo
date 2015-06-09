@@ -21,6 +21,7 @@ public abstract class Page {
   public String PAGE_TITLE;
   protected WebDriver driver;
   protected StringBuffer verificationErrors = new StringBuffer();
+
   /*
    * Constructor injecting the WebDriver interface
    * 
@@ -28,7 +29,7 @@ public abstract class Page {
    */
   public Page(WebDriver driver) {
 
-      this.driver = driver;
+    this.driver = driver;
   }
 
   public String getTitle() {
@@ -63,18 +64,18 @@ public abstract class Page {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
   }
 
- // public void selectValueInDropdown(WebElement dropdown, String value) {
- //   Select select = new Select(dropdown);
+  // public void selectValueInDropdown(WebElement dropdown, String value) {
+  //   Select select = new Select(dropdown);
   //  select.selectByValue(value);
- // }
+  // }
 
-    // Returns label that we chose
-   public String selectValueInDropdown(WebElement dropdown, String value) {
-        Select select = new Select(dropdown);
-        select.selectByValue(value);
-        WebElement option = select.getFirstSelectedOption(); // Chooses label that fits the value
-        return option.getText();
-    }
+  // Returns label that we chose
+  public String selectValueInDropdown(WebElement dropdown, String value) {
+    Select select = new Select(dropdown);
+    select.selectByValue(value);
+    WebElement option = select.getFirstSelectedOption(); // Chooses label that fits the value
+    return option.getText();
+  }
 
   public boolean verifyElementIsPresent(WebElement element) {
     try {
@@ -94,13 +95,13 @@ public abstract class Page {
   }
 
   public boolean verifyTextBoolean(WebElement element, String text) {
-       return text.equals(element.getText());
-    }
+    return text.equals(element.getText());
+  }
 
-    // Verifies that we chose the label that we wanted.
-   public boolean verifyTextBooleanInDropDown(String label, String chosenOption) {
-       return chosenOption.equals(label);
-   }
+  // Verifies that we chose the label that we wanted.
+  public boolean verifyTextBooleanInDropDown(String label, String chosenOption) {
+    return chosenOption.equals(label);
+  }
 
   public boolean exists(WebElement element) {
     try {
@@ -141,13 +142,15 @@ public abstract class Page {
     String cellColorAfterClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
-    public void verifyClass (WebElement element, String text) {
-        try {
-            Assert.assertEquals(text, element.getAttribute("class"));
-        } catch (Error e) {
-            verificationErrors.append(e.toString());
-        }
+
+  public void verifyClass(WebElement element, String text) {
+    try {
+      Assert.assertEquals(text, element.getAttribute("class"));
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
     }
-
-
+  }
 }
+
+
+

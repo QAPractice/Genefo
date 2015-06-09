@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class ProfilePage extends Page {
     //Titles
-    @FindBy(xpath = "//*[contains(text(),'Create New Profile')]")
+    @FindBy(xpath = "//div[@class='panel-heading']//*[contains(text(),'Create New Profile')]")
     WebElement profileTitle;
     //buttons
     @FindBy(id = "submit")

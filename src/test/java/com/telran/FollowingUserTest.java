@@ -49,6 +49,11 @@ public class FollowingUserTest {
         mainPage.isOnMainPage();
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());
@@ -84,6 +89,11 @@ public class FollowingUserTest {
         mainPage.isOnMainPage();
         mainPage.openPostNameLink();
         publicProfilePage.isOnPublicProfilePage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());

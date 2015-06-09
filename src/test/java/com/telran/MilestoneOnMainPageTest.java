@@ -7,10 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,14 +55,16 @@ public class MilestoneOnMainPageTest {
 
     }
 
-   /* @BeforeTest(alwaysRun = true)
-    public void tearDown(){
-        if(driver!=null){
-            driver.quit();
-        }
 
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        mainPage.openMainPage();
+        assertTrue(mainPage.isOnMainPage());
+        mainPage.waitUntilMainPageIsLoaded()
+                .openMilestonePanel();
+        milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
     }
-*/
+
     @Test(groups={"smoke","positive"})
     public void SendLanguagePostTest() {
         type = "Language";
@@ -271,6 +270,7 @@ public class MilestoneOnMainPageTest {
         type = "Language";
         post = randomAlphabetic(50);
         try {
+
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
@@ -303,7 +303,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
                     .clickOnYearsOption("-1")
-                    .clickOnMonthOption("-1")
+                    .clickOnMonthOption("")
                     .fillTextField("")
                     .sendPost();
             assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
@@ -406,11 +406,12 @@ public class MilestoneOnMainPageTest {
 
 
     @AfterClass(alwaysRun = true)
-    public void teardown () {
+    public void teardown() {
         this.driver.quit();
     }
+    }
 
-}
+
 
 
 

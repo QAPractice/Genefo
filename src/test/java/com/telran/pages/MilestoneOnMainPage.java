@@ -142,7 +142,9 @@ public class MilestoneOnMainPage extends Page {
         super(driver);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://genefo.com/home";
+
     }
+
 
     // Waits until title of our 'Milestone' Panel appears on the screen
     public void waitUntilMilestonePanelIsLoaded() {
@@ -273,7 +275,7 @@ public class MilestoneOnMainPage extends Page {
         buttonsAndItemsMap.put("Walk",itemWalk);
         buttonsAndItemsMap.put("Runs",itemRuns);
         // items with names from category "Eating"
-        buttonsAndItemsMap.put("Holds bottles",itemHoldsBottles);
+        buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
         buttonsAndItemsMap.put("Eats With Spoon",itemEatsWithSpoon);
         // items with names from category "Toileting"
         buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);

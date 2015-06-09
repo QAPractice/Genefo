@@ -51,7 +51,6 @@ public class MDRatingOnMainPage extends Page {
         PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://genefo.com/home";
     }
-
     // Waits until title of our 'MD Rating' Panel appears on the screen
     public void waitUntilMDRatingPanelIsLoaded() {
         try {
@@ -62,24 +61,20 @@ public class MDRatingOnMainPage extends Page {
             e.printStackTrace();
         }
     }
-
     // Checks that title of our 'MD Rating' Panel have appeared on the screen so we can work with it.
     public boolean isOnMDRatingPanel() {
         waitUntilMDRatingPanelIsLoaded();
         return exists(medicalFacilityTitle);
     }
-
     public MDRatingOnMainPage fillMedicalFacilityField(String medicalFacility) {
         setElementText(medicalFacilityField, medicalFacility);
         return this;
     }
-
     public MDRatingOnMainPage fillPhysicianFields(String fNPhysician, String lNPhysician) {
         setElementText(physicianFirstNField, fNPhysician);
         setElementText(physicianLastNField, lNPhysician);
         return this;
     }
-
     // We need to click on all stars together to set free each one of them
     public MDRatingOnMainPage clickOnAllStarsTogether() {
         clickElement(allStarsTogether);
@@ -90,12 +85,10 @@ public class MDRatingOnMainPage extends Page {
         clickElement(thirdRatingStar);
         return this;
     }
-
     public MDRatingOnMainPage fillTextField(String post) {
         setElementText(postField, post);
         return this;
     }
-
     public MDRatingOnMainPage sendPost() {
         clickElement(postButton);
         return this;
@@ -113,25 +106,18 @@ public class MDRatingOnMainPage extends Page {
             e.printStackTrace();
         }
     }
-
     public boolean isThirdStarChecked() {
         waitUntilNewPostisLoaded();
         return exists(checkedThirdStarInPost);
     }
-
     public boolean isFacilityNameCorrect(String name){
         return verifyTextBoolean(facilityOnNewCreatedPost, name);
-
     }
-
     public boolean isPhysicianNameCorrect(String name) {
         return verifyTextBoolean(physicianOnNewCreatedPost, name);
-
     }
-
     public boolean isTextCorrect(String name) {
         return verifyTextBoolean(textInCreatedPost, name);
-
     }
 
 }

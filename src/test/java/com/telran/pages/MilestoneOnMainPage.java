@@ -122,7 +122,7 @@ public class MilestoneOnMainPage extends Page {
     //alerts
     @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
     WebElement alertRequiredFields;
-    @FindBy(xpath = "//*[@class='col-sm-2'][@style='padding-left: 5px;']/span")
+    @FindBy(xpath = "//*[@class='col-sm-2']/../div[3]/span")
     WebElement numbersOnlyForMonths;
     @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
     WebElement numbersOnlyForYears;
@@ -216,8 +216,16 @@ public class MilestoneOnMainPage extends Page {
     //for year
     public MilestoneOnMainPage clickOnYearsOption(String year) {setElementText(yearsButton, year);return this;}
     public MilestoneOnMainPage chooseButtonYearsList(String year) {clickElement(yearsButton);return this;}
-    public MilestoneOnMainPage clickOnMonthOption(String months) {setElementText(monthButton, months);return this;}
-    public MilestoneOnMainPage clickOnLanguageItemOption(String text) {setElementText(selectLanguageField, text);return this;}
+
+    public MilestoneOnMainPage clickOnMonthOption(String months) {
+        setElementText(monthButton, months);
+        return this;
+    }
+
+    public MilestoneOnMainPage clickOnLanguageItemOption(String text) {             //+
+        setElementText(selectLanguageField, text);
+        return this;
+    }
     public MilestoneOnMainPage chooseButtonMonthList(String month) {clickElement(monthButton);return this;}
     //fill text post
     public MilestoneOnMainPage fillTextField(String post) {setElementText(inputTextPostField, post);return this;}
@@ -225,10 +233,14 @@ public class MilestoneOnMainPage extends Page {
     public MilestoneOnMainPage fillOtherField(String text) {setElementText(textField, text);return this;}
     // Submit button
     public MilestoneOnMainPage sendPost() {clickElement(submitButton);return this;}
+
     //check alert presence
     public boolean alertMessageNotValidYear() {return exists(numbersOnlyForYears);}
+
     public boolean alertMessageNotValidMonth() {return exists(numbersOnlyForMonths);}
+
     public boolean alertMessageRequiredFields() {return exists(alertRequiredFields);}
+
     //checking data in created post
     private WebElement getWebElementByName(String name){return buttonsAndItemsMap.get(name);}
 

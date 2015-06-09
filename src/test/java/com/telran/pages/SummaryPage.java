@@ -23,10 +23,25 @@ public class SummaryPage extends Page{
         return this;
     }
 
-    @FindBy(xpath = "//div[@class='panel panel-default panel-profile-header']//div[@class = 'progress']")
+    @FindBy(xpath = "//div[@class='progress' and contains(.,'75% Complete')]")
     WebElement progressBar;
-    @FindBy(xpath = "//div[@class='profile-summary-section ng-scope\"]//a [@class=\"btn btn-success btn-discover-homepage']")
+    @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']//a [@class='btn btn-success btn-discover-homepage']")
     WebElement discoverHomePage;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][1]")
+    WebElement relationshipField;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][2]")
+    WebElement nameField;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][3]")
+    WebElement conditionField;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][4]")
+    WebElement patientDiagnosisDateField;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][5]")
+    WebElement genderField;
+    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][6]")
+    WebElement birthdayField;
+    @FindBy(xpath = "//ul[@class='profile_list people_list_sidebar']/li[1]//div[@class='profileName ng-binding']")
+    WebElement firstProfileButton;
+
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -52,5 +67,26 @@ public class SummaryPage extends Page{
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    public boolean isRelationCorrect(String name){
+        return verifyTextBoolean(relationshipField, name);
+    }
+    public boolean isNameCorrect(String name){
+        return verifyTextBoolean(nameField, name);
+    }
+    public boolean isConditionCorrect(String name){
+        return verifyTextBoolean(conditionField, name);
+    }
+    public boolean isPatientDiagnosisDateFieldCorrect(String name){
+        return verifyTextBoolean(patientDiagnosisDateField, name);
+    }
+    public boolean isGenderFieldCorrect(String name){
+        return verifyTextBoolean(genderField, name);
+    }
+    public boolean isBirthdayFieldCorrect(String name){
+        return verifyTextBoolean(birthdayField, name);
+    }
+    public  void clickOnFirstProfile(){
+        clickElement(firstProfileButton);
     }
 }

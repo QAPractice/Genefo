@@ -89,6 +89,7 @@ public class MilestoneOnMainPageTest {
         assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
         assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
         assertTrue(milestoneOnMainPage.isTextCorrect(post));
+   //         System.out.print(itemSmiles.getText());
         } catch (Exception e) {
          //   e.printStackTrace();
             System.out.print("SendLanguagePostTest is error");
@@ -154,7 +155,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test
+    @Test(groups={"smoke","positive"})
     public void SendToiletingPostTest() {
         type = "Toileting";
         milestone = "Toilet trained";
@@ -183,7 +184,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test
+    @Test(groups={"smoke","positive"})
     public void SendTreatmentPostTest(){
         type = "Treatment";
         milestone = "Surgery";
@@ -211,7 +212,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public  void SendOtherPostTest() {
         type = "Other";
         year="10";
@@ -239,7 +240,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendRollsOverPostTest() {
         type = "Movement";
         milestone = "RollsOver";
@@ -267,7 +268,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void SendTwoThreeWordsPostTest() {
         try {
             year = "12";

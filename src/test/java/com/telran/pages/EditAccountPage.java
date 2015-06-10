@@ -93,8 +93,16 @@ public class EditAccountPage extends Page{
     }
 
     public EditAccountPage fillField(WebElement element, String str){
-        cleanElement(element);
-        setElementText(element, str);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            cleanElement(element);
+            TimeUnit.SECONDS.sleep(1);
+            setElementText(element, str);
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
     }
 
@@ -119,8 +127,14 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillOldPasswordField(String pass){
 
-        cleanElement(oldpasswordElement);
-        setElementText(oldpasswordElement, pass);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            cleanElement(oldpasswordElement);
+            TimeUnit.SECONDS.sleep(1);
+            setElementText(oldpasswordElement, pass);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 

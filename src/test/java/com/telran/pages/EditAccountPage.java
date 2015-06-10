@@ -79,31 +79,26 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillPasswordField(String pass){
         //Added because function "element.clean()" not worked for me!
-        try {
-            TimeUnit.SECONDS.sleep(1);
+
+            pause();
+            clickElement(newPasswordElement);
+            pause();
             cleanElement(newPasswordElement);
-            TimeUnit.SECONDS.sleep(1);
+            pause();
             setElementText(newPasswordElement, pass);
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         return this;
     }
 
     public EditAccountPage fillField(WebElement element, String str){
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            cleanElement(element);
-            TimeUnit.SECONDS.sleep(1);
-            setElementText(element, str);
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        return this;
+            clickElement(element);
+            pause();
+            cleanElement(element);
+            pause();
+            setElementText(element, str);
+            pause();
+            return this;
     }
 
 
@@ -127,15 +122,14 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillOldPasswordField(String pass){
 
-        try {
-            TimeUnit.SECONDS.sleep(1);
+            pause();
+            clickElement(oldpasswordElement);
+            pause();
             cleanElement(oldpasswordElement);
-            TimeUnit.SECONDS.sleep(1);
+            pause();
             setElementText(oldpasswordElement, pass);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return this;
+
+       return this;
     }
 
     public EditAccountPage clickOnSubmitButton1(){
@@ -171,4 +165,11 @@ public class EditAccountPage extends Page{
         return exists(submitButton2);
     }
 
+    private void pause(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -42,7 +42,7 @@ public class EditAccountTest {
 
     @BeforeClass
     public void setup(){
-       this.driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
+       this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -150,19 +150,6 @@ BUG
 
     }
 */
-//    // Edit 5	Go to Edit Account.
-//// 1.Delete the current password and type new password in english and push the button "Save".
-//// 2.Enter the valid current password. 3.Logout and Login with New password.
-//    @Test(groups={"positive"})
-//    public void newPassword( ){
-//        TestUtils.addTestToLog();
-//        String testPass=TEMP_PASS;
-//        updateAndCheckPassword(testPass);
-//        assertTrue(mainPage.isOnMainPage());
-//        retainOldPassword(MY_Password, testPass);
-//
-//    }
-
 
 //    //    Edit 10	Go to Edit Account.
 //// 1.Delete the current password and type new password with length=12 and push the button "Save".
@@ -293,10 +280,6 @@ BUG
                 .fillField(thisPage.getLastNameElement(), MY_LastName)
                 .clickOnSubmitButton2();
     }
-
-
-
-
 
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){

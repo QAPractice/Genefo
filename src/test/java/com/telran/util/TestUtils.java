@@ -195,10 +195,13 @@ public class TestUtils {
         WebDriver driver=null;
         switch (mydriver){
             case FireFox:
-                File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
-                FirefoxBinary binary = new FirefoxBinary(file);
-                FirefoxProfile profile = new FirefoxProfile();
-                driver = new FirefoxDriver(binary, profile);
+//                File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
+//                System.setProperty("webdriver.FireFox.bin",  "C:/Users/E.Frumker/AppData/Local/Mozilla Firefox/firefox.exe");
+//                File file = new File("%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe");
+//                FirefoxBinary binary = new FirefoxBinary(file);
+//                FirefoxProfile profile = new FirefoxProfile();
+//                driver = new FirefoxDriver(binary, profile);
+                driver = new FirefoxDriver();
                 break;
             case Chrome:
                 System.setProperty("webdriver.chrome.driver",  Paths.get("").toAbsolutePath().toString() + "\\WEB_Drivers\\chromedriver.exe");

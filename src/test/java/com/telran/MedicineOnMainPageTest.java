@@ -29,7 +29,7 @@ public class MedicineOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
+        this.driver = new FirefoxDriver(); //new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -89,8 +89,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "laugh";
-        String newReason = "melancholy";
+        String newName = "ascorbic acid";
+        String newReason = "enervation";
 
         try {
             medicineOnMainPage
@@ -148,8 +148,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"positive"})
     public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "INSULIN";
-        String newReason = "HIGH BLOOD SUGAR";
+        String newName = "VALERIAN";
+        String newReason = "NERVOSITY";
 
         try {
             medicineOnMainPage

@@ -15,9 +15,27 @@ public class GrafsPage extends Page {
 
 
 
-    //elements of dropdown list
+    //elements of dropdown list from medical facilities
     @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Rating')]")
     WebElement mdRatingLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Procedures')]")
+    WebElement ProceduresLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Professionals')]")
+    WebElement ProfessionalsLink;
+    //elements of dropdown list from Miscellaneous
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Location')]")
+    WebElement MiscellaneousLink;
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Gender')]")
+    WebElement GenderLink;
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Age')]")
+    WebElement AgeLink;
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Race')]")
+    WebElement RaceLink;
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Genes')]")
+    WebElement GenesLink;
+    //elements of dropdown list from What Works For Me
 
 
     public GrafsPage(WebDriver driver) {

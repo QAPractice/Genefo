@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 public class EditAccountPage extends Page{
@@ -78,8 +79,16 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillPasswordField(String pass){
         //Added because function "element.clean()" not worked for me!
-        cleanElement(newPasswordElement);
-        setElementText(newPasswordElement, pass);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            cleanElement(newPasswordElement);
+            TimeUnit.SECONDS.sleep(1);
+            setElementText(newPasswordElement, pass);
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
     }
 

@@ -4,7 +4,9 @@ import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -23,7 +26,7 @@ public class EditAccountTest {
 
     private static int VALID_INPUT_LENGTH=25;
 
-    private static String MY_EMAIL="123qweee@mail.ru";
+    private static String MY_EMAIL="mili27@mail.ru";
     private static String MY_Password="123qwee";
     private static String TEMP_EMAIL ="333333@mail.ru";
     private static String TEMP_PASS="111111";
@@ -39,12 +42,7 @@ public class EditAccountTest {
 
     @BeforeClass
     public void setup(){
-
-        TestUtils.addTestToLog();
-        File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
-        FirefoxBinary binary = new FirefoxBinary(file);
-        FirefoxProfile profile = new FirefoxProfile();
-        this.driver = new FirefoxDriver(binary, profile);
+       this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);

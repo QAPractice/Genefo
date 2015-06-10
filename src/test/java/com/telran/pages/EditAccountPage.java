@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 public class EditAccountPage extends Page{
@@ -78,15 +79,26 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillPasswordField(String pass){
         //Added because function "element.clean()" not worked for me!
-        cleanElement(newPasswordElement);
-        setElementText(newPasswordElement, pass);
+
+            pause();
+            clickElement(newPasswordElement);
+            pause();
+            cleanElement(newPasswordElement);
+            pause();
+            setElementText(newPasswordElement, pass);
+
         return this;
     }
 
     public EditAccountPage fillField(WebElement element, String str){
-        cleanElement(element);
-        setElementText(element, str);
-        return this;
+
+            clickElement(element);
+            pause();
+            cleanElement(element);
+            pause();
+            setElementText(element, str);
+            pause();
+            return this;
     }
 
 
@@ -110,9 +122,14 @@ public class EditAccountPage extends Page{
     }
     public EditAccountPage fillOldPasswordField(String pass){
 
-        cleanElement(oldpasswordElement);
-        setElementText(oldpasswordElement, pass);
-        return this;
+            pause();
+            clickElement(oldpasswordElement);
+            pause();
+            cleanElement(oldpasswordElement);
+            pause();
+            setElementText(oldpasswordElement, pass);
+
+       return this;
     }
 
     public EditAccountPage clickOnSubmitButton1(){
@@ -148,4 +165,11 @@ public class EditAccountPage extends Page{
         return exists(submitButton2);
     }
 
+    private void pause(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

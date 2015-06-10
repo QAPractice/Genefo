@@ -1,6 +1,14 @@
 package com.telran.util;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -182,5 +190,34 @@ public class TestUtils {
                 return true;
         }
         return false;
+    }
+    public static WebDriver chooseDriver(WEB_DRIVER mydriver){
+        WebDriver driver=null;
+        switch (mydriver){
+            case FireFox:
+//                File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
+//                System.setProperty("webdriver.FireFox.bin",  "C:/Users/E.Frumker/AppData/Local/Mozilla Firefox/firefox.exe");
+//                File file = new File("%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe");
+//                FirefoxBinary binary = new FirefoxBinary(file);
+//                FirefoxProfile profile = new FirefoxProfile();
+//                driver = new FirefoxDriver(binary, profile);
+                driver = new FirefoxDriver();
+                break;
+            case Chrome:
+                System.setProperty("webdriver.chrome.driver",  Paths.get("").toAbsolutePath().toString() + "\\WEB_Drivers\\chromedriver.exe");
+                driver = new ChromeDriver();
+                break;
+
+            case InternetExplorer:
+                System.setProperty("webdriver.ie.driver", Paths.get("").toAbsolutePath().toString() + "\\WEB_Drivers\\IEDriverServer_32.exe");
+                driver = new InternetExplorerDriver();
+                break;
+            default:
+                break;
+
+        }
+
+        return driver;
+
     }
 }

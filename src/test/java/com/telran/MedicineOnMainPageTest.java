@@ -89,8 +89,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "ascorbic acid";
-        String newReason = "enervation";
+        String newName = "folic acid";
+        String newReason = "drowsiness";
 
         try {
             medicineOnMainPage
@@ -148,8 +148,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"positive"})
     public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "VALERIAN";
-        String newReason = "NERVOSITY";
+        String newName = "VALIDOLUM";
+        String newReason = "PALPITATION";
 
         try {
             medicineOnMainPage
@@ -176,9 +176,9 @@ public class MedicineOnMainPageTest {
 
     @Test(groups = {"positive"})
     public void sendMedicineWithSpecialCharactersTest() {
-        String text = "~`!@#$%^&*()_+<>?:\"{}[];’";
-        String newName = "~`!@#$%^&*()_+<>?:\"{}[];’";
-        String newReason = "~`!@#$%^&*()_+<>?:\"{}[];’";
+        String text = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
+        String newName = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
+        String newReason = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
 
         try {
             medicineOnMainPage

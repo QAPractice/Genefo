@@ -3,6 +3,7 @@ package com.telran;
 import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
+import com.telran.pages.SymptomsOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +43,7 @@ public class EditAccountTest {
 
     @BeforeClass
     public void setup(){
-       this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
+       this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -52,7 +53,7 @@ public class EditAccountTest {
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
 
-    }
+     }
 
     // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
     @Test(groups={"smoke","positive"})

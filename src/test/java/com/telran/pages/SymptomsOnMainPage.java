@@ -1,6 +1,7 @@
 package com.telran.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -285,6 +286,15 @@ public class SymptomsOnMainPage  extends Page {
      */
     public void clickOnPostButton() {
         clickElement(postButton);
+    }
+
+    public WebElement giveMeItem(int i){
+        WebElement element;
+
+        String str="//ul[@class='chosen-results']/li[@data-option-array-index='"+i+"']";
+        element=driver.findElement(By.xpath(str));
+        return element;
+
     }
 
 

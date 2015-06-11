@@ -13,14 +13,35 @@
       <version>6.8.21</version>
     </dependency>
     <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-ie-driver</artifactId>
+      <version>2.46.0</version>
+    </dependency>
+    <dependency>
       <groupId>ru.stqa.selenium</groupId>
       <artifactId>webdriver-factory</artifactId>
       <version>1.1.46</version>
     </dependency>
     <dependency>
+      <groupId>com.saucelabs</groupId>
+      <artifactId>sauce_testng</artifactId>
+      <version>[1.0.0,)</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>2.46.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ggasoftware.uitest</groupId>
+      <artifactId>gga-selenium-framework-core</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ggasoftware.uitest</groupId>
+      <artifactId>gga-selenium-framework-reportng</artifactId>
+      <version>1.0.5</version>
     </dependency>
   </dependencies>
   <build>

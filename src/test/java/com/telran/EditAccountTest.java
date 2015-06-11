@@ -3,20 +3,13 @@ package com.telran;
 import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
-import com.telran.pages.SymptomsOnMainPage;
 import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -43,7 +36,13 @@ public class EditAccountTest {
 
     @BeforeClass
     public void setup(){
-       this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+
+        TestUtils.addTestToLog();
+        // File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
+        // FirefoxBinary binary = new FirefoxBinary(file);
+        // FirefoxProfile profile = new FirefoxProfile();
+        //  this.driver = new FirefoxDriver(binary, profile);
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -53,7 +52,7 @@ public class EditAccountTest {
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
 
-     }
+    }
 
     // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
     @Test(groups={"smoke","positive"})

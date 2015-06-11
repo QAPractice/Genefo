@@ -49,7 +49,7 @@ public class MDRatingOnMainPage extends Page {
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo.com/home";
+        this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
     // Waits until title of our 'MD Rating' Panel appears on the screen
     public void waitUntilMDRatingPanelIsLoaded() {

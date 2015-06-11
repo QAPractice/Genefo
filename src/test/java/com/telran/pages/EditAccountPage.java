@@ -45,7 +45,7 @@ public class EditAccountPage extends Page{
 
     public EditAccountPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo.com/account";
+        this.PAGE_URL = "http://52.10.6.51:8080/account";
     }
 
     public EditAccountPage openEditAccountPage(){

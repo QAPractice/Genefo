@@ -134,7 +134,7 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://genefo.com/home";
+        //this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

@@ -82,7 +82,7 @@ public class MainPage extends Page {
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo.com/home";
+        this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
     public MainPage openMainPage() {

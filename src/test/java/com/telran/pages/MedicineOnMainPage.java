@@ -34,7 +34,7 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars Sent Post
-    @FindBy(xpath = "//*[@ng-model=\"medicine_effect\"]//*[@class=\"sr-only ng-binding\"]")
+    @FindBy(xpath = "//*[@ng-model='medicine_effect']//*[@class='sr-only ng-binding']")
     WebElement allStarsTogether;
 
     // Rating star( marked one. Have asterisk sign in definition)
@@ -105,7 +105,7 @@ public class MedicineOnMainPage extends Page {
     public MedicineOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo.com/home";
+        this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
 

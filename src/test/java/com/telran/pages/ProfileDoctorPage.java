@@ -34,7 +34,7 @@ public class ProfileDoctorPage extends Page{
 
     public ProfileDoctorPage (WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo.com/account_hcp";
+        this.PAGE_URL = "http://52.10.6.51:8080/account_hcp";
         PageFactory.initElements(driver, this);
     }
 

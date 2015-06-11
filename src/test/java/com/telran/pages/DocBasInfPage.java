@@ -55,7 +55,7 @@ public class DocBasInfPage extends Page{
 
     public DocBasInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo.com/account_hcp/basic";
+        this.PAGE_URL = "http://52.10.6.51:8080/account_hcp/basic";
         PageFactory.initElements(driver, this);
     }
 

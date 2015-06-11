@@ -22,7 +22,7 @@ public class PublicProfilePage extends Page{
     WebElement plusFollowButton;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='panel-body']")
     WebElement minusFollowButton;
-    @FindBy(xpath = "//*[@class=\"navbar-header\"]/a")
+    @FindBy(xpath = "//*[@class='navbar-header']/a")
     WebElement homeTitle;
     @FindBy(xpath = "//div[@class='panel-heading']/div[@class='profile_selector_name ng-binding']")
     WebElement publicProfileName;

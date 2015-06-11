@@ -13,7 +13,7 @@
       </groups>
 
       <classes>
-          <class name="com.telran.SignUpHCPTest"/>
+          <class name="com.telran.EditAccountTest"/>
       </classes>
 
 

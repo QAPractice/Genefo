@@ -122,9 +122,10 @@ public class MilestoneOnMainPage extends Page {
     //alerts
     @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
     WebElement alertRequiredFields;
-    @FindBy(xpath = "//*[@class='col-sm-2']/../div[3]/span")
+    //*[contains(text(), "Numbers")]
+    @FindBy(xpath = "//*[@class='col-sm-2']/../[3]/span")
     WebElement numbersOnlyForMonths;
-    @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
+    @FindBy(xpath = "//*[@style='padding-right: 5;']/span")
     WebElement numbersOnlyForYears;
 
     //elements in created post

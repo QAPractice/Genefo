@@ -6,7 +6,7 @@ import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -32,7 +32,7 @@ public class DocProfInfTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
+        this.driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 5);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);

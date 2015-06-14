@@ -4,12 +4,13 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.browserlaunchers.locators.GoogleChromeLocator;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +39,8 @@ public class MilestoneOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
+        this.driver = new InternetExplorerDriver();
+        // this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -230,7 +232,7 @@ public class MilestoneOnMainPageTest {
                     .sendPost()
                     .waitForPostLoaded();
             sleep(3000);
-            assertTrue(milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Milestone type in wrong", milestoneOnMainPage.isTypeTrue(type));
             assertTrue(milestoneOnMainPage.isOtherTextCorrect(textOtherField));
             assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue(milestoneOnMainPage.isTextCorrect(post));
@@ -255,7 +257,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("A")
                     .fillTextField(post)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
             assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();

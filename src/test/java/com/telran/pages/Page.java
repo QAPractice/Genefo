@@ -12,6 +12,7 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
@@ -28,6 +29,7 @@ public abstract class Page {
    * 
    * @param webDriver
    */
+
   public Page(WebDriver driver) {
     this.driver = driver;
     this.allElementsMap = new HashMap<String, String>();
@@ -91,7 +93,7 @@ public abstract class Page {
     element.click();
   }
 
-  public void waitUntilIsLoaded(WebElement element) throws IOException, InterruptedException {
+  public void waitUntilIsLoaded(WebElement element) {
     new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
   }
 

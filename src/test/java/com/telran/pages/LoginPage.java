@@ -44,11 +44,11 @@ public class LoginPage extends Page {
     }
 
     public LoginPage opennLoginPage(WebDriver driver) {
-        driver.get("http://52.10.6.51:8080/login");
+        driver.get(PAGE_URL);
         return this;
     }
     public LoginPage openLoginPage() {
-        driver.get("http://52.10.6.51:8080/login");
+        driver.get(PAGE_URL);
         return this;
     }
 

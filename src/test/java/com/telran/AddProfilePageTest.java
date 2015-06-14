@@ -51,8 +51,18 @@ public class AddProfilePageTest {
     Assert.assertTrue(thisPage.get_Create_New_Profile().isDisplayed());
     }
 
-    //    Click a button SELECT ONE and choose It's Me.Fill all fields and click batton Save
+//    ProU 2	Verify that the required/mandatory fields are marked with "* " .
     @Test(groups ={"positive","smoke"})
+    public void isMandatoryFieldsPresent(){
+        thisPage.loadPage();
+        thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
+        thisPage.ADD_ANOTHER_PROFILE_click();
+        Assert.assertTrue(thisPage.isMandatoryFieldsPresent());
+    }
+
+
+    //    Click a button SELECT ONE and choose It's Me.Fill all fields and click batton Save
+    @Test(groups ={"positive","smoke"},enabled = false)
     public void selectOne(){
         thisPage.loadPage();
         thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
@@ -72,15 +82,12 @@ public class AddProfilePageTest {
                 .select_Patient_Birthday_Year("3")
 // BUG                .input_Patient_Location("Russia")
                 .input_Comment("Comments are here");
+//        thisPage.click_ButtonSave();
+//        test not finished yet, need to add assert on the other page
     }
-
-
-
-
 
     @AfterClass
     void quite(){
-
         driver.quit();
     }
 

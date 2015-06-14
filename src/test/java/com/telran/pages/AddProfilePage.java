@@ -1,11 +1,16 @@
 package com.telran.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -15,7 +20,6 @@ public class AddProfilePage extends Page {
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@name='condition']" )
     WebElement Condition;
-
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@value='Select Some Options']" )
     WebElement Patient_Race;
@@ -29,7 +33,7 @@ public class AddProfilePage extends Page {
     @FindBy(xpath = "//div[@class='panel-heading']//*[contains(text(),'Create New Profile')]")
     WebElement Create_New_Profile;
 
-     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@type='file']")
+    @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@type='file']")
     WebElement Add_Picture;
 
     @FindBy(xpath = "//h2[contains(text(),'My Profiles')]")
@@ -80,6 +84,15 @@ public class AddProfilePage extends Page {
         this.PAGE_URL = "http://52.10.6.51:8080/profiles";
 
     }
+    public AddProfilePage click_ButtonSave(){
+        ButtonSave.click();
+        return this;
+    }
+    public AddProfilePage click_ButtonCancel(){
+        ButtonCancel.click();
+        return this;
+    }
+
 
 //    public void selectById(String name, int id){
 //        Select select = new Select(getWebElement(name));
@@ -96,6 +109,33 @@ public class AddProfilePage extends Page {
         return this;
     }
 
+
+    public boolean isMandatoryFieldsPresent(){
+        LinkedList<String> allReqField= new LinkedList<String>();
+        String xpath=null;
+        allReqField.add("How do you know");
+        allReqField.add("First Name");
+        allReqField.add("Last Name");
+        allReqField.add("Condition");
+        allReqField.add("Gender");
+        allReqField.add("Birthday ");
+
+        try {
+            for (String s : allReqField) {
+                xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'"+s+"')]//span[@class='req_star']";
+                driver.findElement(By.xpath(xpath));
+            }
+            xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'Diagnosis')]/..//span[@class='req_star2']";
+            driver.findElement(By.xpath(xpath));
+        }catch (NoSuchElementException e){
+            System.out.println("--------------------------------------------");
+            System.out.println("Error Required element was not found!");
+            System.out.println("xpath of the element:"+xpath);
+            System.out.println("--------------------------------------------");
+            return false;
+        }
+        return true;
+    }
 
     public AddProfilePage select_Patient_Diagnosis_Month(String itemNumber){
         Select select = new Select(Patient_Diagnosis_Month);

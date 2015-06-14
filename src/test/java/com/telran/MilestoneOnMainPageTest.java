@@ -350,7 +350,6 @@ public class MilestoneOnMainPageTest {
     public void MilestoneNegativeTest5(){
         post = randomAlphabetic(500);
         try {
-            post = randomAlphabetic(11);
             milestoneOnMainPage
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
@@ -399,7 +398,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnElement(milestone)
                     .clickOnYearsOption("-int")
                     .clickOnMonthOption("16")
-                    .fillTextField("")
+                    .fillTextField(post)
                     .sendPost();
             assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
@@ -407,15 +406,6 @@ public class MilestoneOnMainPageTest {
             e.printStackTrace();
         }
     }
-
-    /*1)Years:-int
-    2)Months:16
-    3)Milestone:Toileting:dresses alone
-    4)Message:Length>2252*/
-
-
-
-
 
 
     @AfterClass(alwaysRun = true)

@@ -274,7 +274,7 @@ public class MilestoneOnMainPage extends Page {
         buttonsAndItemsMap.put("Runs",itemRuns);
         // items with names from category "Eating"
         buttonsAndItemsMap.put("Holds bottles",itemHoldsBottles);
-        buttonsAndItemsMap.put("Eats With Spoon",itemEatsWithSpoon);
+        buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
         // items with names from category "Toileting"
         buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
         buttonsAndItemsMap.put("Dresses alone",itemDressesAlone);

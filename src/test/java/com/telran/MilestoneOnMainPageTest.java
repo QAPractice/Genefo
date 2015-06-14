@@ -4,6 +4,8 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.browserlaunchers.locators.GoogleChromeLocator;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,7 +45,7 @@ public class MilestoneOnMainPageTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
-            loginPage.login("mili@mail.ru", "111111");
+            loginPage.login("mili9@mail.ru", "999999");
             assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMilestonePanel();
@@ -209,7 +211,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(groups={"smoke","positive"},enabled = false)
+    @Test(groups={"smoke","positive"})
     public  void SendOtherPostTest() {
         type = "Other";
         year="10";
@@ -244,9 +246,9 @@ public class MilestoneOnMainPageTest {
     2)Months:
     3)Milestone:empty
     4)Message: Length>500*/
-    @Test(enabled = false)
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest1(){
-        post = randomAlphabetic(50);
+        post = randomAlphabetic(500);
         try {
             milestoneOnMainPage
                     .clickOnYearsOption("")
@@ -264,19 +266,19 @@ public class MilestoneOnMainPageTest {
     /*1)Years:abc
      2)Months:&^$
      3)Milestone:Language:abc
-     4)Message:Length:1126*/
-    @Test(enabled = false)
+     4)Message:Length:250*/
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest2(){
         type = "Language";
-        post = randomAlphabetic(50);
+        post = randomAlphabetic(250);
         try {
 
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
                     .clickOnLanguageItemOption("abc")
-                    .clickOnYearsOption("-1")
-                    .clickOnMonthOption("-1")
+                    .clickOnYearsOption("abc")
+                    .clickOnMonthOption("&^$")
                     .fillTextField(post)
                     .sendPost();
             assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
@@ -291,22 +293,21 @@ public class MilestoneOnMainPageTest {
     /* 1)Years:Два
     2)Months:-12
     3)Milestone:Movement:Rolls over
-    4)Message:Length:length>2252*/
-    @Test(enabled = false)
+    4)Message:Length:length>500*/
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest3(){
         type = "Movement";
         milestone = "Rolls over";
-        post = randomAlphabetic(50);
+        post = randomAlphabetic(500);
         try {
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
-                    .clickOnYearsOption("-1")
-                    .clickOnMonthOption("")
-                    .fillTextField("")
+                    .clickOnYearsOption("Два")
+                    .clickOnMonthOption("-12")
+                    .fillTextField(post)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
             assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -318,18 +319,22 @@ public class MilestoneOnMainPageTest {
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
-    @Test(enabled = false)
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest4(){
+        type = "Eating";
+        milestone = "Eats with spoon";
+        post = randomAlphabetic(1);
         try {
-    //        someText = randomAlphabetic(1);
             milestoneOnMainPage
-                    .clickOnEatingOption()
+                    .clickOnElement(type)
                     .clickOnSelectItemOption()
-                    .clickEatsWithSpoonFromEatingList()
+                    .clickOnElement(milestone)
                     .clickOnYearsOption("שלושל")
                     .clickOnMonthOption("-One")
-                    .fillTextField("")
+                    .fillTextField("post")
                     .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -339,15 +344,19 @@ public class MilestoneOnMainPageTest {
     2)Months:36
     3)Milestone:empty
     4)Message:Length:length>2252*/
-    @Test(enabled = false)
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest5(){
+        post = randomAlphabetic(500);
         try {
-      //      someText = randomAlphabetic(11);
+            post = randomAlphabetic(11);
             milestoneOnMainPage
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
-                    .fillTextField("")
+                    .fillTextField("post")
                     .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -357,18 +366,16 @@ public class MilestoneOnMainPageTest {
     2)Months:00
     3)Milestone:empty
     4)Message::empty*/
-    @Test(enabled = false)
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest6(){
         try {
-     //       someText = randomAlphabetic(11);
             milestoneOnMainPage
-                    //   .clickOnLanguageOption()
-                    //   .clickOnSelectItemOption()
-                    //   .clickFirstItemFromLanguageItemList()
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00")
-                    .fillTextField("")
                     .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -378,18 +385,22 @@ public class MilestoneOnMainPageTest {
     2)Months:16
     3)Milestone:Toileting:dresses alone
     4)Message:Length>2252*/
-    @Test(enabled = false)
+    @Test(groups={"smoke","negative"})
     public void MilestoneNegativeTest7(){
+        type = "Toileting";
+        milestone = "Dresses alone";
+        post = randomAlphabetic(500);
         try {
-      //      someText = randomAlphabetic(11);
             milestoneOnMainPage
-                    .clickOnToiletingOption()
-                    //   .clickOnSelectItemOption()
-                    //   .clickFirstItemFromLanguageItemList()
-                    .clickOnYearsOption("עשרים ואחד")
-                    .clickOnMonthOption("00")
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
+                    .clickOnYearsOption("-int")
+                    .clickOnMonthOption("16")
                     .fillTextField("")
                     .sendPost();
+            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }

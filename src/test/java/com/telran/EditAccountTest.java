@@ -4,6 +4,7 @@ import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +14,7 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 
@@ -20,12 +22,12 @@ public class EditAccountTest {
 
     private static int VALID_INPUT_LENGTH=25;
 
-    private static String MY_EMAIL="mili28@mail.ru";
+    private static String MY_EMAIL="mili29@mail.ru";
     private static String MY_Password="123qwee";
     private static String TEMP_EMAIL ="333333@mail.ru";
     private static String TEMP_PASS="111111";
-    private static String MY_FirstName="lev";
-    private static String MY_LastName="magazinnik";
+    private static String MY_FirstName="FirstName here";
+    private static String MY_LastName="LastName here";
     public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
@@ -38,11 +40,7 @@ public class EditAccountTest {
     public void setup(){
 
         TestUtils.addTestToLog();
-        // File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
-        // FirefoxBinary binary = new FirefoxBinary(file);
-        // FirefoxProfile profile = new FirefoxProfile();
-        //  this.driver = new FirefoxDriver(binary, profile);
-        this.driver = new FirefoxDriver();
+        this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -85,128 +83,124 @@ public class EditAccountTest {
         assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
 
     }
-/*
-BUG
-    //Edit 3	Go to Edit Account. 1.Delete the current email.
+
+    @DataProvider
+    private Object[][] updateEmailDataProvider(){
+        return new Object[][]{
+                {"23233@mail.ru",true},
+                {"#dfdsf@mail.ru",false}
+
+        };
+    }
+// BUG on WEB PAGE
+// Edit 3	Go to Edit Account. 1.Delete the current email.
 // 2.Type in the field "Email" another email (valid) and Click the button "Save".
 // 3.Enter the valid current password and click the button "Save".
-    @Test(groups={"smoke","positive"})
-    public void updateEmail(){
+
+    @Test(groups={"smoke","positive","negative"},enabled = true,dataProvider = "updateEmailDataProvider")
+    public void updateEmail(String testEmail,boolean isNotFake){
         TestUtils.addTestToLog();
         thisPage
                 .openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
-        thisPage
-                .fillEmailField(TEMP_EMAIL)
+        boolean alertOK=thisPage
+                .fillEmailField(testEmail)
                 .clickOnSubmitButton1()
                 .fillOldPasswordField(MY_Password)
                 .clickOnSubmitButtonOldPassword()
-                .openEditAccountPage()
-                .waitUntilEditElementIsLoaded();
-        assertEquals(thisPage.getEmailElement().getAttribute("value"), TEMP_EMAIL);
-// return old e-mail
-        thisPage
-                .fillEmailField(MY_EMAIL)
-                .clickOnSubmitButton1()
-                .fillOldPasswordField(MY_Password)
-                .clickOnSubmitButtonOldPassword();
+                .isSuccessAlert();
+        if(isNotFake){
+            assertTrue(alertOK, "Success alert is shown");
+            mainPage.loadPage();
+            thisPage.openEditAccountPage()
+                    .waitUntilEditElementIsLoaded();
+            assertEquals(thisPage.getEmailElement().getAttribute("value"), testEmail, "Check new e-mail after reload");
+
+            mainPage
+                    .openMainPage()
+                    .logOut();
+            boolean errorMess=
+                    loginPage
+                            .openLoginPage()
+                            .waitUntilLoginPageIsLoaded()
+                            .login(testEmail, MY_Password)
+                            .alertMessageInvalidEmail();
+
+            assertFalse(errorMess, "login with new E-mail");
+            // return old e-mail
+            if(!errorMess)
+                thisPage.openEditAccountPage()
+                        .waitUntilEditElementIsLoaded()
+                        .fillEmailField(MY_EMAIL)
+                        .clickOnSubmitButton1()
+                        .fillOldPasswordField(MY_Password)
+                        .clickOnSubmitButtonOldPassword();
+        }
+        else
+            assertFalse(alertOK, "Success alert not shown");
+
+
     }
 
-    //    Edit 4	Go to Edit Account .
-// 1.Delete the current email and type in the field "email" another one."333333@mail.ru" and Click "Save" button.
-// 2.Enter the valid current password and click the button "Save".
-// 3.Logout and login with the e-mail:333333@mail.ru and password:111111.
-    @Test(groups={"smoke","positive"})
-    public void newEmailPassword(){
-        TestUtils.addTestToLog();
-        thisPage
-                .openEditAccountPage()
-                .waitUntilEditElementIsLoaded()
-                .fillEmailField(TEMP_EMAIL)
-                .fillPasswordField(TEMP_PASS)
-                .clickOnSubmitButton1()
-                .fillOldPasswordField(MY_Password)
-                .clickOnSubmitButtonOldPassword();
 
-        mainPage
-                .openMainPage()
-                .logOut();
-        loginPage
-                .openLoginPage()
-                .waitUntilLoginPageIsLoaded()
-                .login(TEMP_EMAIL, TEMP_PASS);
+    @DataProvider
+    public Object[][] passwordDataProvider(){
+        return new Object[][]{
+                {"!@#$%^&*()_+"}   ,
+                {"}{|\":?><|\\"},
+                {",./\\';[]=-"},
+                {"ABCDabcd"},
+                {"123456789111"}
 
-        assertTrue(mainPage.isOnMainPage());
-
-        // return old e-mail
-        thisPage.loadPage();
-        thisPage
-                .waitUntilEditElementIsLoaded()
-                .fillEmailField(MY_EMAIL)
-                .fillPasswordField(MY_Password)
-                .clickOnSubmitButton1()
-                .fillOldPasswordField(TEMP_PASS)
-                .clickOnSubmitButtonOldPassword();
-
+        };
     }
-*/
-
-//    //    Edit 10	Go to Edit Account.
-//// 1.Delete the current password and type new password with length=12 and push the button "Save".
-//// 2.Enter the valid current password. 3.Logout and Login with New password.
-//    @Test(groups={"positive"})
-//    public void newPassword12( ){
-//        TestUtils.addTestToLog();
-//        String testPass="123456789111";
-//        updateAndCheckPassword(testPass);
-//        assertTrue(mainPage.isOnMainPage());
-//        retainOldPassword(MY_Password, testPass);
-//
-//    }
-
-
     //    Edit 11	Go to Edit Account.
-// 1.Delete the current password and type new password with special symbols and push the button "Save".
-// !@#$%^&*()_+}{|":?><|\,./\';[]=-
-// 2.Enter the valid current password.
-// 3.Logout and Login with New password.
-    @Test(groups={"positive"})
-    public void newPasswordSpecSimbols1( ) {
+    // 1.Delete the current password and type new password with special symbols and push the button "Save".
+    @Test(groups={"positive"},dataProvider = "passwordDataProvider")
+    public void newPassword(String testPass ) {
         TestUtils.addTestToLog();
-        String testPass = "!@#$%^&*()_+";
         updateAndCheckPassword(testPass);
         assertTrue(mainPage.isOnMainPage());
 //    Profile should be complited, otherwise it will get to the Profile page.
         retainOldPassword(MY_Password, testPass);
     }
-    @Test(groups={"positive"})
-    public void newPasswordSpecSimbols2( ) {
-        String testPass = "}{|\":?><|\\";
-        updateAndCheckPassword(testPass);
-        assertTrue(mainPage.isOnMainPage());
-        //    Profile should be complited, otherwise it will get to the Profile page.
-        retainOldPassword(MY_Password, testPass);
-    }
-    @Test(groups={"positive"})
-    public void newPasswordSpecSimbols3( ){
-        TestUtils.addTestToLog();
-        String testPass=",./\\';[]=-";
-        updateAndCheckPassword(testPass);
-        assertTrue(mainPage.isOnMainPage());
-        //    Profile should be complited, otherwise it will get to the Profile page.
-        retainOldPassword(MY_Password, testPass);
+
+    @DataProvider
+    public Object[][] longNames(){
+        return new Object[][]{
+                {"qwertyuiopasdfghjklzxcvbne","normal lastName "},
+                {"normal firstName ","qwertyuiopasdfghjklzxcvbne"},
+                {"}{|","normal lastName "},
+                {"normal firstName ","}{|"}
+        };
     }
 
-    //Edit 12	Go to Edit Account.
-// 1.Delete the current password and type new password with Kapital and Lower Key text and push the button "Save".
-// 2.Enter the valid current password. 3.Logout and Login with New password.
-    @Test(groups={"positive"})
-    public void newPasswordKapitalLower( ){
+    @Test(groups={"negative"},dataProvider = "longNames")
+    public void FakeNames(String firstName,String lastName){
         TestUtils.addTestToLog();
-        String testPass="ABCDabcd";
-        assertTrue(updateAndCheckPassword(testPass));
-        assertTrue(mainPage.isOnMainPage());
-        assertTrue(retainOldPassword(MY_Password, testPass));
+
+        thisPage
+                .openEditAccountPage()
+                .waitUntilEditElementIsLoaded()
+                .fillField(thisPage.getFirstNameElement(), firstName)
+                .fillField(thisPage.getLastNameElement(), lastName);
+        if((firstName.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(firstName))&&(lastName.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(lastName)))
+            assertTrue(thisPage.isButton2Clickable());
+        else
+            assertFalse(thisPage.isButton2Clickable());
+
+        thisPage
+                .fillField(thisPage.getFirstNameElement(), MY_FirstName)
+                .fillField(thisPage.getLastNameElement(), MY_LastName)
+                .clickOnSubmitButton2();
+    }
+
+    @AfterClass(alwaysRun=true)
+    public void quiteWindow(){
+
+        this.driver.quit();
+        TestUtils.addTestToLog();
+        TestUtils.logPrint();
     }
     private boolean retainOldPassword(String newPassword,String oldPassword){
 
@@ -239,54 +233,6 @@ BUG
                 .login(MY_EMAIL, evalPass);
 
         return check;
-    }
-
-
-
-    @Parameters("db")
-    @Test(groups={"negative"})
-    public void toolongFirstName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
-        TestUtils.addTestToLog();
-
-        thisPage
-                .openEditAccountPage()
-                .waitUntilEditElementIsLoaded()
-                .fillField(thisPage.getFirstNameElement(), str);
-        if(str.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(str))
-            assertTrue(thisPage.isButton2Clickable());
-        else
-            assertTrue(!thisPage.isButton2Clickable());
-
-        thisPage
-                .fillField(thisPage.getFirstNameElement(), MY_FirstName)
-                .clickOnSubmitButton2();
-    }
-    @Parameters("db")
-    @Test(groups={"negative"})
-    public void toolongLastName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
-        TestUtils.addTestToLog();
-
-        thisPage
-                .openEditAccountPage()
-                .waitUntilEditElementIsLoaded()
-                .fillField(thisPage.getLastNameElement(), str);
-
-        if(str.length()<=VALID_INPUT_LENGTH)
-            assertTrue(thisPage.isButton2Clickable());
-        else
-            assertTrue(!thisPage.isButton2Clickable());
-
-        thisPage
-                .fillField(thisPage.getLastNameElement(), MY_LastName)
-                .clickOnSubmitButton2();
-    }
-
-    @AfterClass(alwaysRun=true)
-    public void quiteWindow(){
-
-        this.driver.quit();
-        TestUtils.addTestToLog();
-        TestUtils.logPrint();
     }
 
 }

@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 public class AddProfilePage extends Page {
 
 
+    @FindBy(xpath = "//div[@class='errormsg']" )
+    WebElement errorMessage;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@name='condition']" )
     WebElement Condition;
@@ -69,8 +71,11 @@ public class AddProfilePage extends Page {
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@name='location']")
     WebElement Patient_Location;
 
-    @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//button[@id='submit']")
-    WebElement ButtonSave;
+    @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//button[@id='submit'][not(contains(@disabled,'disabled'))]")
+    WebElement ButtonSaveActive;
+
+    @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//button[@id='submit'][contains(@disabled,'disabled')]")
+    WebElement ButtonSaveNotActive;
 
     @FindBy(xpath = "//button[contains(text(),'Cancel')]")
     WebElement ButtonCancel;
@@ -85,30 +90,35 @@ public class AddProfilePage extends Page {
 
     }
     public AddProfilePage click_ButtonSave(){
-        ButtonSave.click();
+        ButtonSaveActive.click();
         return this;
+    }
+    public boolean isButtonSaveActive(){
+        try {
+            return  ButtonSaveActive.isDisplayed();
+        }catch (NoSuchElementException e){
+            return false;
+        }
     }
     public AddProfilePage click_ButtonCancel(){
         ButtonCancel.click();
         return this;
     }
 
-
-//    public void selectById(String name, int id){
-//        Select select = new Select(getWebElement(name));
-//        select.selectByIndex(id);
-//    }
-//    public void selectByName(String name, String itemToClick){
-//        Select select = new Select(getWebElement(name));
-//        select.selectByVisibleText(itemToClick);
-//    }
-
     public AddProfilePage select_How_do_you_know(String itemNumber){
         Select select = new Select(How_do_you_know);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
+public boolean isErrorMessage()
+{
+    try {
+      return  errorMessage.isDisplayed();
+    }catch (NoSuchElementException e){
+        return false;
+    }
 
+}
 
     public boolean isMandatoryFieldsPresent(){
         LinkedList<String> allReqField= new LinkedList<String>();
@@ -125,7 +135,7 @@ public class AddProfilePage extends Page {
                 xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'"+s+"')]//span[@class='req_star']";
                 driver.findElement(By.xpath(xpath));
             }
-            xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'Diagnosis')]/..//span[@class='req_star2']";
+            xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'Diagnosis')]/..//span[@class='req_star']";
             driver.findElement(By.xpath(xpath));
         }catch (NoSuchElementException e){
             System.out.println("--------------------------------------------");
@@ -139,39 +149,39 @@ public class AddProfilePage extends Page {
 
     public AddProfilePage select_Patient_Diagnosis_Month(String itemNumber){
         Select select = new Select(Patient_Diagnosis_Month);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
     public AddProfilePage select_Patient_Diagnosis_Year(String itemNumber){
         Select select = new Select(Patient_Diagnosis_Year);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
     public AddProfilePage select_Patient_Diagnosis_Gender(String itemNumber){
         Select select = new Select(Patient_Diagnosis_Gender);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
-    public AddProfilePage select_Patient_Race(int itemNumber){
+    public AddProfilePage select_Patient_Race(String itemName){
         Patient_Race.click();
-        WebElement  element= driver.findElement(By.xpath("//ul[@class='chosen-results']/li["+itemNumber+"]"));
+        WebElement  element= driver.findElement(By.xpath("//ul[@class='chosen-results']/li[contains(text(),'"+itemName+"')]"));
 
         element.click();
         return this;
     }
     public AddProfilePage select_Patient_Birthday_Day(String itemNumber){
         Select select = new Select(Patient_Birthday_Day);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
     public AddProfilePage select_Patient_Birthday_Month(String itemNumber){
         Select select = new Select(Patient_Birthday_Month);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
     public AddProfilePage select_Patient_Birthday_Year(String itemNumber){
         Select select = new Select(Patient_Birthday_Year);
-        select.selectByValue(itemNumber);
+        select.selectByVisibleText(itemNumber);
         return this;
     }
 
@@ -224,7 +234,7 @@ public class AddProfilePage extends Page {
 
 
     public WebElement get_Create_New_Profile(){
-        return My_Profiles;
+        return Create_New_Profile;
     }
 
 

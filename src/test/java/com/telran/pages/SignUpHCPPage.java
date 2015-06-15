@@ -29,9 +29,15 @@ public class SignUpHCPPage extends Page{
     @FindBy(xpath = "//*[@class='col-sm-2 control-label' and contains(.,'Last') and contains(.,'*')]")
     WebElement lastNameLableHCP;
 
+    @FindBy(xpath = "//*[@id='myModalLabel']")
+    WebElement termOfSeviceLable;
+
     //buttons
     @FindBy(id = "submit")
     WebElement signUpHCPButton;
+
+    @FindBy(xpath = "//*[@class='ng-pristine ng-valid']/a")
+    WebElement termOfServiceLink;
 
     //checkboxs
     @FindBy(name = "isOver18")
@@ -67,7 +73,23 @@ public class SignUpHCPPage extends Page{
 
     public SignUpHCPPage openHCPRegPage() {
         driver.get(PAGE_URL);
-        waitUntilSignUpHCP_PageIsLoaded();
+        waitUntilSignUpHCPPageIsLoaded();
+        return this;
+    }
+
+    public SignUpHCPPage openTOSPage() {
+        waitUntilTOSPageIsLoaded();
+        return this;
+    }
+
+    private SignUpHCPPage waitUntilTOSPageIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(termOfSeviceLable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
@@ -91,7 +113,7 @@ public class SignUpHCPPage extends Page{
         return this;
     }
 
-    public SignUpHCPPage waitUntilSignUpHCP_PageIsLoaded() {
+    public SignUpHCPPage waitUntilSignUpHCPPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(lastNameLableHCP);
         } catch (IOException e) {
@@ -117,9 +139,18 @@ public class SignUpHCPPage extends Page{
         return this;
     }
 
+    public SignUpHCPPage clickOnTermOfService() {
+        clickElement(termOfServiceLink);
+        return this;
+    }
+
 
     public boolean isOnSignUpHCPPage() {
         return exists(checkBox18);
+    }
+
+    public boolean isOnTOSage() {
+        return exists(termOfSeviceLable);
     }
 
     //check alert presence
@@ -148,7 +179,7 @@ public class SignUpHCPPage extends Page{
         return exists(alertToCheckBoxAgree);
     }
 
-}
+    }
 
 
 

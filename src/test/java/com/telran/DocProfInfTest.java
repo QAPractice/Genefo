@@ -7,6 +7,7 @@ import com.telran.pages.ProfileDoctorPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -32,7 +33,7 @@ public class DocProfInfTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new ChromeDriver();
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -69,7 +70,22 @@ public class DocProfInfTest {
                     .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"})
+    public void AddWorkPlaceInf() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("Ikhilov")
+                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
+                    .clickOnAddWorkPlacesButton()
+                    .clickOnDoneButton();
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,24 +103,51 @@ public class DocProfInfTest {
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("")
                     .clickOnDoneButton();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test(groups = {"smoke", "negative"})
-    public void AddEmptySpecialtiesFields() {
+     public void AddEmptySpecialtiesFields() {
 
         try {
             docProfInfPage
                     .fillSpecialtiesField("")
                     .clickOnAddSpecialtiesDisButton();
-            assertTrue(docProfInfPage.isOnDocProfInfPage());
+            assertTrue("The current page is changed",docProfInfPage.isOnDocProfInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @Test(groups = {"negative"})
+    public void AddEmptyLocationWPandFillNameWPFields() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("Assuta")
+                    .fillWorkPlacesLocationField("");
+            assertTrue("The button add work place is clickable",docProfInfPage.isAddWorkPlacesDisButtonExists());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"negative"})
+    public void AddEmptyLocationWPandNameWPFields() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("")
+                    .fillWorkPlacesLocationField("");
+            assertTrue("The button add work place is clickable",docProfInfPage.isAddWorkPlacesDisButtonExists());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

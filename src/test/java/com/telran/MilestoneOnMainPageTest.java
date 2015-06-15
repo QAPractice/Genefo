@@ -4,6 +4,8 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,7 +41,7 @@ public class MilestoneOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new InternetExplorerDriver();
+        this.driver = new FirefoxDriver();
         // this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -88,10 +90,10 @@ public class MilestoneOnMainPageTest {
                 .sendPost()
                 .waitForPostLoaded();
                  sleep(3000);
-        assertTrue(milestoneOnMainPage.isTypeTrue(type));
-        assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-        assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-        assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        assertTrue("Alert: 'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
+        assertTrue("Alert: 'Milestone is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
+        assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+        assertTrue("Alert :'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,10 +118,10 @@ public class MilestoneOnMainPageTest {
                 .sendPost()
                 .waitForPostLoaded();
                  sleep(3000);
-        assertTrue(milestoneOnMainPage.isTypeTrue(type));
-        assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-        assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-        assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        assertTrue("Alert: 'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
+        assertTrue("Alert: 'Milestone is not correct'",      milestoneOnMainPage.isMilestoneTrue(milestone));
+        assertTrue("Alert:'The age is not correct'",         milestoneOnMainPage.isAgeIsCorrect(age));
+        assertTrue("Alert :'The text is not correct'" ,      milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -146,10 +148,10 @@ public class MilestoneOnMainPageTest {
                     .sendPost()
                     .waitForPostLoaded();
                      sleep(3000);
-            assertTrue(milestoneOnMainPage.isTypeTrue(type));
-            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+            assertTrue("Alert: 'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Alert :'Milestone is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue("Alert :'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert :'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,10 +177,10 @@ public class MilestoneOnMainPageTest {
                     .sendPost()
                     .waitForPostLoaded();
             sleep(3000);
-            assertTrue(milestoneOnMainPage.isTypeTrue(type));
-            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+            assertTrue("Alert: 'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Alert: 'Milestone  is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue("Alert :'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert :'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,10 +206,10 @@ public class MilestoneOnMainPageTest {
                     .sendPost()
                     .waitForPostLoaded();
             sleep(3000);
-            assertTrue(milestoneOnMainPage.isTypeTrue(type));
-            assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+            assertTrue("Alert: 'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Alert: 'Milestone  is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue("Alert: 'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert: 'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -232,10 +234,10 @@ public class MilestoneOnMainPageTest {
                     .sendPost()
                     .waitForPostLoaded();
             sleep(3000);
-            assertTrue("Milestone type in wrong", milestoneOnMainPage.isTypeTrue(type));
-            assertTrue(milestoneOnMainPage.isOtherTextCorrect(textOtherField));
-            assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue(milestoneOnMainPage.isTextCorrect(post));
+            assertTrue("Alert: 'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Alert: 'Milestone  is not correct'",milestoneOnMainPage.isOtherTextCorrect(textOtherField));
+            assertTrue("Alert: 'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert: 'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -258,7 +260,7 @@ public class MilestoneOnMainPageTest {
                     .fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -283,9 +285,9 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("&^$")
                     .fillTextField(post)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -310,8 +312,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-12")
                     .fillTextField(post)
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -335,8 +337,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-One")
                     .fillTextField("post")
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -350,14 +352,15 @@ public class MilestoneOnMainPageTest {
     public void MilestoneNegativeTest5(){
         post = randomAlphabetic(500);
         try {
+            post = randomAlphabetic(11);
             milestoneOnMainPage
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("36")
                     .fillTextField("post")
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -374,9 +377,9 @@ public class MilestoneOnMainPageTest {
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00")
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -398,14 +401,23 @@ public class MilestoneOnMainPageTest {
                     .clickOnElement(milestone)
                     .clickOnYearsOption("-int")
                     .clickOnMonthOption("16")
-                    .fillTextField(post)
+                    .fillTextField("")
                     .sendPost();
-            assertTrue(milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue(milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    /*1)Years:-int
+    2)Months:16
+    3)Milestone:Toileting:dresses alone
+    4)Message:Length>2252*/
+
+
+
+
 
 
     @AfterClass(alwaysRun = true)

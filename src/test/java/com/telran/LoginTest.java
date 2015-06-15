@@ -52,7 +52,7 @@ public class LoginTest {
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-            assertTrue(mainPage.isOnMainPage());
+            assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,8 +68,8 @@ public class LoginTest {
                     .fillEmailField("osh_il+4yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-            assertTrue(loginPage.alertMessageInvalidEmail());
-            assertTrue(loginPage.isOnLoginPage());
+            assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
+            assertTrue("The current page is changed",loginPage.isOnLoginPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,8 +84,8 @@ public class LoginTest {
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("1")
                     .clickOnLogin();
-            assertTrue(loginPage.alertMessageInvalidPassword());
-            assertTrue(loginPage.isOnLoginPage());
+            assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
+            assertTrue("The current page is changed",loginPage.isOnLoginPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class LoginTest {
             loginPage
                     .openLoginPage()
                     .clickOnForgotPasswordLink();
-            assertTrue(resetYourPasswordPage.isOnResetPage());
+            assertTrue("The Reset Password Page doesn't open",resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
             resetYourPasswordPage.clickOnEmailMe();
         } catch (Exception e) {
@@ -116,9 +116,9 @@ public class LoginTest {
                     .fillEmailField("")
                     .fillPasswordField("")
                     .clickOnLogin();
-            assertTrue(loginPage.alertMessageInvalidEmail());
-            assertTrue(loginPage.alertMessageInvalidPassword());
-            assertTrue(loginPage.isOnLoginPage());
+            assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
+            assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
+            assertTrue("The current page is changed",loginPage.isOnLoginPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

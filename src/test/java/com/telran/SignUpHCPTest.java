@@ -3,6 +3,8 @@ package com.telran;
 import com.telran.pages.HomePage;
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
+import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -33,7 +35,8 @@ public class SignUpHCPTest {
 
     @BeforeClass
     public void setup() {
-
+        //this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+        //this.driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -71,7 +74,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,8 +96,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,8 +118,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidFirstName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,8 +141,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidPassword());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Password is valid",signUpHCPPage.alertMessageNotValidPassword());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,8 +162,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,8 +185,8 @@ public class SignUpHCPTest {
                     .fillEmailField(email)
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNonChecked18());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The age verification has passed",signUpHCPPage.alertMessageNonChecked18());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -204,8 +207,8 @@ public class SignUpHCPTest {
                     .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNonCheckedTerms());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The terms verification has passed",signUpHCPPage.alertMessageNonCheckedTerms());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -229,8 +232,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -252,8 +255,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -274,8 +277,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,8 +299,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -319,8 +322,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -341,8 +344,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -363,8 +366,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -389,8 +392,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidEmail());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -414,8 +417,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidPassword());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Password is valid",signUpHCPPage.alertMessageNotValidPassword());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -438,8 +441,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidPassword());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Password is valid",signUpHCPPage.alertMessageNotValidPassword());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -463,8 +466,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidFirstName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -487,8 +490,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidFirstName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -511,8 +514,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidFirstName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -535,8 +538,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidFirstName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -560,8 +563,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -583,8 +586,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -607,8 +610,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -630,8 +633,8 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue(signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue(signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -658,7 +661,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -682,7 +685,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -708,7 +711,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -733,7 +736,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -758,7 +761,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -783,7 +786,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -809,7 +812,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -833,7 +836,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -857,7 +860,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -883,7 +886,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -907,7 +910,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -934,7 +937,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -958,8 +961,22 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"})
+    public void TermOfServiceClick() {
+
+        try {
+            signUpHCPPage
+                    .openHCPRegPage()
+                    .clickOnTermOfService()
+                    .openTOSPage();
+            assertTrue("Term Of Service Page doesn't open",signUpHCPPage.isOnTOSage());
         } catch (Exception e) {
             e.printStackTrace();
         }

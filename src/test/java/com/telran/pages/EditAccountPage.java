@@ -1,6 +1,7 @@
 package com.telran.pages;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -150,12 +151,13 @@ public class EditAccountPage extends Page{
 
         try {
             waitUntilElementIsLoaded(changesSuccessAlert);
+            return exists(changesSuccessAlert);
         } catch (IOException e) {
             return false;
         } catch (InterruptedException e) {
             return false;
         }
-    return exists(changesSuccessAlert);
+
     }
 
     public boolean isButton1Clickable(){

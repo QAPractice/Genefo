@@ -112,6 +112,10 @@ public class DocProfInfPage extends Page{
         return exists(profInfTitle);
     }
 
+    public boolean isAddWorkPlacesDisButtonExists() {
+        return exists(addWorkPlacesDisButton);
+    }
+
     public DocProfInfPage fillSpecialtiesField(String specialties) {
         setElementText(specField, specialties);
         return this;

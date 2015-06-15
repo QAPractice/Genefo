@@ -76,6 +76,21 @@ public class DocProfInfTest {
         }
     }
 
+    @Test(groups = {"positive"})
+    public void AddWorkPlaceInf() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("Ikhilov")
+                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
+                    .clickOnAddWorkPlacesButton()
+                    .clickOnDoneButton();
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test(groups = {"smoke", "positive"})
     public void AddEmptyFields() {
 
@@ -95,7 +110,7 @@ public class DocProfInfTest {
     }
 
     @Test(groups = {"smoke", "negative"})
-    public void AddEmptySpecialtiesFields() {
+     public void AddEmptySpecialtiesFields() {
 
         try {
             docProfInfPage
@@ -106,6 +121,33 @@ public class DocProfInfTest {
             e.printStackTrace();
         }
     }
+
+    @Test(groups = {"negative"})
+    public void AddEmptyLocationWPandFillNameWPFields() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("Assuta")
+                    .fillWorkPlacesLocationField("");
+            assertTrue("The button add work place is clickable",docProfInfPage.isAddWorkPlacesDisButtonExists());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"negative"})
+    public void AddEmptyLocationWPandNameWPFields() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("")
+                    .fillWorkPlacesLocationField("");
+            assertTrue("The button add work place is clickable",docProfInfPage.isAddWorkPlacesDisButtonExists());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

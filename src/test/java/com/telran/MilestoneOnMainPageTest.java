@@ -5,6 +5,7 @@ import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,7 +41,7 @@ public class MilestoneOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new ChromeDriver();
+        this.driver = new FirefoxDriver();
         // this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -259,7 +260,7 @@ public class MilestoneOnMainPageTest {
                     .fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -285,8 +286,8 @@ public class MilestoneOnMainPageTest {
                     .fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -311,8 +312,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-12")
                     .fillTextField(post)
                     .sendPost();
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -336,8 +337,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-One")
                     .fillTextField("post")
                     .sendPost();
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -358,8 +359,8 @@ public class MilestoneOnMainPageTest {
                     .fillTextField("post")
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -377,8 +378,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("00")
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -402,8 +403,8 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("16")
                     .fillTextField("")
                     .sendPost();
-            assertTrue("Alert: 'Milestone Month is not correct'",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert: 'Milestone Year is not correct'",milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert: 'Numbers only'",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }

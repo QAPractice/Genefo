@@ -75,7 +75,7 @@ public class DocAcInfTest {
                     .fillPasswordField("111111")
                     .fillEmailField("one" + EmailNickname + "@usgenefo.com")
                     .clickOnSaveButton();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,7 +85,7 @@ public class DocAcInfTest {
     public void ClickOnCancel() {
 
         try {
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,9 +99,9 @@ public class DocAcInfTest {
                     .fillPasswordField("")
                     .fillEmailField("")
                     .clickOnSaveButton();
-            assertTrue(docAcInfPage.alertMessageInvalidEmail());
-            assertTrue(docAcInfPage.alertMessageInvalidPassword());
-            assertTrue(docAcInfPage.isOnDocAcInfPage());
+            assertTrue("The Email is valid",docAcInfPage.alertMessageInvalidEmail());
+            assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
+            assertTrue("The current page is changed",docAcInfPage.isOnDocAcInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

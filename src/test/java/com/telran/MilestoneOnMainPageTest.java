@@ -89,8 +89,8 @@ public class MilestoneOnMainPageTest {
                 .sendPost()
                 .waitForPostLoaded();
                  sleep(3000);
-        assertTrue("Alert: 'Milestone type is not corect'",milestoneOnMainPage.isTypeTrue(type));
-        assertTrue("Alert: 'Milestone is not corect'",milestoneOnMainPage.isMilestoneTrue(milestone));
+        assertTrue("Alert: 'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
+        assertTrue("Alert: 'Milestone is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
         assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
         assertTrue("Alert :'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {

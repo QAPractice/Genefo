@@ -19,8 +19,12 @@ public class MyProfilesPage extends Page {
     WebElement MyProfilesLable;
 
     //Button
-    @FindBy(xpath = "//*[@class=\"btn-add-profile\"]/i")
+    @FindBy(xpath = "//div[@class='panel-body']//div[@class='btn-add-profile']/i")
     WebElement addPlusButton;
+
+    @FindBy(xpath = "//ul[@class='people_list people_list_in_profiles']/*[2]//div[@class='profileName ng-binding']")
+    WebElement secondProfile;
+
     public MyProfilesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -30,7 +34,6 @@ public class MyProfilesPage extends Page {
         driver.get(PAGE_URL);
         return this;
     }
-
         public void waitUntilMyProfilesPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(addPlusButton);
@@ -40,14 +43,15 @@ public class MyProfilesPage extends Page {
             e.printStackTrace();
         }
     }
-
     public boolean isOnMyProfilesPage() {
         waitUntilMyProfilesPageIsLoaded();
         return exists(addPlusButton);
     }
-
     public void clickToPlus() {
         clickElement(addPlusButton);
+    }
+    public void clickSecondProfile() {
+        clickElement(secondProfile);
     }
 
 

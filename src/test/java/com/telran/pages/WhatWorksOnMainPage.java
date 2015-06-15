@@ -45,6 +45,11 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[contains(text(),'Please select a specific item')]/../div/b")
     WebElement selectItemListButton;
 
+    // Here we distinguish list that chosen, from list that is not chosen
+    @FindBy(xpath = "//div[contains(@class,'chosen-with-drop chosen-container-active')]//span[contains(text(),'Please select a specific item')]")
+    WebElement ItemListButtonThatChosen;
+
+
     //elements of dropdown list
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement firstItemInList;
@@ -129,7 +134,7 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://genefo.com/home";
+        //this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen
@@ -256,6 +261,10 @@ public class WhatWorksOnMainPage extends Page {
 
     public Boolean verifyFourthStarNonCheckedInSentPost()  {
         return exists(nonFilledFourthStarInSentPost);
+    }
+
+    public Boolean verifyItemListIsChosen()  {
+        return exists(ItemListButtonThatChosen);
     }
 
 

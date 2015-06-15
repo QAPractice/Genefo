@@ -4,11 +4,14 @@ import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocAcInfPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
@@ -52,6 +55,17 @@ public class DocAcInfTest {
         }
     }
 
+//    @BeforeMethod
+//    public void beforemethodsetup() {
+//        loginPage.login("osh_il+4@yahoo.com","111111");
+//        mainPage.waitUntilMainPageIsLoaded();
+//        mainPage.selectMyAccount();
+//        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+//        profileDoctorPage.clickOnEditAccInf();
+//        docAcInfPage.waitUntilDocAcInfPageIsLoaded();
+//
+//    }
+
     @Test(groups = {"smoke", "positive"})
     public void EditAccInfSuccess() {
 
@@ -61,7 +75,7 @@ public class DocAcInfTest {
                     .fillPasswordField("111111")
                     .fillEmailField("one" + EmailNickname + "@usgenefo.com")
                     .clickOnSaveButton();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,7 +85,7 @@ public class DocAcInfTest {
     public void ClickOnCancel() {
 
         try {
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,9 +99,9 @@ public class DocAcInfTest {
                     .fillPasswordField("")
                     .fillEmailField("")
                     .clickOnSaveButton();
-            assertTrue(docAcInfPage.alertMessageInvalidEmail());
-            assertTrue(docAcInfPage.alertMessageInvalidPassword());
-            assertTrue(docAcInfPage.isOnDocAcInfPage());
+            assertTrue("The Email is valid",docAcInfPage.alertMessageInvalidEmail());
+            assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
+            assertTrue("The current page is changed",docAcInfPage.isOnDocAcInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

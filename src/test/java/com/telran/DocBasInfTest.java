@@ -64,7 +64,7 @@ public class DocBasInfTest {
                     .selectYear("70")
                     .fillLocationField("afr")
                     .clickOnSaveButton();
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,7 +74,7 @@ public class DocBasInfTest {
     public void ClickOnCancel() {
 
         try {
-            assertTrue(profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,9 +88,9 @@ public class DocBasInfTest {
                     .fillFirstNameField("")
                     .fillLastNameField("")
                     .clickOnSaveDisableButton();
-            assertTrue(docBasInfPage.alertMessageInvalidFirstName());
-            assertTrue(docBasInfPage.alertMessageInvalidLastName());
-            assertTrue(docBasInfPage.isOnDocBasInfPage());
+            assertTrue("The First Name is valid",docBasInfPage.alertMessageInvalidFirstName());
+            assertTrue("The Last Name is valid",docBasInfPage.alertMessageInvalidLastName());
+            assertTrue("The current page is changed",docBasInfPage.isOnDocBasInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -29,7 +29,7 @@ public class MedicineOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
+        this.driver = new FirefoxDriver(); //new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -76,8 +76,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            //assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -89,8 +89,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithFullMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "Aspirin";
-        String newReason = "pruritus";
+        String newName = "folic acid";
+        String newReason = "drowsiness";
 
         try {
             medicineOnMainPage
@@ -137,7 +137,7 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            // assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -148,8 +148,8 @@ public class MedicineOnMainPageTest {
     @Test(groups = {"positive"})
     public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
         String text = "take with food or milk";
-        String newName = "INSULIN";
-        String newReason = "HIGH BLOOD SUGAR";
+        String newName = "VALIDOLUM";
+        String newReason = "PALPITATION";
 
         try {
             medicineOnMainPage
@@ -165,8 +165,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -176,9 +176,9 @@ public class MedicineOnMainPageTest {
 
     @Test(groups = {"positive"})
     public void sendMedicineWithSpecialCharactersTest() {
-        String text = "~`!@#$%^&*()_+<>?:\"{}[];’";
-        String newName = "~`!@#$%^&*()_+<>?:\"{}[];’";
-        String newReason = "~`!@#$%^&*()_+<>?:\"{}[];’";
+        String text = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
+        String newName = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
+        String newReason = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
 
         try {
             medicineOnMainPage
@@ -194,8 +194,8 @@ public class MedicineOnMainPageTest {
             assertTrue(mainPage.verifyTextFromSentPost(text));
             assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
             assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            // assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            //    assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {
@@ -207,7 +207,7 @@ public class MedicineOnMainPageTest {
 
     //Negative tests
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
@@ -227,7 +227,7 @@ public class MedicineOnMainPageTest {
     }
 
     //Rating with blank mandatory field
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void sendMedicineRatingWithBlankMandatoryFieldTest() {
 
 

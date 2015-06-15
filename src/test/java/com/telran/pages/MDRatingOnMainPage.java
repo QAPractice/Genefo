@@ -37,7 +37,6 @@ public class MDRatingOnMainPage extends Page {
     WebElement facilityOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement physicianOnNewCreatedPost;
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
     WebElement textInCreatedPost;
     //Title
@@ -47,14 +46,11 @@ public class MDRatingOnMainPage extends Page {
     @FindBy(id = "submit")
     WebElement postButton;
 
-
-
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://genefo.com/home";
+        this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
-
     // Waits until title of our 'MD Rating' Panel appears on the screen
     public void waitUntilMDRatingPanelIsLoaded() {
         try {
@@ -65,24 +61,20 @@ public class MDRatingOnMainPage extends Page {
             e.printStackTrace();
         }
     }
-
     // Checks that title of our 'MD Rating' Panel have appeared on the screen so we can work with it.
     public boolean isOnMDRatingPanel() {
         waitUntilMDRatingPanelIsLoaded();
         return exists(medicalFacilityTitle);
     }
-
     public MDRatingOnMainPage fillMedicalFacilityField(String medicalFacility) {
         setElementText(medicalFacilityField, medicalFacility);
         return this;
     }
-
     public MDRatingOnMainPage fillPhysicianFields(String fNPhysician, String lNPhysician) {
         setElementText(physicianFirstNField, fNPhysician);
         setElementText(physicianLastNField, lNPhysician);
         return this;
     }
-
     // We need to click on all stars together to set free each one of them
     public MDRatingOnMainPage clickOnAllStarsTogether() {
         clickElement(allStarsTogether);
@@ -93,12 +85,10 @@ public class MDRatingOnMainPage extends Page {
         clickElement(thirdRatingStar);
         return this;
     }
-
     public MDRatingOnMainPage fillTextField(String post) {
         setElementText(postField, post);
         return this;
     }
-
     public MDRatingOnMainPage sendPost() {
         clickElement(postButton);
         return this;
@@ -116,30 +106,18 @@ public class MDRatingOnMainPage extends Page {
             e.printStackTrace();
         }
     }
-
     public boolean isThirdStarChecked() {
         waitUntilNewPostisLoaded();
         return exists(checkedThirdStarInPost);
     }
-
     public boolean isFacilityNameCorrect(String name){
         return verifyTextBoolean(facilityOnNewCreatedPost, name);
-
     }
-
-    public boolean isPhysicianFirstNameCorrect(String name) {
-        return verifyTextBoolean(physicianFirstNField, name);
-
+    public boolean isPhysicianNameCorrect(String name) {
+        return verifyTextBoolean(physicianOnNewCreatedPost, name);
     }
-
-    public boolean isPhysicianLastNameCorrect(String name) {
-        return verifyTextBoolean(physicianFirstNField, name);
-
-    }
-
     public boolean isTextCorrect(String name) {
         return verifyTextBoolean(textInCreatedPost, name);
-
     }
 
 }

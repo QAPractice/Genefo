@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class PostOnMainPage extends Page{
 
-    // Serves as indication that we are on 'Post' Panel.
-    //@FindBy(xpath = "//a[@class='active'][@ng-click='setType('general')']")
+    // Serves as indication that we are on 'Post' Panel. We need double quota inside. Do not remove it, please
+    @FindBy(xpath = "//a[@class='active'][@ng-click=\"setType('general')\"]")
     WebElement postButtonChecked;
 
     // text field for posting
@@ -27,7 +27,7 @@ public class PostOnMainPage extends Page{
     public PostOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://genefo.com/home";
+        //this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

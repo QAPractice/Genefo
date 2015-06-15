@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 /**
- * aka Landing page - first page of the website -  in our case http://genefo.com
+ * aka Landing page - first page of the website -  in our case http://52.10.6.51:8080
  * Oleg
  */
 public class HomePage extends Page {
@@ -30,7 +30,7 @@ public class HomePage extends Page {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
-        this.PAGE_URL = "http://genefo.com";
+        this.PAGE_URL = "http://52.10.6.51:8080";
         PageFactory.initElements(driver, this);
     }
 

@@ -5,14 +5,11 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.util.TestUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -23,7 +20,7 @@ public class EditAccountTest {
 
     private static int VALID_INPUT_LENGTH=25;
 
-    private static String MY_EMAIL="123qweee@mail.ru";
+    private static String MY_EMAIL="mili28@mail.ru";
     private static String MY_Password="123qwee";
     private static String TEMP_EMAIL ="333333@mail.ru";
     private static String TEMP_PASS="111111";
@@ -41,10 +38,11 @@ public class EditAccountTest {
     public void setup(){
 
         TestUtils.addTestToLog();
-        File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
-        FirefoxBinary binary = new FirefoxBinary(file);
-        FirefoxProfile profile = new FirefoxProfile();
-        this.driver = new FirefoxDriver(binary, profile);
+        // File file = new File("C://Users//E.Frumker//AppData//Local//Mozilla Firefox//firefox.exe");
+        // FirefoxBinary binary = new FirefoxBinary(file);
+        // FirefoxProfile profile = new FirefoxProfile();
+        //  this.driver = new FirefoxDriver(binary, profile);
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -76,13 +74,19 @@ public class EditAccountTest {
         thisPage.openEditAccountPage()
                 .waitUntilEditElementIsLoaded();
 
-
+        System.out.println(thisPage.getEmailElement().getAttribute("value"));
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertEquals(thisPage.getEmailElement().getAttribute("value"), MY_EMAIL);
         assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
         assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
 
     }
-
+/*
+BUG
     //Edit 3	Go to Edit Account. 1.Delete the current email.
 // 2.Type in the field "Email" another email (valid) and Click the button "Save".
 // 3.Enter the valid current password and click the button "Save".
@@ -145,20 +149,7 @@ public class EditAccountTest {
                 .clickOnSubmitButtonOldPassword();
 
     }
-
-//    // Edit 5	Go to Edit Account.
-//// 1.Delete the current password and type new password in english and push the button "Save".
-//// 2.Enter the valid current password. 3.Logout and Login with New password.
-//    @Test(groups={"positive"})
-//    public void newPassword( ){
-//        TestUtils.addTestToLog();
-//        String testPass=TEMP_PASS;
-//        updateAndCheckPassword(testPass);
-//        assertTrue(mainPage.isOnMainPage());
-//        retainOldPassword(MY_Password, testPass);
-//
-//    }
-
+*/
 
 //    //    Edit 10	Go to Edit Account.
 //// 1.Delete the current password and type new password with length=12 and push the button "Save".
@@ -254,7 +245,7 @@ public class EditAccountTest {
 
     @Parameters("db")
     @Test(groups={"negative"})
-    public void fakeFirstName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
+    public void toolongFirstName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
         TestUtils.addTestToLog();
 
         thisPage
@@ -272,7 +263,7 @@ public class EditAccountTest {
     }
     @Parameters("db")
     @Test(groups={"negative"})
-    public void fakeLastName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
+    public void toolongLastName(@Optional("qwertyuiopasdfghjklzxcvbne")String str){
         TestUtils.addTestToLog();
 
         thisPage
@@ -289,10 +280,6 @@ public class EditAccountTest {
                 .fillField(thisPage.getLastNameElement(), MY_LastName)
                 .clickOnSubmitButton2();
     }
-
-
-
-
 
     @AfterClass(alwaysRun=true)
     public void quiteWindow(){

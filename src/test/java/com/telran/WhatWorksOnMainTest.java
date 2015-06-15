@@ -9,12 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.assertFalse;
 
 /**
  * Created by alex on 5/29/2015.
@@ -45,16 +47,28 @@ public class WhatWorksOnMainTest {
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
             assertTrue(mainPage.isOnMainPage());
-            mainPage.waitUntilMainPageIsLoaded()
-                            .openWhatWorksButtonPanel();
-            whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
+            mainPage.waitUntilMainPageIsLoaded();
+                           // .openWhatWorksButtonPanel();
+           // whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }   // We fill data structures, that we defined in whatWorksOnMainPage class.
         whatWorksOnMainPage.defineOptionsLocatorAndItemList();
     }
 
-    @Test
+    @BeforeMethod
+    public void beforemethodsetup() {
+
+        mainPage.openMainPage();
+        assertTrue(mainPage.isOnMainPage());
+        mainPage.waitUntilMainPageIsLoaded()
+                            .openWhatWorksButtonPanel();
+        whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
+    }
+
+
+// 1
+    @Test(groups = {"smoke", "positive"})
     public void SendPostTest() {
         String text = "My Fifth Post" ;
         String otherItem = "Hard work is good for everyone" ;
@@ -98,6 +112,52 @@ public class WhatWorksOnMainTest {
             e.printStackTrace();
         }
     }
+
+// 2
+    @Test(groups = {"smoke", "negative"})
+    public void EmptyCategoryTest() {
+        String text = "My Empty Category Post";
+        try {
+                whatWorksOnMainPage.clickOnItemList();
+            // here we check that we can not choose from the list if our Category is empty
+                assertFalse(whatWorksOnMainPage.verifyItemListIsChosen() );
+                whatWorksOnMainPage
+                                .clickOnAllStarsTogether()
+                                .rateItThree()                //Click on the third star
+                                .fillTextField(text)
+                                .sendPost();
+            sleep(3000); // wait  to see sent post.
+            assertFalse(whatWorksOnMainPage.verifyTextFromSentPost(text));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    // 3
+    @Test(groups = {"smoke", "negative"})
+    public void EmptyListItemTest() {
+        String text = "My Empty Category Item Post";
+        // String category = "Therapy";
+        // String category = "Equipment";
+        // String category = "Nutrition";
+        // String category = "Exercises";
+        //String category = "Alternative";
+        String category = "Other";
+        try {
+            whatWorksOnMainPage
+                    .clickOnOption(category)
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+            sleep(3000); // wait  to see sent post.
+            assertFalse(whatWorksOnMainPage.verifyTextFromSentPost(text) );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

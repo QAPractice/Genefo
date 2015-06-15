@@ -70,13 +70,13 @@ public class DocProfInfPage extends Page{
     WebElement doneButton;
 
     //fields
-    @FindBy(xpath ="//*[@aria-owns='typeahead-1FT-2349']" )
+    @FindBy(xpath ="//*[contains( @typeahead,'HCPspecialties')]" )
     WebElement specField;
-    @FindBy(xpath ="//*[@aria-owns='typeahead-1FU-1901']" )
+    @FindBy(xpath ="//*[contains( @typeahead,'subspecialty')]" )
     WebElement subspecField;
     @FindBy(id="titles" )
     WebElement titleField;
-    @FindBy(xpath ="//*[@aria-owns='typeahead-1FV-5967']" )
+    @FindBy(xpath ="//*[contains( @typeahead,'areaofinterest')]" )
     WebElement areasField;
     @FindBy(id="workplacename")
     WebElement workNameField;
@@ -92,7 +92,7 @@ public class DocProfInfPage extends Page{
 
     public DocProfInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://genefo.com/account_hcp/hcp";
+        this.PAGE_URL = "http://52.10.6.51:8080/account_hcp/hcp";
         PageFactory.initElements(driver, this);
     }
 

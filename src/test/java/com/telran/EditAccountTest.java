@@ -87,7 +87,8 @@ public class EditAccountTest {
     @DataProvider
     private Object[][] updateEmailDataProvider(){
         return new Object[][]{
-                {"23233@mail.ru"}
+                {"23233@mail.ru",true},
+                {"#dfdsf@mail.ru",false}
 
         };
     }
@@ -96,8 +97,8 @@ public class EditAccountTest {
 // 2.Type in the field "Email" another email (valid) and Click the button "Save".
 // 3.Enter the valid current password and click the button "Save".
 
-    @Test(groups={"smoke","positive"},enabled = true,dataProvider = "updateEmailDataProvider")
-    public void updateEmail(String testEmail){
+    @Test(groups={"smoke","positive","negative"},enabled = true,dataProvider = "updateEmailDataProvider")
+    public void updateEmail(String testEmail,boolean isNotFake){
         TestUtils.addTestToLog();
         thisPage
                 .openEditAccountPage()
@@ -108,33 +109,37 @@ public class EditAccountTest {
                 .fillOldPasswordField(MY_Password)
                 .clickOnSubmitButtonOldPassword()
                 .isSuccessAlert();
-        assertTrue(alertOK, "Success alert is shown");
-
-        mainPage.loadPage();
-        thisPage.openEditAccountPage()
-                .waitUntilEditElementIsLoaded();
-        assertEquals(thisPage.getEmailElement().getAttribute("value"), testEmail, "Check new e-mail after reload");
-
-        mainPage
-                .openMainPage()
-                .logOut();
-        boolean errorMess=
-        loginPage
-                .openLoginPage()
-                .waitUntilLoginPageIsLoaded()
-                .login(testEmail, MY_Password)
-                .alertMessageInvalidEmail();
-
-        assertFalse(errorMess,"login with new E-mail");
-
-// return old e-mail
-        if(!errorMess)
+        if(isNotFake){
+            assertTrue(alertOK, "Success alert is shown");
+            mainPage.loadPage();
             thisPage.openEditAccountPage()
-                    .waitUntilEditElementIsLoaded()
-                    .fillEmailField(MY_EMAIL)
-                    .clickOnSubmitButton1()
-                    .fillOldPasswordField(MY_Password)
-                    .clickOnSubmitButtonOldPassword();
+                    .waitUntilEditElementIsLoaded();
+            assertEquals(thisPage.getEmailElement().getAttribute("value"), testEmail, "Check new e-mail after reload");
+
+            mainPage
+                    .openMainPage()
+                    .logOut();
+            boolean errorMess=
+                    loginPage
+                            .openLoginPage()
+                            .waitUntilLoginPageIsLoaded()
+                            .login(testEmail, MY_Password)
+                            .alertMessageInvalidEmail();
+
+            assertFalse(errorMess, "login with new E-mail");
+            // return old e-mail
+            if(!errorMess)
+                thisPage.openEditAccountPage()
+                        .waitUntilEditElementIsLoaded()
+                        .fillEmailField(MY_EMAIL)
+                        .clickOnSubmitButton1()
+                        .fillOldPasswordField(MY_Password)
+                        .clickOnSubmitButtonOldPassword();
+        }
+        else
+            assertFalse(alertOK, "Success alert not shown");
+
+
     }
 
 

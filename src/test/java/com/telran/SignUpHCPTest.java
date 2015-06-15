@@ -968,6 +968,20 @@ public class SignUpHCPTest {
         }
     }
 
+    @Test(groups = {"positive"})
+    public void TermOfServiceClick() {
+
+        try {
+            signUpHCPPage
+                    .openHCPRegPage()
+                    .clickOnTermOfService()
+                    .openTOSPage();
+            assertTrue("Term Of Service Page doesn't open",signUpHCPPage.isOnTOSage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

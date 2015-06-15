@@ -4,6 +4,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,7 +40,7 @@ public class MilestoneOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new InternetExplorerDriver();
+        this.driver = new ChromeDriver();
         // this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -88,10 +89,10 @@ public class MilestoneOnMainPageTest {
                 .sendPost()
                 .waitForPostLoaded();
                  sleep(3000);
-        assertTrue(milestoneOnMainPage.isTypeTrue(type));
-        assertTrue(milestoneOnMainPage.isMilestoneTrue(milestone));
-        assertTrue(milestoneOnMainPage.isAgeIsCorrect(age));
-        assertTrue(milestoneOnMainPage.isTextCorrect(post));
+        assertTrue("Alert: 'Milestone type is not corect'",milestoneOnMainPage.isTypeTrue(type));
+        assertTrue("Alert: 'Milestone is not corect'",milestoneOnMainPage.isMilestoneTrue(milestone));
+        assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
+        assertTrue("Alert :'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -137,9 +137,9 @@ public abstract class Page {
 
   public boolean exists(WebElement element) {
     try {
-      element.isDisplayed();
-      return true;
+      return element.isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException ignored) {
+      System.out.println("element"+element.toString()+" can not be found by Page.isDisplayed");
       return false;
     }
   }

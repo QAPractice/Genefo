@@ -1,14 +1,14 @@
 package com.telran;
 
 import com.telran.pages.*;
+import com.telran.pages.LoginPage;
+import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,8 +30,11 @@ public class PostOnMainTest {
 
 
     @BeforeClass
-    public void setup() {
-        this.driver = new FirefoxDriver();
+    @Parameters({"browser"})
+    public void setup(String browser) {
+        if (browser.equalsIgnoreCase("Firefox"))                 this.driver = new FirefoxDriver();
+        else if (browser.equalsIgnoreCase("Chrome"))             driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+        else if (browser.equalsIgnoreCase("InternetExplorer"))   driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -40,10 +43,9 @@ public class PostOnMainTest {
 
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
-            assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded();
-     //               .openPostPanel();
-//            postOnMainPage.waitUntilPostPanelIsLoaded();
+                  //  .openPostPanel();
+           // postOnMainPage.waitUntilPostPanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,7 +56,6 @@ public class PostOnMainTest {
         public void beforemethodsetup() {
 
              mainPage.openMainPage();
-             assertTrue(mainPage.isOnMainPage());
              mainPage.waitUntilMainPageIsLoaded()
                     .openPostPanel();
              postOnMainPage.waitUntilPostPanelIsLoaded();
@@ -70,7 +71,7 @@ public class PostOnMainTest {
             postOnMainPage
                     .fillTextField(text)
                     .sendPost();
-            sleep(3000);
+            sleep(2000);
 
             assertTrue(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
@@ -86,7 +87,7 @@ public class PostOnMainTest {
             postOnMainPage
                     .fillTextField(text)
                     .sendPost();
-            sleep(3000);
+            sleep(2000);
 
             assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
@@ -102,7 +103,7 @@ public class PostOnMainTest {
             postOnMainPage
                     .fillTextField(text)
                     .sendPost();
-            sleep(3000);
+            sleep(2000);
 
             assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {

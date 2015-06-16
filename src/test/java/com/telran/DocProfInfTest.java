@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +35,7 @@ public class DocProfInfTest {
 
     @BeforeClass
     public void setup() {
+        //this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -143,6 +146,22 @@ public class DocProfInfTest {
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("");
             assertTrue("The button add work place is clickable",docProfInfPage.isAddWorkPlacesDisButtonExists());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"})
+    public void DeleeLocationWPandNameWP() {
+
+        try {
+            docProfInfPage
+                    .fillWorkPlacesNameField("Assuta")
+                    .fillWorkPlacesLocationField("t")
+                    .clickOnAddWorkPlacesButton()
+                    .clickOnDelWorkPlacesButton()
+                    .clickOnConfWorkPlacesButton();
+            assertTrue("Location is not disappear",docProfInfPage.isLocationExists());
         } catch (Exception e) {
             e.printStackTrace();
         }

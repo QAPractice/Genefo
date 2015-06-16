@@ -48,7 +48,7 @@ public abstract class Page {
     WebElement element = getWebElement(name);
     element.clear();
     element.sendKeys(text);
-    //Assert.assertEquals(element.getAttribute("value"), text);
+  //  Assert.assertEquals(element.getAttribute("value"), text);
     return this;
   }
 
@@ -79,13 +79,13 @@ public abstract class Page {
 
   public void loadPage() {
     driver.get(getPageUrl());
-    //assertEquals(getTitle(), getPageTitle());
+  Assert.assertEquals(getTitle(), getPageTitle());
   }
 
   public void setElementText(WebElement element, String text) {
     element.clear();
     element.sendKeys(text);
- //   Assert.assertEquals(element.getAttribute("value"), text);
+  // Assert.assertEquals(element.getAttribute("value"), text);
   }
 
 

@@ -65,7 +65,7 @@ public class LoginTest {
         try {
             loginPage
                     .openLoginPage()
-                    .fillEmailField("osh_il+4yahoo.com")
+                    .fillEmailField("")
                     .fillPasswordField("111111")
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
@@ -107,7 +107,7 @@ public class LoginTest {
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"smoke", "negative"}) //Todo = check locators for alert message incase them changed
     public void LoginWithEmptyFields() {
 
         try {
@@ -116,7 +116,7 @@ public class LoginTest {
                     .fillEmailField("")
                     .fillPasswordField("")
                     .clickOnLogin();
-            assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
+            assertTrue("No message about invalid Email appears", loginPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
         } catch (Exception e) {

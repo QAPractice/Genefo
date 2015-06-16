@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -397,8 +399,8 @@ public class AddProfilesTest {
         summaryPage.clickOnDiscoverHome();
     }
 
-    /*@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
-    }*/
+    }
 }

@@ -132,6 +132,14 @@ public class MedicineOnMainPage extends Page {
 
     //Methods
 
+    /**
+     *
+     * @param nameMedicineShort
+     * @param nameMedicineFull
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public MedicineOnMainPage fillExistingNameOfMedicine(String nameMedicineShort, String nameMedicineFull) throws IOException, InterruptedException {
         setElementText(nameOfMedicinefield, nameMedicineShort);
         waitUntilIsLoaded(tooltipNameOfMedicine);

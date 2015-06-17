@@ -24,8 +24,6 @@ public class EditAccountTest {
 
     private static String MY_EMAIL="mili29@mail.ru";
     private static String MY_Password="123qwee";
-    private static String TEMP_EMAIL ="333333@mail.ru";
-    private static String TEMP_PASS="111111";
     private static String MY_FirstName="FirstName here";
     private static String MY_LastName="LastName here";
     public WebDriver driver;
@@ -53,15 +51,15 @@ public class EditAccountTest {
     }
 
     // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = false)
     public void dropDownMenuIsClickable(){
         TestUtils.addTestToLog();
-
         mainPage.openMainPage()
                 .waitUntilMainPageIsLoaded();
-        assertTrue(mainPage.isOnMainPage());
+        assertTrue(mainPage.isOnMainPage(), "is on main page");
         mainPage.selectMyAccount();
-
+        thisPage.waitUntilEditElementIsLoaded();
+        assertTrue(thisPage.isOnEditAccountPage(),"Is title\"Edit account\" exists on the page");
     }
 
 
@@ -78,9 +76,9 @@ public class EditAccountTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertEquals(thisPage.getEmailElement().getAttribute("value"), MY_EMAIL);
-        assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName);
-        assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName);
+        assertEquals(thisPage.getEmailElement().getAttribute("value"), MY_EMAIL,"e-mail correct ");
+        assertEquals(thisPage.getFirstNameElement().getAttribute("value"), MY_FirstName,"First name correct");
+        assertEquals(thisPage.getLastNameElement().getAttribute("value"), MY_LastName,"Last name correct");
 
     }
 
@@ -97,7 +95,7 @@ public class EditAccountTest {
 // 2.Type in the field "Email" another email (valid) and Click the button "Save".
 // 3.Enter the valid current password and click the button "Save".
 
-    @Test(groups={"smoke","positive","negative"},enabled = true,dataProvider = "updateEmailDataProvider")
+    @Test(groups={"smoke","positive","negative"},enabled = false,dataProvider = "updateEmailDataProvider")
     public void updateEmail(String testEmail,boolean isNotFake){
         TestUtils.addTestToLog();
         thisPage
@@ -146,11 +144,12 @@ public class EditAccountTest {
     @DataProvider
     public Object[][] passwordDataProvider(){
         return new Object[][]{
-                {"!@#$%^&*()_+"}   ,
-                {"}{|\":?><|\\"},
-                {",./\\';[]=-"},
-                {"ABCDabcd"},
-                {"123456789111"}
+                {"new_password"}
+//                {"!@#$%^&*()_+"}   ,
+//                {"}{|\":?><|\\"},
+//                {",./\\';[]=-"},
+//                {"ABCDabcd"},
+//                {"123456789111"}
 
         };
     }
@@ -168,15 +167,20 @@ public class EditAccountTest {
     @DataProvider
     public Object[][] longNames(){
         return new Object[][]{
-                {"qwertyuiopasdfghjklzxcvbne","normal lastName "},
-                {"normal firstName ","qwertyuiopasdfghjklzxcvbne"},
-                {"}{|","normal lastName "},
-                {"normal firstName ","}{|"}
+                {"new First name",MY_LastName,true},
+                {MY_FirstName,"new Last Name",true},
+//                {"name2","ok",false},
+//                {"ok","name3",false},
+//                {"ok","ok",true},
+//                {"qwertyuiopasdfghjklzxcvbne","normal lastName ",false},
+//                {"normal firstName ","qwertyuiopasdfghjklzxcvbne",false},
+//                {"}{|","normal lastName ",false},
+//                {"normal firstName ","}{|",false}
         };
     }
 
-    @Test(groups={"negative"},dataProvider = "longNames")
-    public void FakeNames(String firstName,String lastName){
+    @Test(groups={"smoke","positive"},dataProvider = "longNames")
+    public void FakeNames(String firstName,String lastName, boolean isPositive){
         TestUtils.addTestToLog();
 
         thisPage
@@ -184,11 +188,20 @@ public class EditAccountTest {
                 .waitUntilEditElementIsLoaded()
                 .fillField(thisPage.getFirstNameElement(), firstName)
                 .fillField(thisPage.getLastNameElement(), lastName);
-        if((firstName.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(firstName))&&(lastName.length()<=VALID_INPUT_LENGTH&&!TestUtils.isSpecSymbolsInString(lastName)))
-            assertTrue(thisPage.isButton2Clickable());
-        else
-            assertFalse(thisPage.isButton2Clickable());
-
+        if(isPositive)
+        {
+            assertTrue(thisPage.isButton2Clickable(),"Save button is clickable");
+            thisPage.clickOnSubmitButton2();
+            assertTrue(thisPage.isSuccessAlert(),"Success alert is shown");
+        }
+        else {
+            if(thisPage.isButton2Clickable()){
+                thisPage.clickOnSubmitButton2();
+                assertFalse(thisPage.isSuccessAlert(), "Success alert not shown");
+            }
+            else
+                assertFalse(thisPage.isButton2Clickable(),"Save button is not clickable");
+        }
         thisPage
                 .fillField(thisPage.getFirstNameElement(), MY_FirstName)
                 .fillField(thisPage.getLastNameElement(), MY_LastName)

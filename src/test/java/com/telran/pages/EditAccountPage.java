@@ -28,6 +28,9 @@ public class EditAccountPage extends Page{
     @FindBy(name="oldpassword")
     WebElement oldpasswordElement;
 
+    @FindBy(xpath = "//*[contains(text(),'Edit Account')]")
+    WebElement editAccountTitle;
+
     //    buttons
 
     @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal'][not(contains(@disabled,'disabled'))]")
@@ -120,6 +123,16 @@ public class EditAccountPage extends Page{
             e.printStackTrace();
         }
         return this;
+    }
+    public boolean isOnEditAccountPage(){
+        try {
+            return editAccountTitle.isDisplayed();
+        }catch (NoSuchElementException e){
+            System.out.println("------------------------------");
+            System.out.println("EditAccountPage.isOnEditAccountPage() no title element found" );
+            System.out.println("------------------------------");
+            return false;
+        }
     }
     public EditAccountPage fillOldPasswordField(String pass){
 

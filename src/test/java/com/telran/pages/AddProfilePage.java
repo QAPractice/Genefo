@@ -84,7 +84,7 @@ public class AddProfilePage extends Page {
 
     public AddProfilePage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "https://www.genefo.com/profiles";
+        this.PAGE_URL = "http://52.10.6.51:8080/profiles";
 
     }
     public AddProfilePage click_ButtonSave(){

@@ -149,7 +149,7 @@ public abstract class Page {
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     try {
-      new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(element));
+      new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
 
     }catch (TimeoutException e){
 

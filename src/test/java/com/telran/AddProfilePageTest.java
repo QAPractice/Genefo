@@ -226,10 +226,11 @@ public class AddProfilePageTest {
     @Test(groups = {"positive","smoke"})
     public void UploadPicture(){
         assertTrue((new File(PATH_TO_Miki)).exists(),"if file exists or not");
-        thisPage
-                .ADD_ANOTHER_PROFILE_click()
-                .uploadFile(PATH_TO_Miki);
+        thisPage.ADD_ANOTHER_PROFILE_click()
+                .waitUntilIsLoaded(thisPage.get_Create_New_Profile());
+        assertTrue(thisPage.uploadFile(PATH_TO_Miki),"File upload correct");
     }
+
     @AfterClass
     void quite(){
         driver.quit();

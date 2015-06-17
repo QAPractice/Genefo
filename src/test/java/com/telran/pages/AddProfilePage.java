@@ -1,6 +1,9 @@
 package com.telran.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
+import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -21,6 +24,8 @@ public class AddProfilePage extends Page {
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@type='file']")
     WebElement fileUploadMenu;
+    @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //div[@class='profilePicUploadDragBox ng-isolate-scope ng-valid ng-dirty']")
+    WebElement fileUploadMenuBox;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@name='condition']" )
     WebElement Condition;
@@ -264,8 +269,16 @@ public boolean isErrorMessage()
         return this;
     }
 
-    public void uploadFile(String path){
-
-        fileUploadMenu.sendKeys(path);
+    public boolean uploadFile(String path){
+        Locatable hoverMe = (Locatable) fileUploadMenuBox;
+        Mouse mouse = ((HasInputDevices)driver).getMouse();
+        try {
+            mouse.mouseMove(hoverMe.getCoordinates());
+            fileUploadMenu.sendKeys(path);
+        }catch (ElementNotVisibleException e){
+            System.out.println("error: Not visible picture BOX element:"+e.getMessage());
+            return false;
+        }
+        return true;
     }
 }

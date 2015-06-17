@@ -59,7 +59,7 @@ public class FollowingUserTest {
         }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
-        assertTrue(publicProfilePage.isUnFollowPanelOnPage());
+        assertTrue("No Unfollow Panel", publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         try {
@@ -67,7 +67,7 @@ public class FollowingUserTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue("No Follow name on Main Page", mainPage.isFollowingNamePresents(name));
     }
 
     @Test (groups = {"smoke", "positive"})
@@ -82,10 +82,10 @@ public class FollowingUserTest {
             e.printStackTrace();
         }
          publicProfilePage.removeFollow();
-       assertTrue(publicProfilePage.plusFollowPanel());
+        assertTrue("No Plus Follow panel", publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        assertFalse(mainPage.isFollowingNamePresents(name));
+        assertFalse("No following name on Main page", mainPage.isFollowingNamePresents(name));
     }
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
@@ -99,10 +99,10 @@ public class FollowingUserTest {
         }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
-        assertTrue(publicProfilePage.isUnFollowPanelOnPage());
+        assertTrue("No Unfollow panel", publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue("No Following name on Main page", mainPage.isFollowingNamePresents(name));
     }
     @AfterClass(alwaysRun = true)
     public void teardown() {

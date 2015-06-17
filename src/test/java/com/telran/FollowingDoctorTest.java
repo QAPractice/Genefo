@@ -1,6 +1,8 @@
 package com.telran;
 
-import com.telran.pages.*;
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.PublicProfilePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -8,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertFalse;
@@ -59,7 +62,7 @@ public class FollowingDoctorTest {
         }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
-        assertTrue(publicProfilePage.isUnFollowPanelOnPage());
+        assertTrue("No Unfollow panel", publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         try {
@@ -67,7 +70,7 @@ public class FollowingDoctorTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue("No Following name on Main Page", mainPage.isFollowingNamePresents(name));
     }
 
     @Test (groups = {"smoke", "positive"})
@@ -85,10 +88,10 @@ public class FollowingDoctorTest {
             e.printStackTrace();
         }
         publicProfilePage.removeFollow();
-        assertTrue(publicProfilePage.plusFollowPanel());
+        assertTrue("No Plus Follow Panel", publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        assertFalse(mainPage.isFollowingNamePresents(name));
+        assertFalse("No following name on Main Page", mainPage.isFollowingNamePresents(name));
     }
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
@@ -105,10 +108,10 @@ public class FollowingDoctorTest {
         }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
-        assertTrue(publicProfilePage.isUnFollowPanelOnPage());
+        assertTrue("No Unfollow panel", publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        assertTrue(mainPage.isFollowingNamePresents(name));
+        assertTrue("No following name on Main Page", mainPage.isFollowingNamePresents(name));
     }
     @AfterClass(alwaysRun = true)
     public void teardown() {

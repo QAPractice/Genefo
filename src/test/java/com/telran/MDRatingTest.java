@@ -49,7 +49,7 @@ public class MDRatingTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            assertTrue(mainPage.isOnMainPage());
+            assertTrue("Not on Main Page", mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                     .openMDRatingButtonPanel();
             mdRatingOnMainPage.isOnMDRatingPanel();

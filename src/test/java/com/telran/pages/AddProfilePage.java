@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.io.File;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +18,9 @@ public class AddProfilePage extends Page {
 
     @FindBy(xpath = "//div[@class='errormsg']" )
     WebElement errorMessage;
+
+    @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@type='file']")
+    WebElement fileUploadMenu;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@name='condition']" )
     WebElement Condition;
@@ -260,4 +264,8 @@ public boolean isErrorMessage()
         return this;
     }
 
+    public void uploadFile(String path){
+
+        fileUploadMenu.sendKeys(path);
+    }
 }

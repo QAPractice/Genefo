@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +22,7 @@ import static org.testng.Assert.assertTrue;
 public class AddProfilePageTest {
     private static String MY_EMAIL="mili29@mail.ru";
     private static String MY_Password="123qwee";
-
+    private static String PATH_TO_Miki=Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
     public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
@@ -156,13 +157,79 @@ public class AddProfilePageTest {
                 .waitUntilIsLoaded(thisPage.get_Create_New_Profile());
         thisPage
                 .select_How_do_you_know("It's me");
-        assertFalse(firstName.equals(""), "assert False First name not correct read! value=/" + firstName +"/");
-        assertFalse(lastName.equals(""), "assert False Last name not correct read! value=/"+lastName+"/");
+        assertFalse(firstName.equals(""), "assert False First name not correct read! value=/" + firstName + "/");
+        assertFalse(lastName.equals(""), "assert False Last name not correct read! value=/" + lastName + "/");
 
         assertEquals(thisPage.getFirstName(), firstName, "first name compare");
         assertEquals(thisPage.getLastName(), lastName, "last name compare");
     }
 
+    @DataProvider
+    public Object[][] negativeProvider(){
+        return new Object[][]{
+                {"Select One","My First Name","My Last Name","Angel","Male","February","1985","African","March","2","2005","how_do_you_know "},
+                {"It's me","","My Last Name","Angel","Male","February","1985","African","March","2","2005","My First Name"},
+                {"It's me","My First Name","","Angel","Male","February","1985","African","March","2","2005","My Last Name "},
+                {"It's me","My First Name","My Last Name","A","Male","February","1985","African","March","2","2005","condition "},
+                {"It's me","My First Name","My Last Name","Angel","Select Gender","February","1985","African","March","2","2005","Gender "},
+                {"It's me","My First Name","My Last Name","Angel","Male","Month","1985","African","March","2","2005","Diagnosis Month "},
+                {"It's me","My First Name","My Last Name","Angel","Male","February","Year","African","March","2","2005","Diagnosis Year "},
+                {"It's me","My First Name","My Last Name","Angel","Male","February","1985","African","Month","2","2005","Birthday Month "},
+                {"It's me","My First Name","My Last Name","Angel","Male","February","1985","African","March","Day","2005","Birthday day "},
+                {"It's me","My First Name","My Last Name","Angel","Male","February","1985","African","March","2","Year","Birthday year "}
+
+        };
+    }
+
+    //    Click a button SELECT ONE and choose It's Me.Fill all fields and click batton Save
+    @Test(groups ={"negative","smoke"},enabled = true,dataProvider = "negativeProvider")
+    public void notFilledMandatoryFields(String how_do_you_know,
+                                         String firstName,String lastName,
+                                         String condition,
+                                         String gender,
+                                         String month,String year,
+                                         String race,
+                                         String birsthdayMonth,String birsthdayDay, String birsthdayYear,
+                                         String assertComment ){
+
+
+        thisPage.ADD_ANOTHER_PROFILE_click()
+                .waitUntilIsLoaded(thisPage.get_Create_New_Profile());
+        thisPage
+                .select_How_do_you_know(how_do_you_know)
+                .input_First_Name(firstName)
+                .input_Last_Name(lastName)
+                .input_Condition("Angel")
+                .input_Condition(condition)
+                .select_Patient_Diagnosis_Month("February")
+                .select_Patient_Diagnosis_Month(month)
+                .select_Patient_Diagnosis_Year("1995")
+                .select_Patient_Diagnosis_Year(year)
+                .select_Patient_Diagnosis_Gender("Male")
+                .select_Patient_Diagnosis_Gender(gender)
+                .select_Patient_Race(race)
+                .select_Patient_Birthday_Month("February")
+                .select_Patient_Birthday_Month(birsthdayMonth)
+                .select_Patient_Birthday_Day("13")
+                .select_Patient_Birthday_Day(birsthdayDay)
+                .select_Patient_Birthday_Year("2010")
+                .select_Patient_Birthday_Year(birsthdayYear)
+// BUG                .input_Patient_Location("Russia")
+                .input_Comment("My comments");
+
+        if(!how_do_you_know.equals("Select One"))
+            assertTrue(thisPage.isErrorMessage(), "Error message displayed. Not mandatory field: "+assertComment);
+        assertFalse(thisPage.isButtonSaveActive(), "Save button is not active (FalseAssert). Not mandatory field: "+assertComment);
+    }
+
+
+    @Test(groups = {"positive","smoke"})
+    public void UploadPicture(){
+        assertTrue((new File(PATH_TO_Miki)).exists(),"if file exists or not");
+        thisPage
+                .ADD_ANOTHER_PROFILE_click()
+                .uploadFile(PATH_TO_Miki);
+    }
     @AfterClass
     void quite(){
         driver.quit();

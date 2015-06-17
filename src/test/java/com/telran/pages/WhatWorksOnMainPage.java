@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by Iakov Volf 27.05.15.
  */
@@ -89,7 +91,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
 
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-pristine ng-valid'][@ng-model='what_works_rating']//span[@class='sr-only ng-binding']")
+    @FindBy(xpath = "//*[@class='panel-body ng-isolate-scope ng-valid ng-dirty']//*[@ng-model='what_works_rating']//i[contains(@class, 'glyphicon' )]")
     WebElement allStarsTogether;
 
 
@@ -178,7 +180,7 @@ public class WhatWorksOnMainPage extends Page {
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
         }
         catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
-            System.out.println("Wrong option! \nOption with name :"+option+" does not exist!");
+            System.out.println("Wrong option! \nOption with name :" + option + " does not exist!");
         }
         return this;
     }
@@ -188,6 +190,20 @@ public class WhatWorksOnMainPage extends Page {
         clickElement(selectItemList);
         return this;
     }
+
+    // Waits until title of our 'What works' Panel appears on the screen
+    public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
+        WebElement optionChooser;
+        try {
+            optionChooser = itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
+            waitUntilElementIsLoaded(optionChooser);
+        } catch (Exception e) {
+            e.printStackTrace();           // In this way we define our own exception
+            System.out.println("Wrong item number! \nItem with number :" + itemNumber + " does not exist!");
+        }
+        return this;
+    }
+
 
     public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
         WebElement optionChooser;
@@ -219,7 +235,7 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     // We need to click on all stars together to set free each one of them
-    public WhatWorksOnMainPage clickOnAllStarsTogether() {
+    public WhatWorksOnMainPage clickOnAllStarsTogether() throws InterruptedException {
         clickElement(allStarsTogether);
         return this;
     }

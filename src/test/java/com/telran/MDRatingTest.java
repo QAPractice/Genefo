@@ -81,6 +81,7 @@ public class MDRatingTest {
         }
     }
     @Test (groups = {"smoke", "negative"})
+
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
     public void sendMDRatingPostTestWoutFacilityName() {
         try {

@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="SuperTest" verbose="5">
-  <test name="Test1">
-      <groups>
-          <run>
-              <include name="smoke"/>
-          </run>
-      </groups>
+      <test name="Test1 on FireFox">
+               <parameter name="browser" value="FireFox"/>
+           <!--    <groups>
+                    <run>
+                        <include name="smoke"/>
+                    </run>
+                </groups>
+  -->
+           <classes>
+               <class name="com.telran.PostOnMainTest"/>
+               <class name="com.telran.WhatWorksOnMainTest"/>
+           </classes>
+       </test>
 
-      <classes>
-          <class name="com.telran.PostOnMainTest"/>
-      </classes>
+    <test name="Test2 on Chrome">
+    <parameter name="browser" value="Chrome"/>
+    <!--     <groups>
+             <run>
+                 <include name="smoke"/>
+             </run>
+         </groups>
+   -->
+        <classes>
+            <class name="com.telran.PostOnMainTest"/>
+             <class name="com.telran.WhatWorksOnMainTest"/>
+        </classes>
+    </test>
 
-
-  </test>
+    <test name="Test3 on InternetExplorer">
+        <parameter name="browser" value="InternetExplorer"/>
+    <!--        <groups>
+                 <run>
+                     <include name="smoke"/>
+                 </run>
+             </groups>
+-->
+        <classes>
+             <class name="com.telran.PostOnMainTest"/>
+             <class name="com.telran.WhatWorksOnMainTest"/>
+        </classes>
+    </test>
 
 </suite>

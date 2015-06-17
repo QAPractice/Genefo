@@ -15,6 +15,9 @@ public class DocProfInfPage extends Page{
     @FindBy(xpath = "//*[contains(text(),'Healthcare Professional Information')]")
     WebElement profInfTitle;
 
+    @FindBy(xpath = "//*[@ng-repeat='workplace in profile.hcpWorkPlaces'] /td[2]/h4 ")
+    WebElement Location;
+
     //buttons
     @FindBy(xpath ="//*[@ng-click='addHCPspecialty()' and not(@disabled='disabled')]" )
     WebElement addSpecButton;
@@ -112,6 +115,15 @@ public class DocProfInfPage extends Page{
         return exists(profInfTitle);
     }
 
+    public boolean isAddWorkPlacesDisButtonExists() {
+
+        return exists(addWorkPlacesDisButton);
+    }
+
+    public boolean isLocationExists() {
+        return exists(Location);
+    }
+
     public DocProfInfPage fillSpecialtiesField(String specialties) {
         setElementText(specField, specialties);
         return this;
@@ -164,11 +176,30 @@ public class DocProfInfPage extends Page{
 
     public DocProfInfPage fillWorkPlacesLocationField(String worklocation) {
         setElementText(workLocatField, worklocation);
+        try {
+            waitUntilElementIsLoaded(worklocatToltip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        clickElement(worklocatToltip);
         return this;
     }
 
+
     public DocProfInfPage clickOnAddWorkPlacesButton() {
         clickElement(addWorkPlacesButton);
+        return this;
+    }
+
+    public DocProfInfPage clickOnDelWorkPlacesButton() {
+        clickElement(delWorkPlacesButton);
+        return this;
+    }
+
+    public DocProfInfPage clickOnConfWorkPlacesButton() {
+        clickElement(confirmWorkPlacesButton);
         return this;
     }
 

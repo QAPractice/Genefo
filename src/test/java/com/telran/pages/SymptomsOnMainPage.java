@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.testng.Assert;
 import java.io.IOException;
 
 
@@ -34,6 +34,9 @@ public class SymptomsOnMainPage  extends Page {
      */
     @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a General Area')]")
     WebElement tooltipGeneralArea;
+
+    @FindBy(xpath = "//*[@class=search-choice-close]")
+    WebElement
 
     @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Specific Area')]")
     WebElement tooltipSpecificArea;
@@ -230,26 +233,8 @@ public class SymptomsOnMainPage  extends Page {
      *
      * @return
      */
-    public SymptomsOnMainPage selectGrowthFromGeneralArea() {
-        clickElement(itemGrowth);
-        return this;
-    }
-
-    /**
-     *
-     * @return
-     */
     public SymptomsOnMainPage selectSpecificArea() {
         clickElement(tooltipSpecificArea);
-        return this;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public SymptomsOnMainPage selectGrowthFromSpecificArea(){
-        clickElement(itemGrowthSpesific);
         return this;
     }
 
@@ -262,14 +247,6 @@ public class SymptomsOnMainPage  extends Page {
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
-    public SymptomsOnMainPage selectLargeBirthWeightFromSymptom(){
-        clickElement(itemLargeBirthWeight);
-        return this;
-    }
 
     /**
      *

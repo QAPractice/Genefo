@@ -1,6 +1,7 @@
 package com.telran.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -47,7 +48,7 @@ public abstract class Page {
     WebElement element = getWebElement(name);
     element.clear();
     element.sendKeys(text);
-    //Assert.assertEquals(element.getAttribute("value"), text);
+  //  Assert.assertEquals(element.getAttribute("value"), text);
     return this;
   }
 
@@ -78,13 +79,13 @@ public abstract class Page {
 
   public void loadPage() {
     driver.get(getPageUrl());
-    //assertEquals(getTitle(), getPageTitle());
+  Assert.assertEquals(getTitle(), getPageTitle());
   }
 
   public void setElementText(WebElement element, String text) {
     element.clear();
     element.sendKeys(text);
- //   Assert.assertEquals(element.getAttribute("value"), text);
+  // Assert.assertEquals(element.getAttribute("value"), text);
   }
 
 
@@ -137,15 +138,25 @@ public abstract class Page {
 
   public boolean exists(WebElement element) {
     try {
-      element.isDisplayed();
-      return true;
+      return element.isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException ignored) {
+      System.out.println("---------------------------------");
+      System.out.println("element can not be found by Page.isDisplayed()");
+      System.out.println("---------------------------------");
       return false;
     }
   }
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
-    new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(element));
+    try {
+      new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(element));
+
+    }catch (TimeoutException e){
+
+      System.out.println("---------------------------------");
+      System.out.println("No element. Method: Page.waitUntilElementIsLoaded()");
+      System.out.println("---------------------------------");
+    }
   }
 
   public void waitForElement(WebDriverWait wait, String element) {

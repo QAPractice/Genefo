@@ -21,66 +21,59 @@ public class MilestoneOnMainPage extends Page {
     WebElement treatmentMilestoneTitle;
 
     //Category Developmental Milestone buttons
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")         //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")         //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
     WebElement movementButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")          //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")
     WebElement eatingButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")        //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")
     WebElement treatmentButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Toileting')]")        //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Toileting')]")
     WebElement toiletingButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")            //+
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
 
     //Dropdown list Button
-    @FindBy(xpath = "//*[@class ='chosen-single']/div/b")                                     //+
+    @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectDropDownListButton;
-    @FindBy(xpath = "//*[@class='chosen-single']/span")  //?
-    WebElement selectEatingItemList;
-
-    @FindBy(xpath = "//*[@class='chosen-single']/span")    //?
-    WebElement selectToiletingItemList;
-    @FindBy(xpath = "//*[@class='ng-binding'][contains(text(),'Select a Treatment Milestone')]") //?
-    WebElement selectTreatmentItemList;
 
     // DropdownList elements of Language
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSmiles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstWord;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemTwoThreeWords;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
 
 
     // DropdownList elements of Movement
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsHead;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemReachesForObjects;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRollsOver;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemSitsWithoutSupport;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemPullsToStand;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement itemWalk;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")        //+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
 
     // DropdownList elements of Eating
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsBottles;                                                               //+
+    WebElement itemHoldsBottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemEatsWithSpoon;                                                             //+
+    WebElement itemEatsWithSpoon;
 
     // DropdownList elements of Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
@@ -90,16 +83,12 @@ public class MilestoneOnMainPage extends Page {
 
     //DropdownList elements of Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemSurgery;                                                                     //+
+    WebElement itemSurgery;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemMedicalTrial;                                                                //+
+    WebElement itemMedicalTrial;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemRemission;                                                                   //+
+    WebElement itemRemission;
 
-
-    //Field for Specify Milestone
-    @FindBy(xpath = "//*[@placeholder='Please Specify Your Milestone']")
-    WebElement fillOtherItemList;
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
     WebElement yearsButton;
@@ -111,29 +100,29 @@ public class MilestoneOnMainPage extends Page {
     //Field for input PostText
     @FindBy(xpath = "//*[@class='form-group']/textarea")
     WebElement inputTextPostField;
-    @FindBy(xpath = "//*[@class='col-sm-12']/input")    // //What is it field?
+    @FindBy(xpath = "//*[@class='col-sm-12']/input")
     WebElement textField;
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
     WebElement submitButton;
 
     //alerts
-    @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
+    @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
-    @FindBy(xpath = "//*[@style='padding-left: 5px;']/span")
+    @FindBy(xpath = "//input[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
     WebElement numbersOnlyForMonths;
-    @FindBy(xpath = "//*[@style='padding-right: 5px;']/span")
+    @FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
     WebElement numbersOnlyForYears;
 
     //elements in created post
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement milestoneTypeOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[3]/td[2]")
     WebElement milestoneOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='post-note ng-binding']")
     WebElement textInNewCreatedPost;
 
     //constructor
@@ -172,7 +161,7 @@ public class MilestoneOnMainPage extends Page {
         setElementText(yearsButton, year);
         return this;}
 
-
+    //for month
     public MilestoneOnMainPage clickOnMonthOption(String months) {
         setElementText(monthButton, months);
         return this;
@@ -215,12 +204,12 @@ public class MilestoneOnMainPage extends Page {
     }
     public void fillAllElementsAndItemsToMap() {
         // buttons with names from WebPage
-        buttonsAndItemsMap.put(languageButton.getText(), languageButton);
-        buttonsAndItemsMap.put(movementButton.getText(), movementButton);
-        buttonsAndItemsMap.put(eatingButton.getText(), eatingButton);
-        buttonsAndItemsMap.put(treatmentButton.getText(), treatmentButton);
-        buttonsAndItemsMap.put(toiletingButton.getText(), toiletingButton);
-        buttonsAndItemsMap.put(otherButton.getText(), otherButton);
+        buttonsAndItemsMap.put(languageButton.getText(),languageButton);
+        buttonsAndItemsMap.put(movementButton.getText(),movementButton);
+        buttonsAndItemsMap.put(eatingButton.getText(),eatingButton);
+        buttonsAndItemsMap.put(treatmentButton.getText(),treatmentButton);
+        buttonsAndItemsMap.put(toiletingButton.getText(),toiletingButton);
+        buttonsAndItemsMap.put(otherButton.getText(),otherButton);
         //items with names from category "Language"
         buttonsAndItemsMap.put("Smiles",itemSmiles);
         buttonsAndItemsMap.put("Babbles",itemBabbles);
@@ -237,7 +226,7 @@ public class MilestoneOnMainPage extends Page {
         buttonsAndItemsMap.put("Walk",itemWalk);
         buttonsAndItemsMap.put("Runs",itemRuns);
         // items with names from category "Eating"
-        buttonsAndItemsMap.put("Holds bottles",itemHoldsBottles);
+        buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
         buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
         // items with names from category "Toileting"
         buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);

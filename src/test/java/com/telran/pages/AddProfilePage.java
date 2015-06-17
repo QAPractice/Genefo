@@ -1,13 +1,11 @@
 package com.telran.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -86,7 +84,7 @@ public class AddProfilePage extends Page {
 
     public AddProfilePage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/profiles";
+        this.PAGE_URL = "https://www.genefo.com/profiles";
 
     }
     public AddProfilePage click_ButtonSave(){
@@ -206,12 +204,20 @@ public boolean isErrorMessage()
     }
 
     public AddProfilePage input_Condition(String input){
-
+        String xpath;
+// logic here to find element to match input string that not sensative to case of first letter
+        Condition.sendKeys(Keys.chord(Keys.CONTROL+"a"),Keys.DELETE);
+        sleep(1);
         setElementText(Condition, input);
         sleep(1);
-        String xpath = "//*[@class='dropdown-menu ng-isolate-scope']//*[contains(text(),'"+input+"')]";
-        WebElement  element= driver.findElement(By.xpath(xpath));
-        element.click();
+        xpath = "//*[@class='dropdown-menu ng-isolate-scope']//*[contains(text(),'"+input.substring(1,input.length())+"')]";
+        try {
+            driver.findElement(By.xpath(xpath)).click();
+        }catch (NoSuchElementException e){
+            System.out.println("----------------------------------------");
+            System.out.println("AddProfilePage.input_Condition(): nothing to choose in Field: 'Condition' xpath="+xpath);
+            System.out.println("----------------------------------------");
+        }
         return this;
     }
 
@@ -219,6 +225,12 @@ public boolean isErrorMessage()
 
         setElementText(Last_name, input);
         return this;
+    }
+    public String getLastName(){
+        return Last_name.getAttribute("value");
+    }
+    public String getFirstName(){
+        return First_name.getAttribute("value");
     }
     public WebElement get_My_Profiles(){
         return My_Profiles;

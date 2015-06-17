@@ -85,6 +85,8 @@ public class DocAcInfTest {
     public void ClickOnCancel() {
 
         try {
+            docAcInfPage
+                    .clickOnCancel();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();

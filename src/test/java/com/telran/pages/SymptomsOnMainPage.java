@@ -36,7 +36,7 @@ public class SymptomsOnMainPage  extends Page {
     WebElement tooltipGeneralArea;
 
     @FindBy(xpath = "//*[@class=search-choice-close]")
-    WebElement
+    WebElement ERROR;
 
     @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Specific Area')]")
     WebElement tooltipSpecificArea;

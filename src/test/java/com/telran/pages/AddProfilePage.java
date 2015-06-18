@@ -33,10 +33,10 @@ public class AddProfilePage extends Page {
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@value='Select Some Options']" )
     WebElement Patient_Race;
 
-    @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //*[@name='lastName']")
+    @FindBy(xpath = "//*[@name='lastName']")
     WebElement Last_name;
 
-    @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //*[@name='firstName']")
+    @FindBy(xpath = "//*[@name='firstName']")
     WebElement First_name;
 
     @FindBy(xpath = "//div[@class='panel-heading']//*[contains(text(),'Create New Profile')]")

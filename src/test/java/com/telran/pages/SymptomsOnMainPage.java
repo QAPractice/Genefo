@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- *  Created by tanyagaus on 5/30/15.
+ *  Created by tanyagaus, Lev on 5/30/15.
  */
 public class SymptomsOnMainPage  extends Page {
 
@@ -276,13 +276,6 @@ public class SymptomsOnMainPage  extends Page {
 
     /**
      *
-     */
-    public void clickOnPostButton() {
-        clickElement(postButton);
-    }
-
-    /**
-     *
      * @param i
      * @return
      */
@@ -409,6 +402,10 @@ public class SymptomsOnMainPage  extends Page {
     public void uploadFile(String path){
     fileUploadMenu.sendKeys(path);
 }
+
+    /**
+     *
+     */
     public void submitPost(){
     submitButton.click();
 }

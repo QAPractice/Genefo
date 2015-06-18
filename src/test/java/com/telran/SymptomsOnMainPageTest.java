@@ -107,6 +107,7 @@ public class SymptomsOnMainPageTest{
     }
 
     @AfterClass(alwaysRun=true)
+
     public void quiteWindow(){
 
         this.driver.quit();

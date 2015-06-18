@@ -79,7 +79,6 @@ public class LoginTest {
                     .fillPasswordField("111111")
                     .clickOnLogin();
             assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }

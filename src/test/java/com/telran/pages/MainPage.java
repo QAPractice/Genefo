@@ -77,7 +77,7 @@ public class MainPage extends Page {
     WebElement  viewButton;
 
     @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
-    WebElement errorMessage;
+    WebElement requiredFieldsMessage;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -201,7 +201,13 @@ public class MainPage extends Page {
     }
 
 
-    public boolean isErrorMessage (){
-        return exists(errorMessage);
+    public boolean getRequiredFieldsMessage(){
+        return exists(requiredFieldsMessage);
+    }
+
+    //method for waiting REQUIRED FIELDS
+    public MainPage waitForErrorMessage() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(requiredFieldsMessage);
+        return this;
     }
 }

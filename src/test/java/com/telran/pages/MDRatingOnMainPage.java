@@ -27,17 +27,17 @@ public class MDRatingOnMainPage extends Page {
     WebElement allStarsTogether;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']/*[3]")
     WebElement thirdRatingStar;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[3][@class='glyphicon ng-scope fa fa-star post-fa-star']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[3][@class='glyphicon ng-scope fa fa-star post-fa-star']")
     WebElement checkedThirdStarInPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[4][@class='glyphicon ng-scope fa fa-star-o post-fa-star']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[4][@class='glyphicon ng-scope fa fa-star-o post-fa-star']")
     WebElement unCheckedThirdStarInPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model='medicalPro_effect']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@ng-model='medicalPro_effect']")
     WebElement allStarsTogetherInCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement facilityOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement physicianOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='post-note ng-binding']")
     WebElement textInCreatedPost;
     //Title
     @FindBy(xpath = "//label[@for = 'medical_facility']")
@@ -45,6 +45,10 @@ public class MDRatingOnMainPage extends Page {
     //Buttons
     @FindBy(id = "submit")
     WebElement postButton;
+
+    //for alerts
+    @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
+    WebElement requiredFields;
 
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
@@ -119,5 +123,7 @@ public class MDRatingOnMainPage extends Page {
     public boolean isTextCorrect(String name) {
         return verifyTextBoolean(textInCreatedPost, name);
     }
+
+
 
 }

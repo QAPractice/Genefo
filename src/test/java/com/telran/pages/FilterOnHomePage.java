@@ -71,7 +71,7 @@ public class FilterOnHomePage extends Page {
      */
     public FilterOnHomePage clickOnChangeFilterButton() {
         clickElement(changeFilterButton);
-
+return this;
     }
 
     /**

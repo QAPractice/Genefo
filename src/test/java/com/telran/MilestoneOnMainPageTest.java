@@ -64,13 +64,12 @@ public class MilestoneOnMainPageTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         mainPage.openMainPage();
-//        assertTrue(mainPage.isOnMainPage());
         mainPage.waitUntilMainPageIsLoaded()
                 .openMilestonePanel();
         milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
     }
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void SendLanguagePostTest() {
         type = "Language";
         milestone = "Smiles";
@@ -98,7 +97,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void SendMovementPostTest() {
         type="Movement";
         milestone="Holds head";
@@ -116,7 +115,7 @@ public class MilestoneOnMainPageTest {
                 .fillTextField(post)
                 .sendPost()
                 .waitForPostLoaded();
-                 sleep(3000);
+                sleep(3000);
         assertTrue("Alert:'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
         assertTrue("Alert:'Milestone is not correct'",milestoneOnMainPage.isMilestoneTrue(milestone));
         assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
@@ -128,7 +127,7 @@ public class MilestoneOnMainPageTest {
     }
 
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void SendEatingPostTest() {
         type="Eating";
         milestone="Holds bottle";
@@ -157,7 +156,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void SendToiletingPostTest() {
         type = "Toileting";
         milestone = "Toilet trained";
@@ -186,7 +185,7 @@ public class MilestoneOnMainPageTest {
 
     }
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void SendTreatmentPostTest(){
         type = "Treatment";
         milestone = "Surgery";
@@ -214,7 +213,7 @@ public class MilestoneOnMainPageTest {
         }
     }
 
-    @Test(groups={"smoke","positive"})
+    @Test(groups={"smoke","positive"}, enabled = true)
     public  void SendOtherPostTest() {
         type = "Other";
         year="10";
@@ -249,7 +248,7 @@ public class MilestoneOnMainPageTest {
     2)Months:
     3)Milestone:empty
     4)Message: Length>500*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest1(){
         post = randomAlphabetic(500);
         try {
@@ -270,7 +269,7 @@ public class MilestoneOnMainPageTest {
      2)Months:&^$
      3)Milestone:Language:abc
      4)Message:Length:250*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest2(){
         type = "Language";
         post = randomAlphabetic(250);
@@ -296,12 +295,13 @@ public class MilestoneOnMainPageTest {
     2)Months:-12
     3)Milestone:Movement:Rolls over
     4)Message:Length:length>500*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest3(){
-        type = "Movement";
-        milestone = "Rolls over";
-        post = randomAlphabetic(500);
+
         try {
+            type = "Movement";
+            milestone = "Rolls over";
+            post = randomAlphabetic(500);
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
@@ -310,7 +310,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-12")
                     .fillTextField(post)
                     .sendPost();
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
@@ -321,7 +321,7 @@ public class MilestoneOnMainPageTest {
     2)Months:-One
     3)Milestone:Eating:Eats with spoon
     4)Message:Length:length=1.*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest4(){
         type = "Eating";
         milestone = "Eats with spoon";
@@ -346,7 +346,7 @@ public class MilestoneOnMainPageTest {
     2)Months:36
     3)Milestone:empty
     4)Message:Length:length>2252*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest5(){
         post = randomAlphabetic(500);
         try {
@@ -367,7 +367,7 @@ public class MilestoneOnMainPageTest {
     2)Months:00
     3)Milestone:empty
     4)Message::empty*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest6(){
         try {
             milestoneOnMainPage
@@ -386,7 +386,7 @@ public class MilestoneOnMainPageTest {
     2)Months:16
     3)Milestone:Toileting:dresses alone
     4)Message:Length>2252*/
-    @Test(groups={"smoke","negative"})
+    @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest7(){
         type = "Toileting";
         milestone = "Dresses alone";

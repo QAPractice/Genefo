@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -45,7 +46,7 @@ public class MDRatingTest {
         try {
             loginPage.login(EMAIL, PASSWORD);
             try {
-                Thread.sleep(2000);
+                sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -57,6 +58,7 @@ public class MDRatingTest {
             e.printStackTrace();
         }
     }
+
 
     @Test (groups = {"smoke", "positive"})
     //@Parameters({"facilityname","physicianFirstName", "physitianLastName", "text"})
@@ -70,7 +72,7 @@ public class MDRatingTest {
                     .fillTextField(TEXT)
                     .sendPost()
                     .waitUntilNewPostisLoaded();
-
+                    sleep(2000);
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
             Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
             Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));
@@ -80,10 +82,10 @@ public class MDRatingTest {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "negative"})
 
+    @Test (groups = {"smoke", "negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostTestWoutFacilityName() {
+    public void sendMDRatingPostTestWithoutFacilityName() {
         try {
             mdRatingOnMainPage
                     .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
@@ -91,19 +93,16 @@ public class MDRatingTest {
                     .rateItThree()              //Click on the third star
                     .fillTextField(TEXT)
                     .sendPost();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isErrorMessage());
+                    mainPage.waitForErrorMessage();
+            assertTrue(mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Test (groups = {"negative"})
     //@Parameters({"facilityname", "physitianLastName", "text"})
-    public void sendMDRatingPostWoutPhysitianFName() {
+    public void sendMDRatingPostWithoutPhysicianFName() {
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField(FACILITY_NAME)
@@ -112,20 +111,16 @@ public class MDRatingTest {
                     .rateItThree()              //Click on the third star
                     .fillTextField(TEXT)
                     .sendPost();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isErrorMessage());
+                    mainPage.waitForErrorMessage();
+            assertTrue(mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "text"})
-    public void sendMDRatingPostWoutPhysitianLName() {
-
+    public void sendMDRatingPostWithoutPhysicianLName() {
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField(FACILITY_NAME)
@@ -134,16 +129,13 @@ public class MDRatingTest {
                     .rateItThree()              //Click on the third star
                     .fillTextField(TEXT)
                     .sendPost();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isErrorMessage());
+            mainPage.waitForErrorMessage();
+            assertTrue(mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName"})
     public void sendMDRatingWithEmptyPost() {
@@ -155,32 +147,19 @@ public class MDRatingTest {
                     .clickOnAllStarsTogether()
                     .rateItThree()              //Click on the third star
                     .sendPost();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isErrorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     @Test (groups = {"negative"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostWoutRating() {
-
+    public void sendMDRatingPostWithoutRating() {
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField(FACILITY_NAME)
                     .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
                     .fillTextField(TEXT)
                     .sendPost();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isErrorMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -188,7 +167,6 @@ public class MDRatingTest {
     @Test (groups = {"positive"})
     //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
     public void sendMDRating1LatterPost() {
-
         try {
             mdRatingOnMainPage
                     .fillMedicalFacilityField(FACILITY_NAME)
@@ -198,7 +176,7 @@ public class MDRatingTest {
                     .fillTextField("p")
                     .sendPost()
                     .waitUntilNewPostisLoaded();
-
+                    sleep(2000);
             Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
             Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
             Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));

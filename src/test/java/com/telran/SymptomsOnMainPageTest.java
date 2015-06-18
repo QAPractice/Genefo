@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Date;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -23,6 +25,7 @@ import static org.testng.AssertJUnit.assertTrue;
 public class SymptomsOnMainPageTest{
     private static String MY_EMAIL="mili29@mail.ru";
     private static String MY_Password="123qwee";
+    private static String PATH_TO_Miki= Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -94,8 +97,10 @@ public class SymptomsOnMainPageTest{
         Assert.assertTrue(symptomsOnMainPage.select_General_Area(general_Area),"General_Area element is choosen");
         Assert.assertTrue(symptomsOnMainPage.select_Specific_Area(specific_Area), "Specific_Area element is choosen");
         Assert.assertTrue(symptomsOnMainPage.select_Symptom(symptom), "Symptom element is choosen");
-        symptomsOnMainPage.postText("My Post at "+date.toString());
-
+        symptomsOnMainPage.postText("My Post at " + date.toString());
+        Assert.assertTrue((new File(PATH_TO_Miki)).exists(), "if file exists or not");
+        symptomsOnMainPage.uploadFile(PATH_TO_Miki);
+    symptomsOnMainPage.submitPost();
         mainPage.loadPage();
         beforeMethodSetUp();
 

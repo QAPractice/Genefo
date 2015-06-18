@@ -26,6 +26,11 @@ public class SymptomsOnMainPage  extends Page {
      */
     @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'General Area')]")
     WebElement generalArea;
+    @FindBy(xpath = "//button[@id='submit']")
+    WebElement submitButton;
+
+    @FindBy(xpath="//input[@type='file']")
+    WebElement fileUploadMenu;
 
     @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Specific Area')]")
     WebElement specificArea;
@@ -363,5 +368,10 @@ public class SymptomsOnMainPage  extends Page {
         }
     }
 
-
+public void uploadFile(String path){
+    fileUploadMenu.sendKeys(path);
+}
+public void submitPost(){
+    submitButton.click();
+}
 }

@@ -281,6 +281,11 @@ public class SymptomsOnMainPage  extends Page {
         clickElement(postButton);
     }
 
+    /**
+     *
+     * @param i
+     * @return
+     */
     public WebElement giveMeItem(int i){
         WebElement element;
 
@@ -290,6 +295,11 @@ public class SymptomsOnMainPage  extends Page {
 
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public boolean select_General_Area(String value){
         try {
             cansellInput();
@@ -310,6 +320,12 @@ public class SymptomsOnMainPage  extends Page {
         }
         return true;
     }
+
+    /**
+     *
+     * @param value
+     * @return
+     */
     public boolean select_Specific_Area(int value){
         try {
             WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Specific Area')]/.."));
@@ -326,6 +342,11 @@ public class SymptomsOnMainPage  extends Page {
         return true;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public boolean select_Symptom(int value){
         try {
             WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Symptom')]/.."));
@@ -342,6 +363,10 @@ public class SymptomsOnMainPage  extends Page {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public SymptomsOnMainPage cansellInput(){
         try {
             WebElement element = driver.findElement(By.xpath("//abbr[@class='search-choice-close']"));
@@ -357,9 +382,18 @@ public class SymptomsOnMainPage  extends Page {
         return this;
     }
 
+    /**
+     *
+     * @param text
+     */
     public void postText(String text){
         setElementText(postElement, text);
     }
+
+    /**
+     *
+     * @param sec
+     */
     public void sleep(int sec){
         try {
             TimeUnit.SECONDS.sleep(sec);
@@ -368,10 +402,14 @@ public class SymptomsOnMainPage  extends Page {
         }
     }
 
-public void uploadFile(String path){
+    /**
+     *
+     * @param path
+     */
+    public void uploadFile(String path){
     fileUploadMenu.sendKeys(path);
 }
-public void submitPost(){
+    public void submitPost(){
     submitButton.click();
 }
 }

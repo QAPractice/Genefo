@@ -79,6 +79,10 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
     WebElement requiredFieldsMessage;
 
+    //button link to Graphs Page
+    @FindBy(xpath = "//*[text()='See More Graphs']")
+    WebElement SeeMoreGraphsButton;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -129,6 +133,10 @@ public class MainPage extends Page {
 
     public MainPage openMDRatingButtonPanel() {
         clickElement(mdRatingButton);
+        return this;
+    }
+    public MainPage clikToSeeMoreGraphsButton() {
+        clickElement(SeeMoreGraphsButton);
         return this;
     }
 

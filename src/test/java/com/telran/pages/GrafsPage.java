@@ -119,102 +119,106 @@ public class GrafsPage extends Page {
     }
 
 
-    public GrafsPage clikProceduresLink() {
+    public GrafsPage clikOnProceduresLink() {
         clickElement(ProceduresLink);
         return this;
     }
 
-    public GrafsPage clikProfessionalsLink() {
+    public GrafsPage clikOnProfessionalsLink() {
         clickElement(ProfessionalsLink);
         return this;
     }
 
-    public GrafsPage clikMiscellaneousLink() {
+    public GrafsPage clikOnMiscellaneousLink() {
         clickElement(MiscellaneousLink);
         return this;
     }
 
-    public GrafsPage clikGenderLink() {
+    public GrafsPage clikOnGenderLink() {
         clickElement(GenderLink);
         return this;
     }
 
-    public GrafsPage clikAgeLink() {
+    public GrafsPage clikOnAgeLink() {
         clickElement(AgeLink);
         return this;
     }
 
-    public GrafsPage clikRaceLink() {
+    public GrafsPage clikOnRaceLink() {
         clickElement(RaceLink);
         return this;
     }
 
-    public GrafsPage clikGenesLink() {
+    public GrafsPage clikOnGenesLink() {
         clickElement(GenesLink);
         return this;
     }
 
-    public GrafsPage WhatWorksBestLink() {
+    public GrafsPage clikOnWhatWorksBestLink() {
         clickElement(WhatWorksBestLink);
         return this;
     }
 
-    public GrafsPage TherapyLink() {
+    public GrafsPage clikOnTherapyLink() {
         clickElement(TherapyLink);
         return this;
     }
 
-    public GrafsPage EquipmentLink() {
+    public GrafsPage clikOnEquipmentLink() {
         clickElement(EquipmentLink);
         return this;
     }
 
-    public GrafsPage NutritionLink() {
+    public GrafsPage clikOnNutritionLink() {
         clickElement(NutritionLink);
         return this;
     }
 
-    public GrafsPage ExercisesLink() {
+    public GrafsPage clikOnExercisesLink() {
         clickElement(ExercisesLink);
         return this;
     }
 
-    public GrafsPage AlternativeMedicineLink() {
+    public GrafsPage clikOnAlternativeMedicineLink() {
         clickElement(AlternativeMedicineLink);
         return this;
     }
 
-    public GrafsPage LanguageMilestonesLink() {
+    public GrafsPage clikOnLanguageMilestonesLink() {
         clickElement(LanguageMilestonesLink);
         return this;
     }
 
-    public GrafsPage MovementMilestonesLink() {
+    public GrafsPage clikOnMovementMilestonesLink() {
         clickElement(MovementMilestonesLink);
         return this;
     }
 
-    public GrafsPage ToiletingMilestonesLink() {
+    public GrafsPage clikOnToiletingMilestonesLink() {
         clickElement(ToiletingMilestonesLink);
         return this;
     }
 
-    public GrafsPage MedicineLink() {
+    public GrafsPage clikOnMedicineLink() {
         clickElement(MedicineLink);
         return this;
     }
 
-    public GrafsPage MedicineReasonsLink() {
+    public GrafsPage clikOnMedicineReasonsLink() {
         clickElement(MedicineReasonsLink);
         return this;
     }
 
-    public GrafsPage MedicineEffectivenessLink() {
+    public GrafsPage clikOnMedicineEffectivenessLink() {
         clickElement(MedicineEffectivenessLink);
         return this;
     }
 
-    public GrafsPage AcrossConditionsLink() {
+    public GrafsPage clikOnAcrossConditionsLink() {
+        clickElement(AcrossConditionsLink);
+        return this;
+    }
+    public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);
         return this;
     }

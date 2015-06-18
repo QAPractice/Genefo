@@ -6,8 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import scala.util.parsing.combinator.testing.Str;
+
 import java.io.IOException;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -27,6 +32,12 @@ public class SymptomsOnMainPage  extends Page {
 
     @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
     WebElement symptom;
+
+    @FindBy(xpath="//select[@data-placeholder='Select a General Area']")
+    WebElement selectGeneralArea;
+
+    @FindBy(xpath = "//textarea[@name='bio']")
+    WebElement postElement;
 
 
     /**
@@ -272,6 +283,84 @@ public class SymptomsOnMainPage  extends Page {
         element=driver.findElement(By.xpath(str));
         return element;
 
+    }
+
+    public boolean select_General_Area(String value){
+        try {
+            cansellInput();
+            sleep(1);
+
+            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a General Area')]/.."));
+            element.click();
+            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a General Area']/../div/div/ul/li[contains(text(),'"+value+"')]"));
+            element3.click();
+            sleep(1);
+        }catch (RuntimeException e){
+            System.out.println("--------------------------------------");
+            System.out.println("No element is found to select.  select_General_Area()");
+            System.out.println("--------------------------------------");
+            System.out.println(e.getMessage());
+
+            return false;
+        }
+        return true;
+    }
+    public boolean select_Specific_Area(int value){
+        try {
+            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Specific Area')]/.."));
+            element.click();
+            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a Specific Area']/../div/div/ul/li["+value+"]"));
+            element3.click();
+        }catch (RuntimeException e){
+            System.out.println("--------------------------------------");
+            System.out.println("No element is found to select.  select_Specific_Area()");
+            System.out.println("--------------------------------------");
+            System.out.println(e.getMessage());
+
+        }
+        return true;
+    }
+
+    public boolean select_Symptom(int value){
+        try {
+            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Symptom')]/.."));
+            element.click();
+            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a Symptom']/../div/div/ul/li["+value+"]"));
+            element3.click();
+        }catch (RuntimeException e){
+            System.out.println("--------------------------------------");
+            System.out.println("No element is found to select.  select_Symptom()");
+            System.out.println("--------------------------------------");
+            System.out.println(e.getMessage());
+
+        }
+        return true;
+    }
+
+    public SymptomsOnMainPage cansellInput(){
+        try {
+            WebElement element = driver.findElement(By.xpath("//abbr[@class='search-choice-close']"));
+            element.click();
+
+        }catch (RuntimeException e){
+//        System.out.println("--------------------------------------");
+//        System.out.println("No 'X' element is found to select.cansellInput()");
+//        System.out.println("--------------------------------------");
+//        System.out.println(e.getMessage());
+        }
+
+        return this;
+    }
+
+    public void postText(String text){
+        setElementText(postElement, text);
+    }
+    public void sleep(int sec){
+        try {
+            TimeUnit.SECONDS.sleep(sec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

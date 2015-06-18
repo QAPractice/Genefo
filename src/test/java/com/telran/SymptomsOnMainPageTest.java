@@ -9,18 +9,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import java.util.Date;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by tanyagaus on 6/10/15.
+ * Created by tanyagaus, Lev on 6/10/15.
  */
 public class SymptomsOnMainPageTest{
+    private static String MY_EMAIL="mili29@mail.ru";
+    private static String MY_Password="123qwee";
+
     public WebDriver driver;
     public WebDriverWait wait;
     SymptomsOnMainPage symptomsOnMainPage ;
@@ -40,11 +43,10 @@ public class SymptomsOnMainPageTest{
         symptomsOnMainPage = PageFactory.initElements(driver, SymptomsOnMainPage.class);
 
         try {
-            loginPage.login("mili@mail.ru", "111111");
-            assertTrue(mainPage.isOnMainPage());
-            mainPage.waitUntilMainPageIsLoaded()
-                    .openMilestonePanel();
-            symptomsOnMainPage.waitUntilSymptomsPanelIsLoaded();
+            loginPage.login(MY_EMAIL, MY_Password);
+            mainPage.waitUntilMainPageIsLoaded();
+            Assert.assertTrue(mainPage.isOnMainPage(), "Login ok");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,19 +55,50 @@ public class SymptomsOnMainPageTest{
 
     @BeforeMethod
     public void beforeMethodSetUp() {
-        mainPage.openMainPage();
-        assertTrue(mainPage.isOnMainPage());
-        mainPage.waitUntilMainPageIsLoaded()
+        mainPage
                 .openSymptomsPanel();
         symptomsOnMainPage.waitUntilSymptomsPanelIsLoaded();
     }
 
-    @Test(groups={"smoke", "positive"})
-    public void myTest1(){
+    @DataProvider
+    private Object[][] myProvider(){
+        return new Object[][]{
+                {"Growth",1,1},
+                {"Head and Neck",1,1},
+                {"Head and Neck",2,1},
+                {"Head and Neck",3,1},
+                {"Head and Neck",4,1},
+                {"Head and Neck",5,1},
+                {"Head and Neck",6,1},
+                {"Head and Neck",7,1},
+                {"Heart and Blood Vessels",1,1},
+                {"Heart and Blood Vessels",2,1},
+                {"Chest and Lungs",1,1},
+                {"Chest and Lungs",2,1},
+                {"Abdomen",1,1},
+                {"Genitalia and Urinary Trac",1,1},
+                {"Skeletal",1,1},
+                {"Skin, Nail, Hair",1,1},
+                {"Neurologic",1,1},
+                {"Complications During Pregnancy",1,1},
+                {"Tumors",1,1}
 
-        symptomsOnMainPage
+        };
+    }
 
-                .giveMeItem(1).click();
+    @Test(groups={"smoke", "positive"},dataProvider = "myProvider")
+    public void myTest1(String general_Area, int specific_Area,int symptom){
+
+        Date date = new Date();
+
+        Assert.assertTrue(symptomsOnMainPage.select_General_Area(general_Area),"General_Area element is choosen");
+        Assert.assertTrue(symptomsOnMainPage.select_Specific_Area(specific_Area), "Specific_Area element is choosen");
+        Assert.assertTrue(symptomsOnMainPage.select_Symptom(symptom), "Symptom element is choosen");
+        symptomsOnMainPage.postText("My Post at "+date.toString());
+
+        mainPage.loadPage();
+        beforeMethodSetUp();
+
     }
 
     @AfterClass(alwaysRun=true)

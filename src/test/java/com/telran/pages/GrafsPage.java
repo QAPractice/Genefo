@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -91,7 +90,7 @@ public class GrafsPage extends Page {
     }
 
 
-    // Waits until 'Medicine' Panel appears on the screen
+    // Waits until 'Medicine' Panel appears on the screen pp
 
     public GrafsPage waitUntilGrafsPageIsLoaded() {
         try {
@@ -214,10 +213,6 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public GrafsPage clikOnAcrossConditionsLink() {
-        clickElement(AcrossConditionsLink);
-        return this;
-    }
     public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);
         return this;

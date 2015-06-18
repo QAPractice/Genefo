@@ -20,11 +20,14 @@ public class HomePage extends Page {
   public WebElement header;
 
     //buttons
-  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Regular User')]")
-  WebElement regularUserButton;
+  @FindBy(xpath = "//*[@id='home_banner_small']//a[@class='landing_button']")
+  WebElement freeSignUpButton;
 
-  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Healthcare Professional')]")
-  WebElement doctorButton;
+  @FindBy(xpath = "//*[@class='btn btn-header btn-md navbar-btn' and contains(.,'Login')]")
+  WebElement loginButton;
+
+//  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Healthcare Professional')]")
+//    WebElement doctorButton;
 
     //private String label;
 
@@ -41,7 +44,7 @@ public class HomePage extends Page {
 
     public void waitUntilHomePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(regularUserButton);
+            waitUntilElementIsLoaded(freeSignUpButton);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -50,13 +53,18 @@ public class HomePage extends Page {
     }
     public boolean isOnHomePage() {
         waitUntilHomePageIsLoaded();
-        return exists(regularUserButton);
+        return exists(freeSignUpButton);
     }
 
-    public HomePage clickOnSignUpDoctorButton() {
-        clickElement(doctorButton);
+    public HomePage clickOnLogin(){
+        clickElement(loginButton);
         return this;
     }
+
+//    public HomePage clickOnSignUpDoctorButton() {
+//        clickElement(doctorButton);
+//        return this;
+//    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.telran;
 
+import com.telran.pages.HomePage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
@@ -25,6 +26,7 @@ public class LoginTest {
     public LoginPage loginPage;
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
+    public HomePage homePage;
     private boolean acceptNextAlert = true;
 
 
@@ -44,12 +46,36 @@ public class LoginTest {
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void LoginSuccess() {
+     public void LoginSuccess() {
 
         try {
             loginPage
                     .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
+                    .fillPasswordField("111111")
+                    .clickOnLogin();
+            assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void LoginLogoutLogin() {
+
+        try {
+            loginPage
+                    .openLoginPage()
+                    .fillEmailField("osh_il+4@yahoo.com")
+                    .fillPasswordField("111111")
+                    .clickOnLogin();
+            mainPage.logOut();
+            homePage.waitUntilHomePageIsLoaded();
+            homePage.clickOnLogin();
+            loginPage
+                    .waitUntilLoginPageIsLoaded()
+                    .fillEmailField("osh_il+2@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
             assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());

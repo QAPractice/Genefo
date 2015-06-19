@@ -8,21 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-
+import java.util.LinkedList;
 /**
  * Created by Л on 5/20/2015.
  */
-public class SummaryPage extends Page{
-    public SummaryPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
-
-    public SummaryPage openSummaryPage() {
-        driver.get(PAGE_URL);
-        return this;
-    }
-
+public class SummaryPage extends Page {
     @FindBy(xpath = "//div[@class='progress' and contains(.,'75% Complete')]")
     WebElement progressBar;
     @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']//a [@class='btn btn-success btn-discover-homepage']")
@@ -42,6 +32,10 @@ public class SummaryPage extends Page{
     @FindBy(xpath = "//ul[@class='profile_list people_list_sidebar']/li[1]//div[@class='profileName ng-binding']")
     WebElement firstProfileButton;
 
+    public SummaryPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void waitUntilProfilePageIsLoaded() {
         try {
@@ -56,10 +50,10 @@ public class SummaryPage extends Page{
         waitUntilProfilePageIsLoaded();
         return exists(progressBar);
     }
-    public void clickOnDiscoverHome(){
+
+    public void clickOnDiscoverHome() {
         clickElement(discoverHomePage);
     }
-
     public boolean isProfileNamePresents(String name) {
         try {
             driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
@@ -68,25 +62,33 @@ public class SummaryPage extends Page{
             return false;
         }
     }
-    public boolean isRelationCorrect(String name){
-        return verifyTextBoolean(relationshipField, name);
-    }
-    public boolean isNameCorrect(String name){
-        return verifyTextBoolean(nameField, name);
-    }
-    public boolean isConditionCorrect(String name){
-        return verifyTextBoolean(conditionField, name);
-    }
-    public boolean isPatientDiagnosisDateFieldCorrect(String name){
-        return verifyTextBoolean(patientDiagnosisDateField, name);
-    }
-    public boolean isGenderFieldCorrect(String name){
-        return verifyTextBoolean(genderField, name);
-    }
-    public boolean isBirthdayFieldCorrect(String name){
-        return verifyTextBoolean(birthdayField, name);
-    }
-    public  void clickOnFirstProfile(){
+
+    public void clickOnFirstProfile() {
         clickElement(firstProfileButton);
+    }
+
+    public boolean areProfileFieldsCorrect(String relation, String name, String lName, String condition, String gender, String month, String day, String year, String diagnoseYear) {
+        LinkedList<String> allReqField = new LinkedList<String>();
+        String xpath = null;
+        allReqField.add(relation);
+        allReqField.add(name);
+        allReqField.add(lName);
+        allReqField.add(condition);
+        allReqField.add(gender);
+        allReqField.add(month + " " + day + ", " + year);
+        allReqField.add(diagnoseYear);
+        try {
+            for (String s : allReqField) {
+                xpath = "//div [@class='col-lg-9']//*[contains(text(), '" + s + "')][@class='col-xs-7 text-left text-capitalize ng-binding']";
+                driver.findElement(By.xpath(xpath));
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("--------------------------------------------");
+            System.out.println("Error Required element was not found!");
+            System.out.println("xpath of the element:" + xpath);
+            System.out.println("--------------------------------------------");
+            return false;
+        }
+        return true;
     }
 }

@@ -13,19 +13,18 @@ import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
+import static org.testng.Reporter.log;
 
 
 public class EditAccountTest {
 
     private static int VALID_INPUT_LENGTH=25;
 
-    private static String MY_EMAIL="mili29@mail.ru";
-    private static String MY_Password="123qwee";
-    private static String MY_FirstName="FirstName here";
-    private static String MY_LastName="LastName here";
+    private static String MY_EMAIL="telrantests@yahoo.com";
+    private static String MY_Password="12345.com";
+    private static String MY_FirstName="Kalugin";
+    private static String MY_LastName="Alexander";
     public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
@@ -33,12 +32,26 @@ public class EditAccountTest {
     public EditAccountPage thisPage;
 
 
-
     @BeforeClass
-    public void setup(){
+    @Parameters({"browser"})
+    public void setup(String browser) {
 
         TestUtils.addTestToLog();
-        this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
+
+        if (browser.equalsIgnoreCase("Firefox"))
+        {
+            this.driver = new FirefoxDriver();
+            log("We are in Firefox browser");
+        }
+        else if (browser.equalsIgnoreCase("Chrome")) {
+            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+            log("We are in Chrome browser");
+        }
+        else if (browser.equalsIgnoreCase("InternetExplorer")) {
+            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
+            log("We are in InternetExplorer browser");
+        }
+      //  this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);

@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by Iakov Volf 27.05.15.
  */
@@ -104,22 +102,22 @@ public class WhatWorksOnMainPage extends Page {
 
 
     // Upper Tab of sent posts
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]")
     WebElement  UpperSentPostTab;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement  SentPostCategory;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
     WebElement  filledThirdStarInSentPost;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
     WebElement nonFilledFourthStarInSentPost;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement ListItemInSentPost;
 
     private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.

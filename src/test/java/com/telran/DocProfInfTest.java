@@ -24,7 +24,6 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Oleg on 05.06.2015.
  */
 public class DocProfInfTest {
-
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -58,7 +57,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void EditProfInfSuccess() {
-
         try {
             docProfInfPage
                     .fillSpecialtiesField("Oncology")
@@ -81,7 +79,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"positive"})
     public void AddWorkPlaceInf() {
-
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
@@ -96,7 +93,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void AddEmptyFields() {
-
         try {
             docProfInfPage
                     .fillSpecialtiesField("")
@@ -114,7 +110,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
      public void AddEmptySpecialtiesFields() {
-
         try {
             docProfInfPage
                     .fillSpecialtiesField("")
@@ -127,7 +122,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandFillNameWPFields() {
-
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
@@ -140,7 +134,6 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandNameWPFields() {
-
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("")
@@ -152,8 +145,7 @@ public class DocProfInfTest {
     }
 
     @Test(groups = {"positive"})
-    public void DeleeLocationWPandNameWP() {
-
+    public void DeleteLocationWPandNameWP() {
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
@@ -166,7 +158,6 @@ public class DocProfInfTest {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

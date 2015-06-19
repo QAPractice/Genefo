@@ -2,6 +2,8 @@ package com.telran;
 
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocAcInfPage;
+import com.telran.util.TestUtils;
+import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,11 +21,12 @@ import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Reporter.log;
+
 /**
  * Created by Oleg on 31.05.2015.
  */
 public class DocAcInfTest {
-
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;

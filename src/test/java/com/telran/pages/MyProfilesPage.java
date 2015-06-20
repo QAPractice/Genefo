@@ -1,7 +1,5 @@
 package com.telran.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +20,7 @@ public class MyProfilesPage extends Page {
     @FindBy(xpath = "//div[@class='panel-body']//div[@class='btn-add-profile']/i")
     WebElement addPlusButton;
 
-    @FindBy(xpath = "//ul[@class='people_list people_list_in_profiles']/*[2]//div[@class='profileName ng-binding']")
+    @FindBy(xpath = "//ul[@class='people_list people_list_in_profiles']/*[last()]//div[@class='profileName ng-binding']")
     WebElement secondProfile;
 
     public MyProfilesPage(WebDriver driver) {

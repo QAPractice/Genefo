@@ -49,7 +49,9 @@ public class DocProfInfPage extends Page{
     WebElement cancelTitleButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPtitle($index)']" )
     WebElement confirmTitleButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPareaofinterest()'and not(@disabled='disabled')]" )
+    /*@FindBy(xpath ="/*//*[@ng-click='addHCPareaofinterest()'and not(@disabled='disabled')]" )
+    WebElement addAreasButton;*/
+    @FindBy(xpath ="//*[@class='btn btn-default'][@ng-click='addHCPareaofinterest()']" )    //fixed
     WebElement addAreasButton;
     @FindBy(xpath ="//*[@ng-click='addHCPareaofinterest()'and @disabled='disabled']" )
     WebElement addAreasDisButton;
@@ -59,7 +61,9 @@ public class DocProfInfPage extends Page{
     WebElement delAreasButton;
     @FindBy(xpath ="//*[@ng-click='deleteHCPareaofinterest($index)']" )
     WebElement confirmAreasButton;
-    @FindBy(xpath ="//*[@ng-click='addHCPworkplace()'and not(@disabled='disabled')]" )
+    /*@FindBy(xpath ="/*//*[@ng-click='addHCPworkplace()'and not(@disabled='disabled')]" )
+    WebElement addWorkPlacesButton;*/
+    @FindBy(xpath ="//*[@class='btn btn-default'][@ng-click='addHCPworkplace()']")   //FIXED
     WebElement addWorkPlacesButton;
     @FindBy(xpath ="//*[@ng-click='addHCPworkplace()'and @disabled='disabled']" )
     WebElement addWorkPlacesDisButton;
@@ -91,6 +95,9 @@ public class DocProfInfPage extends Page{
     WebElement areasToltip;
     @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
     WebElement worklocatToltip;
+
+
+
 
 
     public DocProfInfPage(WebDriver driver) {
@@ -207,5 +214,6 @@ public class DocProfInfPage extends Page{
         clickElement(doneButton);
         return this;
     }
+
 
 }

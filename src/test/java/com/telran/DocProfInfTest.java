@@ -68,7 +68,7 @@ public class DocProfInfTest {
                     .fillAreasField("Canavan disease")
                     .clickOnAddAreasButton()
                     .fillWorkPlacesNameField("assuta")
-                    .fillWorkPlacesLocationField("J")
+                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
@@ -82,7 +82,7 @@ public class DocProfInfTest {
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
-                    .fillWorkPlacesLocationField("J")
+                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
@@ -91,7 +91,7 @@ public class DocProfInfTest {
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"smoke", "positive"})
     public void AddEmptyFields() {
         try {
             docProfInfPage

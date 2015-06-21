@@ -8,42 +8,41 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
-import static org.testng.AssertJUnit.assertTrue;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015.
  */
 public class AddProfilesTest {
     private static String EMAIL="ri-lopatina@yandex.ru";
     private static String PASSWORD="123456";
-    private static String FIRST_MAME="AAAAA";
-    private static String LAST_NAME="BBBBBB";
+    private static String FIRST_MAME = "AAA";
+    private static String LAST_NAME = "BBB";
     private static String PATIENT_PROFILE_TYPE="2";
     private static String PATIENT_PROFILE_TYPE_CHECK="Friend";
     private static String GENDER="0";
     private static String GENDER_CHECK="Male";
-    private static String CONDITION="Alstrom";
+    private static String CONDITION = "Paragangliomas";
     private static String MONTH="6";
     private static String MONTH_CHECK="July";
-    private static String DAY="0";
-    private static String DAY_CHECK="1";
+    private static String DAY = "9";
+    private static String DAY_CHECK = "10";
     private static String YEAR="5";
     private static String YEAR_CHECK="2010";
     private static String DIAGNOSE_YEAR="1";
     private static String DIAGNOSE_YEAR_CHECK="2014";
-
-//Constants for checking another profile test
+    //Constants for checking another profile test
     private static String FIRST_MAME1="Reg";
     private static String LAST_NAME1="Lop";
-    private static String PATIENT_PROFILE_TYPE_CHECK1="It's Me";
+    private static String PATIENT_PROFILE_TYPE_CHECK1 = "me";
     private static String GENDER_CHECK1="Female";
-    private static String CONDITION1="Avascular necrosis of the femoral head";
-    private static String MONTH_CHECK1="Oktober";
+    private static String CONDITION1 = "Diarrhea";
+    private static String MONTH_CHECK1 = "October";
     private static String DAY_CHECK1="17";
     private static String YEAR_CHECK1="1983";
-    private static String DIAGNOSE_YEAR_CHECK1="February 1987";
-
+    private static String DIAGNOSE_YEAR_CHECK1 = "1987";
     public WebDriver driver;
     public WebDriverWait wait;
     MyProfilesPage myProfilesPage;
@@ -52,7 +51,6 @@ public class AddProfilesTest {
     MainPage mainPage;
     SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
-
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -63,7 +61,6 @@ public class AddProfilesTest {
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
         summaryPage = PageFactory.initElements(driver, SummaryPage.class);
-
         try {
             loginPage.openLoginPage()
                     .isOnLoginPage();
@@ -74,7 +71,6 @@ public class AddProfilesTest {
             e.printStackTrace();
         }
     }
-
     @Test (groups = {"smoke", "positive"})
     public void AddProfileSuccess() {
         mainPage.isOnMainPage();
@@ -100,12 +96,12 @@ public class AddProfilesTest {
         profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
         profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
         profilePage.clickToSubmit();
-        assertTrue(summaryPage.isOnSummaryPage());
-        assertTrue(summaryPage.isProfileNamePresents(name));
+        assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
+        assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnDiscoverHome();
     }
     //  Negative tests
-    @Test (groups = {"smoke", "negative"})    //Bug!!!
+    @Test(groups = {"negative"})    //Bug!!!
     public void AddProfileWithoutCondition() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -132,7 +128,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"smoke", "negative"})
     public void AddProfileWoutLastName() {
@@ -162,7 +158,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"smoke", "negative"})
     public void AddProfileWoutFirstName() {
@@ -192,7 +188,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutPatientType() {
@@ -221,7 +217,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutGender() {
@@ -250,7 +246,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutMonth() {
@@ -279,7 +275,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutDay() {
@@ -308,7 +304,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutYear() {
@@ -337,7 +333,7 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     @Test (groups = {"negative"})
     public void AddProfileWoutDiagnoseYear() {
@@ -365,40 +361,34 @@ public class AddProfilesTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(profilePage.isOnProfilePage());
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
     }
     //Sitechko: TCFB 2
-    @Test //(groups = {"bugs", "positive"})
+    @Test(groups = {"smoke", "positive"})
     public void CheckAnotherProfile() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickSecondProfile();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         summaryPage.isOnSummaryPage();
-        assertTrue(summaryPage.isRelationCorrect(PATIENT_PROFILE_TYPE_CHECK));
-        assertTrue(summaryPage.isNameCorrect(FIRST_MAME + " " + LAST_NAME));
-        assertTrue(summaryPage.isConditionCorrect(CONDITION));
-        assertTrue(summaryPage.isGenderFieldCorrect(GENDER_CHECK));
-        assertTrue(summaryPage.isBirthdayFieldCorrect(MONTH_CHECK + " " + DAY_CHECK + ", " + YEAR_CHECK));
-        assertTrue(summaryPage.isPatientDiagnosisDateFieldCorrect(DIAGNOSE_YEAR_CHECK));
+        assertTrue(summaryPage.areProfileFieldsCorrect(PATIENT_PROFILE_TYPE_CHECK, FIRST_MAME, LAST_NAME, CONDITION, GENDER_CHECK, MONTH_CHECK, DAY_CHECK, YEAR_CHECK, DIAGNOSE_YEAR_CHECK));
         summaryPage.clickOnFirstProfile();
-        assertTrue(summaryPage.isOnSummaryPage());
-        assertTrue(summaryPage.isRelationCorrect(PATIENT_PROFILE_TYPE_CHECK1));
-        assertTrue(summaryPage.isNameCorrect(FIRST_MAME1 + " " + LAST_NAME1));
-        assertTrue(summaryPage.isConditionCorrect(CONDITION1));
-        assertTrue(summaryPage.isGenderFieldCorrect(GENDER_CHECK1));
-        assertTrue(summaryPage.isBirthdayFieldCorrect(MONTH_CHECK1 + " " + DAY_CHECK1 + ", " + YEAR_CHECK1));
-        assertTrue(summaryPage.isPatientDiagnosisDateFieldCorrect(DIAGNOSE_YEAR_CHECK1));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertTrue(summaryPage.areProfileFieldsCorrect(PATIENT_PROFILE_TYPE_CHECK1, FIRST_MAME1, LAST_NAME1, CONDITION1, GENDER_CHECK1, MONTH_CHECK1, DAY_CHECK1, YEAR_CHECK1, DIAGNOSE_YEAR_CHECK1));
         summaryPage.clickOnDiscoverHome();
     }
 
-    /*@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
-    }*/
+    }
 }

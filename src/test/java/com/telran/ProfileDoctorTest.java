@@ -1,7 +1,6 @@
 package com.telran;
 
-import com.telran.pages.ProfileDoctorPage;
-import com.telran.pages.DocAcInfPage;
+import com.telran.pages.*;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.Alert;
@@ -15,24 +14,25 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Reporter.log;
-
 /**
- * Created by Oleg on 31.05.2015.
+ * Created by Oleg on 20.06.2015.
  */
-public class DocAcInfTest {
+public class ProfileDoctorTest {
+
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
     public DocAcInfPage docAcInfPage;
+    public DocBasInfPage docBasInfPage;
+    public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
 
@@ -44,6 +44,8 @@ public class DocAcInfTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
         docAcInfPage = PageFactory.initElements(driver, DocAcInfPage.class);
+        docBasInfPage = PageFactory.initElements(driver, DocBasInfPage.class);
+        docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
@@ -51,67 +53,54 @@ public class DocAcInfTest {
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void DiscoverYourHomePage() {
+
+        try {
+            profileDoctorPage.clickOnDisYourHP();
+            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void EditAccountInformation() {
+
+        try {
             profileDoctorPage.clickOnEditAccInf();
-            docAcInfPage.waitUntilDocAcInfPageIsLoaded();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-//    @BeforeMethod
-//    public void beforemethodsetup() {
-//        loginPage.login("osh_il+4@yahoo.com","111111");
-//        mainPage.waitUntilMainPageIsLoaded();
-//        mainPage.selectMyAccount();
-//        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-//        profileDoctorPage.clickOnEditAccInf();
-//        docAcInfPage.waitUntilDocAcInfPageIsLoaded();
-//
-//    }
-
-    @Test(groups = {"smoke", "positive"})
-    public void EditAccInfSuccess() {
-
-        try {
-            EmailNickname = randomAlphabetic(5);
-            docAcInfPage
-                    .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
-                    .clickOnSaveButton();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("The Account Information Page doesn't open", docAcInfPage.isOnDocAcInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void ClickOnCancel() {
+    public void EditBasicInformation() {
 
         try {
-            docAcInfPage
-                    .clickOnCancel();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.clickOnEditBasInf();
+            assertTrue("The Basic Information Page doesn't open", docBasInfPage.isOnDocBasInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void EditAccInfEmptyFiels() {
+    @Test(groups = {"smoke", "positive"})
+    public void EditHealthcareProfInf() {
 
         try {
-            docAcInfPage
-                    .fillPasswordField("")
-                    .fillEmailField("")
-                    .clickOnSaveButton();
-            assertTrue("The Email is valid",docAcInfPage.alertMessageInvalidEmail());
-            assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed",docAcInfPage.isOnDocAcInfPage());
+            profileDoctorPage.clickOnHealInf();
+            assertTrue("The Healthcare Professional Information Page doesn't open", docProfInfPage.isOnDocProfInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

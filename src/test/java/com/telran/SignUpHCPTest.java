@@ -332,7 +332,7 @@ public class SignUpHCPTest {
 
     //6
     @Test(groups = {"negative"})
-    public void RegTestWithDotInTheBeginningLocalPartEmailField() {
+    public void RegTestWithDotInTheBeginingLocalPartEmailField() {
 
         try {
             signUpHCPPage

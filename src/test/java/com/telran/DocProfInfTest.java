@@ -65,10 +65,12 @@ public class DocProfInfTest {
                     .clickOnAddSubspecialtiesButton()
                     .fillTitlesField("doctor")
                     .clickOnAddTitlesButton()
-                    .fillAreasField("Canavan disease")
+                    .fillAreasField("Canavan")
+                    .clickOnTooltipAreas()
                     .clickOnAddAreasButton()
                     .fillWorkPlacesNameField("assuta")
-                    .fillWorkPlacesLocationField("J")
+                    .fillWorkPlacesLocationField("a")
+                    .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());

@@ -11,10 +11,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 30.05.2015.
@@ -23,28 +25,30 @@ public class LoginTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public HomePage homePage;
     public LoginPage loginPage;
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
-    public HomePage homePage;
     private boolean acceptNextAlert = true;
-
 
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage = PageFactory.initElements(driver,LoginPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
 
+    }
+    @BeforeMethod
+            public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
     @Test(groups = {"smoke", "positive"})
      public void LoginSuccess() {
 

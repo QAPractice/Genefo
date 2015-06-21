@@ -1,5 +1,6 @@
 package com.telran.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -212,6 +213,53 @@ public class GrafsPage extends Page {
         clickElement(MedicineEffectivenessLink);
         return this;
     }
+
+    public boolean isGraphLoaded(String element) {
+        String xpath = "xxx";
+        element = "xxx";
+
+        switch (element) {
+
+            case "Medicine Reasons":
+                xpath = "Reason medicine";
+                break;
+            case "Medicine Effectiveness":
+                xpath = "Medicine reviews across";
+                break;
+            case "Across Conditions":
+                xpath = "Across Conditions";
+                break;
+            case "Language Milestones":
+                xpath = "Milestones - Language";
+                break;
+            case "Movement Milestones":
+                xpath = "Developmental Milestones - Movement";
+                break;
+            case "Eating Milestones":
+                xpath = "Developmental Milestones - Eating";
+                break;
+            case "Toileting Milestones":
+                xpath = "Developmental Milestones - Toileting";
+                break;
+            case "What Works Best":
+                xpath = "What works best";
+                break;
+            case "Therapy":
+                xpath = "Therapy";
+                break;
+
+            case "":
+
+            default:
+            case "Medicine":
+                xpath = "Medicine used";
+                break;
+        }
+
+
+        return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
+    }
+
 
     public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);

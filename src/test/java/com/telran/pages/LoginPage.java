@@ -62,6 +62,26 @@ public class LoginPage extends Page {
         }return this;
     }
 
+    public LoginPage waitUntilAllertEmailIsLogIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(invalidEmailAlert);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }return this;
+    }
+
+    public LoginPage waitUntilAllertPasswordIsLogIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(invalidPasswordAlert);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }return this;
+    }
+
 
     public boolean isOnLoginPage() {
         waitUntilLoginPageIsLoaded();

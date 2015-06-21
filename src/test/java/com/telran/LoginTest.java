@@ -96,6 +96,7 @@ public class LoginTest {
                     .openLoginPage()
                     .fillEmailField("osh_il+4yahoo.com")
                     .fillPasswordField("111111")
+                    .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
@@ -112,6 +113,7 @@ public class LoginTest {
                     .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("1")
+                    .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
@@ -144,6 +146,7 @@ public class LoginTest {
                     .openLoginPage()
                     .fillEmailField("")
                     .fillPasswordField("")
+                    .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());

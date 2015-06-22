@@ -36,7 +36,7 @@ public class FiltersOfPatientTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         filtersOfPatientOnMainPage = PageFactory.initElements(driver, FiltersOfPatientOnMainPage.class);
         try {
-            loginPage.login("patone@mail.ru", "111111");
+            loginPage.login("patone@pat.ru", "111111");
             mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

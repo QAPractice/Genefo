@@ -65,10 +65,12 @@ public class DocProfInfTest {
                     .clickOnAddSubspecialtiesButton()
                     .fillTitlesField("doctor")
                     .clickOnAddTitlesButton()
-                    .fillAreasField("Canavan disease")
+                    .fillAreasField("Canavan")
+                    .clickOnTooltipAreas()
                     .clickOnAddAreasButton()
                     .fillWorkPlacesNameField("assuta")
-                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
+                    .fillWorkPlacesLocationField("a")
+                    .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
@@ -82,7 +84,7 @@ public class DocProfInfTest {
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
-                    .fillWorkPlacesLocationField("Tel Aviv-Yafo, Israel")
+                    .fillWorkPlacesLocationField("J")
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
@@ -91,7 +93,7 @@ public class DocProfInfTest {
         }
     }
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "negative"})
     public void AddEmptyFields() {
         try {
             docProfInfPage

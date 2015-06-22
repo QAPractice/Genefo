@@ -257,8 +257,10 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("A")
                     .fillTextField(post)
                     .sendPost();
-           assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-           assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+           /* milestoneOnMainPage.waitForNumbersOnlyMessageForMonth();
+            milestoneOnMainPage.waitForNumbersOnlyMessageForYear();*/
+            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
         }  catch (Exception e) {
             e.printStackTrace();
         }

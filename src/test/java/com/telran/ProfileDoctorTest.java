@@ -51,11 +51,15 @@ public class ProfileDoctorTest {
         try {
             loginPage.login("osh_il+4@yahoo.com","111111");
             mainPage.waitUntilMainPageIsLoaded();
-            mainPage.selectMyAccount();
-            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        profileDoctorPage.openProfileDoctorPage();
+        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
     }
 
     @Test(groups = {"smoke", "positive"})

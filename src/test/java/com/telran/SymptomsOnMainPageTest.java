@@ -23,8 +23,8 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by tanyagaus, Lev on 6/10/15.
  */
 public class SymptomsOnMainPageTest{
-    private static String MY_EMAIL="mili29@mail.ru";
-    private static String MY_Password="123qwee";
+    private static String MY_EMAIL="vika2711t@gmail.com";
+    private static String MY_Password="v1681v";
     private static String PATH_TO_Miki= Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
 
     public WebDriver driver;
@@ -107,6 +107,7 @@ public class SymptomsOnMainPageTest{
     }
 
     @AfterClass(alwaysRun=true)
+
     public void quiteWindow(){
 
         this.driver.quit();

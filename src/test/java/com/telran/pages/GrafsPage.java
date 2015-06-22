@@ -256,6 +256,40 @@ public class GrafsPage extends Page {
             case "Exercises":
                 xpath = "'Yoga";
                 break;
+            case "Alternative Medicine":
+                xpath = "Pets";
+                break;
+            case "Medical Facilities":
+                xpath = "Medical Facility";
+                break;
+            case "Procedures":
+                xpath = "Medical Procedures";
+                break;
+            case "Healthcare Professionals":
+                xpath = "Medical Healthcare";
+                break;
+            case "Location":
+                xpath = "Location share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Gender":
+                xpath = "Gender share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Age":
+                xpath = "Birthday";
+                break;
+            case "Race":
+                xpath = "Race share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Genes":
+                xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
+                break;
+
+
+
+
+
+
+
 
 
 

@@ -110,9 +110,9 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
-    @FindBy(xpath = "//input[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
+    @FindBy(xpath = "//*[@name='milestone_months']/../span[@class='ng-hide']")
     WebElement numbersOnlyForMonths;
-    @FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+    @FindBy(xpath = "//*[@name='milestone_years']/../span[@class='ng-hide']")
     WebElement numbersOnlyForYears;
 
     //elements in created post

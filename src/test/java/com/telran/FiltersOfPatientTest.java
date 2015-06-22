@@ -49,7 +49,9 @@ public class FiltersOfPatientTest {
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,31 +59,32 @@ public class FiltersOfPatientTest {
 
     @Test//(groups={"smoke","positive"}, enabled = true)
     public void chooseSecondItemOfFilter() {
-
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnPeopleIAmFollowingAndMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test//(groups={"smoke","positive"}, enabled = true)
-    public void chooseItemOfFilter() {
-
+    public void chooseThirdItemOfFilter() {
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnMyConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    //patone@mail.ru 111111    Pat One  Bardet-Biedl syndrome Community
-    //doctor1@mail.ru 111111   Doctor One
+    //patone@pat.ru 111111    Pat One  Bardet-Biedl syndrome Community     following Pat Two
+    //doctor1@mail.ru 111111   Doctor One    Bardet-Biedl syndrome Community
     //pattwo@mail.ru 111111    Pat Two
     //patthree@mail.ru 111111   Pat Three  Bardet-Biedl syndrome Community
 

@@ -277,8 +277,8 @@ public class MilestoneOnMainPageTest {
                     .fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-            assertFalse("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertFalse("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
+            assertFalse("Alert 'Numbers only' for months appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertFalse("Alert 'Numbers only' for year appeared", milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }

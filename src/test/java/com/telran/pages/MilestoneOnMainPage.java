@@ -115,6 +115,11 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@name='milestone_years']/../span[@class='ng-hide']")
     WebElement numbersOnlyForYears;
 
+    //@FindBy(xpath = "//input[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
+    //WebElement numbersOnlyForMonths;
+    //@FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+    //WebElement numbersOnlyForYears;
+
     //elements in created post
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;

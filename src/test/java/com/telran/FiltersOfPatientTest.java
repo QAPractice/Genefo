@@ -25,6 +25,10 @@ public class FiltersOfPatientTest {
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
+    private static String PATIENT_ONE = "Pat One";
+    private static String PATIENT_TWO = "Pat Two";
+    private static String PATIENT_THREE = "Pat Three";
+
 
 
     @BeforeClass
@@ -43,7 +47,7 @@ public class FiltersOfPatientTest {
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseFirstItemOfFilter() {
 
         try {
@@ -51,33 +55,45 @@ public class FiltersOfPatientTest {
                     .clickOnChangeFilterButton()
                     .clickOnMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
-            sleep(3000);
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseSecondItemOfFilter() {
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
                     .clickOnPeopleIAmFollowingAndMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
-            sleep(3000);
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_TWO));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseThirdItemOfFilter() {
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
                     .clickOnMyConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
-            sleep(3000);
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_THREE));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_TWO));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerFifthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFifthPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }

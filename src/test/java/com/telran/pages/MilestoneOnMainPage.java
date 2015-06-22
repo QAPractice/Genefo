@@ -263,8 +263,8 @@ public class MilestoneOnMainPage extends Page {
     //method for waiting Numbers Only FIELD for Month
     public void waitForNumbersOnlyMessageForMonth() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(numbersOnlyForMonths);
-
     }
+
     //method for waiting Numbers Only FIELD for year
     public void waitForNumbersOnlyMessageForYear() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(numbersOnlyForYears);

@@ -245,8 +245,21 @@ public class GrafsPage extends Page {
                 xpath = "What works best";
                 break;
             case "Therapy":
-                xpath = "Therapy";
+                xpath = "Psychotherapy";
                 break;
+            case "Equipment":
+                xpath = "Splints";
+                break;
+            case "Nutrition":
+                xpath = "Vitamin E";
+                break;
+            case "Exercises":
+                xpath = "'Yoga";
+                break;
+
+
+
+
 
             case "":
 

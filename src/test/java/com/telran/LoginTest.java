@@ -59,6 +59,7 @@ public class LoginTest {
                     .fillPasswordField("111111")
                     .clickOnLogin();
             assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
+            //mainPage.logOut();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,13 +77,14 @@ public class LoginTest {
                     .clickOnLogin();
             mainPage.logOut();
             homePage.waitUntilHomePageIsLoaded();
+            assertTrue("The Home Page doesn't open",homePage.isOnHomePage());
             homePage.clickOnLogin();
             loginPage
                     .waitUntilLoginPageIsLoaded()
                     .fillEmailField("osh_il+2@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-           assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
+         //  assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
         } catch (Exception e) {
             e.printStackTrace();
         }

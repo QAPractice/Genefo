@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 /**
  * Created by Christina on 6/22/15.
  */
@@ -22,6 +24,11 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement conditionFieldOfPatientOnMainPage;
     @FindBy(xpath = "//div[@class='profile_selector_name ng-binding']")
     WebElement nameFieldOfPatientOnMainPage;
+    @FindBy(xpath = "//div[@class='panel-body']/span[1]")
+    WebElement displayingMyPosts;
+
+
+    //div[@class='panel-body']/span[1]
 
 
     //Change Filter button
@@ -128,5 +135,12 @@ public class FiltersOfPatientOnMainPage extends Page {
     public boolean isTimeOfSixthPost(String name){return this.verifyTextBoolean(timeOfSixthPost,name);}
 
     public boolean isTimeOfSeventhPost(String name){return this.verifyTextBoolean(timeOfSeventhPost,name);}
+
+
+    //method for waiting Displaying My Posts
+    public void waitForDisplayingMyPosts() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(displayingMyPosts);
+    }
+
 
 }

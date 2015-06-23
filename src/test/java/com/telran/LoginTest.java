@@ -4,6 +4,7 @@ import com.telran.pages.HomePage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
+import junit.framework.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -37,10 +38,12 @@ public class LoginTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        homePage = PageFactory.initElements(driver, HomePage.class);
 
     }
     @BeforeMethod
-            public void beforeMethodSetUp() {
+    public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
@@ -50,7 +53,7 @@ public class LoginTest {
 
     }
     @Test(groups = {"smoke", "positive"})
-     public void LoginSuccess() {
+    public void LoginSuccess() {
 
         try {
             loginPage
@@ -69,24 +72,25 @@ public class LoginTest {
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
 
-        try {
-            loginPage
-                    .openLoginPage()
-                    .fillEmailField("osh_il+4@yahoo.com")
-                    .fillPasswordField("111111")
-                    .clickOnLogin();
-            mainPage.logOut();
-            homePage.waitUntilHomePageIsLoaded();
-            homePage.clickOnLogin();
-            loginPage
-                    .waitUntilLoginPageIsLoaded()
-                    .fillEmailField("osh_il+2@yahoo.com")
-                    .fillPasswordField("111111")
-                    .clickOnLogin();
-            assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String user="mili29@mail.ru";
+        String pass="123qwee";
+
+        loginPage
+//                    .openLoginPage()
+                .fillEmailField(user)
+                .fillPasswordField(pass)
+                .clickOnLogin();
+        mainPage.openMainPage()
+                .isOnMainPage();
+        mainPage.logOut();
+        loginPage
+                .openLoginPage()
+                .waitUntilLoginPageIsLoaded()
+                .fillEmailField(user)
+                .fillPasswordField(pass)
+                .clickOnLogin();
+        assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
+
     }
 
     @Test(groups = {"smoke", "negative"})

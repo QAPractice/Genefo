@@ -4,16 +4,13 @@ import com.telran.pages.HomePage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
-import junit.framework.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,9 +28,6 @@ public class LoginTest {
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
     private boolean acceptNextAlert = true;
-    String user="osh_il+4@yahoo.com";
-    String pass="111111";
-    String user1="osh_il+1@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -49,7 +43,7 @@ public class LoginTest {
     public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()
-                     .waitUntilLoginPageIsLoaded();
+                    .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,34 +54,40 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-            mainPage.waitUntilMainPageIsLoaded();
-            mainPage.logOut();
-            assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
+            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            //mainPage.logOut();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "positive"})
-    public void LoginLogoutLogin() {
+    @DataProvider
+    private Object[][] myProvider(){
+        return new Object[][]{
+                {"mili29@mail.ru","123qwee"},
+                {"mili29@mail.ru","123qwee"},
+        };
+    }
 
-        loginPage
+    @Test(groups = {"smoke", "positive"},dataProvider = "myProvider")
+    public void LoginLogoutLogin(String user, String pass) {
+
+        homePage.openHomePage().waitUntilHomePageIsLoaded();
+        Assert.assertTrue(homePage.isOnHomePage(), "Home page is loaded first time?");
+        loginPage.openLoginPage().clickOnLogin()
                 .fillEmailField(user)
                 .fillPasswordField(pass)
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
+        Assert.assertTrue(mainPage.isOnMainPage(), "Main page is loaded?");
         mainPage.logOut();
         homePage.waitUntilHomePageIsLoaded();
-        homePage.clickOnLogin();
-        loginPage
-                .waitUntilLoginPageIsLoaded()
-                .fillEmailField(user1)
-                .fillPasswordField(pass)
-                .clickOnLogin();
-        assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
+        Assert.assertTrue(homePage.isOnHomePage(),"Home page is loaded after logOut?");
 
     }
 
@@ -96,6 +96,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4yahoo.com")
                     .fillPasswordField("111111")
                     .waitUntilAllertEmailIsLogIsLoaded()
@@ -112,6 +113,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
@@ -129,6 +131,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .clickOnForgotPasswordLink();
             assertTrue("The Reset Password Page doesn't open",resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
@@ -143,6 +146,7 @@ public class LoginTest {
 
         try {
             loginPage
+                    .openLoginPage()
                     .fillEmailField("")
                     .fillPasswordField("")
                     .waitUntilAllertEmailIsLogIsLoaded()

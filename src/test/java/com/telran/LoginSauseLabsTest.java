@@ -62,7 +62,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
     public void setUp(@Optional("ivolf") String username,
                       @Optional("90e3bb89-c21d-4885-85cf-f25494db06ff") String key,
                       @Optional("Windows 8.1") String os,
-                      @Optional("IE") String browser,
+                      @Optional("internet explorer") String browser,
                       @Optional("11") String browserVersion,
                       Method method) throws Exception {
 
@@ -101,7 +101,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
         try {
             loginPage
                     .opennLoginPage(driver)
-                    .fillEmailField("osh_il+4@yahoo.com")
+                    .fillEmailField("jakoff+22@gmail.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
             AssertJUnit.assertTrue(mainPage.isOnMainPage());

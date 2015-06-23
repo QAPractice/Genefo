@@ -142,7 +142,7 @@ public abstract class Page {
       return element.isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException ignored) {
       System.out.println("---------------------------------");
-      System.out.println("element can not be found by Page.isDisplayed()");
+      System.out.println("element can not be found by Page.isDisplayed()" );
       System.out.println("---------------------------------");
       return false;
     }

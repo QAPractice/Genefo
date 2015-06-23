@@ -14,7 +14,7 @@ public class PostOnMainPage extends Page{
 
     // Serves as indication that we are on 'Post' Panel. We need double quota inside. Do not remove it, please
     @FindBy(xpath = "//a[@class='active'][@ng-click=\"setType('general')\"]")
-    WebElement postButtonChecked;
+    WebElement postButtonHighLighted;
 
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
@@ -33,7 +33,7 @@ public class PostOnMainPage extends Page{
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilPostPanelIsLoaded() {
         try {
-            waitUntilElementIsLoaded(postButtonChecked);
+            waitUntilElementIsLoaded(postButtonHighLighted);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -44,7 +44,7 @@ public class PostOnMainPage extends Page{
     // Checks that title of our 'Post' Panel have appeared on the screen so we can work with it.
     public boolean isOnPostPanel() {
         waitUntilPostPanelIsLoaded();
-        return exists(postButtonChecked);
+        return exists(postButtonHighLighted);
     }
 
     public PostOnMainPage fillTextField(String post) {

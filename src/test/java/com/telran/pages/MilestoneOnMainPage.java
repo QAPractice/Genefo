@@ -110,15 +110,10 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
-    @FindBy(xpath = "//*[@name='milestone_months']/../span[@class='ng-hide']")
+    @FindBy(xpath = "//input[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
     WebElement numbersOnlyForMonths;
-    @FindBy(xpath = "//*[@name='milestone_years']/../span[@class='ng-hide']")
+    @FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
     WebElement numbersOnlyForYears;
-
-    //@FindBy(xpath = "//input[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
-    //WebElement numbersOnlyForMonths;
-    //@FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
-    //WebElement numbersOnlyForYears;
 
     //elements in created post
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
@@ -263,8 +258,8 @@ public class MilestoneOnMainPage extends Page {
     //method for waiting Numbers Only FIELD for Month
     public void waitForNumbersOnlyMessageForMonth() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(numbersOnlyForMonths);
-    }
 
+    }
     //method for waiting Numbers Only FIELD for year
     public void waitForNumbersOnlyMessageForYear() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(numbersOnlyForYears);

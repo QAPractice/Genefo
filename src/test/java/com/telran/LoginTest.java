@@ -31,6 +31,9 @@ public class LoginTest {
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
     private boolean acceptNextAlert = true;
+    String user="osh_il+4@yahoo.com";
+    String pass="111111";
+    String user1="osh_il+1@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -71,20 +74,17 @@ public class LoginTest {
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
 
-        String user="osh_il+4@yahoo.com";
-        String pass="111111";
-
         loginPage
                 .fillEmailField(user)
                 .fillPasswordField(pass)
                 .clickOnLogin();
-        mainPage.openMainPage()
-                .isOnMainPage();
+        mainPage.waitUntilMainPageIsLoaded();
         mainPage.logOut();
+        homePage.waitUntilHomePageIsLoaded();
+        homePage.clickOnLogin();
         loginPage
-                .openLoginPage()
                 .waitUntilLoginPageIsLoaded()
-                .fillEmailField(user)
+                .fillEmailField(user1)
                 .fillPasswordField(pass)
                 .clickOnLogin();
         assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());

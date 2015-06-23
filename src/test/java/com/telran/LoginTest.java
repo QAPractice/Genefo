@@ -46,7 +46,7 @@ public class LoginTest {
     public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()
-                    .waitUntilLoginPageIsLoaded();
+                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,13 +57,12 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-            assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
-            //mainPage.logOut();
-
+            mainPage.waitUntilMainPageIsLoaded();
+            mainPage.logOut();
+            assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,11 +71,10 @@ public class LoginTest {
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
 
-        String user="mili29@mail.ru";
-        String pass="123qwee";
+        String user="osh_il+4@yahoo.com";
+        String pass="111111";
 
         loginPage
-//                    .openLoginPage()
                 .fillEmailField(user)
                 .fillPasswordField(pass)
                 .clickOnLogin();
@@ -98,7 +96,6 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("osh_il+4yahoo.com")
                     .fillPasswordField("111111")
                     .waitUntilAllertEmailIsLogIsLoaded()
@@ -115,7 +112,6 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
@@ -133,7 +129,6 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .clickOnForgotPasswordLink();
             assertTrue("The Reset Password Page doesn't open",resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
@@ -148,7 +143,6 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("")
                     .fillPasswordField("")
                     .waitUntilAllertEmailIsLogIsLoaded()

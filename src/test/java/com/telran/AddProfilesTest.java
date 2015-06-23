@@ -24,7 +24,7 @@ public class AddProfilesTest {
     private static String PATIENT_PROFILE_TYPE_CHECK="Friend";
     private static String GENDER="0";
     private static String GENDER_CHECK="Male";
-    private static String CONDITION = "Paragangliomas";
+    private static String CONDITION = "Alstrom";
     private static String MONTH="6";
     private static String MONTH_CHECK="July";
     private static String DAY = "9";
@@ -51,6 +51,7 @@ public class AddProfilesTest {
     MainPage mainPage;
     SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
+
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -61,6 +62,7 @@ public class AddProfilesTest {
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
         summaryPage = PageFactory.initElements(driver, SummaryPage.class);
+
         try {
             loginPage.openLoginPage()
                     .isOnLoginPage();
@@ -71,6 +73,7 @@ public class AddProfilesTest {
             e.printStackTrace();
         }
     }
+
     @Test (groups = {"smoke", "positive"})
     public void AddProfileSuccess() {
         mainPage.isOnMainPage();
@@ -101,7 +104,7 @@ public class AddProfilesTest {
         summaryPage.clickOnDiscoverHome();
     }
     //  Negative tests
-    @Test(groups = {"negative"})    //Bug!!!
+    @Test(groups = {"smoke", "negative"})    //Bug!!!
     public void AddProfileWithoutCondition() {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();

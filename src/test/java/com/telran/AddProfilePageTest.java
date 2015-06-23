@@ -1,9 +1,6 @@
 package com.telran;
 
-import com.telran.pages.AddProfilePage;
-import com.telran.pages.EditAccountPage;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
+import com.telran.pages.*;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
@@ -21,9 +18,10 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.*;
 import static org.testng.Reporter.log;
 
-public class AddProfilePageTest {
-    private static String MY_EMAIL="telrantests@yahoo.com";
-    private static String MY_Password="12345.com";
+public class AddProfilePageTest extends TestNgTestBase {
+
+    private static String MY_EMAIL = "jakoff+55@gmail.com";
+    private static String MY_Password = "111111";
     private static String PATH_TO_Miki=Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
     public WebDriver driver;
     public WebDriverWait wait;
@@ -31,6 +29,10 @@ public class AddProfilePageTest {
     public LoginPage loginPage;
     public AddProfilePage thisPage;
     public EditAccountPage editAccountPage;
+
+
+    public MyProfilesPage myProfilesPage;
+
 
     @BeforeClass
     @Parameters({"browser"})
@@ -57,6 +59,7 @@ public class AddProfilePageTest {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         thisPage = PageFactory.initElements(driver,AddProfilePage.class);
         editAccountPage = PageFactory.initElements(driver,EditAccountPage.class);
+        myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         loginPage.openLoginPage()
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
@@ -110,11 +113,17 @@ public class AddProfilePageTest {
                 .select_Patient_Birthday_Month(month)
                 .select_Patient_Birthday_Day(day)
                 .select_Patient_Birthday_Year(year)
-// BUG                .input_Patient_Location("Russia")
+                .input_Patient_Location("Moscow, Russia")
                 .input_Comment(comments);
+
+
         Reporter.log("pass all input", 1);
         assertFalse(thisPage.isErrorMessage(), "Error message not displayed (assertFalse)");
         assertTrue(thisPage.isButtonSaveActive(), "Save button is active");
+        thisPage.click_ButtonSave();
+        myProfilesPage
+                .waitUntilMyProfilesPageIsLoaded();
+        assertTrue(myProfilesPage.isOnMyProfilesPage(), "My profile Page isn't loaded");
     }
 
     @DataProvider

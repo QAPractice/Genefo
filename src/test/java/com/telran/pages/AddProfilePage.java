@@ -6,12 +6,7 @@ import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
-import java.io.File;
-import java.security.Key;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
@@ -195,9 +190,9 @@ public boolean isErrorMessage()
     public AddProfilePage input_Patient_Location(String location){
         setElementText(Patient_Location, location);
 //        BUG nothing to choose
-//        String xpath = "//*[@class='dropdown-menu ng-isolate-scope']//*[contains(text(),'"+location+"')]";
-//        WebElement  element= driver.findElement(By.xpath(xpath));
-//        element.click();
+        String xpath = "//*[contains(@id, 'typeahead')]/*[1]";
+        WebElement element = driver.findElement(By.xpath(xpath));
+        element.click();
         return this;
     }
 

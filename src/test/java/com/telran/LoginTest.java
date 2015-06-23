@@ -88,6 +88,7 @@ public class LoginTest {
                 .fillPasswordField(PASSWORD)
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
+        assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
         mainPage.logOut();
         homePage.waitUntilHomePageIsLoaded();
         assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
@@ -99,7 +100,7 @@ public class LoginTest {
         try {
             loginPage
                     .fillEmailField("osh_il+4yahoo.com")
-                    .fillPasswordField(pass)
+                    .fillPasswordField(PASSWORD)
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
@@ -114,7 +115,7 @@ public class LoginTest {
 
         try {
             loginPage
-                    .fillEmailField(user)
+                    .fillEmailField(USER)
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();

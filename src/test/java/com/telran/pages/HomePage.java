@@ -23,6 +23,10 @@ public class HomePage extends Page {
   @FindBy(xpath = "//*[@id='home_banner_small']//a[@class='landing_button']")
   WebElement freeSignUpButton;
 
+    //lables
+    @FindBy(xpath = "//*[@id='home_banner_small']/h1")
+    WebElement titleLable;
+
   @FindBy(xpath = "//*[@class='btn btn-header btn-md navbar-btn' and contains(.,'Login')]")
   WebElement loginButton;
 
@@ -44,7 +48,7 @@ public class HomePage extends Page {
 
     public void waitUntilHomePageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(freeSignUpButton);
+            waitUntilElementIsLoaded(titleLable);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -52,8 +56,7 @@ public class HomePage extends Page {
         }
     }
     public boolean isOnHomePage() {
-        waitUntilHomePageIsLoaded();
-        return exists(freeSignUpButton);
+        return exists(titleLable);
     }
 
     public HomePage clickOnLogin(){

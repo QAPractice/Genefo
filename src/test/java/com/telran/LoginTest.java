@@ -65,6 +65,7 @@ public class LoginTest {
                     .clickOnLogin();
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.logOut();
+            homePage.waitUntilHomePageIsLoaded();
             assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,8 +88,10 @@ public class LoginTest {
                 .fillEmailField(user1)
                 .fillPasswordField(pass)
                 .clickOnLogin();
-        assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-
+        mainPage.waitUntilMainPageIsLoaded();
+        mainPage.logOut();
+        homePage.waitUntilHomePageIsLoaded();
+        assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
     }
 
     @Test(groups = {"smoke", "negative"})
@@ -97,7 +100,7 @@ public class LoginTest {
         try {
             loginPage
                     .fillEmailField("osh_il+4yahoo.com")
-                    .fillPasswordField("111111")
+                    .fillPasswordField(pass)
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
@@ -112,7 +115,7 @@ public class LoginTest {
 
         try {
             loginPage
-                    .fillEmailField("osh_il+4@yahoo.com")
+                    .fillEmailField(user)
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();

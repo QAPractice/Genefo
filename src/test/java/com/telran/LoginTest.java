@@ -4,7 +4,6 @@ import com.telran.pages.HomePage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
-import junit.framework.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -31,9 +30,9 @@ public class LoginTest {
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
     private boolean acceptNextAlert = true;
-    String user="osh_il+4@yahoo.com";
-    String pass="111111";
-    String user1="osh_il+1@yahoo.com";
+    private static String USER ="osh_il+4@yahoo.com";
+    private static String PASSWORD ="111111";
+
 
     @BeforeClass
     public void setup() {
@@ -74,10 +73,10 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
-
+        String user1="osh_il+1@yahoo.com";
         loginPage
-                .fillEmailField(user)
-                .fillPasswordField(pass)
+                .fillEmailField(USER)
+                .fillPasswordField(PASSWORD)
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
         mainPage.logOut();
@@ -86,7 +85,7 @@ public class LoginTest {
         loginPage
                 .waitUntilLoginPageIsLoaded()
                 .fillEmailField(user1)
-                .fillPasswordField(pass)
+                .fillPasswordField(PASSWORD)
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
         mainPage.logOut();

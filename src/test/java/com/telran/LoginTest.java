@@ -42,6 +42,7 @@ public class LoginTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
+        resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
 
     }
     @BeforeMethod
@@ -134,8 +135,9 @@ public class LoginTest {
         try {
             loginPage
                     .clickOnForgotPasswordLink();
-            assertTrue("The Reset Password Page doesn't open",resetYourPasswordPage.isOnResetPage());
-            resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
+            resetYourPasswordPage.waitUntilResetPageIsLoaded();
+            assertTrue("The Reset Password Page doesn't open", resetYourPasswordPage.isOnResetPage());
+            resetYourPasswordPage.fillEmailField(USER);
             resetYourPasswordPage.clickOnEmailMe();
         } catch (Exception e) {
             e.printStackTrace();

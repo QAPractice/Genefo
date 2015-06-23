@@ -55,7 +55,7 @@ public class ResetYourPasswordPage extends Page{
         return exists(resetTitle);
     }
 
-    private ResetYourPasswordPage waitUntilResetPageIsLoaded() {
+    public ResetYourPasswordPage waitUntilResetPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(resetTitle);
         } catch (IOException e) {

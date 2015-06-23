@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -47,9 +48,21 @@ public class FiltersOfPatientTest {
         }
     }
 
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        mainPage.openMainPage();
+        mainPage.waitUntilMainPageIsLoaded()
+                .openPostPanel();
+        try {
+            sleep(3000);
+        } catch (InterruptedException e) {
+          System.out.print("Post Panel is not loaded");
+        }
+
+    }
+
     @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseFirstItemOfFilter() {
-
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()

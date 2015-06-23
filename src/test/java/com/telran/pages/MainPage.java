@@ -146,6 +146,7 @@ public class MainPage extends Page {
     }
 
     public boolean isOnMainPage() {
+        waitUntilMainPageIsLoaded();
         return exists(milestoneButton);
     }
 

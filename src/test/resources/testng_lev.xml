@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="SuperTest" verbose="5">
-  <test name="Test1">
+  <test name="Test2">
       <parameter name="text" value="Good treatment"/>
       <groups>
           <run>
@@ -14,10 +14,9 @@
 
               <methods>
                   <include name="setup"/>
-                  <include name="quite"/>
                   <include name="loadThisPage"/>
                   <include name="IsAddProfilePageExists"/>
-
+                  <include name="initTestSuite"/>
               </methods>
           </class>
 

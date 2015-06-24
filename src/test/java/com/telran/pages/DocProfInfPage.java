@@ -183,14 +183,16 @@ public class DocProfInfPage extends Page{
 
     public DocProfInfPage fillWorkPlacesLocationField(String worklocation) {
         setElementText(workLocatField, worklocation);
-        try {
-            waitUntilElementIsLoaded(worklocatToltip);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(worklocation == null) {
+            try {
+                waitUntilElementIsLoaded(worklocatToltip);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            clickElement(worklocatToltip);
         }
-        clickElement(worklocatToltip);
         return this;
     }
     public DocProfInfPage clickOnTooltipAreas(){

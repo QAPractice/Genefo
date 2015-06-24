@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
@@ -44,15 +45,30 @@ public class DocProfInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com","111111");
+            loginPage.login("osh_il+4@yahoo.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        try {
+            if(profileDoctorPage.isOnProfileDoctorPage() == false) {
+//                mainPage.clickMyHomeButton();
+//                mainPage.waitUntilMainPageIsLoaded();
+//                mainPage.selectMyAccount();
+                docProfInfPage.clickOnDoneButton();
+            }
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnHealInf();
             docProfInfPage.waitUntilDocProfInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -85,6 +101,7 @@ public class DocProfInfTest {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
                     .fillWorkPlacesLocationField("J")
+                    .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
@@ -152,10 +169,11 @@ public class DocProfInfTest {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
                     .fillWorkPlacesLocationField("t")
+                    .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDelWorkPlacesButton()
                     .clickOnConfWorkPlacesButton();
-            assertTrue("Location is not disappear",docProfInfPage.isLocationExists());
+            assertTrue("Location is not disappear", docProfInfPage.isLocationExists());
         } catch (Exception e) {
             e.printStackTrace();
         }

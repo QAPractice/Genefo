@@ -1,3 +1,5 @@
+/*
+
 package com.telran;
 
 import com.telran.pages.GrafsPage;
@@ -14,9 +16,15 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+*//*
+
+*/
 /**
  * Created by Yura on 19.06.2015.
- */
+ *//*
+*/
+/*
+
 public class GraphsTest {
 
     public WebDriver driver;
@@ -77,3 +85,5 @@ public class GraphsTest {
         }
     }
 }
+
+*/

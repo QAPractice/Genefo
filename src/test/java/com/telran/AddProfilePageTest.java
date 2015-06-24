@@ -20,8 +20,8 @@ import static org.testng.Reporter.log;
 
 public class AddProfilePageTest extends TestNgTestBase {
 
-    private static String MY_EMAIL = "jakoff+55@gmail.com";
-    private static String MY_Password = "111111";
+    private static String MY_EMAIL = "mili29@mail.ru";
+    private static String MY_Password = "123qwee";
     private static String PATH_TO_Miki=Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
     public WebDriver driver;
     public WebDriverWait wait;
@@ -35,24 +35,24 @@ public class AddProfilePageTest extends TestNgTestBase {
 
 
     @BeforeClass
-    @Parameters({"browser"})
-    public void setup(String browser) {
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
-            this.driver = new FirefoxDriver();
-            log("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            log("We are in Chrome browser");
-        }
-        else if (browser.equalsIgnoreCase("InternetExplorer")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            log("We are in InternetExplorer browser");
-        }
+//    @Parameters({"browser"})
+    public void setup() {
+//        if (browser.equalsIgnoreCase("Firefox"))
+//        {
+//            this.driver = new FirefoxDriver();
+//            log("We are in Firefox browser");
+//        }
+//        else if (browser.equalsIgnoreCase("Chrome")) {
+//            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+//            log("We are in Chrome browser");
+//        }
+//        else if (browser.equalsIgnoreCase("InternetExplorer")) {
+//            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
+//            log("We are in InternetExplorer browser");
+//        }
 
 
-       // driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
+        driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -70,7 +70,7 @@ public class AddProfilePageTest extends TestNgTestBase {
         thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
     }
     //Verify that Add profile page exists
-    @Test(groups = {"positive","smoke"},enabled = false)
+    @Test(groups = {"positive","smoke","special_for_debug"},enabled = true)
     public void IsAddProfilePageExists(){
         Assert.assertTrue(thisPage.ADD_ANOTHER_PROFILE_isDisplayed(),"page Add Another Profile exists");
         thisPage.ADD_ANOTHER_PROFILE_click()

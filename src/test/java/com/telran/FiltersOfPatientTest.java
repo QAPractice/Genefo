@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,10 @@ public class FiltersOfPatientTest {
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
+    private static String PATIENT_ONE = "Pat One";
+    private static String PATIENT_TWO = "Pat Two";
+    private static String PATIENT_THREE = "Pat Three";
+
 
 
     @BeforeClass
@@ -43,45 +48,72 @@ public class FiltersOfPatientTest {
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        mainPage.openMainPage();
+        mainPage.waitUntilMainPageIsLoaded()
+                .openPostPanel();
+        try {
+            sleep(3000);
+        } catch (InterruptedException e) {
+          System.out.print("Post Panel is not loaded");
+        }
+
+    }
+
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseFirstItemOfFilter() {
-
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
+    @Test(groups={"smoke","positive"}, enabled = true)
     public void chooseSecondItemOfFilter() {
-
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnPeopleIAmFollowingAndMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_TWO));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test//(groups={"smoke","positive"}, enabled = true)
-    public void chooseItemOfFilter() {
-
+    @Test(groups={"smoke","positive"}, enabled = true)
+    public void chooseThirdItemOfFilter() {
         try {
             filtersOfPatientOnMainPage
                     .clickOnChangeFilterButton()
-                    .clickOnMyPostsOnlyRadioButton();
+                    .clickOnMyConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton()
+                    .clickOnApplyFilterButton();
+            filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
+            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_THREE));
+            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_TWO));
+            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerFifthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFifthPost(PATIENT_ONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    //patone@mail.ru 111111    Pat One  Bardet-Biedl syndrome Community
-    //doctor1@mail.ru 111111   Doctor One
+    //patone@pat.ru 111111    Pat One  Bardet-Biedl syndrome Community     following Pat Two
+    //doctor1@mail.ru 111111   Doctor One    Bardet-Biedl syndrome Community
     //pattwo@mail.ru 111111    Pat Two
     //patthree@mail.ru 111111   Pat Three  Bardet-Biedl syndrome Community
 

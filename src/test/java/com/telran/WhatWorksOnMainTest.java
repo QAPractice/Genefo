@@ -3,8 +3,6 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.WhatWorksOnMainPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,9 +12,8 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.Reporter.log;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by alex on 5/29/2015.
@@ -37,20 +34,20 @@ public class WhatWorksOnMainTest {
 
     @BeforeClass
     @Parameters({"browser"})
-    public void setup(String browser) {
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
+    public void setup() {
+  //      if (browser.equalsIgnoreCase("Firefox"))
+    //    {
             this.driver = new FirefoxDriver();
-            log("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
+     //       log("We are in Firefox browser");
+     //   }
+  /*      else if (browser.equalsIgnoreCase("Chrome")) {
             driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
             log("We are in Chrome browser");
         }
         else if (browser.equalsIgnoreCase("InternetExplorer")) {
             driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
             log("We are in InternetExplorer browser");
-        }
+        }  */
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver,LoginPage.class);
@@ -66,7 +63,7 @@ public class WhatWorksOnMainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }   // We fill data structures, that we defined in whatWorksOnMainPage class.
-        whatWorksOnMainPage.defineOptionsLocatorAndItemList();
+        whatWorksOnMainPage.defineOptionsLocatorsAndItemList();
     }
 
     @BeforeMethod
@@ -78,7 +75,175 @@ public class WhatWorksOnMainTest {
         whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();
     }
 
-// 1
+
+    //  1
+    @Test(groups = {"smoke", "positive"})
+    public void SendPostTherapyLastItemTest() {
+        String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+        String category = "Therapy";
+        //String category = "Equipment";
+        //String category = "Nutrition";
+        //String category = "Exercises";
+        //String category = "Alternative";
+        try {
+            whatWorksOnMainPage.clickOnOption(category);
+                    assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+            whatWorksOnMainPage.clickOnItemList()
+                    .waitUntilLastItemFromItemListIsLoaded()
+                    .chooseLastItemFromItemList()
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+
+            sleep(2000); // wait  to see sent post.
+
+            assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue("Category in sent post is not correct", whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue("Third star is not checked", whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue("Forth star is checked",whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //  2
+    @Test(groups = {"smoke", "positive"})
+    public void SendPostEquipmentLastItemTest() {
+        String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+        // String category = "Therapy";
+        String category = "Equipment";
+        //String category = "Nutrition";
+        //String category = "Exercises";
+        //String category = "Alternative";
+        try {
+            whatWorksOnMainPage.clickOnOption(category);
+            assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+            whatWorksOnMainPage.clickOnItemList()
+                    .waitUntilLastItemFromItemListIsLoaded()
+                    .chooseLastItemFromItemList()
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+
+            sleep(2000); // wait  to see sent post.
+
+            assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue("Category in sent post is not correct", whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue("Third star is not checked", whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue("Forth star is checked",whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //  3
+    @Test(groups = {"smoke", "positive"})
+    public void SendPostNutritionLastItemTest() {
+        String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+        // String category = "Therapy";
+        // String category = "Equipment";
+        String category = "Nutrition";
+        //String category = "Exercises";
+        //String category = "Alternative";
+        try {
+            whatWorksOnMainPage.clickOnOption(category);
+            assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+            whatWorksOnMainPage.clickOnItemList()
+                    .waitUntilLastItemFromItemListIsLoaded()
+                    .chooseLastItemFromItemList()
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+
+            sleep(2000); // wait  to see sent post.
+
+            assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue("Category in sent post is not correct", whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue("Third star is not checked", whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue("Forth star is checked",whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //  4
+    @Test(groups = {"smoke", "positive"})
+    public void SendPostExercisesLastItemTest() {
+        String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+        // String category = "Therapy";
+        // String category = "Equipment";
+        // String category = "Nutrition";
+        String category = "Exercises";
+        //String category = "Alternative";
+        try {
+            whatWorksOnMainPage.clickOnOption(category);
+            assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+            whatWorksOnMainPage.clickOnItemList()
+                    .waitUntilLastItemFromItemListIsLoaded()
+                    .chooseLastItemFromItemList()
+                    .clickOnAllStarsTogether()
+                    .rateItThree()                //Click on the third star
+                    .fillTextField(text)
+                    .sendPost();
+
+            sleep(2000); // wait  to see sent post.
+
+            assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue("Category in sent post is not correct", whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue("Third star is not checked", whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue("Forth star is checked",whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//  5
+    @Test(groups = {"smoke", "positive"})
+    public void SendPostAlternativeLastItemTest() {
+        String text = "My Fifth Post" ;
+        String otherItem = "Hard work is good for everyone" ;
+        // String category = "Therapy";
+        // String category = "Equipment";
+        // String category = "Nutrition";
+        // String category = "Exercises";
+       String category = "Alternative";
+        try {
+            whatWorksOnMainPage.clickOnOption(category);
+            assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+            whatWorksOnMainPage.clickOnItemList()
+                        .waitUntilLastItemFromItemListIsLoaded()
+                        .chooseLastItemFromItemList()
+                        .clickOnAllStarsTogether()
+                        .rateItThree()                //Click on the third star
+                        .fillTextField(text)
+                        .sendPost();
+
+            sleep(2000); // wait  to see sent post.
+
+            assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
+            assertTrue("Category in sent post is not correct", whatWorksOnMainPage.verifyCategoryExistsInSentPost(category));
+            assertTrue("Third star is not checked", whatWorksOnMainPage.verifyThirdStarCheckedInSentPost());
+            assertTrue("Forth star is checked",whatWorksOnMainPage.verifyFourthStarNonCheckedInSentPost() );
+            assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+// 6
     @Test(groups = {"smoke", "positive"})
     public void SendPostOtherTest() {
         String text = "My Fifth Post" ;
@@ -90,25 +255,29 @@ public class WhatWorksOnMainTest {
         //String category = "Alternative";
         String category = "Other";
         try {
-          if(category.equals("Other")) // 'Other' option is different. It has no predetermined list
+          if(category.equals("Other"))
+            {// 'Other' option is different. It has no predetermined list
               whatWorksOnMainPage
-                      .clickOnOption(category)
+                      .clickOnOption(category);
+              assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+              whatWorksOnMainPage
                       .fillItemForOtherOption(otherItem)
                       .clickOnAllStarsTogether()
                       .rateItThree()                //Click on the third star
                       .fillTextField(text)
                       .sendPost();
-          else
-              whatWorksOnMainPage
-                    .clickOnOption(category)
-                    .clickOnItemList()
-                    .waitUntilItemFromItemListIsLoaded(3)
-                            .chooseItemFromItemList(3)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()                //Click on the third star
-                    .fillTextField(text)
-                    .sendPost();
-
+            }
+          else {
+              whatWorksOnMainPage.clickOnOption(category);
+              assertTrue(whatWorksOnMainPage.isOptionHighLighted(category));
+              whatWorksOnMainPage.clickOnItemList()
+                      .waitUntilItemFromItemListIsLoaded(3)
+                      .chooseItemFromItemList(3)
+                      .clickOnAllStarsTogether()
+                      .rateItThree()                //Click on the third star
+                      .fillTextField(text)
+                      .sendPost();
+              }
           sleep(2000); // wait  to see sent post.
 
             assertTrue("Text in sent post is not correct", whatWorksOnMainPage.verifyTextFromSentPost(text) );
@@ -125,7 +294,11 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    //2
+
+
+
+
+    //7
     @Test(groups = {"smoke", "positive"})
     public void SendPostTherapyTest() {
         String text = "My Fifth Post" ;
@@ -172,7 +345,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    //3
+    //8
     @Test(groups = {"smoke", "positive"})
     public void SendPostEquipmentTest() {
         String text = "My Fifth Post" ;
@@ -219,7 +392,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    //4
+    //9
     @Test(groups = {"smoke", "positive"})
     public void SendPostNutritionTest() {
         String text = "My Fifth Post" ;
@@ -267,7 +440,7 @@ public class WhatWorksOnMainTest {
     }
 
 
-    //5
+    //10
     @Test(groups = {"smoke", "positive"})
     public void SendPostExercisesTest() {
         String text = "My Fifth Post" ;
@@ -314,7 +487,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    //6
+    //11
     @Test(groups = {"smoke", "positive"})
     public void SendPostAlternativeTest() {
         String text = "My Fifth Post" ;
@@ -363,7 +536,7 @@ public class WhatWorksOnMainTest {
 
 
 
-    // 7
+    // 12
     @Test(groups = {"smoke", "negative"})
     public void EmptyCategoryTest() {
         String text = "My Empty Category Post";
@@ -383,7 +556,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    // 8
+    // 13
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemOtherTest() {
         String text = "Other: My Empty Category Item Post";
@@ -407,7 +580,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    // 9
+    // 14
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemTherapyTest() {
         String text = "Therapy: My Empty Category Item Post";
@@ -431,7 +604,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    // 10
+    // 15
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemEquipmentTest() {
         String text = "Equipment: My Empty Category Item Post";
@@ -455,7 +628,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
-    // 11
+    // 16
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemNutritionTest() {
         String text = "Nutrition: My Empty Category Item Post";
@@ -480,7 +653,7 @@ public class WhatWorksOnMainTest {
     }
 
 
-    // 12
+    // 17
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemExercisesTest() {
         String text = "Exercises: My Empty Category Item Post";
@@ -505,7 +678,7 @@ public class WhatWorksOnMainTest {
     }
 
 
-    // 13
+    // 18
     @Test(groups = {"smoke", "negative"})
     public void EmptyListItemAlternativeTest() {
         String text = "Alternative: My Empty Category Item Post";

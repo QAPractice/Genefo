@@ -214,8 +214,8 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public boolean isGraphLoaded(String element) {
-        String xpath = "xxx";
+    public boolean isGraphLoaded(java.lang.String element) {
+        java.lang.String xpath = "xxx";
         element = "xxx";
 
         switch (element) {

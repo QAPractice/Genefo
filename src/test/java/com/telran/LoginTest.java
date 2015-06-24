@@ -30,6 +30,9 @@ public class LoginTest {
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
     private boolean acceptNextAlert = true;
+    private static String USER ="osh_il+4@yahoo.com";
+    private static String PASSWORD ="111111";
+
 
     @BeforeClass
     public void setup() {
@@ -37,10 +40,13 @@ public class LoginTest {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        homePage = PageFactory.initElements(driver, HomePage.class);
+        resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
 
     }
     @BeforeMethod
-            public void beforeMethodSetUp() {
+    public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
@@ -50,17 +56,18 @@ public class LoginTest {
 
     }
     @Test(groups = {"smoke", "positive"})
-     public void LoginSuccess() {
+    public void LoginSuccess() {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("osh_il+4@yahoo.com")
                     .fillPasswordField("111111")
                     .clickOnLogin();
-            assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
-            //mainPage.logOut();
-
+            mainPage.waitUntilMainPageIsLoaded();
+            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            mainPage.logOut();
+            homePage.waitUntilHomePageIsLoaded();
+            //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,26 +75,25 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
-
-        try {
-            loginPage
-                    .openLoginPage()
-                    .fillEmailField("osh_il+4@yahoo.com")
-                    .fillPasswordField("111111")
-                    .clickOnLogin();
-            mainPage.logOut();
-            homePage.waitUntilHomePageIsLoaded();
-            assertTrue("The Home Page doesn't open",homePage.isOnHomePage());
-            homePage.clickOnLogin();
-            loginPage
-                    .waitUntilLoginPageIsLoaded()
-                    .fillEmailField("osh_il+2@yahoo.com")
-                    .fillPasswordField("111111")
-                    .clickOnLogin();
-         //  assertTrue("The Main Page doesn't open",mainPage.isOnMainPage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String user1="osh_il+1@yahoo.com";
+        loginPage
+                .fillEmailField(USER)
+                .fillPasswordField(PASSWORD)
+                .clickOnLogin();
+        mainPage.waitUntilMainPageIsLoaded();
+        mainPage.logOut();
+        homePage.waitUntilHomePageIsLoaded();
+        homePage.clickOnLogin();
+        loginPage
+                .waitUntilLoginPageIsLoaded()
+                .fillEmailField(user1)
+                .fillPasswordField(PASSWORD)
+                .clickOnLogin();
+        mainPage.waitUntilMainPageIsLoaded();
+        assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+        mainPage.logOut();
+        homePage.waitUntilHomePageIsLoaded();
+        //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
     }
 
     @Test(groups = {"smoke", "negative"})
@@ -95,9 +101,8 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("osh_il+4yahoo.com")
-                    .fillPasswordField("111111")
+                    .fillPasswordField(PASSWORD)
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
@@ -112,8 +117,7 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
-                    .fillEmailField("osh_il+4@yahoo.com")
+                    .fillEmailField(USER)
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();
@@ -130,10 +134,10 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .clickOnForgotPasswordLink();
-            assertTrue("The Reset Password Page doesn't open",resetYourPasswordPage.isOnResetPage());
-            resetYourPasswordPage.fillEmailField("osh_il+4@yahoo.com");
+            resetYourPasswordPage.waitUntilResetPageIsLoaded();
+            assertTrue("The Reset Password Page doesn't open", resetYourPasswordPage.isOnResetPage());
+            resetYourPasswordPage.fillEmailField(USER);
             resetYourPasswordPage.clickOnEmailMe();
         } catch (Exception e) {
             e.printStackTrace();
@@ -145,7 +149,6 @@ public class LoginTest {
 
         try {
             loginPage
-                    .openLoginPage()
                     .fillEmailField("")
                     .fillPasswordField("")
                     .waitUntilAllertEmailIsLogIsLoaded()

@@ -51,6 +51,9 @@ public class MainPage extends Page {
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
     WebElement logOutButton;
 
+    @FindBy(xpath="//ul[@class='nav navbar-nav']")
+    WebElement myHomeButton;
+
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
 
@@ -146,6 +149,7 @@ public class MainPage extends Page {
     }
 
     public boolean isOnMainPage() {
+        waitUntilMainPageIsLoaded();
         return exists(milestoneButton);
     }
 
@@ -190,7 +194,7 @@ public class MainPage extends Page {
         return this;
     }
     public void chooseConditionForDoctor(String condition){
-        setElementText(viewConditionFieldForDoctor,condition);
+        setElementText(viewConditionFieldForDoctor, condition);
     }
     public MainPage chooseConditionFromDropDown(){
         clickElement(dropDownConditionDoctor);
@@ -198,6 +202,11 @@ public class MainPage extends Page {
     }
     public MainPage clickViewButton(){
         clickElement(viewButton);
+        return this;
+    }
+
+    public MainPage clickMyHomeButton(){
+        clickElement(myHomeButton);
         return this;
     }
 

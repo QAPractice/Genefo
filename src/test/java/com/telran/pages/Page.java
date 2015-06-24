@@ -83,6 +83,7 @@ public abstract class Page {
   }
 
   public void setElementText(WebElement element, String text) {
+    element.click();
     element.clear();
     element.sendKeys(text);
   // Assert.assertEquals(element.getAttribute("value"), text);
@@ -141,7 +142,7 @@ public abstract class Page {
       return element.isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException ignored) {
       System.out.println("---------------------------------");
-      System.out.println("element can not be found by Page.isDisplayed()");
+      System.out.println("element can not be found by Page.isDisplayed()" );
       System.out.println("---------------------------------");
       return false;
     }

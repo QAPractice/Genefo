@@ -1,7 +1,9 @@
 package com.telran;
 
-import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocBasInfPage;
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.ProfileDoctorPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,11 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
+
 import java.util.concurrent.TimeUnit;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -59,9 +59,9 @@ public class DocBasInfTest {
             docBasInfPage
                     .fillFirstNameField("Doctor")
                     .fillLastNameField("House")
-                    .selectMonth("0")
-                    .selectDay("5")
-                    .selectYear("70")
+                            //.selectMonth("0")
+                            // .selectDay("5")
+                            // .selectYear("70")
                     .fillLocationField("afr")
                     .clickOnSaveButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());

@@ -1,6 +1,7 @@
 package com.telran.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Iakov Volf 27.05.15.
@@ -17,23 +19,55 @@ public class WhatWorksOnMainPage extends Page {
 
 
     //Category Symptom buttons
+
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Therapy')]")
     WebElement therapyButton;
+
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Therapy')][contains(@class, 'active')]")
+    WebElement highLightedTherapyButton;
 
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Equipment')]")
     WebElement equipmentButton;
 
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Equipment')][contains(@class, 'active')]")
+    WebElement highLightedEquipmentButton;
+
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Nutrition')]")
     WebElement nutritionButton;
+
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Nutrition')][contains(@class, 'active')]")
+    WebElement highLightedNutritionButton;
 
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Exercises')]")
     WebElement exercisesButton;
 
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Exercises')][contains(@class, 'active')]")
+    WebElement highLightedExercisesButton;
+
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Alternative')]")
     WebElement alternativeButton;
 
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Alternative')][contains(@class, 'active')]")
+    WebElement highLightedAlternativeButton;
+
+
     @FindBy(xpath = "//div[@class='btn-group']/button[6][contains(text(),'Other')]")
     WebElement otherButton;
+
+    // We need it to check if the button is highlighted after click.
+    @FindBy(xpath = "//div[@class='btn-group']/button[contains(text(),'Other')][contains(@class, 'active')]")
+    WebElement highLightedOtherButton;
+
+
+    // We use it only to calculate number of items in dropdown list
+    @FindBy(xpath = " //*[contains(text(),'Please select a specific item')]/../..//ul[@class = 'chosen-results']")
+    WebElement ItemListOptions;
+
 
     //Dropdown list
     @FindBy(xpath = "//*[@placeholder = 'Please Specify Your Item']")
@@ -126,6 +160,8 @@ public class WhatWorksOnMainPage extends Page {
     // row by row. Has two methods - put() and get() (see below)
     private HashMap<String,WebElement>optionsLocator = new HashMap<String,WebElement>();
 
+    private HashMap<String,WebElement>highLightedOptionsLocator = new HashMap<String,WebElement>();
+
     // Sort of array but without size limits. Keeps only variables of  WebElement type.
     // has two methods - add() and put()  (see below)
     private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
@@ -155,14 +191,22 @@ public class WhatWorksOnMainPage extends Page {
     }
     // Fills data structure optionsLocator (has type HashMap<String,WebElement>)
     // and data structure itemsInListById ( has type ArrayList<WebElement> )
-    public void defineOptionsLocatorAndItemList(){
+    public void defineOptionsLocatorsAndItemList(){
+
+        highLightedOptionsLocator.put("Therapy",highLightedTherapyButton);
+        highLightedOptionsLocator.put("Equipment",highLightedEquipmentButton);
+        highLightedOptionsLocator.put("Nutrition",highLightedNutritionButton);
+        highLightedOptionsLocator.put("Exercises",highLightedExercisesButton);
+        highLightedOptionsLocator.put("Alternative",highLightedAlternativeButton);
+        highLightedOptionsLocator.put("Other",highLightedOtherButton);
+
         optionsLocator.put("Therapy",therapyButton);
         optionsLocator.put("Equipment",equipmentButton);
         optionsLocator.put("Nutrition",nutritionButton);
         optionsLocator.put("Exercises",exercisesButton);
-        //optionsLocator.put("",alternativeButton);
         optionsLocator.put("Alternative",alternativeButton);
         optionsLocator.put("Other",otherButton);
+
         itemsInListById.add(null);
         itemsInListById.add(firstItemInList);
         itemsInListById.add(secondItemInList);
@@ -184,12 +228,47 @@ public class WhatWorksOnMainPage extends Page {
     }
 
 
+    public boolean isOptionHighLighted(String option) {
+        boolean temp = false;
+        try{
+           temp =  exists(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
+        }
+        catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
+            System.out.println("Wrong option! \nOption with name :" + option + " does not exist!");
+        }
+        return temp;
+    }
+
     public WhatWorksOnMainPage clickOnItemList() {
         clickElement(selectItemList);
         return this;
     }
 
-    // Waits until title of our 'What works' Panel appears on the screen
+
+    // Waits until our last item from dropdoown list appears on the screen
+    public WhatWorksOnMainPage waitUntilLastItemFromItemListIsLoaded() {
+        try {
+            List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
+            waitUntilElementIsLoaded( elements.get( elements.size() - 1 ));
+        } catch (Exception e) {
+            e.printStackTrace();           // In this way we define our own exception
+            System.out.println("Wrong last item! \nItem does not exist!");
+        }
+        return this;
+    }
+
+
+
+    public WhatWorksOnMainPage chooseLastItemFromItemList(  ) {
+    // We fill list of elements with items from the dropdown list
+        List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
+        textInListItem =  elements.get( elements.size() - 1 ).getText();
+        elements.get( elements.size() - 1 ).click();
+        return this;
+    }
+
+
+    // Waits until our item from dropdoown list appears on the screen
     public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
         WebElement optionChooser;
         try {
@@ -251,14 +330,15 @@ public class WhatWorksOnMainPage extends Page {
     }
 
 
+
     public Boolean verifyCategoryExistsInSentPost(String category)  {
 
         return verifyTextBoolean(SentPostCategory, category);
     }
 
 
-    // Use it after 'chooseFirstItemFromItemList()' method: First you choose item, put it
-    // in variable firstItemInListText ,
+    // Use it after 'chooseItemFromItemList()' method: First you choose item, put it
+    // in variable textInListItem ,
     // then you verify that it is seen on Sent Post Panel(on ListItemInSentPost WebElement).
     public Boolean verifyListItemCorrectInSentPost()  {
         return verifyTextBoolean(ListItemInSentPost, textInListItem );

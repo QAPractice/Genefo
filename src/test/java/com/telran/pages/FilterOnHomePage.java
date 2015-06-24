@@ -17,7 +17,7 @@ public class FilterOnHomePage extends Page {
     /**
      * Buttons
      */
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[contains(text(),'Change Filter')]")
     WebElement changeFilterButton;
 
     @FindBy(xpath = "")

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 /**
  * Created by Christina on 6/22/15.
  */
@@ -22,7 +24,8 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement conditionFieldOfPatientOnMainPage;
     @FindBy(xpath = "//div[@class='profile_selector_name ng-binding']")
     WebElement nameFieldOfPatientOnMainPage;
-
+    @FindBy(xpath = "//div[@class='panel-body']/span[1]")
+    WebElement displayingMyPosts;
 
     //Change Filter button
     @FindBy(xpath = "//span[@class='btn-filter btn ng-binding btn-default']")
@@ -73,6 +76,14 @@ public class FiltersOfPatientOnMainPage extends Page {
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[12]//*[@class='post-timestamp ng-binding']")
     WebElement timeOfSeventhPost;
 
+ /*   //for doctor account
+
+    @FindBy(xpath = "//input[@id='medicine_name']")
+    WebElement fieldViewAGeneticConditionByName;
+    @FindBy(xpath = "/*//*[@class='col-md-2']/button[1]")
+    WebElement viewForFieldViewAGeneticConditionByNameButton;
+    @FindBy(xpath = "//span[@class='filter-label ng-binding']")
+    WebElement displayingPostsFromEveryoneInMyCondition;*/
 
     public FiltersOfPatientOnMainPage clickOnChangeFilterButton() {
         clickElement(changeFilterButton);
@@ -109,12 +120,12 @@ public class FiltersOfPatientOnMainPage extends Page {
 
     public boolean isNameOfOwnerFifthPost(String name){return this.verifyTextBoolean(nameOfOwnerFifthPost,name);}
 
-    public boolean isNameOfOwnerSixthPost(String name){return this.verifyTextBoolean(nameOfOwnerSixthPost,name);}
+   /* public boolean isNameOfOwnerSixthPost(String name){return this.verifyTextBoolean(nameOfOwnerSixthPost,name);}
 
     public boolean isNameOfOwnerSeventhPost(String name){return this.verifyTextBoolean(nameOfOwnerSeventhPost,name);}
+*/
 
-
-
+/*
     public boolean isTimeOfFirstPost(String name){return this.verifyTextBoolean(timeOfFirstPost,name);}
 
     public boolean isTimeOSecondPost(String name){return this.verifyTextBoolean(timeOfSecondPost,name);}
@@ -127,6 +138,12 @@ public class FiltersOfPatientOnMainPage extends Page {
 
     public boolean isTimeOfSixthPost(String name){return this.verifyTextBoolean(timeOfSixthPost,name);}
 
-    public boolean isTimeOfSeventhPost(String name){return this.verifyTextBoolean(timeOfSeventhPost,name);}
+    public boolean isTimeOfSeventhPost(String name){return this.verifyTextBoolean(timeOfSeventhPost,name);}*/
+
+
+    //method for waiting Displaying My Posts
+    public void waitForDisplayingMyPosts() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(displayingMyPosts);
+    }
 
 }

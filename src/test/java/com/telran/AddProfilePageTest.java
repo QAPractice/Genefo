@@ -1,9 +1,6 @@
 package com.telran;
 
-import com.telran.pages.AddProfilePage;
-import com.telran.pages.EditAccountPage;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
+import com.telran.pages.*;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.openqa.selenium.WebDriver;
@@ -21,42 +18,32 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.*;
 import static org.testng.Reporter.log;
 
-public class AddProfilePageTest {
-    private static String MY_EMAIL="telrantests@yahoo.com";
-    private static String MY_Password="12345.com";
+public class AddProfilePageTest extends TestNgTestBase {
+
+    private static String MY_EMAIL = "mili29@mail.ru";
+    private static String MY_Password = "123qwee";
     private static String PATH_TO_Miki=Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
-    public WebDriver driver;
     public WebDriverWait wait;
     public MainPage mainPage;
     public LoginPage loginPage;
     public AddProfilePage thisPage;
     public EditAccountPage editAccountPage;
+    public MyProfilesPage myProfilesPage;
+
+    public AddProfilePageTest() {
+        super();
+    }
 
     @BeforeClass
-    @Parameters({"browser"})
-    public void setup(String browser) {
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
-            this.driver = new FirefoxDriver();
-            log("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            log("We are in Chrome browser");
-        }
-        else if (browser.equalsIgnoreCase("InternetExplorer")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            log("We are in InternetExplorer browser");
-        }
+    public void setup() {
 
-
-       // driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         thisPage = PageFactory.initElements(driver,AddProfilePage.class);
         editAccountPage = PageFactory.initElements(driver,EditAccountPage.class);
+        myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         loginPage.openLoginPage()
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
@@ -67,7 +54,7 @@ public class AddProfilePageTest {
         thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
     }
     //Verify that Add profile page exists
-    @Test(groups = {"positive","smoke"},enabled = false)
+    @Test(groups = {"positive","smoke","special_for_debug"},enabled = true)
     public void IsAddProfilePageExists(){
         Assert.assertTrue(thisPage.ADD_ANOTHER_PROFILE_isDisplayed(),"page Add Another Profile exists");
         thisPage.ADD_ANOTHER_PROFILE_click()
@@ -110,11 +97,17 @@ public class AddProfilePageTest {
                 .select_Patient_Birthday_Month(month)
                 .select_Patient_Birthday_Day(day)
                 .select_Patient_Birthday_Year(year)
-// BUG                .input_Patient_Location("Russia")
+                .input_Patient_Location("Moscow, Russia")
                 .input_Comment(comments);
+
+
         Reporter.log("pass all input", 1);
         assertFalse(thisPage.isErrorMessage(), "Error message not displayed (assertFalse)");
         assertTrue(thisPage.isButtonSaveActive(), "Save button is active");
+        thisPage.click_ButtonSave();
+        myProfilesPage
+                .waitUntilMyProfilesPageIsLoaded();
+        assertTrue(myProfilesPage.isOnMyProfilesPage(), "My profile Page isn't loaded");
     }
 
     @DataProvider
@@ -248,9 +241,9 @@ public class AddProfilePageTest {
         assertTrue(thisPage.uploadFile(PATH_TO_Miki),"File upload correct");
     }
 
-    @AfterClass
-    void quite(){
-        driver.quit();
-    }
+//    @AfterClass
+//    void quite(){
+//        driver.quit();
+//    }
 
 }

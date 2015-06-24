@@ -220,4 +220,9 @@ public class TestUtils {
         return driver;
 
     }
+    public static void setSystemVar(){
+
+        System.setProperty("webdriver.chrome.driver",  Paths.get("").toAbsolutePath().toString() + "\\WEB_Drivers\\chromedriver.exe");
+        System.setProperty("webdriver.ie.driver", Paths.get("").toAbsolutePath().toString() + "\\WEB_Drivers\\IEDriverServer_32.exe");
+    }
 }

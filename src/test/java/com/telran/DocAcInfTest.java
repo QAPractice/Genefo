@@ -36,6 +36,8 @@ public class DocAcInfTest {
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
     private static String PASSWORD ="111111";
+    private static String EMAIL1 = "osh_il+15@yahoo.com";
+    private static String EMAIL2 = "osh_il+14@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -48,7 +50,7 @@ public class DocAcInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com", "111111");
+            loginPage.login(EMAIL1,PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -75,15 +77,15 @@ public class DocAcInfTest {
     public void EditAccInfSuccess() {
 
         try {
-            EmailNickname = randomAlphabetic(5);
+            //EmailNickname = randomAlphabetic(5);
             docAcInfPage
                     .fillPasswordField(PASSWORD)
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+                    .fillEmailField(EMAIL2)
                     .clickOnSaveButton()
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(PASSWORD)
                     .clickOnCurSaveButton();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Alert",docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {
             e.printStackTrace();
         }

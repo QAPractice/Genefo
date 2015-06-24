@@ -35,6 +35,9 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='errormsg hidden-xs']/*[@class='fa fa-times']")
     WebElement passwordErrAlert;
 
+    @FindBy(xpath = "//*[@class = 'ng-binding' and contains (text(),'Account Login Information Updated')]")
+    WebElement accountSuccess;
+
     @FindBy(xpath = "//*[@id='myModalLabel']")
     WebElement enterYourCurrentPassTitle;
 
@@ -114,4 +117,9 @@ public class DocAcInfPage extends Page{
     public boolean alertMessageInvalidPassword() {
         return exists(passwordErrAlert);
     }
+
+    public boolean alertMessageAccountSuccess() {
+        return exists(accountSuccess);
+    }
+
 }

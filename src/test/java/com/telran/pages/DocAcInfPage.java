@@ -35,6 +35,15 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='errormsg hidden-xs']/*[@class='fa fa-times']")
     WebElement passwordErrAlert;
 
+    @FindBy(xpath = "//*[@id='myModalLabel']")
+    WebElement enterYourCurrentPassTitle;
+
+    @FindBy(xpath = "//*[@id='loginModal']//input")
+    WebElement curPasswordField;
+
+    @FindBy(xpath = "//*[@id='loginModal']//button[2]")
+    WebElement curSaveButton;
+
     public DocAcInfPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://52.10.6.51:8080/account_hcp/account";
@@ -44,6 +53,17 @@ public class DocAcInfPage extends Page{
     public DocAcInfPage waitUntilDocAcInfPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(docAcInfTitle);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public DocAcInfPage waitUntilEnterYourCurrentPassIsLoaded() {
+        try {
+            waitUntilElementIsLoaded(enterYourCurrentPassTitle);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -67,6 +87,11 @@ public class DocAcInfPage extends Page{
         return this;
     }
 
+    public DocAcInfPage fillCurrentPasswordField(String password) {
+        setElementText(curPasswordField, password);
+        return this;
+    }
+
     public DocAcInfPage clickOnCancel() {
         clickElement(cancelButton);
         return this;
@@ -74,6 +99,11 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage clickOnSaveButton() {
         clickElement(saveButton);
+        return this;
+    }
+
+    public DocAcInfPage clickOnCurSaveButton() {
+        clickElement(curSaveButton);
         return this;
     }
 

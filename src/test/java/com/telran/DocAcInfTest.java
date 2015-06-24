@@ -35,6 +35,7 @@ public class DocAcInfTest {
     public DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
+    private static String PASSWORD ="111111";
 
     @BeforeClass
     public void setup() {
@@ -47,27 +48,28 @@ public class DocAcInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com","111111");
+            loginPage.login("osh_il+4@yahoo.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        try {
+            if(profileDoctorPage.isOnProfileDoctorPage() == false) {
+                mainPage.selectMyAccount();
+            }
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnEditAccInf();
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-//    @BeforeMethod
-//    public void beforemethodsetup() {
-//        loginPage.login("osh_il+4@yahoo.com","111111");
-//        mainPage.waitUntilMainPageIsLoaded();
-//        mainPage.selectMyAccount();
-//        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-//        profileDoctorPage.clickOnEditAccInf();
-//        docAcInfPage.waitUntilDocAcInfPageIsLoaded();
-//
-//    }
+    }
 
     @Test(groups = {"smoke", "positive"})
     public void EditAccInfSuccess() {
@@ -75,9 +77,12 @@ public class DocAcInfTest {
         try {
             EmailNickname = randomAlphabetic(5);
             docAcInfPage
-                    .fillPasswordField("111111")
+                    .fillPasswordField(PASSWORD)
                     .fillEmailField("one" + EmailNickname + "@usgenefo.com")
-                    .clickOnSaveButton();
+                    .clickOnSaveButton()
+                    .waitUntilEnterYourCurrentPassIsLoaded()
+                    .fillCurrentPasswordField(PASSWORD)
+                    .clickOnCurSaveButton();
             assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();

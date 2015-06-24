@@ -217,89 +217,72 @@ public class GrafsPage extends Page {
         java.lang.String xpath = "xxx";
         element = "xxx";
 
-        switch (element) {
+        if (element.equals("Medicine Reasons")) {
+            xpath = "Reason medicine";
 
-            case "Medicine Reasons":
-                xpath = "Reason medicine";
-                break;
-            case "Medicine Effectiveness":
-                xpath = "Medicine reviews across";
-                break;
-            case "Across Conditions":
-                xpath = "Across Conditions";
-                break;
-            case "Language Milestones":
-                xpath = "Milestones - Language";
-                break;
-            case "Movement Milestones":
-                xpath = "Developmental Milestones - Movement";
-                break;
-            case "Eating Milestones":
-                xpath = "Developmental Milestones - Eating";
-                break;
-            case "Toileting Milestones":
-                xpath = "Developmental Milestones - Toileting";
-                break;
-            case "What Works Best":
-                xpath = "What works best";
-                break;
-            case "Therapy":
-                xpath = "Psychotherapy";
-                break;
-            case "Equipment":
-                xpath = "Splints";
-                break;
-            case "Nutrition":
-                xpath = "Vitamin E";
-                break;
-            case "Exercises":
-                xpath = "'Yoga";
-                break;
-            case "Alternative Medicine":
-                xpath = "Pets";
-                break;
-            case "Medical Facilities":
-                xpath = "Medical Facility";
-                break;
-            case "Procedures":
-                xpath = "Medical Procedures";
-                break;
-            case "Healthcare Professionals":
-                xpath = "Medical Healthcare";
-                break;
-            case "Location":
-                xpath = "Location share in Aldosteronism, glucocorticoid-remediable";
-                break;
-            case "Gender":
-                xpath = "Gender share in Aldosteronism, glucocorticoid-remediable";
-                break;
-            case "Age":
-                xpath = "Birthday";
-                break;
-            case "Race":
-                xpath = "Race share in Aldosteronism, glucocorticoid-remediable";
-                break;
-            case "Genes":
-                xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
-                break;
+        } else if (element.equals("Medicine Effectiveness")) {
+            xpath = "Medicine reviews across";
 
+        } else if (element.equals("Across Conditions")) {
+            xpath = "Across Conditions";
 
+        } else if (element.equals("Language Milestones")) {
+            xpath = "Milestones - Language";
 
+        } else if (element.equals("Movement Milestones")) {
+            xpath = "Developmental Milestones - Movement";
 
+        } else if (element.equals("Eating Milestones")) {
+            xpath = "Developmental Milestones - Eating";
 
+        } else if (element.equals("Toileting Milestones")) {
+            xpath = "Developmental Milestones - Toileting";
 
+        } else if (element.equals("What Works Best")) {
+            xpath = "What works best";
 
+        } else if (element.equals("Therapy")) {
+            xpath = "Psychotherapy";
 
+        } else if (element.equals("Equipment")) {
+            xpath = "Splints";
 
+        } else if (element.equals("Nutrition")) {
+            xpath = "Vitamin E";
 
+        } else if (element.equals("Exercises")) {
+            xpath = "'Yoga";
 
+        } else if (element.equals("Alternative Medicine")) {
+            xpath = "Pets";
 
-            case "":
+        } else if (element.equals("Medical Facilities")) {
+            xpath = "Medical Facility";
 
-            default:
-            case "Medicine":
-                xpath = "Medicine used";
-                break;
+        } else if (element.equals("Procedures")) {
+            xpath = "Medical Procedures";
+
+        } else if (element.equals("Healthcare Professionals")) {
+            xpath = "Medical Healthcare";
+
+        } else if (element.equals("Location")) {
+            xpath = "Location share in Aldosteronism, glucocorticoid-remediable";
+
+        } else if (element.equals("Gender")) {
+            xpath = "Gender share in Aldosteronism, glucocorticoid-remediable";
+
+        } else if (element.equals("Age")) {
+            xpath = "Birthday";
+
+        } else if (element.equals("Race")) {
+            xpath = "Race share in Aldosteronism, glucocorticoid-remediable";
+
+        } else if (element.equals("Genes")) {
+            xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
+
+        } else {
+            xpath = "Medicine used";
+
         }
 
 

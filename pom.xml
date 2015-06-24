@@ -83,7 +83,7 @@
         <version>2.18.1</version>
         <configuration>
            <suiteXmlFiles>
-             <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+             <suiteXmlFile>src/test/resources/testng_lev.xml</suiteXmlFile>
            </suiteXmlFiles>
            <systemPropertyVariables>
              <application.properties>/application.properties</application.properties>

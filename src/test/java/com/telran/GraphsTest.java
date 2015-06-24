@@ -14,8 +14,6 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 /**
  * Created by Yura on 19.06.2015.
  */
@@ -42,26 +40,20 @@ public class GraphsTest {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded()
-                    .login("us11399@genefo", "111111");
+                    .login("jakoff+444@gmail.com", "111111");
+            mainPage.waitUntilMainPageIsLoaded()
+                    .clikToSeeMoreGraphsButton();
+            grafsPage.waitUntilGrafsPageIsLoaded();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void LoginSuccess() {
-
-        try {
-            loginPage
-                    .openLoginPage()
-                    .fillEmailField("osh_il+4@yahoo.com")
-                    .fillPasswordField("111111")
-                    .clickOnLogin();
-            assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void MedicineLink() {
+        grafsPage.clikOnMedicineLink()
+                .isGraphLoaded("Medicine");
     }
 
 

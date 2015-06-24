@@ -105,14 +105,13 @@ public class GrafsPage extends Page {
     }
 
 
-    // Checks that title of our 'Medicine' Panel have appeared on the screen so we can work with it.
+
     public boolean isGrafsPage() {
         waitUntilGrafsPageIsLoaded();
         return exists(mdRatingLink);
     }
 
 
-    // Click on the third star
     public GrafsPage clickOnMDRating() {
         clickElement(mdRatingLink);
         return this;
@@ -304,7 +303,7 @@ public class GrafsPage extends Page {
         }
 
 
-        return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
+        return exists(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
     }
 
 

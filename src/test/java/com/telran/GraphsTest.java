@@ -1,4 +1,4 @@
-/*
+
 
 package com.telran;
 
@@ -85,5 +85,3 @@ public class GraphsTest {
         }
     }
 }
-
-*/

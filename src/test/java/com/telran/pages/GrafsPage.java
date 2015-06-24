@@ -12,7 +12,7 @@ import java.io.IOException;
 */
 /**
  * Created by Yuri on 6/8/2015.
- *//*
+ */
 
 public class GrafsPage extends Page {
 
@@ -341,4 +341,4 @@ public class GrafsPage extends Page {
         return this;
     }
 }
-*/
+

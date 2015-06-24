@@ -265,5 +265,5 @@ public class MilestoneOnMainPage extends Page {
         waitUntilElementIsLoaded(numbersOnlyForYears);
     }
 
-    public boolean isOtherTextCorrect(String name) {return verifyTextBoolean(textInNewCreatedPost, name);}
+    public boolean isOtherTextCorrect(String name) {return verifyTextBoolean(milestoneOnNewCreatedPost, name);}
 }

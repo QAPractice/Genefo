@@ -49,9 +49,9 @@ public class MilestoneOnMainPageTest {
         try {
             loginPage.login("mili9@mail.ru", "999999");
             // assertTrue(mainPage.isOnMainPage());
-            //mainPage.waitUntilMainPageIsLoaded()
-            //       .openMilestonePanel();
-            //milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
+            mainPage.waitUntilMainPageIsLoaded()
+                   .openMilestonePanel();
+            milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -254,6 +254,8 @@ public class MilestoneOnMainPageTest {
             milestoneOnMainPage
                     .clickOnYearsOption("")
                     .clickOnMonthOption("A")
+                    .waitForNumbersOnlyMessageForMonth();
+            milestoneOnMainPage
                     .fillTextField(post)
                     .sendPost();
            /* milestoneOnMainPage.waitForNumbersOnlyMessageForMonth();
@@ -336,6 +338,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("-One")
                     .fillTextField(post)
                     .sendPost();
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
             assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -357,8 +360,8 @@ public class MilestoneOnMainPageTest {
                     .fillTextField("post")
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
+         //   assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+         //   assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -376,7 +379,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("00")
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+         //   assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();
@@ -401,7 +404,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("16")
                     .fillTextField("")
                     .sendPost();
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+      //      assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
             e.printStackTrace();

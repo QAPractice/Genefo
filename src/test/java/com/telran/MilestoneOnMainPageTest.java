@@ -49,9 +49,9 @@ public class MilestoneOnMainPageTest {
         try {
             loginPage.login("mili9@mail.ru", "999999");
             // assertTrue(mainPage.isOnMainPage());
-            //mainPage.waitUntilMainPageIsLoaded()
-            //       .openMilestonePanel();
-            //milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
+            mainPage.waitUntilMainPageIsLoaded()
+                   .openMilestonePanel();
+            milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }

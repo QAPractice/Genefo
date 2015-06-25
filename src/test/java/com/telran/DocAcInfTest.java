@@ -36,8 +36,8 @@ public class DocAcInfTest {
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
     private static String PASSWORD ="111111";
-    private static String EMAIL1 = "osh_il+15@yahoo.com";
-    private static String EMAIL2 = "osh_il+14@yahoo.com";
+    private static String EMAIL2 = "osh_il+15@yahoo.com";
+    private static String EMAIL1 = "osh_il+14@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -77,7 +77,18 @@ public class DocAcInfTest {
     public void EditAccInfSuccess() {
 
         try {
-            //EmailNickname = randomAlphabetic(5);
+            docAcInfPage
+                    .fillPasswordField(PASSWORD)
+                    .fillEmailField(EMAIL1)
+                    .clickOnSaveButton()
+                    .waitUntilEnterYourCurrentPassIsLoaded()
+                    .fillCurrentPasswordField(PASSWORD)
+                    .clickOnCurSaveButton();
+            assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
+            mainPage.selectMyAccount();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+            profileDoctorPage.clickOnEditAccInf();
+            docAcInfPage.waitUntilDocAcInfPageIsLoaded();
             docAcInfPage
                     .fillPasswordField(PASSWORD)
                     .fillEmailField(EMAIL2)
@@ -85,11 +96,28 @@ public class DocAcInfTest {
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(PASSWORD)
                     .clickOnCurSaveButton();
-            assertTrue("Alert",docAcInfPage.alertMessageAccountSuccess());
+            //assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+//    @Test(groups = {"smoke", "positive"})
+//    public void UpdateEditAccInfSuccess() {
+//
+//        try {
+//            docAcInfPage
+//                    .fillPasswordField(PASSWORD)
+//                    .fillEmailField(EMAIL2)
+//                    .clickOnSaveButton()
+//                    .waitUntilEnterYourCurrentPassIsLoaded()
+//                    .fillCurrentPasswordField(PASSWORD)
+//                    .clickOnCurSaveButton();
+//            assertTrue("Alert",docAcInfPage.alertMessageAccountSuccess());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {

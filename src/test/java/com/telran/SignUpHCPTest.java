@@ -1,6 +1,7 @@
 package com.telran;
 
 import com.telran.pages.HomePage;
+import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
 import com.telran.util.TestUtils;
@@ -26,15 +27,15 @@ public class SignUpHCPTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
-    public String generatedEmail;
-    HomePage homePage;
-    SignUpHCPPage signUpHCPPage;
-    ProfileDoctorPage profileDoctorPage;
+    public SignUpHCPPage signUpHCPPage;
+    public ProfileDoctorPage profileDoctorPage;
     private boolean acceptNextAlert = true;
-    private static String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
+    //private String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email1 = "one" + randomAlphabetic(5) + "usgenefo.com";
     private static String email2 = "one" + randomAlphabetic(5) + "@us.genefo.com";
     private static String email3 = "o_ne" + randomAlphabetic(5) + "@usgenefo.com";
+    private static String email4 = "one" + randomAlphabetic(5) + "@us-genefo.com";
+
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -51,6 +52,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "positive"})
     public void RegTestSuccess() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .fillEmailField(email)
@@ -61,7 +63,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +73,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutLastName() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -89,6 +93,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutFirstName() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -99,6 +104,7 @@ public class SignUpHCPTest {
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
+            sleep();
             assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
@@ -108,7 +114,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutPassword() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -121,7 +127,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The Password is valid",signUpHCPPage.alertMessageNotValidPassword());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,7 +134,6 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutEmail() {
-
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -142,7 +146,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,6 +153,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBox18() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -161,7 +165,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The age verification has passed",signUpHCPPage.alertMessageNonChecked18());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -169,6 +172,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBoxTerms() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
                     .openHCPRegPage()
@@ -180,7 +184,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The terms verification has passed",signUpHCPPage.alertMessageNonCheckedTerms());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -347,7 +350,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The Email is valid",signUpHCPPage.alertMessageNotValidEmail());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -357,7 +359,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"negative"})
     public void RegTestWithPasswordContains5Symbols() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -370,7 +372,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The Password is valid",signUpHCPPage.alertMessageNotValidPassword());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -379,7 +380,7 @@ public class SignUpHCPTest {
     //2
     @Test(groups = {"negative"})
     public void RegTestWithPasswordContains13Symbols() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -401,7 +402,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsSpecialCharacters() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -414,7 +415,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -423,7 +423,7 @@ public class SignUpHCPTest {
     //2
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsDigits() {
-
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -445,6 +445,7 @@ public class SignUpHCPTest {
     //3
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsUnderscore() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -465,6 +466,7 @@ public class SignUpHCPTest {
     //4
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContains26Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -477,7 +479,6 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             assertTrue("The First Name is valid",signUpHCPPage.alertMessageNotValidFirstName());
             assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -487,6 +488,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsSpecialCharacters() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -527,13 +529,14 @@ public class SignUpHCPTest {
     //3
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsUnderscore() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(email)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
@@ -571,6 +574,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestEmailLocalPartBeginsNumber() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
                     .openHCPRegPage()
@@ -582,8 +586,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
-
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -592,6 +597,7 @@ public class SignUpHCPTest {
     //2
     @Test(groups = {"positive"})
     public void RegTestEmailDomainNameBeginsNumber() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
                     .openHCPRegPage()
@@ -603,7 +609,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -624,7 +632,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -634,6 +644,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInLocalPart() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -645,8 +656,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
-
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -662,12 +674,14 @@ public class SignUpHCPTest {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField(email)
+                    .fillEmailField(email4)
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -688,7 +702,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -699,6 +715,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestPassword6Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -710,7 +727,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -719,6 +738,7 @@ public class SignUpHCPTest {
     //2
     @Test(groups = {"positive"})
     public void RegTestPassword8Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -730,7 +750,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -739,6 +761,7 @@ public class SignUpHCPTest {
     //3
     @Test(groups = {"positive"})
     public void RegTestPassword12Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -750,7 +773,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -761,6 +786,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestFirstName25Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -772,7 +798,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -781,6 +809,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"positive"})
     public void RegTestFirstName1Symbol() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -792,7 +821,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -804,6 +835,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestLastName25Symbols() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
                     .openHCPRegPage()
@@ -815,7 +847,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -824,6 +858,7 @@ public class SignUpHCPTest {
     //2
     @Test(groups = {"positive"})
     public void RegTestLastName1Symbol() {
+        String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -835,7 +870,9 @@ public class SignUpHCPTest {
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.logOut();
+            sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -871,6 +908,14 @@ public class SignUpHCPTest {
             return alertText;
         } finally {
             acceptNextAlert = true;
+        }
+    }
+
+    private void sleep (){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -144,7 +144,6 @@ public class SignUpHCPPage extends Page{
         return this;
     }
 
-
     public boolean isOnSignUpHCPPage() {
         return exists(checkBox18);
     }

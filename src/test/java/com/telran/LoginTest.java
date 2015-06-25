@@ -33,7 +33,6 @@ public class LoginTest {
     private static String USER ="osh_il+4@yahoo.com";
     private static String PASSWORD ="111111";
 
-
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -43,8 +42,8 @@ public class LoginTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
         resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
-
     }
+
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
@@ -53,8 +52,8 @@ public class LoginTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     @Test(groups = {"smoke", "positive"})
     public void LoginSuccess() {
 

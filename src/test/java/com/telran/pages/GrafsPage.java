@@ -1,4 +1,3 @@
-/*
 package com.telran.pages;
 
 import org.openqa.selenium.By;
@@ -9,123 +8,84 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
+
+
+/*
+Created by Yuri on 6/8/2015.
+
 */
-/**
- * Created by Yuri on 6/8/2015.
- */
+
 
 public class GrafsPage extends Page {
 
 
     //elements of dropdown list from medical facilities
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Facilities')]/../*/
-/*[contains(text(),'Rating')]")
+    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Rating')]")
     WebElement mdRatingLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Facilities')]/../*/
-/*[contains(text(),'Procedures')]")
+    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Procedures')]")
     WebElement ProceduresLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Facilities')]/../*/
-/*[contains(text(),'Professionals')]")
+    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Professionals')]")
     WebElement ProfessionalsLink;
 
     //elements of dropdown list from Miscellaneous
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Miscellaneous')]/../*/
-/*[contains(text(),'Location')]")
+    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Location')]")
     WebElement MiscellaneousLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Miscellaneous')]/../*/
-/*[contains(text(),'Gender')]")
+    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Gender')]")
     WebElement GenderLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Miscellaneous')]/../*/
-/*[contains(text(),'Age')]")
+    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Age')]")
     WebElement AgeLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Miscellaneous')]/../*/
-/*[contains(text(),'Race')]")
+    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Race')]")
     WebElement RaceLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Miscellaneous')]/../*/
-/*[contains(text(),'Genes')]")
+    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Genes')]")
     WebElement GenesLink;
 
     //elements of dropdown list from What Works For Me
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'What Works Best')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'What Works Best')]")
     WebElement WhatWorksBestLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'Therapy')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Therapy')]")
     WebElement TherapyLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'Equipment')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Equipment')]")
     WebElement EquipmentLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'Nutrition')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Nutrition')]")
     WebElement NutritionLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'Exercises')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Exercises')]")
     WebElement ExercisesLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'What')]/../*/
-/*[contains(text(),'Alternative Medicine')]")
+    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Alternative Medicine')]")
     WebElement AlternativeMedicineLink;
 
     //elements of dropdown list from Milestones
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Milestones')]/../*/
-/*[contains(text(),'Language Milestones')]")
+    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Language Milestones')]")
     WebElement LanguageMilestonesLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Milestones')]/../*/
-/*[contains(text(),'Movement Milestones')]")
+    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Movement Milestones')]")
     WebElement MovementMilestonesLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Milestones')]/../*/
-/*[contains(text(),'Toileting Milestones')]")
+    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Toileting Milestones')]")
     WebElement ToiletingMilestonesLink;
 
     //elements of dropdown list from Medicines
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Medicines')]/../*/
-/*[text()='Medicine']")
+    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine']")
     WebElement MedicineLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Medicines')]/../*/
-/*[text()='Medicine Reasons']")
+    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine Reasons']")
     WebElement MedicineReasonsLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Medicines')]/../*/
-/*[text()='Medicine Effectiveness']")
+    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine Effectiveness']")
     WebElement MedicineEffectivenessLink;
 
-    @FindBy(xpath = "/*/
-/*[contains(text(),'Medicines')]/../*/
-/*[text()='Across Conditions']")
+    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Across Conditions']")
     WebElement AcrossConditionsLink;
 
 
@@ -331,8 +291,7 @@ public class GrafsPage extends Page {
         }
 
 
-        return exists(driver.findElement(By.xpath("/*/
-/*[contains(text(), '" + xpath + "')]")));
+        return exists(driver.findElement(By.xpath("/[contains(text(), '" + xpath + "')]")));
     }
 
 

@@ -59,7 +59,7 @@ public class DocBasInfPage extends Page{
         PageFactory.initElements(driver, this);
     }
 
-    public DocBasInfPage waitUntilDocAcInfPageIsLoaded() {
+    public DocBasInfPage waitUntilDocBasInfPageIsLoaded() {
         try {
             waitUntilElementIsLoaded(basInfTitle);
         } catch (IOException e) {
@@ -71,7 +71,7 @@ public class DocBasInfPage extends Page{
     }
 
     public boolean isOnDocBasInfPage() {
-        waitUntilDocAcInfPageIsLoaded();
+        waitUntilDocBasInfPageIsLoaded();
         return exists(basInfTitle);
     }
 
@@ -117,6 +117,10 @@ public class DocBasInfPage extends Page{
 
     public DocBasInfPage fillLocationField(String location) {
         setElementText(locationField, location);
+        return this;
+    }
+
+    public DocBasInfPage clickOnTooltip() {
         clickElement(locationToltip);
         return this;
     }

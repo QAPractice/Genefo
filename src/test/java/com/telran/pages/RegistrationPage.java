@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -69,6 +70,10 @@ public class RegistrationPage extends Page {
 
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
+
+    //Starts
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='firstName']/i")
+    WebElement asteriskFirstName;
 
     //public ProfilePage profilePage;
 
@@ -179,4 +184,10 @@ public class RegistrationPage extends Page {
     }
 
     public boolean notAvailableSignUpButton(){return exists(submitNotAvailable);}
+
+    public RegistrationPage checkThatFirstNameFieldHasAsterisk() {
+        Assert.assertTrue(asteriskFirstName.isDisplayed());
+        return this;
+
+    }
 }

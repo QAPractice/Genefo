@@ -47,7 +47,13 @@ public class RegistrationTest {
         }
     }
 
+    @Test
+    public void AsteriskTest() {
+        registrationPage
+                .checkThatFirstNameFieldHasAsterisk()
+                .checkThatFirstNameFieldHasAsterisk();
 
+    }
     @Test
     public void RegTestSuccess() {
 
@@ -57,6 +63,7 @@ public class RegistrationTest {
             registrationPage
                     .openRegistrationPage()
                     .fillFirstNameField("gggg")
+                    .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField("one" + EmailNickname + "@usgenefo.com")

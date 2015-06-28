@@ -35,7 +35,7 @@ public class RegistrationTest {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage = PageFactory.initElements(driver,LoginPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
@@ -54,6 +54,7 @@ public class RegistrationTest {
                 .checkThatFirstNameFieldHasAsterisk();
 
     }
+
     @Test
     public void RegTestSuccess() {
 
@@ -146,6 +147,7 @@ public class RegistrationTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void RegTestWithoutFirstName() {
 
@@ -1022,14 +1024,41 @@ public class RegistrationTest {
         }
     }
 
+    // **
+    // Created by Olga Berenson
+    @Test
+    public void RegTestSuccess() {
+
+        try {
+
+            EmailNickname = randomAlphabetic(5);
+            registrationPage
+                    .openRegistrationPage()
+                    .fillFirstNameField("gggg")
+                    .checkThatFirstNameFieldHasAsterisk()
+                    .checkThatConditionFieldHasAsterisk()
+                    .checkThatEmailFieldHasAsterisk()
+                    .checkThatPasswordFieldHasAsterisk()
+                    .fillLastNameField("")
+                    .fillPasswordField("111111")
+                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+            profilePage.selectGender("2");
+            assertTrue(profilePage.isGenderSelected("Other"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+        @AfterClass(alwaysRun = true)
+        public void teardown(){
+            this.driver.quit();
+        }
 
     private String closeAlertAndGetItsText() {
         try {
@@ -1047,5 +1076,6 @@ public class RegistrationTest {
     }
 
 }
+
 
 

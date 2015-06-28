@@ -71,9 +71,15 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
 
-    //Starts
+    //Stars
     @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='firstName']/i")
     WebElement asteriskFirstName;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='password']/i")
+    WebElement asteriskPassword;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='Email']/i")
+    WebElement asteriskEmail;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='condition']/i")
+    WebElement asteriskCondition;
 
     //public ProfilePage profilePage;
 
@@ -190,4 +196,16 @@ public class RegistrationPage extends Page {
         return this;
 
     }
-}
+    public RegistrationPage checkThatPasswordFieldHasAsterisk () {
+        Assert.assertTrue(asteriskPassword.isDisplayed());
+        return this;
+    }
+    public RegistrationPage checkThatEmailFieldHasAsterisk () {
+        Assert.assertTrue(asteriskEmail.isDisplayed());
+        return this;
+    }
+    public RegistrationPage checkThatConditionFieldHasAsterisk (){
+        Assert.assertTrue(asteriskCondition.isDisplayed());
+        return this;
+    }
+    }

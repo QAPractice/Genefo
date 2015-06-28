@@ -91,8 +91,6 @@ public class LoginTest {
         mainPage.waitUntilMainPageIsLoaded();
         assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
         mainPage.logOut();
-        homePage.waitUntilHomePageIsLoaded();
-        //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
     }
 
     @Test(groups = {"smoke", "negative"})

@@ -1053,7 +1053,7 @@ public class RegistrationTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
 
         @AfterClass(alwaysRun = true)
         public void teardown(){

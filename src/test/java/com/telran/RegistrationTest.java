@@ -1027,7 +1027,7 @@ public class RegistrationTest {
     // **
     // Created by Olga Berenson
     @Test
-    public void RegTestSuccess() {
+    public void RegTestSuccessAsterisk() {
 
         try {
 

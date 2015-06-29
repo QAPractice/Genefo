@@ -51,8 +51,6 @@ public class DocProfInfPage extends Page{
     WebElement confirmTitleButton;
     @FindBy(xpath ="/*//*[@ng-click='addHCPareaofinterest()'and not(@disabled='disabled')]" )
     WebElement addAreasButton;
-//    @FindBy(xpath ="//*[@class='btn btn-default'][@ng-click='addHCPareaofinterest()']" )    //fixed
-//    WebElement addAreasButton;
     @FindBy(xpath ="//*[@ng-click='addHCPareaofinterest()'and @disabled='disabled']" )
     WebElement addAreasDisButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(areaofinterest)']" )
@@ -63,8 +61,6 @@ public class DocProfInfPage extends Page{
     WebElement confirmAreasButton;
     @FindBy(xpath ="/*//*[@ng-click='addHCPworkplace()'and not(@disabled='disabled')]" )
     WebElement addWorkPlacesButton;
-//    @FindBy(xpath ="//*[@class='btn btn-default'][@ng-click='addHCPworkplace()']")   //FIXED
-//    WebElement addWorkPlacesButton;
     @FindBy(xpath ="//*[@ng-click='addHCPworkplace()'and @disabled='disabled']" )
     WebElement addWorkPlacesDisButton;
     @FindBy(xpath ="//*[@ng-click='cancelDelete(workplace)']" )
@@ -92,13 +88,14 @@ public class DocProfInfPage extends Page{
 
     //toltips
     @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
+    WebElement specToltip;
+    @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
     WebElement areasToltip;
     @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
     WebElement worklocatToltip;
 
-
-
-
+    @FindBy(xpath = "//*[@class='panel-body']/div[1]//td[1][contains(.,'abcd')]")
+    WebElement specialtieForCheck;
 
     public DocProfInfPage(WebDriver driver) {
         super(driver);
@@ -125,6 +122,11 @@ public class DocProfInfPage extends Page{
     public boolean isAddWorkPlacesDisButtonExists() {
 
         return exists(addWorkPlacesDisButton);
+    }
+
+    public boolean isSpecExists() {
+
+        return exists(specialtieForCheck);
     }
 
     public boolean isLocationExists() {
@@ -195,6 +197,12 @@ public class DocProfInfPage extends Page{
         }
         return this;
     }
+
+    public DocProfInfPage clickOnTooltipSpec(){
+        clickElement(specToltip);
+        return this;
+    }
+
     public DocProfInfPage clickOnTooltipAreas(){
         clickElement(areasToltip);
         return this;
@@ -220,10 +228,22 @@ public class DocProfInfPage extends Page{
         return this;
     }
 
+    public DocProfInfPage clickOnDelSpecButton() {
+        clickElement(delSpecButton);
+        return this;
+    }
+
+    public DocProfInfPage clickOnConfSpecButton() {
+        clickElement(confirmSpecButton);
+        return this;
+    }
+
     public DocProfInfPage clickOnDoneButton() {
         clickElement(doneButton);
         return this;
     }
+
+
 
 
 }

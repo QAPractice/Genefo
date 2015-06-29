@@ -36,8 +36,8 @@ public class DocAcInfTest {
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
     private static String PASSWORD ="111111";
-    private static String EMAIL2 = "osh_il+15@yahoo.com";
-    private static String EMAIL1 = "osh_il+14@yahoo.com";
+    private static String EMAIL1 = "osh_il+17@yahoo.com";
+    private static String EMAIL2 = "osh_il+14@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -79,7 +79,7 @@ public class DocAcInfTest {
         try {
             docAcInfPage
                     .fillPasswordField(PASSWORD)
-                    .fillEmailField(EMAIL1)
+                    .fillEmailField(EMAIL2)
                     .clickOnSaveButton()
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(PASSWORD)
@@ -91,7 +91,7 @@ public class DocAcInfTest {
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
             docAcInfPage
                     .fillPasswordField(PASSWORD)
-                    .fillEmailField(EMAIL2)
+                    .fillEmailField(EMAIL1)
                     .clickOnSaveButton()
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(PASSWORD)

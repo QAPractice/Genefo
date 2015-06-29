@@ -8,84 +8,79 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-
-
-/*
-Created by Yuri on 6/8/2015.
-
-*/
-
-
+/**
+ * Created by Yuri on 6/8/2015.
+ */
 public class GrafsPage extends Page {
 
 
     //elements of dropdown list from medical facilities
-    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Rating')]")
+    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Rating')]")
     WebElement mdRatingLink;
 
-    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Procedures')]")
+    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Procedures')]")
     WebElement ProceduresLink;
 
-    @FindBy(xpath = "/[contains(text(),'Facilities')]/../[contains(text(),'Professionals')]")
+    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Professionals')]")
     WebElement ProfessionalsLink;
 
     //elements of dropdown list from Miscellaneous
-    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Location')]")
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Location')]")
     WebElement MiscellaneousLink;
 
-    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Gender')]")
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Gender')]")
     WebElement GenderLink;
 
-    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Age')]")
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Age')]")
     WebElement AgeLink;
 
-    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Race')]")
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Race')]")
     WebElement RaceLink;
 
-    @FindBy(xpath = "/[contains(text(),'Miscellaneous')]/../[contains(text(),'Genes')]")
+    @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Genes')]")
     WebElement GenesLink;
 
     //elements of dropdown list from What Works For Me
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'What Works Best')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'What Works Best')]")
     WebElement WhatWorksBestLink;
 
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Therapy')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Therapy')]")
     WebElement TherapyLink;
 
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Equipment')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Equipment')]")
     WebElement EquipmentLink;
 
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Nutrition')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Nutrition')]")
     WebElement NutritionLink;
 
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Exercises')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Exercises')]")
     WebElement ExercisesLink;
 
-    @FindBy(xpath = "/[contains(text(),'What')]/../[contains(text(),'Alternative Medicine')]")
+    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Alternative Medicine')]")
     WebElement AlternativeMedicineLink;
 
     //elements of dropdown list from Milestones
-    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Language Milestones')]")
+    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Language Milestones')]")
     WebElement LanguageMilestonesLink;
 
-    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Movement Milestones')]")
+    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Movement Milestones')]")
     WebElement MovementMilestonesLink;
 
-    @FindBy(xpath = "/[contains(text(),'Milestones')]/../[contains(text(),'Toileting Milestones')]")
+    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Toileting Milestones')]")
     WebElement ToiletingMilestonesLink;
 
     //elements of dropdown list from Medicines
 
-    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine']")
+    @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine']")
     WebElement MedicineLink;
 
-    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine Reasons']")
+    @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine Reasons']")
     WebElement MedicineReasonsLink;
 
-    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Medicine Effectiveness']")
+    @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine Effectiveness']")
     WebElement MedicineEffectivenessLink;
 
-    @FindBy(xpath = "/[contains(text(),'Medicines')]/../[text()='Across Conditions']")
+    @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Across Conditions']")
     WebElement AcrossConditionsLink;
 
 
@@ -110,13 +105,14 @@ public class GrafsPage extends Page {
     }
 
 
-
+    // Checks that title of our 'Medicine' Panel have appeared on the screen so we can work with it.
     public boolean isGrafsPage() {
         waitUntilGrafsPageIsLoaded();
         return exists(mdRatingLink);
     }
 
 
+    // Click on the third star
     public GrafsPage clickOnMDRating() {
         clickElement(mdRatingLink);
         return this;
@@ -218,86 +214,102 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public boolean isGraphLoaded(java.lang.String element) {
+  /*  public boolean isGraphLoaded(java.lang.String element) {
         java.lang.String xpath = "xxx";
         element = "xxx";
 
-        if (element.equals("Medicine Reasons")) {
-            xpath = "Reason medicine";
+        switch (element) {
 
-        } else if (element.equals("Medicine Effectiveness")) {
-            xpath = "Medicine reviews across";
+            case "Medicine Reasons":
+                xpath = "Reason medicine";
+                break;
+            case "Medicine Effectiveness":
+                xpath = "Medicine reviews across";
+                break;
+            case "Across Conditions":
+                xpath = "Across Conditions";
+                break;
+            case "Language Milestones":
+                xpath = "Milestones - Language";
+                break;
+            case "Movement Milestones":
+                xpath = "Developmental Milestones - Movement";
+                break;
+            case "Eating Milestones":
+                xpath = "Developmental Milestones - Eating";
+                break;
+            case "Toileting Milestones":
+                xpath = "Developmental Milestones - Toileting";
+                break;
+            case "What Works Best":
+                xpath = "What works best";
+                break;
+            case "Therapy":
+                xpath = "Psychotherapy";
+                break;
+            case "Equipment":
+                xpath = "Splints";
+                break;
+            case "Nutrition":
+                xpath = "Vitamin E";
+                break;
+            case "Exercises":
+                xpath = "'Yoga";
+                break;
+            case "Alternative Medicine":
+                xpath = "Pets";
+                break;
+            case "Medical Facilities":
+                xpath = "Medical Facility";
+                break;
+            case "Procedures":
+                xpath = "Medical Procedures";
+                break;
+            case "Healthcare Professionals":
+                xpath = "Medical Healthcare";
+                break;
+            case "Location":
+                xpath = "Location share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Gender":
+                xpath = "Gender share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Age":
+                xpath = "Birthday";
+                break;
+            case "Race":
+                xpath = "Race share in Aldosteronism, glucocorticoid-remediable";
+                break;
+            case "Genes":
+                xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
+                break;
 
-        } else if (element.equals("Across Conditions")) {
-            xpath = "Across Conditions";
 
-        } else if (element.equals("Language Milestones")) {
-            xpath = "Milestones - Language";
 
-        } else if (element.equals("Movement Milestones")) {
-            xpath = "Developmental Milestones - Movement";
 
-        } else if (element.equals("Eating Milestones")) {
-            xpath = "Developmental Milestones - Eating";
 
-        } else if (element.equals("Toileting Milestones")) {
-            xpath = "Developmental Milestones - Toileting";
 
-        } else if (element.equals("What Works Best")) {
-            xpath = "What works best";
 
-        } else if (element.equals("Therapy")) {
-            xpath = "Psychotherapy";
 
-        } else if (element.equals("Equipment")) {
-            xpath = "Splints";
 
-        } else if (element.equals("Nutrition")) {
-            xpath = "Vitamin E";
 
-        } else if (element.equals("Exercises")) {
-            xpath = "'Yoga";
 
-        } else if (element.equals("Alternative Medicine")) {
-            xpath = "Pets";
 
-        } else if (element.equals("Medical Facilities")) {
-            xpath = "Medical Facility";
+            case "":
 
-        } else if (element.equals("Procedures")) {
-            xpath = "Medical Procedures";
-
-        } else if (element.equals("Healthcare Professionals")) {
-            xpath = "Medical Healthcare";
-
-        } else if (element.equals("Location")) {
-            xpath = "Location share in Aldosteronism, glucocorticoid-remediable";
-
-        } else if (element.equals("Gender")) {
-            xpath = "Gender share in Aldosteronism, glucocorticoid-remediable";
-
-        } else if (element.equals("Age")) {
-            xpath = "Birthday";
-
-        } else if (element.equals("Race")) {
-            xpath = "Race share in Aldosteronism, glucocorticoid-remediable";
-
-        } else if (element.equals("Genes")) {
-            xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
-
-        } else {
-            xpath = "Medicine used";
-
+            default:
+            case "Medicine":
+                xpath = "Medicine used";
+                break;
         }
 
 
-        return exists(driver.findElement(By.xpath("/[contains(text(), '" + xpath + "')]")));
+        return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
     }
 
-
+*/
     public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);
         return this;
     }
 }
-

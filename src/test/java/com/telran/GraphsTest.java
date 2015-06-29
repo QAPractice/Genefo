@@ -60,13 +60,13 @@ public class GraphsTest {
             e.printStackTrace();
         }
     }
-
+/*
     @Test(groups = {"smoke", "positive"})
     public void MedicineLink() {
         grafsPage.clikOnMedicineLink()
                 .isGraphLoaded("Medicine");
     }
-
+*/
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

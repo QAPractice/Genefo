@@ -29,7 +29,7 @@ public class TestNgTestBase {
 
   public TestNgTestBase(){
     try {
-      TestUtils.setSystemVar();
+    //  TestUtils.setSystemVar();
       initTestSuite();
     } catch (IOException e) {
       e.printStackTrace();

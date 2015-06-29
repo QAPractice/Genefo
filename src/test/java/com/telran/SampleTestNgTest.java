@@ -2,6 +2,7 @@ package com.telran;
 
 import com.telran.pages.HomePage;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class SampleTestNgTest extends TestNgTestBase {
 
@@ -12,5 +13,9 @@ public class SampleTestNgTest extends TestNgTestBase {
     homepage = PageFactory.initElements(driver, HomePage.class);
   }
 
-
+  //@Test
+  public void testHomePageHasAHeader() {
+ //   driver.get(baseUrl);
+    Assert.assertFalse("".equals(homepage.header.getText()));
+  }
 }

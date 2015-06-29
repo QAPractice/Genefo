@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
@@ -65,7 +66,8 @@ public class PostOnMainTest {
 
     @Test(groups = {"smoke", "positive"})
     public void SendPostSuccessTest() {
-        String text = "My Seventh Post" ;
+        Date date = new Date();
+        String text = "My 'Post Category' post at "  + date.toString();
 
         try {
             postOnMainPage
@@ -104,7 +106,6 @@ public class PostOnMainTest {
                     .fillTextField(text)
                     .sendPost();
             sleep(2000);
-
             assertFalse(mainPage.verifyTextFromSentPost(text));
         } catch (Exception e) {
             e.printStackTrace();

@@ -70,6 +70,8 @@ public class RegistrationPage extends Page {
 
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
+    @FindBy(xpath = "//*[@id='myModalLabel']")
+    WebElement CheckBoxAgreeAppeared;
 
     //Stars
     @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='firstName']/i")
@@ -206,6 +208,10 @@ public class RegistrationPage extends Page {
     }
     public RegistrationPage checkThatConditionFieldHasAsterisk (){
         Assert.assertTrue(asteriskCondition.isDisplayed());
+        return this;
+    }
+    public RegistrationPage CheckThatBoxAgreeAppeard() {
+        Assert.assertTrue(CheckBoxAgreeAppeared.isDisplayed());
         return this;
     }
     }

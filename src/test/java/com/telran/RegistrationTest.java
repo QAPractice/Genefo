@@ -50,7 +50,6 @@ public class RegistrationTest {
     @Test
     public void AsteriskTest() {
         registrationPage
-                .checkThatFirstNameFieldHasAsterisk()
                 .checkThatFirstNameFieldHasAsterisk();
 
     }

@@ -2,10 +2,8 @@ package com.telran.pages;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -13,8 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.lang.Thread.sleep;
 
 //import org.openqa.selenium.WebDriver;
 
@@ -271,32 +267,7 @@ public class WhatWorksOnMainPage extends Page {
         List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
         WebElement el = elements.get( elements.size() - 1 );
         textInListItem =  el.getText();
-
-        Actions builderq = new Actions(driver);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        builderq.sendKeys(Keys.ARROW_DOWN);
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        builderq.build().perform();
         el.click();
-
         return this;
     }
 

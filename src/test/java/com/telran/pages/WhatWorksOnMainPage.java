@@ -2,8 +2,10 @@ package com.telran.pages;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -11,6 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
+
+//import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Iakov Volf 27.05.15.
@@ -220,7 +226,7 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage clickOnOption(String option) {
         try{
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
-        }
+           }
         catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
             System.out.println("Wrong option! \nOption with name :" + option + " does not exist!");
         }
@@ -261,12 +267,38 @@ public class WhatWorksOnMainPage extends Page {
 
     public WhatWorksOnMainPage chooseLastItemFromItemList(  ) {
     // We fill list of elements with items from the dropdown list
+        //ItemListOptions.sendKeys(Keys.PAGE_DOWN);
         List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
-        textInListItem =  elements.get( elements.size() - 1 ).getText();
-        elements.get( elements.size() - 1 ).click();
+        WebElement el = elements.get( elements.size() - 1 );
+        textInListItem =  el.getText();
+
+        Actions builderq = new Actions(driver);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        builderq.sendKeys(Keys.ARROW_DOWN);
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        builderq.build().perform();
+        el.click();
+
         return this;
     }
-
 
     // Waits until our item from dropdoown list appears on the screen
     public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
@@ -311,10 +343,21 @@ public class WhatWorksOnMainPage extends Page {
         return this;
     }
 
+    // Waits until our item appears on the screen
+ /*   public WhatWorksOnMainPage waitUntilAllStarsTogetherAreLoaded() {
+        try {
+        //  waitUntilElementIsLoaded(allStarsTogether);
+        // sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+*/
     // We need to click on all stars together to set free each one of them
     public WhatWorksOnMainPage clickOnAllStarsTogether() throws InterruptedException {
         clickElement(allStarsTogether);
-        return this;
+                return this;
     }
 
     // Click on the third star

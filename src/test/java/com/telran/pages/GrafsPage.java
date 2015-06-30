@@ -1,6 +1,5 @@
 package com.telran.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -213,7 +212,7 @@ public class GrafsPage extends Page {
         clickElement(MedicineEffectivenessLink);
         return this;
     }
-
+/*
     public boolean isGraphLoaded(java.lang.String element) {
         java.lang.String xpath = "xxx";
         element = "xxx";
@@ -295,7 +294,7 @@ public class GrafsPage extends Page {
 
         return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
     }
-
+*/
 
     public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);

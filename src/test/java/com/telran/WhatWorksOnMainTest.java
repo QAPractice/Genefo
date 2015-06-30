@@ -24,6 +24,15 @@ import static org.testng.Reporter.log;
  */
 public class WhatWorksOnMainTest {
 
+    // We define variables of enum type to give meaning to numbers 0, 1 and 3
+    // And then we use this variables instead of numbers
+    public enum Company {
+        LAST_ITEM_FROM_LIST(0), FIRST_ITEM_FROM_LIST(1), FOURTH_ITEM_FROM_LIST(4);
+        private int value;
+        private Company(int value) {
+            this.value = value;
+        }
+    }
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -78,26 +87,29 @@ public class WhatWorksOnMainTest {
     @DataProvider
     private Object[][] myProvider(){
         return new Object[][]{
-                {"Therapy", -1},    // -1 just means that we want to choose the last item from dropdown list
-                {"Equipment", -1},
-                {"Nutrition", -1},
-                {"Exercises", -1},
-                {"Alternative", -1},
-                {"Other", -1},
-                {"Therapy", 1},    // 1 just means that we want to choose the first item from dropdown list
-                {"Equipment", 1},
-                {"Nutrition", 1},
-                {"Exercises", 1},
-                {"Alternative", 1},
-                {"Other", 1},
-                {"Therapy", 4},    // 4 just means that we want to choose the fourth item from dropdown list
-                {"Equipment", 4},
-                {"Nutrition", 4},
-                {"Exercises", 4},
-                {"Alternative", 4},
-                {"Other", 4},
+                {"Therapy",     Company.LAST_ITEM_FROM_LIST },// just means that we want to choose the last item from dropdown list
+                {"Equipment",   Company.LAST_ITEM_FROM_LIST },
+                {"Nutrition",   Company.LAST_ITEM_FROM_LIST },
+                {"Exercises",   Company.LAST_ITEM_FROM_LIST },
+                {"Alternative", Company.LAST_ITEM_FROM_LIST },
+                {"Other",       Company.LAST_ITEM_FROM_LIST },
+
+                {"Therapy",     Company.FIRST_ITEM_FROM_LIST },// just means that we want to choose the first item from dropdown list
+                {"Equipment",   Company.FIRST_ITEM_FROM_LIST },
+                {"Nutrition",   Company.FIRST_ITEM_FROM_LIST },
+                {"Exercises",   Company.FIRST_ITEM_FROM_LIST },
+                {"Alternative", Company.FIRST_ITEM_FROM_LIST },
+                {"Other",       Company.FIRST_ITEM_FROM_LIST },
+
+                {"Therapy",     Company.FOURTH_ITEM_FROM_LIST }, // just means that we want to choose the fourth item from dropdown list
+                {"Equipment",   Company.FOURTH_ITEM_FROM_LIST },
+                {"Nutrition",   Company.FOURTH_ITEM_FROM_LIST },
+                {"Exercises",   Company.FOURTH_ITEM_FROM_LIST },
+                {"Alternative", Company.FOURTH_ITEM_FROM_LIST },
+                {"Other",       Company.FOURTH_ITEM_FROM_LIST },
         };
     }
+
 // provider for negative tests where we do not need to choose item from dropdown list
     @DataProvider
     private Object[][] myNegativeProvider(){
@@ -116,7 +128,7 @@ public class WhatWorksOnMainTest {
     // // Check that you are able to send a post.
     // Category name and item number are given by data provider.
     @Test(groups = {"smoke", "positive"}, dataProvider = "myProvider" )
-    public void SendPostTest(String category, int itemNumber) {
+    public void SendPostTest(String category, Company itemNumber) {
         Date date = new Date();
         String text = "My Post at " + date.toString() ;
         String otherItem = "My Other Item at " + date.toString() ;
@@ -130,7 +142,7 @@ public class WhatWorksOnMainTest {
                         .rateItThree()                //Click on the third star
                         .fillTextField(text)
                         .sendPost();
-            else if (itemNumber == -1) //We want to choose the last item from the dropdown list
+            else if (itemNumber == Company.LAST_ITEM_FROM_LIST) //We want to choose the last item from the dropdown list
             {   whatWorksOnMainPage
                     .clickOnOption(category)
                     .clickOnItemList()
@@ -145,8 +157,8 @@ public class WhatWorksOnMainTest {
                 whatWorksOnMainPage
                         .clickOnOption(category)
                         .clickOnItemList()
-                        .waitUntilItemFromItemListIsLoaded(itemNumber)
-                        .chooseItemFromItemList(itemNumber)
+                        .waitUntilItemFromItemListIsLoaded((itemNumber.value))
+                        .chooseItemFromItemList(itemNumber.value)
                         .clickOnAllStarsTogether()
                         .rateItThree()                //Click on the third star
                         .fillTextField(text)

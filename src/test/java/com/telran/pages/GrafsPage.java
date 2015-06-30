@@ -214,7 +214,7 @@ public class GrafsPage extends Page {
         return this;
     }
 
-  /*  public boolean isGraphLoaded(java.lang.String element) {
+    public boolean isGraphLoaded(java.lang.String element) {
         java.lang.String xpath = "xxx";
         element = "xxx";
 
@@ -284,17 +284,6 @@ public class GrafsPage extends Page {
                 xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
                 break;
 
-
-
-
-
-
-
-
-
-
-
-
             case "":
 
             default:
@@ -307,7 +296,7 @@ public class GrafsPage extends Page {
         return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
     }
 
-*/
+
     public GrafsPage clikOnAcrossConditionsLink() {
         clickElement(AcrossConditionsLink);
         return this;

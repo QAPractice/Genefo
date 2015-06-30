@@ -1054,6 +1054,33 @@ public class RegistrationTest {
         }
     }
 
+
+
+    @Test
+    public void RegTestCheckAgreeBox () {
+        try {
+            EmailNickname = randomAlphabetic(5);
+                registrationPage
+                        .openRegistrationPage()
+                        .fillLastNameField("")
+                        .fillPasswordField("111111")
+                        .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+                        .fillConditionField("Alstrom")
+                        .clickToCheckBox18()
+                        .clickToCheckBoxAgree()
+                        .CheckThatBoxAgreeAppeard()
+                        .clickToSubmit();
+
+
+
+            assertTrue(profilePage.isOnProfilePage());
+            profilePage.selectGender("2");
+            assertTrue(profilePage.isGenderSelected("Other"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+     }
+
         @AfterClass(alwaysRun = true)
         public void teardown(){
             this.driver.quit();

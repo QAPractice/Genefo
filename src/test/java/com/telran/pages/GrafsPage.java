@@ -15,18 +15,18 @@ public class GrafsPage extends Page {
 
 
     //elements of dropdown list from medical facilities
-    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Rating')]")
-    WebElement mdRatingLink;
+    @FindBy(xpath = "//*[contains(text(),'Rating')]/..//*[contains(text(),'Facilities')]")
+    WebElement Facilities;
 
     @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Procedures')]")
-    WebElement ProceduresLink;
+    WebElement proceduresLink;
 
     @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Professionals')]")
     WebElement ProfessionalsLink;
 
     //elements of dropdown list from Miscellaneous
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Location')]")
-    WebElement MiscellaneousLink;
+    WebElement LocationLink;
 
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Gender')]")
     WebElement GenderLink;
@@ -95,7 +95,7 @@ public class GrafsPage extends Page {
 
     public GrafsPage waitUntilGrafsPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(mdRatingLink);
+            waitUntilElementIsLoaded(Facilities);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -108,18 +108,18 @@ public class GrafsPage extends Page {
 
     public boolean isGrafsPage() {
         waitUntilGrafsPageIsLoaded();
-        return exists(mdRatingLink);
+        return exists(Facilities);
     }
 
 
-    public GrafsPage clickOnMDRating() {
-        clickElement(mdRatingLink);
+    public GrafsPage clickOnFacilities() {
+        clickElement(Facilities);
         return this;
     }
 
 
     public GrafsPage clikOnProceduresLink() {
-        clickElement(ProceduresLink);
+        clickElement(proceduresLink);
         return this;
     }
 
@@ -129,7 +129,7 @@ public class GrafsPage extends Page {
     }
 
     public GrafsPage clikOnMiscellaneousLink() {
-        clickElement(MiscellaneousLink);
+        clickElement(LocationLink);
         return this;
     }
 
@@ -258,7 +258,7 @@ public class GrafsPage extends Page {
             case "Alternative Medicine":
                 xpath = "Pets";
                 break;
-            case "Medical Facilities":
+            case "Facilities":
                 xpath = "Medical Facility";
                 break;
             case "Procedures":
@@ -282,16 +282,6 @@ public class GrafsPage extends Page {
             case "Genes":
                 xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
                 break;
-
-
-
-
-
-
-
-
-
-
 
 
             case "":

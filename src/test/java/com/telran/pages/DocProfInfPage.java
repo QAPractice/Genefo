@@ -129,6 +129,11 @@ public class DocProfInfPage extends Page{
         return exists(specialtieForCheck);
     }
 
+    public boolean isAddSpecButtonExists() {
+
+        return exists(addSpecButton);
+    }
+
     public boolean isLocationExists() {
         return exists(Location);
     }

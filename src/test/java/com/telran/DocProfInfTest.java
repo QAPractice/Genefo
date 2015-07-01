@@ -127,9 +127,8 @@ public class DocProfInfTest {
      public void AddEmptySpecialties() {
         try {
             docProfInfPage
-                    .fillSpecialtiesField("")
-                    .clickOnAddSpecialtiesDisButton();
-            Assert.assertTrue(docProfInfPage.isOnDocProfInfPage(),"The current page is changed");
+                    .fillSpecialtiesField("");
+            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists()==false,"The Add Specialties Button Enable");
         } catch (Exception e) {
             e.printStackTrace();
         }

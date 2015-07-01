@@ -150,7 +150,7 @@ public class MainPage extends Page {
 
     public boolean isOnMainPage() {
         waitUntilMainPageIsLoaded();
-        return exists(milestoneButton);
+        return exists(whatWorksButton);
     }
 
     public MainPage selectMyProfile () {
@@ -208,6 +208,10 @@ public class MainPage extends Page {
     public MainPage clickMyHomeButton(){
         clickElement(myHomeButton);
         return this;
+    }
+
+    public boolean isMyHomeExists(){
+        return(exists(myHomeButton));
     }
 
 

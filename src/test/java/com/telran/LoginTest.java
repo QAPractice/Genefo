@@ -46,6 +46,8 @@ public class LoginTest {
 
     @BeforeMethod
     public void beforeMethodSetUp() {
+//        if(mainPage.isMyHomeExists())
+//            mainPage.logOut();
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();

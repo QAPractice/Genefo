@@ -1,8 +1,6 @@
 package com.telran;
 
-import com.telran.pages.LoginPage;
-import com.telran.pages.ProfilePage;
-import com.telran.pages.RegistrationPage;
+import com.telran.pages.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,7 +16,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by Iakov Volf, on 5/4/2015.
+ * Created by Iakov Volf, Olga  on 5/4/2015.
  */
 public class RegistrationTest {
 
@@ -28,6 +26,7 @@ public class RegistrationTest {
     public String EmailNickname; // Keeps the part of email before sign @
     RegistrationPage registrationPage;
     ProfilePage profilePage;
+    MainPage mainPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
@@ -38,6 +37,7 @@ public class RegistrationTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
 
         try {
             registrationPage.openRegistrationPage();
@@ -54,20 +54,26 @@ public class RegistrationTest {
 
     }
 
-    @Test
-    public void RegTestSuccess() {
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    public void RegTestSuccess(String condition) {
 
         try {
 
             EmailNickname = randomAlphabetic(5);
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage();
+            if (mainPage.isOnMainPage() == true || profilePage.isOnProfilePage() == true) {
+                mainPage.logOut();
+                registrationPage.openRegistrationPage();
+            }
+            registrationPage
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
-                    .fillConditionField("Alstrom")
+                    .fillEmailField("one" + EmailNickname + "@yopmail.com")
+                    .fillConditionField(condition)
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();

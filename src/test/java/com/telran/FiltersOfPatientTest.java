@@ -21,16 +21,14 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Christina on 6/22/15.
  */
 public class FiltersOfPatientTest {
+    private static String PATIENT_ONE = "Pat One";
+    private static String PATIENT_TWO = "Pat Two";
+    private static String PATIENT_THREE = "Pat Three";
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
-    private static String PATIENT_ONE = "Pat One";
-    private static String PATIENT_TWO = "Pat Two";
-    private static String PATIENT_THREE = "Pat Three";
-
-
 
     @BeforeClass
     public void setup() {
@@ -41,7 +39,7 @@ public class FiltersOfPatientTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         filtersOfPatientOnMainPage = PageFactory.initElements(driver, FiltersOfPatientOnMainPage.class);
         try {
-            loginPage.login("patone@pat.ru", "111111");
+            loginPage.login("jakoff+444@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

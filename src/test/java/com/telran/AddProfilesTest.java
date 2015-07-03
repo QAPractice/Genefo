@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertTrue;
 /**
- * Created by Л on 5/19/2015.
+ * Created by Л on 5/19/2015
  */
 public class AddProfilesTest {
     private static String EMAIL="ri-lopatina@yandex.ru";

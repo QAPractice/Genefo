@@ -1,5 +1,6 @@
 package com.telran;
 
+import com.telran.pages.DataProviders;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -155,6 +156,35 @@ public class MilestoneOnMainPageTest {
 
     }
 
+    @Test(groups = {"smoke", "positive"}, enabled = true, dataProviderClass = DataProviders.class, dataProvider = "loadTypesFromFile")
+    public void SendToiletingPostDataDrivenTest(String _type, String _milestone, String _year, String _month) {
+        type = _type;
+        milestone = _milestone;
+        year = _year;
+        month = _month;
+        age = year + " years " + month + " months";
+        post = randomAlphabetic(1);
+        Reporter.log("Testing Type: " + type + " , milestone: " + milestone + " , year: " + year + " , month: " + month);
+        try {
+            milestoneOnMainPage
+                    .clickOnElement(type)
+                    .clickOnSelectItemOption()
+                    .clickOnElement(milestone)
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Alert:'Milestone is not correct'", milestoneOnMainPage.isMilestoneTrue(milestone));
+            assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert:'The text is not correct'", milestoneOnMainPage.isTextCorrect(post));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     @Test(groups={"smoke","positive"}, enabled = true)
     public void SendToiletingPostTest() {
         type = "Toileting";

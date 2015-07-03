@@ -55,7 +55,7 @@ public class RegistrationTest {
     }
 
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
     public void RegTestSuccess(String condition) {
 
         try {

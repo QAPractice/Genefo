@@ -117,13 +117,13 @@ public class MilestoneOnMainPage extends Page {
     WebElement numbersOnlyForYears;
 
     //elements in created post
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement milestoneTypeOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[3]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[3]/td[2]")
     WebElement milestoneOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='post-note ng-binding']")
     WebElement textInNewCreatedPost;
 
     //constructor

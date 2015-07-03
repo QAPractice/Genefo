@@ -13,11 +13,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import static org.testng.AssertJUnit.assertTrue;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 30.05.2015.
  */

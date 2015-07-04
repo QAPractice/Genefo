@@ -29,6 +29,12 @@ public class ProfileDoctorPage extends Page{
     @FindBy(xpath = "//*[@class='btn btn-success btn-discover-homepage']")
     WebElement DiscoverYourHomePageButton;
 
+    @FindBy(xpath = "//div[@class='container']//i[@class='fa fa-cog fa-2x']")
+    WebElement cogwheelButton;
+
+    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
+    WebElement logOutButton;
+
 
 
 
@@ -71,6 +77,12 @@ public class ProfileDoctorPage extends Page{
 
     public ProfileDoctorPage clickOnDisYourHP() {
         clickElement(DiscoverYourHomePageButton);
+        return this;
+    }
+
+    public ProfileDoctorPage logOut() {
+        clickElement(cogwheelButton);
+        clickElement(logOutButton);
         return this;
     }
 

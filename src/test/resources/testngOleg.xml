@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuperTest" verbose="5">
+  <test name="Test1">
+      <parameter name="facilityname" value="ChicagoMed"/>
+      <parameter name="physitianFirstName" value="Dr"/>
+      <parameter name="physitianLastName" value="Pilulkin"/>
+      <parameter name="text" value="Good treatment"/>
+      <groups>
+          <run>
+              <include name="smoke"/>
+              <!--<include name="positive"/>-->
+              <!--<include name="negative"/>-->
+          </run>
+      </groups>
+
+      <classes>
+          <class name="com.telran.LoginTest"/>
+          <class name="com.telran.SignUpHCPTest"/>
+          <class name="com.telran.DocAcInfTest"/>
+          <class name="com.telran.DocBasInfTest"/>
+          <class name="com.telran.DocProfInfTest">
+          </class>
+
+      </classes>
+
+
+  </test>
+
+</suite>

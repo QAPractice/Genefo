@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -41,15 +42,27 @@ public class DocBasInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com","111111");
+            loginPage.login("osh_il+4@yahoo.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
-            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-            profileDoctorPage.clickOnEditBasInf();
-            docBasInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        try {
+            if(profileDoctorPage.isOnProfileDoctorPage() == false) {
+                mainPage.selectMyAccount();
+            }
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+            profileDoctorPage.clickOnEditBasInf();
+            docBasInfPage.waitUntilDocBasInfPageIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -59,12 +72,11 @@ public class DocBasInfTest {
             docBasInfPage
                     .fillFirstNameField("Doctor")
                     .fillLastNameField("House")
-                            //.selectMonth("0")
-                            // .selectDay("5")
-                            // .selectYear("70")
                     .fillLocationField("afr")
+                    .clickOnTooltip()
                     .clickOnSaveButton();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,8 +101,8 @@ public class DocBasInfTest {
             docBasInfPage
                     .fillFirstNameField("")
                     .fillLastNameField("")
-                    .clickOnSaveDisableButton();
-            assertTrue("The First Name is valid",docBasInfPage.alertMessageInvalidFirstName());
+                    .fillLocationField("");
+            assertTrue("The First Name is valid", docBasInfPage.alertMessageInvalidFirstName());
             assertTrue("The Last Name is valid",docBasInfPage.alertMessageInvalidLastName());
             assertTrue("The current page is changed",docBasInfPage.isOnDocBasInfPage());
         } catch (Exception e) {
@@ -115,6 +127,14 @@ public class DocBasInfTest {
             return alertText;
         } finally {
             acceptNextAlert = true;
+        }
+    }
+
+    private void sleep (){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

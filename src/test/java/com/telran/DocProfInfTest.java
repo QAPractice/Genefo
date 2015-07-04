@@ -85,7 +85,7 @@ public class DocProfInfTest {
                     .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(),"Profile HCP Page doesn't open");
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,12 +124,25 @@ public class DocProfInfTest {
     }
 
     @Test(groups = {"smoke", "negative"})
-     public void AddEmptySpecialtiesFields() {
+     public void AddEmptySpecialties() {
         try {
             docProfInfPage
-                    .fillSpecialtiesField("")
-                    .clickOnAddSpecialtiesDisButton();
-            Assert.assertTrue(docProfInfPage.isOnDocProfInfPage(),"The current page is changed");
+                    .fillSpecialtiesField("");
+            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists()==false,"The Add Specialties Button Enable");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"smoke", "negative"})
+    public void AddDelSpecialties() {
+        try {
+            docProfInfPage
+                    .fillSpecialtiesField("abcd")
+                    .clickOnAddSpecialtiesButton()
+                    .clickOnDelSpecButton()
+                    .clickOnConfSpecButton();
+            Assert.assertTrue(docProfInfPage.isSpecExists(),"The specialty exists");
         } catch (Exception e) {
             e.printStackTrace();
         }

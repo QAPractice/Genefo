@@ -13,11 +13,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import static org.testng.AssertJUnit.assertTrue;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 30.05.2015.
  */
@@ -33,7 +32,6 @@ public class LoginTest {
     private static String USER ="osh_il+4@yahoo.com";
     private static String PASSWORD ="111111";
 
-
     @BeforeClass
     public void setup() {
         this.driver = new FirefoxDriver();
@@ -43,18 +41,20 @@ public class LoginTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
         resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
-
     }
+
     @BeforeMethod
     public void beforeMethodSetUp() {
+//        if(mainPage.isMyHomeExists())
+//            mainPage.logOut();
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     @Test(groups = {"smoke", "positive"})
     public void LoginSuccess() {
 
@@ -92,8 +92,6 @@ public class LoginTest {
         mainPage.waitUntilMainPageIsLoaded();
         assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
         mainPage.logOut();
-        homePage.waitUntilHomePageIsLoaded();
-        //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
     }
 
     @Test(groups = {"smoke", "negative"})

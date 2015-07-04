@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -69,12 +70,24 @@ public class RegistrationPage extends Page {
 
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
     WebElement alertToCheckBoxAgree;
+    @FindBy(xpath = "//*[@id='myModalLabel']")
+    WebElement CheckBoxAgreeAppeared;
+
+    //Stars
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='firstName']/i")
+    WebElement asteriskFirstName;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='password']/i")
+    WebElement asteriskPassword;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='Email']/i")
+    WebElement asteriskEmail;
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='condition']/i")
+    WebElement asteriskCondition;
 
     //public ProfilePage profilePage;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/signup_regular";
+        this.PAGE_URL = "http://52.10.6.51:8080/signup_regular?webinar=true";
         PageFactory.initElements(driver, this);
      }
 
@@ -179,4 +192,26 @@ public class RegistrationPage extends Page {
     }
 
     public boolean notAvailableSignUpButton(){return exists(submitNotAvailable);}
-}
+
+    public RegistrationPage checkThatFirstNameFieldHasAsterisk() {
+        Assert.assertTrue(asteriskFirstName.isDisplayed());
+        return this;
+
+    }
+    public RegistrationPage checkThatPasswordFieldHasAsterisk () {
+        Assert.assertTrue(asteriskPassword.isDisplayed());
+        return this;
+    }
+    public RegistrationPage checkThatEmailFieldHasAsterisk () {
+        Assert.assertTrue(asteriskEmail.isDisplayed());
+        return this;
+    }
+    public RegistrationPage checkThatConditionFieldHasAsterisk (){
+        Assert.assertTrue(asteriskCondition.isDisplayed());
+        return this;
+    }
+    public RegistrationPage CheckThatBoxAgreeAppeard() {
+        Assert.assertTrue(CheckBoxAgreeAppeared.isDisplayed());
+        return this;
+    }
+    }

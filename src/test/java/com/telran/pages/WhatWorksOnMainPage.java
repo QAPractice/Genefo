@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+//import org.openqa.selenium.WebDriver;
+
 /**
  * Created by Iakov Volf 27.05.15.
  */
@@ -136,22 +138,22 @@ public class WhatWorksOnMainPage extends Page {
 
 
     // Upper Tab of sent posts
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]")
     WebElement  UpperSentPostTab;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//div[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement  SentPostCategory;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@ng-model=\"what_works_rating\"]/i[3]/span[contains(text(),'*')]")
     WebElement  filledThirdStarInSentPost;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@ng-model=\"what_works_rating\"]/i[4]/span[not(contains(text(),'*'))]")
     WebElement nonFilledFourthStarInSentPost;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement ListItemInSentPost;
 
     private String textInListItem; // Serves to keep text of the item from the list to give it after for assertion.
@@ -220,7 +222,7 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage clickOnOption(String option) {
         try{
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
-        }
+           }
         catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
             System.out.println("Wrong option! \nOption with name :" + option + " does not exist!");
         }
@@ -261,12 +263,13 @@ public class WhatWorksOnMainPage extends Page {
 
     public WhatWorksOnMainPage chooseLastItemFromItemList(  ) {
     // We fill list of elements with items from the dropdown list
+        //ItemListOptions.sendKeys(Keys.PAGE_DOWN);
         List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
-        textInListItem =  elements.get( elements.size() - 1 ).getText();
-        elements.get( elements.size() - 1 ).click();
+        WebElement el = elements.get( elements.size() - 1 );
+        textInListItem =  el.getText();
+        el.click();
         return this;
     }
-
 
     // Waits until our item from dropdoown list appears on the screen
     public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
@@ -311,10 +314,21 @@ public class WhatWorksOnMainPage extends Page {
         return this;
     }
 
+    // Waits until our item appears on the screen
+ /*   public WhatWorksOnMainPage waitUntilAllStarsTogetherAreLoaded() {
+        try {
+        //  waitUntilElementIsLoaded(allStarsTogether);
+        // sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+*/
     // We need to click on all stars together to set free each one of them
     public WhatWorksOnMainPage clickOnAllStarsTogether() throws InterruptedException {
         clickElement(allStarsTogether);
-        return this;
+                return this;
     }
 
     // Click on the third star

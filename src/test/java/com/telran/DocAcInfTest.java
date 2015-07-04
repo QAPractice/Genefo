@@ -35,6 +35,9 @@ public class DocAcInfTest {
     public DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
+    private static String PASSWORD ="111111";
+    private static String EMAIL1 = "osh_il+17@yahoo.com";
+    private static String EMAIL2 = "osh_il+14@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -47,42 +50,74 @@ public class DocAcInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com","111111");
+            loginPage.login(EMAIL1,PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        try {
+            if(profileDoctorPage.isOnProfileDoctorPage() == false) {
+                mainPage.selectMyAccount();
+            }
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnEditAccInf();
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-//    @BeforeMethod
-//    public void beforemethodsetup() {
-//        loginPage.login("osh_il+4@yahoo.com","111111");
-//        mainPage.waitUntilMainPageIsLoaded();
-//        mainPage.selectMyAccount();
-//        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
-//        profileDoctorPage.clickOnEditAccInf();
-//        docAcInfPage.waitUntilDocAcInfPageIsLoaded();
-//
-//    }
+    }
 
     @Test(groups = {"smoke", "positive"})
     public void EditAccInfSuccess() {
 
         try {
-            EmailNickname = randomAlphabetic(5);
             docAcInfPage
-                    .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
-                    .clickOnSaveButton();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+                    .fillPasswordField(PASSWORD)
+                    .fillEmailField(EMAIL2)
+                    .clickOnSaveButton()
+                    .waitUntilEnterYourCurrentPassIsLoaded()
+                    .fillCurrentPasswordField(PASSWORD)
+                    .clickOnCurSaveButton();
+            assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
+            mainPage.selectMyAccount();
+            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+            profileDoctorPage.clickOnEditAccInf();
+            docAcInfPage.waitUntilDocAcInfPageIsLoaded();
+            docAcInfPage
+                    .fillPasswordField(PASSWORD)
+                    .fillEmailField(EMAIL1)
+                    .clickOnSaveButton()
+                    .waitUntilEnterYourCurrentPassIsLoaded()
+                    .fillCurrentPasswordField(PASSWORD)
+                    .clickOnCurSaveButton();
+            //assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+//    @Test(groups = {"smoke", "positive"})
+//    public void UpdateEditAccInfSuccess() {
+//
+//        try {
+//            docAcInfPage
+//                    .fillPasswordField(PASSWORD)
+//                    .fillEmailField(EMAIL2)
+//                    .clickOnSaveButton()
+//                    .waitUntilEnterYourCurrentPassIsLoaded()
+//                    .fillCurrentPasswordField(PASSWORD)
+//                    .clickOnCurSaveButton();
+//            assertTrue("Alert",docAcInfPage.alertMessageAccountSuccess());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {

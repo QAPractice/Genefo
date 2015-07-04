@@ -5,19 +5,14 @@ import com.telran.pages.MainPage;
 import com.telran.pages.SymptomsOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
-
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by tanyagaus, Lev on 6/10/15.
@@ -29,11 +24,10 @@ public class SymptomsOnMainPageTest{
 
     public WebDriver driver;
     public WebDriverWait wait;
-    SymptomsOnMainPage symptomsOnMainPage ;
     public MainPage mainPage;
     public LoginPage loginPage;
     public String fillTellUs;
-
+    SymptomsOnMainPage symptomsOnMainPage;
 
     @BeforeClass
 
@@ -98,8 +92,8 @@ public class SymptomsOnMainPageTest{
         Assert.assertTrue(symptomsOnMainPage.select_Specific_Area(specific_Area), "Specific_Area element is choosen");
         Assert.assertTrue(symptomsOnMainPage.select_Symptom(symptom), "Symptom element is choosen");
         symptomsOnMainPage.postText("My Post at " + date.toString());
-        Assert.assertTrue((new File(PATH_TO_Miki)).exists(), "if file exists or not");
-        symptomsOnMainPage.uploadFile(PATH_TO_Miki);
+        // Assert.assertTrue((new File(PATH_TO_Miki)).exists(), "if file exists or not");
+        // symptomsOnMainPage.uploadFile(PATH_TO_Miki);
     symptomsOnMainPage.submitPost();
         mainPage.loadPage();
         beforeMethodSetUp();

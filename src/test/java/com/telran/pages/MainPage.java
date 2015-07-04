@@ -61,10 +61,10 @@ public class MainPage extends Page {
     WebElement firstPostNameLink;
 
     // Upper Tab of sent posts
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]")
     WebElement  UpperSentPostTab;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//div[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
 
     @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
@@ -150,7 +150,7 @@ public class MainPage extends Page {
 
     public boolean isOnMainPage() {
         waitUntilMainPageIsLoaded();
-        return exists(milestoneButton);
+        return exists(whatWorksButton);
     }
 
     public MainPage selectMyProfile () {
@@ -208,6 +208,10 @@ public class MainPage extends Page {
     public MainPage clickMyHomeButton(){
         clickElement(myHomeButton);
         return this;
+    }
+
+    public boolean isMyHomeExists(){
+        return(exists(myHomeButton));
     }
 
 

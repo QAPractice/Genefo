@@ -49,7 +49,6 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
             loginPage.login("mili9@mail.ru", "999999");
-            // assertTrue(mainPage.isOnMainPage());
             mainPage.waitUntilMainPageIsLoaded()
                    .openMilestonePanel();
             milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
@@ -69,6 +68,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
     }
 
+
     @Test(groups = {"smoke", "positive"}, enabled = true, dataProviderClass = DataProviders.class, dataProvider = "loadTypesFromFile")
     public void SendMilestonePostDataDrivenTest(String _type, String _milestone, String _year, String _month) {
         type = _type;
@@ -76,7 +76,7 @@ public class MilestoneOnMainPageTest {
         year = _year;
         month = _month;
         age = year + " years " + month + " months";
-        post = randomAlphabetic(1);
+        post = randomAlphabetic(100);
         Reporter.log("Testing Type: " + type + " , milestone: " + milestone + " , year: " + year + " , month: " + month);
         try {
             milestoneOnMainPage
@@ -98,6 +98,8 @@ public class MilestoneOnMainPageTest {
         }
 
     }
+
+
     @Test(groups={"smoke","positive"}, enabled = true)
     public  void SendOtherPostTest() {
         type = "Other";
@@ -241,7 +243,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnMonthOption("36")
                     .fillTextField("post")
                     .sendPost();
-            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
             //assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
            // assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -260,7 +262,7 @@ public class MilestoneOnMainPageTest {
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00")
                     .sendPost();
-            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
           //  assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
            // assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
         }  catch (Exception e) {
@@ -296,7 +298,7 @@ public class MilestoneOnMainPageTest {
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
-    }
+     }
     }
 
 

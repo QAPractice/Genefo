@@ -135,6 +135,36 @@ public class GraphsTest {
 
     }
 
+    @Test(groups = {"smoke", "positive"})
+    public void Genes() {
+        grafsPage.clikOnGenesLink();
+        Assert.assertTrue(grafsPage.isGraphLoaded("Genes"), "Genes Graf not found");
+
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void Race() {
+        grafsPage.clikOnRaceLink();
+        Assert.assertTrue(grafsPage.isGraphLoaded("Race"), "Race Graf not found");
+
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void Age() {
+        grafsPage.clikOnAgeLink();
+        Assert.assertTrue(grafsPage.isGraphLoaded("Age"), "Age Graf not found");
+
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void Gender() {
+        grafsPage.clikOnGenderLink();
+        Assert.assertTrue(grafsPage.isGraphLoaded("Gender"), "Gender Graf not found");
+
+    }
+
+
+
 
 
 

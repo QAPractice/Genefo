@@ -110,20 +110,21 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
-    @FindBy(xpath = "//*[@id='milestone_months']/../span[contains(text(),'Numbers only')]")
+    @FindBy(xpath = ".//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+   // @FindBy(xpath = ".//*[@id='milestone_years']/../span")
     WebElement numbersOnlyForMonths;
-    @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
-    //@FindBy(xpath = "//input[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+   // @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+    @FindBy(xpath = "//*[@placeholder='Years']/../span")
     WebElement numbersOnlyForYears;
 
     //elements in created post
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[1]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[2]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
     WebElement milestoneTypeOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='table post-table']//tr[3]/td[2]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
     WebElement milestoneOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
     WebElement textInNewCreatedPost;
 
     //constructor
@@ -214,12 +215,12 @@ public class MilestoneOnMainPage extends Page {
         //items with names from category "Language"
         buttonsAndItemsMap.put("Smiles",itemSmiles);
         buttonsAndItemsMap.put("Babbles",itemBabbles);
-        buttonsAndItemsMap.put("First Word",itemFirstWord);
+        buttonsAndItemsMap.put("First word",itemFirstWord);
         buttonsAndItemsMap.put("2-3 words",itemTwoThreeWords);
-        buttonsAndItemsMap.put("Speaks in full Sentences",itemSpeaksInFullSentences);
+        buttonsAndItemsMap.put("Speaks in full sentences",itemSpeaksInFullSentences);
         // items with names from category "Movement"
         buttonsAndItemsMap.put("Holds head",itemHoldsHead);
-        buttonsAndItemsMap.put("Reaches for Objects",itemReachesForObjects);
+        buttonsAndItemsMap.put("Reaches for objects",itemReachesForObjects);
         buttonsAndItemsMap.put("Rolls over",itemRollsOver);
         buttonsAndItemsMap.put("Sits without support",itemSitsWithoutSupport);
         buttonsAndItemsMap.put("Crawls",itemCrawls);

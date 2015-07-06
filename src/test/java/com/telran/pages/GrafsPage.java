@@ -15,73 +15,76 @@ public class GrafsPage extends Page {
 
 
     //elements of dropdown list from medical facilities
-    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Rating')]")
-    WebElement mdRatingLink;
+    @FindBy(xpath = "//*[contains(text(),'Rating')]/..//*[contains(text(),'Facilities')]")
+    WebElement facilitiesLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Procedures')]")
-    WebElement ProceduresLink;
+    @FindBy(xpath = "//*[contains(text(),'Rating')]/..//*[contains(text(),'Procedures')]")
+    WebElement proceduresLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Facilities')]/..//*[contains(text(),'Professionals')]")
-    WebElement ProfessionalsLink;
+    @FindBy(xpath = "//*[contains(text(),'Rating')]/..//*[contains(text(),'Professionals')]")
+    WebElement professionalsLink;
 
     //elements of dropdown list from Miscellaneous
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Location')]")
-    WebElement MiscellaneousLink;
+    WebElement locationLink;
 
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Gender')]")
-    WebElement GenderLink;
+    WebElement genderLink;
 
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Age')]")
-    WebElement AgeLink;
+    WebElement ageLink;
 
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Race')]")
-    WebElement RaceLink;
+    WebElement raceLink;
 
     @FindBy(xpath = "//*[contains(text(),'Miscellaneous')]/..//*[contains(text(),'Genes')]")
-    WebElement GenesLink;
+    WebElement genesLink;
 
     //elements of dropdown list from What Works For Me
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'What Works Best')]")
-    WebElement WhatWorksBestLink;
+    WebElement whatWorksBestLink;
 
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Therapy')]")
-    WebElement TherapyLink;
+    WebElement therapyLink;
 
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Equipment')]")
-    WebElement EquipmentLink;
+    WebElement equipmentLink;
 
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Nutrition')]")
-    WebElement NutritionLink;
+    WebElement nutritionlink;
 
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Exercises')]")
-    WebElement ExercisesLink;
+    WebElement exercisesLink;
 
     @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Alternative Medicine')]")
-    WebElement AlternativeMedicineLink;
+    WebElement alternativeMedicineLink;
 
     //elements of dropdown list from Milestones
     @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Language Milestones')]")
-    WebElement LanguageMilestonesLink;
+    WebElement languageMilestonesLink;
 
     @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Movement Milestones')]")
-    WebElement MovementMilestonesLink;
+    WebElement movementMilestonesLink;
 
     @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Toileting Milestones')]")
-    WebElement ToiletingMilestonesLink;
+    WebElement toiletingMilestonesLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Eating Milestones')]")
+    WebElement eatingMilestonesLink;
 
     //elements of dropdown list from Medicines
 
     @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine']")
-    WebElement MedicineLink;
+    WebElement medicineLink;
 
     @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine Reasons']")
-    WebElement MedicineReasonsLink;
+    WebElement medicineReasonsLink;
 
     @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Medicine Effectiveness']")
-    WebElement MedicineEffectivenessLink;
+    WebElement medicineEffectivenessLink;
 
     @FindBy(xpath = "//*[contains(text(),'Medicines')]/..//*[text()='Across Conditions']")
-    WebElement AcrossConditionsLink;
+    WebElement acrossConditionsLink;
 
 
     public GrafsPage(WebDriver driver) {
@@ -95,7 +98,7 @@ public class GrafsPage extends Page {
 
     public GrafsPage waitUntilGrafsPageIsLoaded() {
         try {
-            waitUntilElementIsLoaded(mdRatingLink);
+            waitUntilElementIsLoaded(facilitiesLink);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -108,113 +111,118 @@ public class GrafsPage extends Page {
     // Checks that title of our 'Medicine' Panel have appeared on the screen so we can work with it.
     public boolean isGrafsPage() {
         waitUntilGrafsPageIsLoaded();
-        return exists(mdRatingLink);
+        return exists(facilitiesLink);
     }
 
 
     // Click on the third star
-    public GrafsPage clickOnMDRating() {
-        clickElement(mdRatingLink);
+    public GrafsPage clikOnFacilities() {
+        clickElement(facilitiesLink);
         return this;
     }
 
 
     public GrafsPage clikOnProceduresLink() {
-        clickElement(ProceduresLink);
+        clickElement(proceduresLink);
         return this;
     }
 
     public GrafsPage clikOnProfessionalsLink() {
-        clickElement(ProfessionalsLink);
+        clickElement(professionalsLink);
         return this;
     }
 
-    public GrafsPage clikOnMiscellaneousLink() {
-        clickElement(MiscellaneousLink);
+    public GrafsPage clikOnLocationLink() {
+        clickElement(locationLink);
         return this;
     }
 
     public GrafsPage clikOnGenderLink() {
-        clickElement(GenderLink);
+        clickElement(genderLink);
         return this;
     }
 
     public GrafsPage clikOnAgeLink() {
-        clickElement(AgeLink);
+        clickElement(ageLink);
         return this;
     }
 
     public GrafsPage clikOnRaceLink() {
-        clickElement(RaceLink);
+        clickElement(raceLink);
         return this;
     }
 
     public GrafsPage clikOnGenesLink() {
-        clickElement(GenesLink);
+        clickElement(genesLink);
         return this;
     }
 
     public GrafsPage clikOnWhatWorksBestLink() {
-        clickElement(WhatWorksBestLink);
+        clickElement(whatWorksBestLink);
         return this;
     }
 
     public GrafsPage clikOnTherapyLink() {
-        clickElement(TherapyLink);
+        clickElement(therapyLink);
         return this;
     }
 
     public GrafsPage clikOnEquipmentLink() {
-        clickElement(EquipmentLink);
+        clickElement(equipmentLink);
         return this;
     }
 
     public GrafsPage clikOnNutritionLink() {
-        clickElement(NutritionLink);
+        clickElement(nutritionlink);
         return this;
     }
 
     public GrafsPage clikOnExercisesLink() {
-        clickElement(ExercisesLink);
+        clickElement(exercisesLink);
         return this;
     }
 
     public GrafsPage clikOnAlternativeMedicineLink() {
-        clickElement(AlternativeMedicineLink);
+        clickElement(alternativeMedicineLink);
         return this;
     }
 
     public GrafsPage clikOnLanguageMilestonesLink() {
-        clickElement(LanguageMilestonesLink);
+        clickElement(languageMilestonesLink);
         return this;
     }
 
     public GrafsPage clikOnMovementMilestonesLink() {
-        clickElement(MovementMilestonesLink);
+        clickElement(movementMilestonesLink);
         return this;
     }
 
     public GrafsPage clikOnToiletingMilestonesLink() {
-        clickElement(ToiletingMilestonesLink);
+        clickElement(toiletingMilestonesLink);
         return this;
     }
 
     public GrafsPage clikOnMedicineLink() {
-        clickElement(MedicineLink);
+        clickElement(medicineLink);
         return this;
     }
 
     public GrafsPage clikOnMedicineReasonsLink() {
-        clickElement(MedicineReasonsLink);
+        clickElement(medicineReasonsLink);
         return this;
     }
 
     public GrafsPage clikOnMedicineEffectivenessLink() {
-        clickElement(MedicineEffectivenessLink);
+        clickElement(medicineEffectivenessLink);
         return this;
     }
 
-    public boolean isGraphLoaded(java.lang.String element) {
+    public GrafsPage clikOnEatingMiletonesLink() {
+        clickElement(eatingMilestonesLink);
+        return this;
+    }
+
+    public boolean isGraphLoaded(String element) {
         java.lang.String xpath = "xxx";
         element = "xxx";
 
@@ -293,12 +301,91 @@ public class GrafsPage extends Page {
         }
 
 
-        return exists(driver.findElement(By.xpath("//*[contains(text(), " + xpath + ")]")));
+        return exists(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
+    }
+
+    public void loadGraphs(String element) {
+
+        element = "xxx";
+
+        switch (element) {
+
+            case "Medicine Reasons":
+                clikOnMedicineReasonsLink();
+                break;
+            case "Medicine Effectiveness":
+                clikOnMedicineEffectivenessLink();
+                break;
+            case "Across Conditions":
+                clikOnAcrossConditionsLink();
+                break;
+            case "Language Milestones":
+                clikOnLanguageMilestonesLink();
+                break;
+            case "Movement Milestones":
+                clikOnMovementMilestonesLink();
+                break;
+            case "Toileting Milestones":
+                clikOnToiletingMilestonesLink();
+                break;
+            case "What Works Best":
+                clikOnWhatWorksBestLink();
+                break;
+            case "Therapy":
+                clikOnTherapyLink();
+                break;
+            case "Equipment":
+                clikOnEquipmentLink();
+                break;
+            case "Nutrition":
+                clikOnNutritionLink();
+                break;
+            case "Exercises":
+                clikOnExercisesLink();
+                break;
+            case "Alternative Medicine":
+                clikOnAlternativeMedicineLink();
+                break;
+            case "Medical Facilities":
+                clikOnFacilities();
+                break;
+            case "Procedures":
+                clikOnProceduresLink();
+                break;
+            case "Healthcare Professionals":
+                clikOnProfessionalsLink();
+                break;
+            case "Location":
+                clikOnLocationLink();
+                break;
+            case "Gender":
+                clikOnGenderLink();
+                break;
+            case "Age":
+                clikOnAgeLink();
+                break;
+            case "Race":
+                clikOnRaceLink();
+                break;
+            case "Genes":
+                clikOnGenesLink();
+                break;
+            case "Eating Milestones":
+                clikOnEatingMiletonesLink();
+                break;
+
+            default:
+            case "Medicine":
+                clikOnMedicineLink();
+                break;
+        }
+
+
     }
 
 
     public GrafsPage clikOnAcrossConditionsLink() {
-        clickElement(AcrossConditionsLink);
+        clickElement(acrossConditionsLink);
         return this;
     }
 }

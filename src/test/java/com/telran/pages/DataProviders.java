@@ -30,6 +30,40 @@ public class DataProviders {
     }
 
     @DataProvider
+    public static Iterator<Object[]> loadGrafFromFile() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                DataProviders.class.getResourceAsStream("/graphs.data")));
+
+        List<Object[]> userData = new ArrayList<Object[]>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+
+        in.close();
+
+        return userData.iterator();
+    }
+
+    @DataProvider
+    public static Iterator<Object[]> loadProfileDataFromFile() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                DataProviders.class.getResourceAsStream("/profile.data")));
+
+        List<Object[]> userData = new ArrayList<Object[]>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+
+        in.close();
+
+        return userData.iterator();
+    }
+
+    @DataProvider
     public static Iterator<Object[]> loadTypesFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 DataProviders.class.getResourceAsStream("/types.data")));

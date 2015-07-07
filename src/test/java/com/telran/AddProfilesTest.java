@@ -15,9 +15,9 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
-public class AddProfilesTest {
+public class AddProfilesTest extends TestNgTestBase{
     private static String EMAIL="ri-lopatina@yandex.ru";
-    private static String PASSWORD="123456";
+    private static String PASSWORD="111111";
     private static String FIRST_MAME = "AAA";
     private static String LAST_NAME = "BBB";
     private static String PATIENT_PROFILE_TYPE="2";
@@ -52,9 +52,12 @@ public class AddProfilesTest {
     SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
 
+    public AddProfilesTest() {
+        super();
+    }
+
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -74,33 +77,34 @@ public class AddProfilesTest {
         }
     }
 
-    @Test (groups = {"smoke", "positive"})
-    public void AddProfileSuccess() {
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
+    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month, String day, String year,
+                                  String diagnose_year, String patient_profile_type_check, String gender_check, String month_check, String day_check, String year_check, String diagnose_year_check) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileLastNameField(LAST_NAME);
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
         String name = profilePage.getProfileName();
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.isPatientSelected(patient_profile_type_check);
+        profilePage.selectGender(gender);
+        profilePage.isGenderSelected(gender_check);
+        profilePage.fillProfileConditionField(condition);
         profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
+        profilePage.selectMonth(month);
+        profilePage.isMonthSelected(month_check);
+        profilePage.selectDay(day);
+        profilePage.isDaySelected(day_check);
+        profilePage.selectYear(year);
+        profilePage.isYearSelected(year_check);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.isDiagnoseYearSelected(diagnose_year_check);
         profilePage.clickToSubmit();
         assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
-        assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
+        //assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnDiscoverHome();
     }
     //  Negative tests

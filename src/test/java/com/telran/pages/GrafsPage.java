@@ -292,8 +292,6 @@ public class GrafsPage extends Page {
                 xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
                 break;
 
-            case "":
-
             default:
             case "Medicine":
                 xpath = "Medicine used";

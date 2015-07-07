@@ -39,11 +39,6 @@ public class LikesTest {
                     .login("zizi300@gmail.com", "zizi300");
             mainPage.waitUntilMainPageIsLoaded();
 
-
-
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

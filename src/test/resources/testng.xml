@@ -2,10 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="SuperTest" verbose="5">
   <test name="Test1">
-      <parameter name="facilityname" value="ChicagoMed"/>
-      <parameter name="physitianFirstName" value="Dr"/>
-      <parameter name="physitianLastName" value="Pilulkin"/>
-      <parameter name="text" value="Good treatment"/>
+
       <groups>
           <run>
               <include name="smoke"/>
@@ -15,7 +12,10 @@
       </groups>
 
       <classes>
-          <class name="com.telran.AddProfilePageTest">
+          <class name="com.telran.AddProfilePageTest"/>
+          <class name="com.telran.FollowingDoctorTest"/>
+          <class name="com.telran.FollowingUserTest"/>
+          <class name="com.telran.MDRatingTest">
 
           </class>
 

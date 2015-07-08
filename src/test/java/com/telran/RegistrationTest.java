@@ -1,11 +1,14 @@
 package com.telran;
 
 import com.telran.pages.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,6 +23,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class RegistrationTest {
 
+    private static Logger Log = Logger.getLogger(Log.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -31,6 +35,7 @@ public class RegistrationTest {
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -40,7 +45,9 @@ public class RegistrationTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
 
         try {
+            Log.info("Opening Registration page");
             registrationPage.openRegistrationPage();
+            Log.info("Wait for load Registration page");
             registrationPage.waitUntilRegPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,6 +56,7 @@ public class RegistrationTest {
 
     @Test
     public void AsteriskTest() {
+        Log.info("Checking that FirstNAme has asterisk");
         registrationPage
                 .checkThatFirstNameFieldHasAsterisk();
 
@@ -78,6 +86,7 @@ public class RegistrationTest {
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
             assertTrue(profilePage.isOnProfilePage());
+            Reporter.log("SignUp Successful | ");
             profilePage.selectGender("2");
             assertTrue(profilePage.isGenderSelected("Other"));
 

@@ -19,14 +19,14 @@
         <processorPath useClasspath="true" />
       </profile>
       <profile default="false" name="Annotation profile for Genefo" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Genefo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
+    <bytecodeTargetLevel target="1.7">
       <module name="Genefo" target="1.7" />
     </bytecodeTargetLevel>
   </component>

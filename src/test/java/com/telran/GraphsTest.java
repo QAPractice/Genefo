@@ -6,6 +6,7 @@ import com.telran.pages.DataProviders;
 import com.telran.pages.GrafsPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
+import junit.framework.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -64,7 +65,9 @@ public class GraphsTest {
     @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadGrafFromFile")
     public void TestGraphsLink(String graph) {
         grafsPage.loadGraphs(graph);
-        grafsPage.isGraphLoaded(graph);
+        
+        Assert.assertTrue("Graph element isn't found", grafsPage.isGraphLoaded(graph));
+
     }
 
 

@@ -1,5 +1,6 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ import java.io.IOException;
  * Created by Iakov Volf, Maria on 4/16/2015.
  */
 public class RegistrationPage extends Page {
-    private static Logger Log = Logger.getLogger(com.telran.Log.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(name = "email")
     WebElement emailField;

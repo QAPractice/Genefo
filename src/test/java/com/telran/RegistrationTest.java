@@ -23,7 +23,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class RegistrationTest {
 
-    private static Logger Log = Logger.getLogger(Log.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;

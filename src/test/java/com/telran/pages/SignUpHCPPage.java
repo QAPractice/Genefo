@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +13,7 @@ import java.io.IOException;
  */
 public class SignUpHCPPage extends Page{
 
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(name = "email")
     WebElement emailField;
@@ -95,21 +97,25 @@ public class SignUpHCPPage extends Page{
 
     public SignUpHCPPage fillEmailField(String email) {
         setElementText(emailField, email);
+        Log.info("entering email: " + email + " ");
         return this;
     }
 
     public SignUpHCPPage fillPasswordField(String password) {
         setElementText(passwordField, password);
+        Log.info("entering password: " + password + " ");
         return this;
     }
 
     public SignUpHCPPage fillFirstNameField(String firstName) {
         setElementText(firstNameField, firstName);
+        Log.info("entering first name: " + firstName + " ");
         return this;
     }
 
     public SignUpHCPPage fillLastNameField(String lastName) {
         setElementText(lastNameField, lastName);
+        Log.info("entering last name: " + lastName + " ");
         return this;
     }
 

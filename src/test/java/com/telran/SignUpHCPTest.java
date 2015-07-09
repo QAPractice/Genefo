@@ -6,6 +6,7 @@ import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,7 +25,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Oleg on 31.05.2015.
  */
 public class SignUpHCPTest {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public SignUpHCPPage signUpHCPPage;
@@ -47,11 +48,19 @@ public class SignUpHCPTest {
 
     @BeforeMethod
     public void beforemethodsetup() {
-        signUpHCPPage.openHCPRegPage();
+        try {
+            Log.info("Opening SignUp HCP page");
+            signUpHCPPage.openHCPRegPage();
+            Log.info("Wait for load SignUp HCP page");
+            signUpHCPPage.waitUntilSignUpHCPPageIsLoaded();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test(groups = {"smoke", "positive"})
     public void RegTestSuccess() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage

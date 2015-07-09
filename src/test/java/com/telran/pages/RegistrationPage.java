@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +14,7 @@ import java.io.IOException;
  * Created by Iakov Volf, Maria on 4/16/2015.
  */
 public class RegistrationPage extends Page {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(name = "email")
     WebElement emailField;
@@ -87,7 +89,7 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/signup_regular?webinar=true";
+        this.PAGE_URL = "http://52.10.6.51:8080/signup_regular";
         PageFactory.initElements(driver, this);
      }
 
@@ -104,22 +106,26 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage fillPasswordField(String password) {
         setElementText(passwordField, password);
+        Log.info("entering password from the list: " + password + " ");
         return this;
     }
 
     public RegistrationPage fillFirstNameField(String firstName) {
         setElementText(firstNameField, firstName);
+        Log.info("entering first name from the list: " + firstName + " ");
         return this;
     }
 
     public RegistrationPage fillLastNameField(String lastName) {
         setElementText(lastNameField, lastName);
+        Log.info("entering last name from the list: " + lastName + " ");
         return this;
     }
 
     public RegistrationPage fillConditionField(String condition) {
         setElementText(conditionField, condition);
         clickElement(conditionToltip);
+        Log.info("entering condition from the list: " + condition + " ");
         return this;
     }
 

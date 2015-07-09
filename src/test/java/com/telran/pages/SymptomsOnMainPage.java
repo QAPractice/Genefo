@@ -20,7 +20,7 @@ public class SymptomsOnMainPage  extends Page {
     /**
      * Labels of categories
      */
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'General Area')]")
+    @FindBy(xpath = "//div[@class='col-sm-12']/label[contains(text(),'General Area')]")
     WebElement generalArea;
     @FindBy(xpath = "//button[@id='submit']")
     WebElement submitButton;
@@ -249,6 +249,7 @@ public class SymptomsOnMainPage  extends Page {
         clickElement(tooltipSpecificArea);
         return this;
     }
+
 
     /**
      *

@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import java.io.IOException;
  * Created by Oleg on 31.05.2015.
  */
 public class DocAcInfPage extends Page{
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @FindBy(xpath = "//*[contains(text(),'Healthcare Professional Account Information')]")
     WebElement docAcInfTitle;
@@ -23,11 +26,11 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='account-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
     WebElement cancelButton;
 
-    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal'][not(contains(@disabled,'disabled'))] ")
+    @FindBy(xpath = "//*[@id='submit']")
     WebElement saveButton;
 
-    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal' and @disabled='disabled']")
-    WebElement saveDisablelButton;
+//    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal' and @disabled='disabled']")
+//    WebElement saveDisablelButton;
 
     @FindBy(xpath = "//*[@class='errormsg']/*[@class='fa fa-times']")
     WebElement emailErrAlert;
@@ -82,16 +85,19 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage fillEmailField(String email) {
         setElementText(emailField, email);
+        Log.info("entering email: " + email + " ");
         return this;
     }
 
     public DocAcInfPage fillPasswordField(String password) {
         setElementText(passwordField, password);
+        Log.info("entering password: " + password + " ");
         return this;
     }
 
     public DocAcInfPage fillCurrentPasswordField(String password) {
         setElementText(curPasswordField, password);
+        Log.info("entering current password: " + password + " ");
         return this;
     }
 
@@ -115,6 +121,7 @@ public class DocAcInfPage extends Page{
     }
 
     public boolean alertMessageInvalidPassword() {
+
         return exists(passwordErrAlert);
     }
 

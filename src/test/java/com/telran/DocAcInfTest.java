@@ -4,6 +4,7 @@ import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocAcInfPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,6 +28,7 @@ import static org.testng.Reporter.log;
  * Created by Oleg on 31.05.2015.
  */
 public class DocAcInfTest {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -36,8 +38,8 @@ public class DocAcInfTest {
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
     private static String PASSWORD ="111111";
-    private static String EMAIL1 = "osh_il+17@yahoo.com";
-    private static String EMAIL2 = "osh_il+14@yahoo.com";
+    private static String EMAIL1 = "osh_il+19@yahoo.com";
+    private static String EMAIL2 = "osh_il+18@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -50,7 +52,7 @@ public class DocAcInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login(EMAIL1,PASSWORD);
+            loginPage.login(EMAIL1, PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -61,11 +63,14 @@ public class DocAcInfTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
+            Log.info("Opening Profile HCP page");
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 mainPage.selectMyAccount();
             }
+            Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnEditAccInf();
+            Log.info("Wait for load DocAcInf page");
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,8 +79,8 @@ public class DocAcInfTest {
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void EditAccInfSuccess() {
-
+    public void UpdateEditAccInfSuccess() {
+        Log.info("Checking that all correct data added successfully");
         try {
             docAcInfPage
                     .fillPasswordField(PASSWORD)
@@ -86,8 +91,10 @@ public class DocAcInfTest {
                     .clickOnCurSaveButton();
             assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
             mainPage.selectMyAccount();
+            Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnEditAccInf();
+            Log.info("Wait for load DocAcInf page");
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
             docAcInfPage
                     .fillPasswordField(PASSWORD)
@@ -102,30 +109,13 @@ public class DocAcInfTest {
         }
     }
 
-//    @Test(groups = {"smoke", "positive"})
-//    public void UpdateEditAccInfSuccess() {
-//
-//        try {
-//            docAcInfPage
-//                    .fillPasswordField(PASSWORD)
-//                    .fillEmailField(EMAIL2)
-//                    .clickOnSaveButton()
-//                    .waitUntilEnterYourCurrentPassIsLoaded()
-//                    .fillCurrentPasswordField(PASSWORD)
-//                    .clickOnCurSaveButton();
-//            assertTrue("Alert",docAcInfPage.alertMessageAccountSuccess());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {
-
+        Log.info("Checking that operation is canceled");
         try {
             docAcInfPage
                     .clickOnCancel();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,15 +123,15 @@ public class DocAcInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void EditAccInfEmptyFiels() {
-
+        Log.info("Checking that empty fields are not updated");
         try {
             docAcInfPage
-                    .fillPasswordField("")
                     .fillEmailField("")
+                    .fillPasswordField("")
                     .clickOnSaveButton();
-            assertTrue("The Email is valid",docAcInfPage.alertMessageInvalidEmail());
+            assertTrue("The Email is valid", docAcInfPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed",docAcInfPage.isOnDocAcInfPage());
+            assertTrue("The current page is changed", docAcInfPage.isOnDocAcInfPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,6 +155,14 @@ public class DocAcInfTest {
             return alertText;
         } finally {
             acceptNextAlert = true;
+        }
+    }
+
+    private void sleep (){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

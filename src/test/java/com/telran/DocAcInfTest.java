@@ -5,7 +5,6 @@ import com.telran.pages.DocAcInfPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,7 +43,6 @@ public class DocAcInfTest {
 
     @BeforeClass
     public void setup() {
-        //PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         loginPage = PageFactory.initElements(driver, LoginPage.class);

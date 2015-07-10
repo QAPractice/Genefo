@@ -1,6 +1,8 @@
 package com.telran.pages;
 
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -168,6 +170,8 @@ public class WhatWorksOnMainPage extends Page {
     // has two methods - add() and put()  (see below)
     private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
 
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
@@ -220,6 +224,7 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     public WhatWorksOnMainPage clickOnOption(String option) {
+        Log.info("Clicking on 'Category' option " + option );
         try{
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
            }
@@ -231,9 +236,10 @@ public class WhatWorksOnMainPage extends Page {
 
 
     public boolean isOptionHighLighted(String option) {
+        Log.info("Checking that 'Category' option " + option + " is highlighted after clicking");
         boolean temp = false;
         try{
-           temp =  exists(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
+           temp =  exists(highLightedOptionsLocator.get(option));
         }
         catch (Exception e){  e.printStackTrace();  // In this way we define our own exception
             System.out.println("Wrong option! \nOption with name :" + option + " does not exist!");
@@ -242,6 +248,7 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     public WhatWorksOnMainPage clickOnItemList() {
+        Log.info("Clicking on item list to receive the list of items to choose");
         clickElement(selectItemList);
         return this;
     }
@@ -249,6 +256,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Waits until our last item from dropdoown list appears on the screen
     public WhatWorksOnMainPage waitUntilLastItemFromItemListIsLoaded() {
+        Log.info("Waiting Until Last Item From Item List Is Loaded");
         try {
             List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
             waitUntilElementIsLoaded( elements.get( elements.size() - 1 ));
@@ -262,8 +270,8 @@ public class WhatWorksOnMainPage extends Page {
 
 
     public WhatWorksOnMainPage chooseLastItemFromItemList(  ) {
+        Log.info("Chosing  Last Item From Item List ");
     // We fill list of elements with items from the dropdown list
-        //ItemListOptions.sendKeys(Keys.PAGE_DOWN);
         List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
         WebElement el = elements.get( elements.size() - 1 );
         textInListItem =  el.getText();
@@ -273,6 +281,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Waits until our item from dropdoown list appears on the screen
     public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
+        Log.info("Waiting Until Number " + itemNumber + " Item From Item List Is Loaded");
         WebElement optionChooser;
         try {
             optionChooser = itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
@@ -286,6 +295,7 @@ public class WhatWorksOnMainPage extends Page {
 
 
     public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
+        Log.info("Choosing Number " + itemNumber + " Item From Item List ");
         WebElement optionChooser;
         try {
             optionChooser=itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
@@ -299,34 +309,28 @@ public class WhatWorksOnMainPage extends Page {
     }
 
     public WhatWorksOnMainPage fillTextField(String post) {
+        Log.info("Filling post field with post: " + post );
         setElementText(postField, post);
         return this;
     }
 
-
+// Works only for 'Other' Category.
     public WhatWorksOnMainPage fillItemForOtherOption(String item) {
+        Log.info("Filling item field for 'Other' category with item: " + item );
         setElementText(specifyItemForOtherOption, item);
         return this;
     }
 
     public WhatWorksOnMainPage sendPost() {
+        Log.info("Sending post with all fields are filled" );
         clickElement(submitButton);
         return this;
     }
 
-    // Waits until our item appears on the screen
- /*   public WhatWorksOnMainPage waitUntilAllStarsTogetherAreLoaded() {
-        try {
-        //  waitUntilElementIsLoaded(allStarsTogether);
-        // sleep(3000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
-*/
+
     // We need to click on all stars together to set free each one of them
     public WhatWorksOnMainPage clickOnAllStarsTogether() throws InterruptedException {
+        Log.info("Clicking on all stars together to set free each one of them " );
         clickElement(allStarsTogether);
                 return this;
     }

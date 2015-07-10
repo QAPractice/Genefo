@@ -1,9 +1,11 @@
 package com.telran;
 
-import com.telran.pages.*;
 import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.PostOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -28,14 +30,25 @@ public class PostOnMainTest {
     public MainPage mainPage;
     public PostOnMainPage postOnMainPage;
     private boolean acceptNextAlert = true;
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     @Parameters({"browser"})
     public void setup(String browser) {
-        if (browser.equalsIgnoreCase("Firefox"))                 this.driver = new FirefoxDriver();
-        else if (browser.equalsIgnoreCase("Chrome"))             driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-        else if (browser.equalsIgnoreCase("InternetExplorer"))   driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
+        //PropertyConfigurator.configure("log4j.properties");
+        if (browser.equalsIgnoreCase("Firefox"))
+        {
+            this.driver = new FirefoxDriver();
+            Log.info("We are in Firefox browser");
+        }
+        else if (browser.equalsIgnoreCase("Chrome")) {
+            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
+            Log.info("We are in Chrome browser");
+        }
+        else if (browser.equalsIgnoreCase("InternetExplorer")) {
+            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
+            Log.info("We are in Internet Explorer browser");
+        }
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -68,7 +81,7 @@ public class PostOnMainTest {
     public void SendPostSuccessTest() {
         Date date = new Date();
         String text = "My 'Post Category' post at "  + date.toString();
-
+        Log.info("Positive test: 'Post Category' post: " + text );
         try {
             postOnMainPage
                     .fillTextField(text)
@@ -83,6 +96,7 @@ public class PostOnMainTest {
 
     @Test(groups = {"smoke", "negative"})
     public void SendEmptyPostTest() {
+        Log.info("Negative test: 'Post Category' empty post. ");
         String text = "" ;
 
         try {
@@ -99,6 +113,7 @@ public class PostOnMainTest {
 
     @Test(groups = {"smoke", "negative"})
     public void SendOneLetterPostTest() {
+        Log.info("Negative test: 'Post Category' one letter post. ");
         String text = "A" ;
 
         try {

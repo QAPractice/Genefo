@@ -1,14 +1,19 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -17,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  *  Created by tanyagaus, Lev on 5/30/15.
  */
 public class SymptomsOnMainPage  extends Page {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     /**
      * Labels of categories
      */
@@ -45,16 +50,16 @@ public class SymptomsOnMainPage  extends Page {
     /**
      * Feilds  of Symptoms area
      */
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a General Area')]")
+    @FindBy(xpath = "//*[contains(text(),'Select a General Area')]")
     WebElement tooltipGeneralArea;
 
     @FindBy(xpath = "//*[@class=search-choice-close]")
     WebElement ERROR;
 
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Specific Area')]")
+    @FindBy(xpath = "//*[contains(text(),'Select a Specific Area')]")
     WebElement tooltipSpecificArea;
 
-    @FindBy(xpath = "//*[@class='chosen-single chosen-single-with-deselect chosen-default']/span[contains(text(),'Select a Symptom')]")
+    @FindBy(xpath = "//*[contains(text(),'Select a Symptom')]")
     WebElement tooltipSymptom;
 
     /**
@@ -197,6 +202,15 @@ public class SymptomsOnMainPage  extends Page {
     @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
     WebElement nameOfSymptomsTitle;
 
+    //Elements on newly created post, that we check
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table ng-scope']//tr[1]/td[2]")
+    WebElement generalAreaOnPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table ng-scope']//tr[2]/td[2]")
+    WebElement specificAreaOnPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table ng-scope']//tr[3]/td[2]")
+    WebElement symptomOnPost;
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    WebElement textOnPost;
 
     /**
      * constructor
@@ -257,10 +271,74 @@ public class SymptomsOnMainPage  extends Page {
      * @return
      */
     public SymptomsOnMainPage selectSymptom() {
+        try {
+            waitUntilElementIsLoaded(tooltipSymptom);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            System.out.println("--------------------------------------");
+            System.out.println("No element is found to select.  select symptoms()");
+            System.out.println("--------------------------------------");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
         clickElement(tooltipSymptom);
         return this;
     }
 
+    public void createSymptomPost() {
+        selectGeneralArea();
+
+        List<WebElement> genAreaList = driver.findElements(By.xpath("//*[@class='chosen-results']/*[contains (@class,'active-result')]"));
+
+        Iterator<WebElement> iter = genAreaList.iterator();
+
+        while (iter.hasNext()) {
+            WebElement genArea = iter.next();
+
+            String general = genArea.getText();
+            clickElement(genArea);
+            Log.info("Selecting General area: " + general + " ");
+            selectSpecificArea();
+            new Actions(driver).moveToElement(tooltipSpecificArea).perform();
+            List<WebElement> specificAreaList = driver.findElements(By.xpath("//*[contains (@class,'active-result')]"));
+
+
+            for (WebElement specificArea : specificAreaList) {
+                String specific = specificArea.getText();
+                Log.info("Selecting Specific area: " + specific + " ");
+                specificArea.click();
+
+                selectSymptom();
+                new Actions(driver).moveToElement(tooltipSymptom).perform();
+                List<WebElement> symptomList = driver.findElements(By.xpath("//*[@class='chosen-results']/*[contains (@class,'active-result')]"));
+                Iterator<WebElement> iter3 = symptomList.iterator();
+
+                while (iter3.hasNext()) {
+                    WebElement sympptom = iter3.next();
+                    String symptom = sympptom.getText();
+                    Log.info("Selecting Symptom: " + symptom + " ");
+                    clickElement(sympptom);
+                    String post = ("general Area - " + general + " Specific Area - " + specific + ", Symptom - " + symptom);
+                    postText("general Area - " + general + "Specific Area - " + specific + ", Symptom - " + symptom);
+                    submitPost();
+                    waitForPostLoaded();
+                    Assert.assertEquals(specificAreaOnPost.getText(), specific, "Specific area text is wrong");
+                    Assert.assertEquals(generalAreaOnPost.getText(), general, "General area text is wrong");
+                    Assert.assertEquals(symptomOnPost.getText(), symptom, "Symptom text is wrong");
+                    Assert.assertEquals(textOnPost.getText(), post, "Post text is wrong");
+                    Reporter.log("New post created with data: \n general Area - " + general + "\n Specific Area - " + specific + ", \n Symptom - " + symptom);
+
+                }
+                selectSpecificArea();
+                new Actions(driver).moveToElement(tooltipSpecificArea).perform();
+
+            }
+            selectGeneralArea();
+            new Actions(driver).moveToElement(tooltipGeneralArea).perform();
+        }
+
+    }
 
     /**
      *
@@ -393,6 +471,15 @@ public class SymptomsOnMainPage  extends Page {
         }
     }
 
+    public void waitForPostLoaded() {
+        try {
+            this.waitUntilElementIsLoaded(generalAreaOnPost);
+        } catch (IOException e) {
+            System.out.println("no post loaded error:" + e.getMessage());
+        } catch (InterruptedException e) {
+            System.out.println("no post loaded error:" + e.getMessage());
+        }
+    }
     /**
      *
      * @param path

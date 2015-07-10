@@ -4,6 +4,7 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -92,6 +93,7 @@ public class DocAcInfPage extends Page{
     public DocAcInfPage fillPasswordField(String password) {
         setElementText(passwordField, password);
         Log.info("entering password: " + password + " ");
+        new Actions(driver).moveToElement(saveButton).perform();
         return this;
     }
 

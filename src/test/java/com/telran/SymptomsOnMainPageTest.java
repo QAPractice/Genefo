@@ -1,11 +1,11 @@
 package com.telran;
 
-import org.apache.log4j.Logger;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.SymptomsOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -100,6 +100,13 @@ public class SymptomsOnMainPageTest{
     symptomsOnMainPage.submitPost();
         mainPage.loadPage();
         beforeMethodSetUp();
+
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void TryAllSymptoms() {
+
+        symptomsOnMainPage.createSymptomPost();
 
     }
 

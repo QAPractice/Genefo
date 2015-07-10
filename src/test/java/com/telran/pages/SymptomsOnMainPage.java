@@ -1,5 +1,6 @@
 package com.telran.pages;
 
+import org.apache.log4j.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,10 +29,10 @@ public class SymptomsOnMainPage  extends Page {
     @FindBy(xpath="//input[@type='file']")
     WebElement fileUploadMenu;
 
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Specific Area')]")
+    @FindBy(xpath = "//div[@class='col-sm-12']/label[contains(text(),'Specific Area')]")
     WebElement specificArea;
 
-    @FindBy(xpath = "//div [@class='col-sm-12']/label[contains(text(),'Symptom')]")
+    @FindBy(xpath = "//div[@class='col-sm-12']/label[contains(text(),'Symptom')]")
     WebElement symptom;
 
     @FindBy(xpath="//select[@data-placeholder='Select a General Area']")

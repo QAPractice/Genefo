@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -37,6 +37,8 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-safari-driver:2.45.0" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-support:2.45.0" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-leg-rc:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_testng:2.1.20" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_java_common:2.1.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_testng:2.1.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_java_common:2.1.20" level="project" />
     <orderEntry type="library" name="Maven: org.testng:testng:6.8.21" level="project" />

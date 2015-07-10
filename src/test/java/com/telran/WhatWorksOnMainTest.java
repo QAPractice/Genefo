@@ -5,6 +5,7 @@ import com.telran.pages.MainPage;
 import com.telran.pages.WhatWorksOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -17,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.Reporter.log;
 
 /**
  * Created by alex on 5/29/2015.
@@ -34,6 +34,7 @@ public class WhatWorksOnMainTest {
         }
     }
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -44,18 +45,19 @@ public class WhatWorksOnMainTest {
     @BeforeClass
     @Parameters({"browser"})
     public void setup(String browser) {
+        //PropertyConfigurator.configure("log4j.properties");
         if (browser.equalsIgnoreCase("Firefox"))
         {
            this.driver = new FirefoxDriver();
-           log("We are in Firefox browser");
+           Log.info("We are in Firefox browser");
         }
         else if (browser.equalsIgnoreCase("Chrome")) {
             driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            log("We are in Chrome browser");
+            Log.info("We are in Chrome browser");
         }
         else if (browser.equalsIgnoreCase("InternetExplorer")) {
             driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            log("We are in InternetExplorer browser");
+            Log.info("We are in Internet Explorer browser");
         }
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

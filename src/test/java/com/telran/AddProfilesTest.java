@@ -1,6 +1,7 @@
 package com.telran;
 
 import com.telran.pages.*;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +16,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
-public class AddProfilesTest extends TestNgTestBase{
+public class AddProfilesTest {
     private static String EMAIL="ri-lopatina@yandex.ru";
     private static String PASSWORD="111111";
     private static String FIRST_MAME = "AAA";
@@ -43,6 +44,7 @@ public class AddProfilesTest extends TestNgTestBase{
     private static String DAY_CHECK1="17";
     private static String YEAR_CHECK1="1983";
     private static String DIAGNOSE_YEAR_CHECK1 = "1987";
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     MyProfilesPage myProfilesPage;
@@ -52,12 +54,10 @@ public class AddProfilesTest extends TestNgTestBase{
     SummaryPage summaryPage;
     private boolean acceptNextAlert = true;
 
-    public AddProfilesTest() {
-        super();
-    }
-
     @BeforeClass
     public void setup() {
+        this.driver = new FirefoxDriver();
+
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);

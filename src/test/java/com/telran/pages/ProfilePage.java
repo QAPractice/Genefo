@@ -141,6 +141,7 @@ public class ProfilePage extends Page {
     }
 
     public ProfilePage fillProfileConditionField(String condition) {
+        profileConditionField.clear();
         setElementText(profileConditionField, condition);
         clickElement(profileConditionField);
         return this;

@@ -49,7 +49,7 @@ public class DataProviders {
     @DataProvider
     public static Iterator<Object[]> loadProfileDataFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                DataProviders.class.getResourceAsStream("/profile.data")));
+                DataProviders.class.getResourceAsStream("/profile2.data")));
 
         List<Object[]> userData = new ArrayList<Object[]>();
         String line = in.readLine();
@@ -132,27 +132,6 @@ public class DataProviders {
     }
 
     @DataProvider
-    public Iterator<Object[]> users() {
-        List<Object[]> data = new ArrayList<Object[]>();
-        for (int i = 0; i < 5; i++) {
-            data.add(new Object[]{
-                    generateRandomName(), generateRandomPassword()
-            });
-        }
-        return data.iterator();
-    }
-
-    private Object generateRandomPassword() {
-        return "pass" + new Random().nextInt();
-    }
-
-    private Object generateRandomName() {
-        return "demo" + new Random().nextInt();
-    }
-    //---------------End--------------------//
-
-
-    @DataProvider
     public static Iterator<Object[]> loadDataForProfile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 DataProviders.class.getResourceAsStream("/profiles.data")));
@@ -167,5 +146,25 @@ public class DataProviders {
         in.close();
 
         return userData.iterator();
+    }
+
+    @DataProvider
+    public Iterator<Object[]> users() {
+        List<Object[]> data = new ArrayList<Object[]>();
+        for (int i = 0; i < 5; i++) {
+            data.add(new Object[]{
+                    generateRandomName(), generateRandomPassword()
+            });
+        }
+        return data.iterator();
+    }
+
+    private Object generateRandomPassword() {
+        return "pass" + new Random().nextInt();
+    }
+    //---------------End--------------------//
+
+    private Object generateRandomName() {
+        return "demo" + new Random().nextInt();
     }
 }

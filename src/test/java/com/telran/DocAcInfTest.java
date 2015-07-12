@@ -128,7 +128,7 @@ public class DocAcInfTest {
             docAcInfPage
                     .fillEmailField("")
                     .fillPasswordField("")
-                    .clickOnSaveButton();
+                    .clickOnTitle();
             assertTrue("The Email is valid", docAcInfPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed", docAcInfPage.isOnDocAcInfPage());

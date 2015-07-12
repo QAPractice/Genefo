@@ -113,6 +113,11 @@ public class DocAcInfPage extends Page{
         return this;
     }
 
+    public DocAcInfPage clickOnTitle() {
+        clickElement(docAcInfTitle);
+        return this;
+    }
+
     public DocAcInfPage clickOnCurSaveButton() {
         clickElement(curSaveButton);
         return this;

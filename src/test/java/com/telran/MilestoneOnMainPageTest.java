@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -26,6 +25,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class MilestoneOnMainPageTest {
 
+    // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -42,6 +42,7 @@ public class MilestoneOnMainPageTest {
 
     @BeforeClass
     public void setup() {
+        // PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -49,9 +50,11 @@ public class MilestoneOnMainPageTest {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
+            //Log.info("Opening Registration page");
             loginPage.login("mili9@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
-                   .openMilestonePanel();
+
+                    .openMilestonePanel();
             milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,6 +127,7 @@ public class MilestoneOnMainPageTest {
             assertTrue("Other field is not fill",milestoneOnMainPage.isOtherTextCorrect(textOtherField));
             assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
             assertTrue("Alert:'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
+
         }catch (Exception e) {
             e.printStackTrace();
         }

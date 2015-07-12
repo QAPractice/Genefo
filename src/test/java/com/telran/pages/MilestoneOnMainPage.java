@@ -128,7 +128,7 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
     WebElement milestoneOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
-    WebElement textInNewCreatedPost;
+    WebElement textNewCreatedPost;
 
 
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
@@ -274,7 +274,7 @@ public class MilestoneOnMainPage extends Page {
 
     public boolean isAgeIsCorrect(String age) {return verifyTextBoolean(ageOnNewCreatedPost, age);}
 
-    public boolean isTextCorrect(String name) {return verifyTextBoolean(textInNewCreatedPost, name);}
+    public boolean isTextCorrect(String name) {return verifyTextBoolean(textNewCreatedPost, name);}
 
 
     public void waitForPostLoaded() {

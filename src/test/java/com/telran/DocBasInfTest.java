@@ -4,6 +4,7 @@ import com.telran.pages.DocBasInfPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,6 +23,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Oleg on 03.06.2015.
  */
 public class DocBasInfTest {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -53,11 +55,14 @@ public class DocBasInfTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
+            Log.info("Opening Profile HCP page");
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 mainPage.selectMyAccount();
             }
+            Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnEditBasInf();
+            Log.info("Wait for load DocBasInf page");
             docBasInfPage.waitUntilDocBasInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +72,7 @@ public class DocBasInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void EditBasicInfSuccess() {
-
+        Log.info("Checking that all correct data added successfully");
         try {
             docBasInfPage
                     .fillFirstNameField("Doctor")
@@ -84,7 +89,7 @@ public class DocBasInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void ClickOnCancel() {
-
+        Log.info("Checking that operation is canceled");
         try {
             docBasInfPage
                     .clickOnCancel();
@@ -96,12 +101,13 @@ public class DocBasInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void EditBasicInfEmptyFiels() {
-
+        Log.info("Checking that empty fields are not updated");
         try {
             docBasInfPage
                     .fillFirstNameField("")
                     .fillLastNameField("")
-                    .fillLocationField("");
+                    .fillLocationField("")
+                    .clickOnSaveButton();
             assertTrue("The First Name is valid", docBasInfPage.alertMessageInvalidFirstName());
             assertTrue("The Last Name is valid",docBasInfPage.alertMessageInvalidLastName());
             assertTrue("The current page is changed",docBasInfPage.isOnDocBasInfPage());

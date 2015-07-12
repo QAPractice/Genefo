@@ -27,7 +27,7 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='account-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
     WebElement cancelButton;
 
-    @FindBy(xpath = "//*[@id='submit']")
+    @FindBy(xpath = "//*[@id='submit' and @data-toggle='modal']")
     WebElement saveButton;
 
 //    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal' and @disabled='disabled']")

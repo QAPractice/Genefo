@@ -132,6 +132,7 @@ public class AddProfilesTest {
         assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
         //assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnDiscoverHome();
+
     }
     //  Negative tests
     @Test(groups = {"smoke", "negative"})    //Bug!!!

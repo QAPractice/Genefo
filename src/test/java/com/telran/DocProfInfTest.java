@@ -4,9 +4,9 @@ import com.telran.pages.DocProfInfPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,8 +15,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +22,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Oleg on 05.06.2015.
  */
 public class DocProfInfTest {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -55,11 +54,14 @@ public class DocProfInfTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
+            Log.info("Opening Profile HCP page");
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 docProfInfPage.clickOnDoneButton();
             }
+            Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnHealInf();
+            Log.info("Wait for load DocProfInf page");
             docProfInfPage.waitUntilDocProfInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,6 +71,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void EditProfInfSuccess() {
+        Log.info("Checking that all correct data added successfully");
         try {
             docProfInfPage
                     .fillSpecialtiesField("Oncology")
@@ -93,6 +96,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"positive"})
     public void AddWorkPlaceInf() {
+        Log.info("Checking that work place information added");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
@@ -108,6 +112,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void AddEmptyFields() {
+        Log.info("Checking that all empty fields added");
         try {
             docProfInfPage
                     .fillSpecialtiesField("")
@@ -125,6 +130,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
      public void AddEmptySpecialties() {
+        Log.info("Checking that Specialties empty field added");
         try {
             docProfInfPage
                     .fillSpecialtiesField("");
@@ -136,6 +142,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void AddDelSpecialties() {
+        Log.info("Checking that Specialties added and deleted");
         try {
             docProfInfPage
                     .fillSpecialtiesField("abcd")
@@ -150,6 +157,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandFillNameWPFields() {
+        Log.info("Checking that Work Place Name added and Work Place Location not");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
@@ -162,6 +170,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandNameWPFields() {
+        Log.info("Checking that Work Place Name and Work Place Location do not added ");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("")
@@ -174,6 +183,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"positive"})
     public void DeleteLocationWPandNameWP() {
+        Log.info("Checking that Work Place Name and Work Place Location added and deleted");
         try {
             sleep();
             docProfInfPage
@@ -185,7 +195,46 @@ public class DocProfInfTest {
                     .clickOnAddWorkPlacesButton()
                     .clickOnDelWorkPlacesButton()
                     .clickOnConfWorkPlacesButton();
-            Assert.assertTrue(docProfInfPage.isLocationExists(),"Location is not disappear");
+            Assert.assertTrue(docProfInfPage.isLocationWPExists(),"Location is not disappear");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"})
+    public void DeleteAllDataIfExist() {
+        Log.info("Checking that All Data deleted");
+        try {
+            sleep();
+                    if (docProfInfPage.isSpecExists()) {
+                        docProfInfPage
+                                .clickOnDelSpecButton()
+                                .clickOnConfSpecButton();
+                    }
+                    if (docProfInfPage.isSubspecExists()) {
+                        docProfInfPage
+                                .clickOnDelSubspecButton()
+                                .clickOnConflSubspecButton();
+                    }
+                    if (docProfInfPage.isTitlesExists()) {
+                        docProfInfPage
+                                .clickOnDelTitleButton()
+                                .clickOnConfTitleButton();
+                    }
+                    if (docProfInfPage.isAreasExists()) {
+                        docProfInfPage
+                                .clickOnDelAreasButton()
+                                .clickOnConfAreasButton();
+                    }
+                    if (docProfInfPage.isLocationWPExists()) {
+                        docProfInfPage
+                                .clickOnDelWorkPlacesButton()
+                                .clickOnConfWorkPlacesButton();
+                    }
+
+            docProfInfPage
+                    .clickOnDoneButton();
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
         } catch (Exception e) {
             e.printStackTrace();
         }

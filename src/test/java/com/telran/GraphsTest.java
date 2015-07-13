@@ -7,11 +7,13 @@ import com.telran.pages.GrafsPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import junit.framework.Assert;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -27,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class GraphsTest {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -65,8 +67,10 @@ public class GraphsTest {
     @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadGrafFromFile")
     public void TestGraphsLink(String graph) {
         grafsPage.loadGraphs(graph);
-        
+        Log.info("Checking " + graph + " link");
         Assert.assertTrue("Graph element isn't found", grafsPage.isGraphLoaded(graph));
+        Log.info("Hurra!!! Graph " + graph + " is presented!");
+        Reporter.log("Graph " + graph + " is presented");
 
     }
 

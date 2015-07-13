@@ -86,7 +86,7 @@ public class RegistrationTest {
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
             assertTrue(profilePage.isOnProfilePage());
-            Reporter.log("SignUp Successful | ");
+            Reporter.log("SignUp Successful");
             profilePage.selectGender("2");
             assertTrue(profilePage.isGenderSelected("Other"));
 

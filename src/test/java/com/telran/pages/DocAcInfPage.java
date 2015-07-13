@@ -4,6 +4,7 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -26,7 +27,7 @@ public class DocAcInfPage extends Page{
     @FindBy(xpath = "//*[@class='account-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
     WebElement cancelButton;
 
-    @FindBy(xpath = "//*[@id='submit']")
+    @FindBy(xpath = "//*[@id='submit' and @data-toggle='modal']")
     WebElement saveButton;
 
 //    @FindBy(xpath = "//*[@id='submit' and @data-target='#loginModal' and @disabled='disabled']")
@@ -92,6 +93,7 @@ public class DocAcInfPage extends Page{
     public DocAcInfPage fillPasswordField(String password) {
         setElementText(passwordField, password);
         Log.info("entering password: " + password + " ");
+        new Actions(driver).moveToElement(saveButton).perform();
         return this;
     }
 
@@ -108,6 +110,11 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage clickOnSaveButton() {
         clickElement(saveButton);
+        return this;
+    }
+
+    public DocAcInfPage clickOnTitle() {
+        clickElement(docAcInfTitle);
         return this;
     }
 

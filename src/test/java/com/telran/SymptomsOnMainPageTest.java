@@ -5,6 +5,7 @@ import com.telran.pages.MainPage;
 import com.telran.pages.SymptomsOnMainPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,7 @@ import java.util.Date;
  * Created by tanyagaus, Lev on 6/10/15.
  */
 public class SymptomsOnMainPageTest{
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static String MY_EMAIL="vika2711t@gmail.com";
     private static String MY_Password="v1681v";
     private static String PATH_TO_Miki= Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
@@ -40,6 +42,7 @@ public class SymptomsOnMainPageTest{
         symptomsOnMainPage = PageFactory.initElements(driver, SymptomsOnMainPage.class);
 
         try {
+
             loginPage.login(MY_EMAIL, MY_Password);
             mainPage.waitUntilMainPageIsLoaded();
             Assert.assertTrue(mainPage.isOnMainPage(), "Login ok");
@@ -97,6 +100,13 @@ public class SymptomsOnMainPageTest{
     symptomsOnMainPage.submitPost();
         mainPage.loadPage();
         beforeMethodSetUp();
+
+    }
+
+    @Test(groups = {"smoke", "positive"})
+    public void TryAllSymptoms() {
+
+        symptomsOnMainPage.createSymptomPost_1();
 
     }
 

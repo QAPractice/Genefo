@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +15,7 @@ import java.io.IOException;
 public class PostOnMainPage extends Page{
 
     // Serves as indication that we are on 'Post' Panel. We need double quota inside. Do not remove it, please
-    @FindBy(xpath = "//a[@class='active'][@ng-click=\"setType('general')\"]")
+    @FindBy(xpath = "//a[@class='active'][@ng-click='setType(\"general\")']")
     WebElement postButtonHighLighted;
 
     // text field for posting
@@ -23,6 +25,7 @@ public class PostOnMainPage extends Page{
     @FindBy(xpath = "//button[@id='submit'][contains(text(),'Post')]")
     WebElement submitButton;
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     public PostOnMainPage(WebDriver driver) {
         super(driver);

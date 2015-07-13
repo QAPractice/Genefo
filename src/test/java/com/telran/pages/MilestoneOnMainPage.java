@@ -1,5 +1,8 @@
 package com.telran.pages;
 
+
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -124,8 +127,14 @@ public class MilestoneOnMainPage extends Page {
     WebElement milestoneTypeOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
     WebElement milestoneOnNewCreatedPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note ng-binding']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
+    WebElement textNewCreatedPost;
+
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textInNewCreatedPost;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
@@ -145,61 +154,81 @@ public class MilestoneOnMainPage extends Page {
         }
     }
     // Checks that title of our 'Milestone' Panel have appeared on the screen so we can work with it.
-    public boolean isOnMilestonePanel(){return exists(developmentalMilestoneTitle);}
+    public boolean isOnMilestonePanel() {
+        Log.info("This is Milestone Panel");
+        return exists(developmentalMilestoneTitle);
+    }
 
 
     public MilestoneOnMainPage clickOnSelectItemOption() {              //button opening drop-down list
+        Log.info(" Select item option");
         clickElement(selectDropDownListButton);
         return this;
     }
 
     //for other
     public MilestoneOnMainPage clickOnSelectOtherItemOption() {
+        Log.info("Select other item option");
         clickElement(otherButton);
         return this;}
 
     //for year
     public MilestoneOnMainPage clickOnYearsOption(String year) {
+        Log.info("Years option:" + year);
         setElementText(yearsButton, year);
         return this;}
 
     //for month
     public MilestoneOnMainPage clickOnMonthOption(String months) {
+        Log.info("Month Option:" + months);
         setElementText(monthButton, months);
         return this;
     }
 
     public MilestoneOnMainPage clickOnLanguageItemOption(String text) {
+        Log.info("Language Item Option:" + text);
         setElementText(selectLanguageField, text);
         return this;
     }
 
     //fill text post
     public MilestoneOnMainPage fillTextField(String post) {
+        Log.info("Fill Text Field:" + post);
         setElementText(inputTextPostField, post);
         return this;}
 
     // fill text of category "Other"
     public MilestoneOnMainPage fillOtherField(String text) {
+        Log.info("Fill Other Field:" + text);
         setElementText(textField, text);
         return this;}
 
     // Submit button
     public MilestoneOnMainPage sendPost() {
+        Log.info("Send post");
         clickElement(submitButton);
         return this;}
 
     //check alert presence
-    public boolean alertMessageNotValidYear() {return exists(numbersOnlyForYears);}
+    public boolean alertMessageNotValidYear() {
+        return exists(numbersOnlyForYears);
+    }
 
-    public boolean alertMessageNotValidMonth() {return exists(numbersOnlyForMonths);}
+    public boolean alertMessageNotValidMonth() {
+        return exists(numbersOnlyForMonths);
+    }
 
-    public boolean alertMessageRequiredFields() {return exists(alertRequiredFields);}
+    public boolean alertMessageRequiredFields() {
+        return exists(alertRequiredFields);
+    }
 
     //checking data in created post
-    private WebElement getWebElementByName(String name){return buttonsAndItemsMap.get(name);}
+    private WebElement getWebElementByName(String name) {
+        return buttonsAndItemsMap.get(name);
+    }
 
     public MilestoneOnMainPage clickOnElement(String name){
+        Log.info("Element Name:" + name);
         WebElement element=getWebElementByName(name);
         element.click();
         return this;
@@ -245,7 +274,8 @@ public class MilestoneOnMainPage extends Page {
 
     public boolean isAgeIsCorrect(String age) {return verifyTextBoolean(ageOnNewCreatedPost, age);}
 
-    public boolean isTextCorrect(String name) {return verifyTextBoolean(textInNewCreatedPost, name);}
+    public boolean isTextCorrect(String name) {return verifyTextBoolean(textNewCreatedPost, name);}
+
 
     public void waitForPostLoaded() {
         try {
@@ -257,15 +287,6 @@ public class MilestoneOnMainPage extends Page {
         }
     }
 
-    //method for waiting Numbers Only FIELD for Month
-    public void waitForNumbersOnlyMessageForMonth() throws IOException, InterruptedException {
-        waitUntilElementIsLoaded(numbersOnlyForMonths);
-
-    }
-    //method for waiting Numbers Only FIELD for year
-    public void waitForNumbersOnlyMessageForYear() throws IOException, InterruptedException {
-        waitUntilElementIsLoaded(numbersOnlyForYears);
-    }
 
     public boolean isOtherTextCorrect(String name) {return verifyTextBoolean(milestoneOnNewCreatedPost, name);}
 }

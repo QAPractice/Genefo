@@ -2,10 +2,12 @@ package com.telran;
 
 import com.telran.pages.*;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +19,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Л on 5/19/2015
  */
 public class AddProfilesTest {
+
     private static String EMAIL="ri-lopatina@yandex.ru";
     private static String PASSWORD="111111";
     private static String FIRST_MAME = "AAA";
@@ -52,12 +55,12 @@ public class AddProfilesTest {
     LoginPage loginPage;
     MainPage mainPage;
     SummaryPage summaryPage;
-    private boolean acceptNextAlert = true;
+
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
-
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -67,8 +70,10 @@ public class AddProfilesTest {
         summaryPage = PageFactory.initElements(driver, SummaryPage.class);
 
         try {
-            loginPage.openLoginPage()
-                    .isOnLoginPage();
+            Log.info("Opening Login page");
+            loginPage.openLoginPage();
+            Log.info("Wait for load Login page");
+            loginPage.isOnLoginPage();
             loginPage.fillEmailField(EMAIL)
                     .fillPasswordField(PASSWORD)
                     .clickOnLogin();
@@ -78,34 +83,56 @@ public class AddProfilesTest {
     }
 
     @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
-    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month, String day, String year,
+    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String condition_check, String month, String day, String year,
                                   String diagnose_year, String patient_profile_type_check, String gender_check, String month_check, String day_check, String year_check, String diagnose_year_check) {
+        Log.info("Wait for load Main page");
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
+        Log.info("Wait for load MyProfilesPage page");
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
+        Log.info("Wait for load Profile page");
         profilePage.isOnProfilePage();
+        Log.info("Fill First Name");
         profilePage.fillProfileFirstNameField(first_name);
+        Log.info("Fill Last Name");
         profilePage.fillProfileLastNameField(last_name);
-        String name = profilePage.getProfileName();
+        Log.info("Select Profile patient type");
         profilePage.selectProfilePatient(patient_profile_type);
-        profilePage.isPatientSelected(patient_profile_type_check);
+        Log.info("Check Profile patient type");
+        assertTrue(profilePage.isPatientSelected(patient_profile_type_check));
+        Log.info("Select Gender");
         profilePage.selectGender(gender);
-        profilePage.isGenderSelected(gender_check);
+        Log.info("Check gender");
+        assertTrue(profilePage.isGenderSelected(gender_check));
+        Log.info("Fill condition");
         profilePage.fillProfileConditionField(condition);
+        Log.info("Auto fill condition");
         profilePage.autoFillCondition();
+        Log.info("Check condition");
+        assertTrue(profilePage.isConditionSelected(condition_check));
+        Log.info("Select Month");
         profilePage.selectMonth(month);
-        profilePage.isMonthSelected(month_check);
+        Log.info("Check month");
+        assertTrue(profilePage.isMonthSelected(month_check));
+        Log.info("Select day");
         profilePage.selectDay(day);
-        profilePage.isDaySelected(day_check);
+        Log.info("Check day");
+        assertTrue(profilePage.isDaySelected(day_check));
+        Log.info("Select year");
         profilePage.selectYear(year);
-        profilePage.isYearSelected(year_check);
+        Log.info("Check year");
+        assertTrue(profilePage.isYearSelected(year_check));
+        Log.info("Select diagnose year");
         profilePage.selectDiagnoseYear(diagnose_year);
-        profilePage.isDiagnoseYearSelected(diagnose_year_check);
+        Log.info("Check diagnose year");
+        assertTrue(profilePage.isDiagnoseYearSelected(diagnose_year_check));
+        Log.info("Submit");
         profilePage.clickToSubmit();
         assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
         //assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnDiscoverHome();
+
     }
     //  Negative tests
     @Test(groups = {"smoke", "negative"})    //Bug!!!

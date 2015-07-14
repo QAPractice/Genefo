@@ -21,8 +21,8 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Л on 5/30/2015.
  */
 public class MDRatingTest {
-    private static String EMAIL = "ri-lopatina@yandex.ru";
-    private static String PASSWORD = "123456";
+    private static String EMAIL = "jakoff+444@gmail.com";
+    private static String PASSWORD = "111111";
     private static String FACILITY_NAME = "chicagoMed";
     private static String PHYSICIAN_FNAME = "Phil";
     private static String PHYSICIAN_LNAME = "Richards";

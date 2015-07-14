@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +14,7 @@ import java.io.IOException;
  * Created by Yuri on 6/8/2015.
  */
 public class GrafsPage extends Page {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     //elements of dropdown list from medical facilities
     @FindBy(xpath = "//*[contains(text(),'Rating')]/..//*[contains(text(),'Facilities')]")
@@ -224,12 +226,13 @@ public class GrafsPage extends Page {
 
     public boolean isGraphLoaded(String element) {
         java.lang.String xpath = "xxx";
-        element = "xxx";
+
 
         switch (element) {
 
             case "Medicine Reasons":
                 xpath = "Reason medicine";
+
                 break;
             case "Medicine Effectiveness":
                 xpath = "Medicine reviews across";
@@ -292,89 +295,107 @@ public class GrafsPage extends Page {
                 xpath = "Genes in Aldosteronism, glucocorticoid-remediable";
                 break;
 
-            default:
             case "Medicine":
                 xpath = "Medicine used";
                 break;
         }
 
-
+        waitUntilIsLoaded(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
         return exists(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
     }
 
     public void loadGraphs(String element) {
 
-        element = "xxx";
-
         switch (element) {
 
             case "Medicine Reasons":
                 clikOnMedicineReasonsLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Medicine Effectiveness":
                 clikOnMedicineEffectivenessLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Across Conditions":
                 clikOnAcrossConditionsLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Language Milestones":
                 clikOnLanguageMilestonesLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Movement Milestones":
                 clikOnMovementMilestonesLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Toileting Milestones":
                 clikOnToiletingMilestonesLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "What Works Best":
                 clikOnWhatWorksBestLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Therapy":
                 clikOnTherapyLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Equipment":
                 clikOnEquipmentLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Nutrition":
                 clikOnNutritionLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Exercises":
                 clikOnExercisesLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Alternative Medicine":
                 clikOnAlternativeMedicineLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Medical Facilities":
                 clikOnFacilities();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Procedures":
                 clikOnProceduresLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Healthcare Professionals":
                 clikOnProfessionalsLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Location":
                 clikOnLocationLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Gender":
                 clikOnGenderLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Age":
                 clikOnAgeLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Race":
                 clikOnRaceLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Genes":
                 clikOnGenesLink();
+                Log.info("Clicking " + element + " link");
                 break;
             case "Eating Milestones":
                 clikOnEatingMiletonesLink();
+                Log.info("Clicking " + element + " link");
                 break;
 
-            default:
             case "Medicine":
                 clikOnMedicineLink();
+                Log.info("Clicking " + element + " link");
                 break;
         }
 

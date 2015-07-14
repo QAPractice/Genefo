@@ -44,6 +44,7 @@ public class LoginPage extends Page {
         return this;
     }
     public LoginPage openLoginPage() {
+        Log.info("Opening login pageLog");
         driver.get(PAGE_URL);
         return this;
     }

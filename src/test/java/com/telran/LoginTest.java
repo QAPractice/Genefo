@@ -47,10 +47,7 @@ public class LoginTest {
 
     @BeforeMethod
     public void beforeMethodSetUp() {
-//        if(mainPage.isMyHomeExists())
-//            mainPage.logOut();
         try {
-            Log.info("Opening login page");
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {

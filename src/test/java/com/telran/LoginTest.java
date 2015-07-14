@@ -4,6 +4,7 @@ import com.telran.pages.HomePage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,14 +15,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Oleg on 30.05.2015.
  */
 public class LoginTest {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public HomePage homePage;
@@ -29,8 +30,9 @@ public class LoginTest {
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
     private boolean acceptNextAlert = true;
-    private static String USER ="osh_il+4@yahoo.com";
-    private static String PASSWORD ="111111";
+    public static String USER ="osh_il+4@yahoo.com";
+    public static String PASSWORD ="111111";
+    public static String USER1 ="osh_il+1@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -48,6 +50,7 @@ public class LoginTest {
 //        if(mainPage.isMyHomeExists())
 //            mainPage.logOut();
         try {
+            Log.info("Opening login page");
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
@@ -57,11 +60,11 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "positive"})
     public void LoginSuccess() {
-
+        Log.info("Checking that all correct data added successfully");
         try {
             loginPage
-                    .fillEmailField("osh_il+4@yahoo.com")
-                    .fillPasswordField("111111")
+                    .fillEmailField(USER)
+                    .fillPasswordField(PASSWORD)
                     .clickOnLogin();
             mainPage.waitUntilMainPageIsLoaded();
             assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
@@ -75,7 +78,7 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
-        String user1="osh_il+1@yahoo.com";
+        Log.info("Checking ability login ,logout and login again with another user");
         loginPage
                 .fillEmailField(USER)
                 .fillPasswordField(PASSWORD)
@@ -86,7 +89,7 @@ public class LoginTest {
         homePage.clickOnLogin();
         loginPage
                 .waitUntilLoginPageIsLoaded()
-                .fillEmailField(user1)
+                .fillEmailField(USER1)
                 .fillPasswordField(PASSWORD)
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
@@ -96,7 +99,7 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "negative"})
     public void LoginWithoutAtInEmailField() {
-
+        Log.info("Checking inability lodin without @ in email field");
         try {
             loginPage
                     .fillEmailField("osh_il+4yahoo.com")
@@ -112,7 +115,7 @@ public class LoginTest {
     }
     @Test(groups = {"smoke", "negative"})
     public void LoginWithPasswordContains1Symbol() {
-
+        Log.info("Checking inability lodin with password contains 1 symbol");
         try {
             loginPage
                     .fillEmailField(USER)
@@ -129,7 +132,7 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "positive"})
     public void ForgotPassword() {
-
+        Log.info("Checking ability recreate password");
         try {
             loginPage
                     .clickOnForgotPasswordLink();
@@ -144,7 +147,7 @@ public class LoginTest {
 
     @Test(groups = {"smoke", "negative"})
     public void LoginWithEmptyFields() {
-
+        Log.info("Checking inability lodin with empty fields");
         try {
             loginPage
                     .fillEmailField("")

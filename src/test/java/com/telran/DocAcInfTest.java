@@ -37,9 +37,8 @@ public class DocAcInfTest {
     public DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
-    private static String PASSWORD ="111111";
-    private static String EMAIL1 = "osh_il+19@yahoo.com";
-    private static String EMAIL2 = "osh_il+18@yahoo.com";
+    private String EMAIL1 = "osh_il+19@yahoo.com";
+    private String EMAIL2 = "osh_il+18@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -52,7 +51,7 @@ public class DocAcInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login(EMAIL1, PASSWORD);
+            loginPage.login(EMAIL1, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -83,11 +82,11 @@ public class DocAcInfTest {
         Log.info("Checking that all correct data added successfully");
         try {
             docAcInfPage
-                    .fillPasswordField(PASSWORD)
+                    .fillPasswordField(LoginTest.PASSWORD)
                     .fillEmailField(EMAIL2)
                     .clickOnSaveButton()
                     .waitUntilEnterYourCurrentPassIsLoaded()
-                    .fillCurrentPasswordField(PASSWORD)
+                    .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
             assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
             mainPage.selectMyAccount();
@@ -97,11 +96,11 @@ public class DocAcInfTest {
             Log.info("Wait for load DocAcInf page");
             docAcInfPage.waitUntilDocAcInfPageIsLoaded();
             docAcInfPage
-                    .fillPasswordField(PASSWORD)
+                    .fillPasswordField(LoginTest.PASSWORD)
                     .fillEmailField(EMAIL1)
                     .clickOnSaveButton()
                     .waitUntilEnterYourCurrentPassIsLoaded()
-                    .fillCurrentPasswordField(PASSWORD)
+                    .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
             //assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {

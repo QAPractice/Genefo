@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -89,6 +90,7 @@ public class DocProfInfTest {
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("all correct data added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +106,8 @@ public class DocProfInfTest {
                     .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(),"Profile HCP Page doesn't open");
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("work place information added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,7 +125,8 @@ public class DocProfInfTest {
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("")
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(),"Profile HCP Page doesn't open");
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("all empty fields added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,7 +138,8 @@ public class DocProfInfTest {
         try {
             docProfInfPage
                     .fillSpecialtiesField("");
-            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists()==false,"The Add Specialties Button Enable");
+            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists() == false, "The Add Specialties Button Enable");
+            Reporter.log("Specialties Button disnable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,7 +154,8 @@ public class DocProfInfTest {
                     .clickOnAddSpecialtiesButton()
                     .clickOnDelSpecButton()
                     .clickOnConfSpecButton();
-            Assert.assertTrue(docProfInfPage.isSpecExists(),"The specialty exists");
+            Assert.assertTrue(docProfInfPage.isSpecExists(), "The specialty exists");
+            Reporter.log("Specialties added and deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -162,7 +168,8 @@ public class DocProfInfTest {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
                     .fillWorkPlacesLocationField("");
-            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(),"The button add work place is clickable");
+            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(), "The button add work place is clickable");
+            Reporter.log("The button add work place is not clickable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +182,8 @@ public class DocProfInfTest {
             docProfInfPage
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("");
-            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(),"The button add work place is clickable");
+            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(), "The button add work place is clickable");
+            Reporter.log("The button add work place is not clickable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,7 +203,8 @@ public class DocProfInfTest {
                     .clickOnAddWorkPlacesButton()
                     .clickOnDelWorkPlacesButton()
                     .clickOnConfWorkPlacesButton();
-            Assert.assertTrue(docProfInfPage.isLocationWPExists(),"Location is not disappear");
+            Assert.assertTrue(docProfInfPage.isLocationWPExists(), "Location is not disappear");
+            Reporter.log("Work Place Name and Work Place Location added and deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,6 +244,7 @@ public class DocProfInfTest {
             docProfInfPage
                     .clickOnDoneButton();
             Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("All Data deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }

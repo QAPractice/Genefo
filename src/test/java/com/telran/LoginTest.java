@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -65,6 +66,7 @@ public class LoginTest {
                     .clickOnLogin();
             mainPage.waitUntilMainPageIsLoaded();
             assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+            Reporter.log("Login successful");
             mainPage.logOut();
             homePage.waitUntilHomePageIsLoaded();
             //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
@@ -91,6 +93,7 @@ public class LoginTest {
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
         assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
+        Reporter.log("Login successful");
         mainPage.logOut();
     }
 
@@ -103,9 +106,9 @@ public class LoginTest {
                     .fillPasswordField(PASSWORD)
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
-            assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
+            assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
-
+            Reporter.log("Not logged in successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,9 +122,9 @@ public class LoginTest {
                     .fillPasswordField("1")
                     .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();
-            assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
+            assertTrue("The Password is valid", loginPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
-
+            Reporter.log("Not logged in successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -137,6 +140,7 @@ public class LoginTest {
             assertTrue("The Reset Password Page doesn't open", resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField(USER);
             resetYourPasswordPage.clickOnEmailMe();
+            Reporter.log("Password recreated successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,9 +155,10 @@ public class LoginTest {
                     .fillPasswordField("")
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
-            assertTrue("The Email is valid",loginPage.alertMessageInvalidEmail());
+            assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed",loginPage.isOnLoginPage());
+            Reporter.log("Not logged in successful");
         } catch (Exception e) {
             e.printStackTrace();
         }

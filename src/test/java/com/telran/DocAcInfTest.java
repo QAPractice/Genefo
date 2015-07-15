@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -89,6 +90,7 @@ public class DocAcInfTest {
                     .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
             assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
+            Reporter.log("all correct data added successful");
             mainPage.selectMyAccount();
             Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
@@ -115,6 +117,7 @@ public class DocAcInfTest {
             docAcInfPage
                     .clickOnCancel();
             assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            Reporter.log("operation is canceled successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -131,6 +134,7 @@ public class DocAcInfTest {
             assertTrue("The Email is valid", docAcInfPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed", docAcInfPage.isOnDocAcInfPage());
+            Reporter.log("empty fields are not updated successful");
         } catch (Exception e) {
             e.printStackTrace();
         }

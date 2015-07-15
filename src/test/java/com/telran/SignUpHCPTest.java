@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -73,6 +74,7 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            Reporter.log("all correct data added successful");
             profileDoctorPage.logOut();
             sleep();
         } catch (Exception e) {

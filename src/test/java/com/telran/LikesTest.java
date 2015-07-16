@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Anton on 30-May-15.
+ * Created by Yura 10-July-15.
  */
 public class LikesTest {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -84,10 +84,24 @@ public class LikesTest {
 
     }
 
+    @Test
+    public void addLiketoUserTest() throws InterruptedException {
+        postOnMainPage.createAndSendPost();
+        Log.info("Verifying that 'like' symbol is unchecked");
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign in not unchecked before pressing Like button");
+        Reporter.log("Like is unchecked before pressing Like button");
+        likesPage.clickToLike();
+        Thread.sleep(1000);
+        Log.info("Verifying that 'like' symbol is checked");
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
+        Reporter.log("Like is checked after pressing Like button");
+
+    }
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }
 
 }
+
 

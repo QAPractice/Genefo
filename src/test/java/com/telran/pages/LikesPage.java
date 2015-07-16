@@ -15,7 +15,7 @@ public class LikesPage extends Page{
     //'like' elements for checking their status
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='fa fa-heart-o']")
     WebElement likeUnchecked;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='fa fa-heart ng-scope']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-if='story.didLike']")
     WebElement likeChecked;
     @FindBy(xpath = "//*[@class='post-top-right']//*[@class='post-like']")
     WebElement likeBlock;

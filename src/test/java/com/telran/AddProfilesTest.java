@@ -83,8 +83,8 @@ public class AddProfilesTest {
     }
 
     @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
-    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String condition_check, String month, String day, String year,
-                                  String diagnose_year, String patient_profile_type_check, String gender_check, String month_check, String day_check, String year_check, String diagnose_year_check) {
+    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month, String day, String year,
+                                  String diagnose_year) {
         Log.info("Wait for load Main page");
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
@@ -97,40 +97,24 @@ public class AddProfilesTest {
         profilePage.fillProfileFirstNameField(first_name);
         Log.info("Fill Last Name");
         profilePage.fillProfileLastNameField(last_name);
-        Log.info("Select Profile patient type");
-        profilePage.selectProfilePatient(patient_profile_type);
-        Log.info("Check Profile patient type");
-        assertTrue(profilePage.isPatientSelected(patient_profile_type_check));
+        //Log.info("Select Profile patient type");
+        //profilePage.selectProfilePatient(patient_profile_type);
         Log.info("Select Gender");
         profilePage.selectGender(gender);
-        Log.info("Check gender");
-        assertTrue(profilePage.isGenderSelected(gender_check));
         Log.info("Fill condition");
         profilePage.fillProfileConditionField(condition);
         Log.info("Auto fill condition");
         profilePage.autoFillCondition();
-        Log.info("Check condition");
-        assertTrue(profilePage.isConditionSelected(condition_check));
         Log.info("Select Month");
         profilePage.selectMonth(month);
-        Log.info("Check month");
-        assertTrue(profilePage.isMonthSelected(month_check));
-        Log.info("Select day");
         profilePage.selectDay(day);
-        Log.info("Check day");
-        assertTrue(profilePage.isDaySelected(day_check));
         Log.info("Select year");
         profilePage.selectYear(year);
-        Log.info("Check year");
-        assertTrue(profilePage.isYearSelected(year_check));
         Log.info("Select diagnose year");
         profilePage.selectDiagnoseYear(diagnose_year);
-        Log.info("Check diagnose year");
-        assertTrue(profilePage.isDiagnoseYearSelected(diagnose_year_check));
         Log.info("Submit");
         profilePage.clickToSubmit();
         assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
-        //assertTrue("Profile name doesn't present", summaryPage.isProfileNamePresents(name));
         summaryPage.clickOnDiscoverHome();
 
     }

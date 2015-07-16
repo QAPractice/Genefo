@@ -39,7 +39,7 @@ public class FollowingUserTest {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded()
-                    .login("ri-lopatina@yandex.ru", "123456");
+                    .login("jakoff+444@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
 
         } catch (Exception e) {

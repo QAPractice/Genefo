@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -44,7 +45,7 @@ public class DocBasInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com", "111111");
+            loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -82,6 +83,7 @@ public class DocBasInfTest {
                     .clickOnSaveButton();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            Reporter.log("all correct data added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,7 +95,8 @@ public class DocBasInfTest {
         try {
             docBasInfPage
                     .clickOnCancel();
-            assertTrue("Profile HCP Page doesn't open",profileDoctorPage.isOnProfileDoctorPage());
+            assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
+            Reporter.log("operation is canceled successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,6 +114,7 @@ public class DocBasInfTest {
             assertTrue("The First Name is valid", docBasInfPage.alertMessageInvalidFirstName());
             assertTrue("The Last Name is valid",docBasInfPage.alertMessageInvalidLastName());
             assertTrue("The current page is changed",docBasInfPage.isOnDocBasInfPage());
+            Reporter.log("empty fields are not updated successful");
         } catch (Exception e) {
             e.printStackTrace();
         }

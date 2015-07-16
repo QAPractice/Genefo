@@ -4,19 +4,18 @@ import com.telran.pages.DocProfInfPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Oleg on 05.06.2015.
  */
 public class DocProfInfTest {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;
@@ -44,7 +44,7 @@ public class DocProfInfTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com", "111111");
+            loginPage.login(LoginTest.USER,LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -55,11 +55,14 @@ public class DocProfInfTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
+            Log.info("Opening Profile HCP page");
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 docProfInfPage.clickOnDoneButton();
             }
+            Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnHealInf();
+            Log.info("Wait for load DocProfInf page");
             docProfInfPage.waitUntilDocProfInfPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,6 +72,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "positive"})
     public void EditProfInfSuccess() {
+        Log.info("Checking that all correct data added successfully");
         try {
             docProfInfPage
                     .fillSpecialtiesField("Oncology")
@@ -86,6 +90,7 @@ public class DocProfInfTest {
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
             Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("all correct data added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,6 +98,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"positive"})
     public void AddWorkPlaceInf() {
+        Log.info("Checking that work place information added");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
@@ -100,7 +106,8 @@ public class DocProfInfTest {
                     .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(),"Profile HCP Page doesn't open");
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("work place information added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,6 +115,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void AddEmptyFields() {
+        Log.info("Checking that all empty fields added");
         try {
             docProfInfPage
                     .fillSpecialtiesField("")
@@ -117,7 +125,8 @@ public class DocProfInfTest {
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("")
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(),"Profile HCP Page doesn't open");
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("all empty fields added successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -125,10 +134,12 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
      public void AddEmptySpecialties() {
+        Log.info("Checking that Specialties empty field added");
         try {
             docProfInfPage
                     .fillSpecialtiesField("");
-            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists()==false,"The Add Specialties Button Enable");
+            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists() == false, "The Add Specialties Button Enable");
+            Reporter.log("Specialties Button disnable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,13 +147,15 @@ public class DocProfInfTest {
 
     @Test(groups = {"smoke", "negative"})
     public void AddDelSpecialties() {
+        Log.info("Checking that Specialties added and deleted");
         try {
             docProfInfPage
                     .fillSpecialtiesField("abcd")
                     .clickOnAddSpecialtiesButton()
                     .clickOnDelSpecButton()
                     .clickOnConfSpecButton();
-            Assert.assertTrue(docProfInfPage.isSpecExists(),"The specialty exists");
+            Assert.assertTrue(docProfInfPage.isSpecExists(), "The specialty exists");
+            Reporter.log("Specialties added and deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,11 +163,13 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandFillNameWPFields() {
+        Log.info("Checking that Work Place Name added and Work Place Location not");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta")
                     .fillWorkPlacesLocationField("");
-            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(),"The button add work place is clickable");
+            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(), "The button add work place is clickable");
+            Reporter.log("The button add work place is not clickable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -162,11 +177,13 @@ public class DocProfInfTest {
 
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandNameWPFields() {
+        Log.info("Checking that Work Place Name and Work Place Location do not added ");
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("")
                     .fillWorkPlacesLocationField("");
-            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(),"The button add work place is clickable");
+            Assert.assertTrue(docProfInfPage.isAddWorkPlacesDisButtonExists(), "The button add work place is clickable");
+            Reporter.log("The button add work place is not clickable");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -174,6 +191,7 @@ public class DocProfInfTest {
 
     @Test(groups = {"positive"})
     public void DeleteLocationWPandNameWP() {
+        Log.info("Checking that Work Place Name and Work Place Location added and deleted");
         try {
             sleep();
             docProfInfPage
@@ -185,7 +203,48 @@ public class DocProfInfTest {
                     .clickOnAddWorkPlacesButton()
                     .clickOnDelWorkPlacesButton()
                     .clickOnConfWorkPlacesButton();
-            Assert.assertTrue(docProfInfPage.isLocationExists(),"Location is not disappear");
+            Assert.assertTrue(docProfInfPage.isLocationWPExists(), "Location is not disappear");
+            Reporter.log("Work Place Name and Work Place Location added and deleted");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"})
+    public void DeleteAllDataIfExist() {
+        Log.info("Checking that All Data deleted");
+        try {
+            sleep();
+                    if (docProfInfPage.isSpecExists()) {
+                        docProfInfPage
+                                .clickOnDelSpecButton()
+                                .clickOnConfSpecButton();
+                    }
+                    if (docProfInfPage.isSubspecExists()) {
+                        docProfInfPage
+                                .clickOnDelSubspecButton()
+                                .clickOnConflSubspecButton();
+                    }
+                    if (docProfInfPage.isTitlesExists()) {
+                        docProfInfPage
+                                .clickOnDelTitleButton()
+                                .clickOnConfTitleButton();
+                    }
+                    if (docProfInfPage.isAreasExists()) {
+                        docProfInfPage
+                                .clickOnDelAreasButton()
+                                .clickOnConfAreasButton();
+                    }
+                    if (docProfInfPage.isLocationWPExists()) {
+                        docProfInfPage
+                                .clickOnDelWorkPlacesButton()
+                                .clickOnConfWorkPlacesButton();
+                    }
+
+            docProfInfPage
+                    .clickOnDoneButton();
+            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Reporter.log("All Data deleted");
         } catch (Exception e) {
             e.printStackTrace();
         }

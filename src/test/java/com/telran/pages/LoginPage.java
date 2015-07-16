@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,30 +14,24 @@ import java.io.IOException;
  */
 public class LoginPage extends Page {
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
     @FindBy(xpath = "//*[contains(text(),'Login to')]")
     WebElement loginTitle;
-
     @FindBy(name = "email")
     WebElement emailField;
-
     @FindBy(name = "password")
     WebElement passwordField;
-
     @FindBy(id = "submit")
     WebElement loginButton;
-
     @FindBy(xpath = "//*[contains(text(),'Sign Up')]")
     WebElement signUpButton;
-
     @FindBy(xpath = "//*[contains(text(),'Forgot')]")
     WebElement forgotLink;
-
     @FindBy(xpath = "//*[contains(text(),'Invalid Password')]")
     WebElement invalidPasswordAlert;
-
     @FindBy(xpath = "//*[contains(text(),'Invalid Email')]")
     WebElement invalidEmailAlert;
-
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -48,6 +44,7 @@ public class LoginPage extends Page {
         return this;
     }
     public LoginPage openLoginPage() {
+        Log.info("Opening login page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -82,7 +79,6 @@ public class LoginPage extends Page {
         }return this;
     }
 
-
     public boolean isOnLoginPage() {
         waitUntilLoginPageIsLoaded();
         return exists(loginTitle);
@@ -90,11 +86,13 @@ public class LoginPage extends Page {
 
     public LoginPage fillEmailField(String email) {
         setElementText(emailField, email);
+        Log.info("entering email: " + email + " ");
         return this;
     }
 
     public LoginPage fillPasswordField(String password) {
         setElementText(passwordField, password);
+        Log.info("entering password: " + password + " ");
         return this;
     }
 

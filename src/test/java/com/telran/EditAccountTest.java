@@ -51,7 +51,7 @@ public class EditAccountTest {
             driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
             log("We are in InternetExplorer browser");
         }
-      //  this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
+        this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);

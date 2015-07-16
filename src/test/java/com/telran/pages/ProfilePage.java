@@ -32,7 +32,7 @@ public class ProfilePage extends Page {
     WebElement profileGender;
 
     //dropdown
-    @FindBy(name = "relationID")
+    @FindBy(xpath = "//*[@name='relationID']/*[@value='2']")
     WebElement profilePatientDropdown;
     @FindBy()
     WebElement profileGenderTooltip;
@@ -91,6 +91,9 @@ public class ProfilePage extends Page {
 
     public boolean isPatientSelected(String value2) {
         return verifyTextBoolean(profilePatientDropdown, value2);
+    }
+    public boolean isConditionSelected(String value) {
+        return verifyTextBoolean(profileConditionField, value);
     }
 
     public ProfilePage selectMonth(String value) {

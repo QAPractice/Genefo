@@ -223,7 +223,7 @@ public class SymptomsOnMainPage  extends Page {
     WebElement specificAreaOnPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table ng-scope']//tr[3]/td[2]")
     WebElement symptomOnPost;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-scope']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-scope ng-isolate-scope']")
     WebElement textOnPost;
 
     /**
@@ -398,7 +398,7 @@ public class SymptomsOnMainPage  extends Page {
                     waitForPostLoaded();
                    // Assert.assertEquals(specificAreaOnPost.getText(), specific, "Specific area text is wrong");
                   //  Assert.assertEquals(generalAreaOnPost.getText(), general, "General area text is wrong");
-                   // Assert.assertEquals(symptomOnPost.getText(), symptom, "Symptom text is wrong");
+                  //  Assert.assertEquals(symptomOnPost.getText(), symptom, "Symptom text is wrong");
                   //  Assert.assertEquals(textOnPost.getText(), post, "Post text is wrong");
                     Reporter.log("New post created with data: \n general Area - " + general + "\n Specific Area - " + specific + ", \n Symptom - " + symptom);
                     selectGeneralArea();
@@ -427,6 +427,115 @@ public class SymptomsOnMainPage  extends Page {
             new Actions(driver).moveToElement(tooltipGeneralArea).perform();
         }
 
+    }
+
+
+    public void createSymptomPost_2() {
+        selectGeneralArea();
+        WebElement genArea;
+        List<WebElement> genAreaList = generalAreaOptions.findElements(By.tagName("li"));
+        int genAreaListCounter = 0;
+        while (genAreaListCounter < genAreaList.size() ) {
+            genAreaList = generalAreaOptions.findElements(By.tagName("li"));
+            genArea = genAreaList.get(genAreaListCounter);
+            String general = genArea.getText();
+            try {
+                waitUntilElementIsLoaded(genArea);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            clickElement(genArea);
+            Log.info("Selecting General area: " + general + " ");
+
+            selectSpecificArea();
+            List<WebElement> specificAreaList = specificAreaOptions.findElements(By.tagName("li"));
+            int specificAreaListCounter = 0;
+            while (specificAreaListCounter < specificAreaList.size() ) {
+                specificAreaList = specificAreaOptions.findElements(By.tagName("li"));
+                specificArea =  specificAreaList.get(specificAreaListCounter);
+                String specific = specificArea.getText();
+                Log.info("Selecting Specific area: " + specific + " ");
+                try {
+                    waitUntilElementIsLoaded(specificArea);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                specificArea.click();
+
+                selectSymptom();
+                List<WebElement> symptomList = symptomAreaOptions.findElements(By.tagName("li"));
+                int symptomListCounter = 0;
+                while ( symptomListCounter < symptomList.size()) {
+                    String symptom;
+                    symptomList = symptomAreaOptions.findElements(By.tagName("li"));
+                    WebElement symptomArea = symptomList.get(symptomListCounter);
+                    symptom = symptomArea.getText();
+                    Log.info("Selecting Symptom: " + symptom + " ");
+                    try {
+                        waitUntilElementIsLoaded(symptomArea);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    clickElement(symptomArea);
+                    String post = ("general Area - " + general + " Specific Area - " + specific + ", Symptom - " + symptom);
+                    postText("general Area - " + general + " Specific Area - " + specific + ", Symptom - " + symptom);
+                    submitPost();
+                    //waitForPostLoaded();
+                    sleep(2);
+                    Assert.assertEquals(specificAreaOnPost.getText(), specific, "Specific area text is wrong");
+                    Assert.assertEquals(generalAreaOnPost.getText(), general, "General area text is wrong");
+                    Assert.assertEquals(symptomOnPost.getText(), symptom, "Symptom text is wrong");
+                    Assert.assertEquals(textOnPost.getText(), post, "Post text is wrong");
+                    Reporter.log("New post created with data: \n general Area - " + general + "\n Specific Area - " + specific + ", \n Symptom - " + symptom);
+                    selectGeneralArea();
+                    genAreaList = generalAreaOptions.findElements(By.tagName("li"));
+                    genArea = genAreaList.get(genAreaListCounter);
+                    try {
+                        waitUntilElementIsLoaded(genArea);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    clickElement(genArea);
+                    selectSpecificArea();
+                    specificAreaList = specificAreaOptions.findElements(By.tagName("li"));
+                    specificArea = specificAreaList.get(specificAreaListCounter);
+                    try {
+                        waitUntilElementIsLoaded(specificArea);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    clickElement(specificArea);
+                    selectSymptom();
+                    symptomListCounter = symptomListCounter + 1;
+                }
+                specificAreaListCounter = specificAreaListCounter + 1;
+
+                selectGeneralArea();
+                genAreaList = generalAreaOptions.findElements(By.tagName("li"));
+                genArea = genAreaList.get(genAreaListCounter);
+                try {
+                    waitUntilElementIsLoaded(genArea);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                clickElement(genArea);
+                selectSpecificArea();
+            }
+            genAreaListCounter = genAreaListCounter + 1;
+            selectGeneralArea();
+        }
     }
 
 
@@ -563,13 +672,15 @@ public class SymptomsOnMainPage  extends Page {
 
     public void waitForPostLoaded() {
         try {
-            this.waitUntilElementIsLoaded(generalAreaOnPost);
+            this.waitUntilElementIsLoaded(textOnPost);
         } catch (IOException e) {
             System.out.println("no post loaded error:" + e.getMessage());
         } catch (InterruptedException e) {
             System.out.println("no post loaded error:" + e.getMessage());
         }
     }
+
+
     /**
      *
      * @param path

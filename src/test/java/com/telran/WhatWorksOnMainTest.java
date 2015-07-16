@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.util.Date;
@@ -26,10 +27,10 @@ public class WhatWorksOnMainTest {
 
     // We define variables of enum type to give meaning to numbers 0, 1 and 3
     // And then we use this variables instead of numbers
-    public enum Company {
+    public enum Items {
         LAST_ITEM_FROM_LIST(0), FIRST_ITEM_FROM_LIST(1), FOURTH_ITEM_FROM_LIST(4);
         private int value;
-        private Company(int value) {
+        private Items(int value) {
             this.value = value;
         }
     }
@@ -74,7 +75,7 @@ public class WhatWorksOnMainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }   // We fill data structures, that we defined in whatWorksOnMainPage class.
-        whatWorksOnMainPage.defineOptionsLocatorsAndItemList();
+        whatWorksOnMainPage.defineOptionsLocators();
     }
 
     @BeforeMethod
@@ -89,26 +90,26 @@ public class WhatWorksOnMainTest {
     @DataProvider
     private Object[][] myProvider(){
         return new Object[][]{
-                {"Therapy",     Company.LAST_ITEM_FROM_LIST },// just means that we want to choose the last item from dropdown list
-                {"Equipment",   Company.LAST_ITEM_FROM_LIST },
-                {"Nutrition",   Company.LAST_ITEM_FROM_LIST },
-                {"Exercises",   Company.LAST_ITEM_FROM_LIST },
-                {"Alternative", Company.LAST_ITEM_FROM_LIST },
-                {"Other",       Company.LAST_ITEM_FROM_LIST },
+                {"Therapy",     Items.LAST_ITEM_FROM_LIST },// just means that we want to choose the last item from dropdown list
+                {"Equipment",   Items.LAST_ITEM_FROM_LIST },
+                {"Nutrition",   Items.LAST_ITEM_FROM_LIST },
+                {"Exercises",   Items.LAST_ITEM_FROM_LIST },
+                {"Alternative", Items.LAST_ITEM_FROM_LIST },
+                {"Other",       Items.LAST_ITEM_FROM_LIST },
 
-                {"Therapy",     Company.FIRST_ITEM_FROM_LIST },// just means that we want to choose the first item from dropdown list
-                {"Equipment",   Company.FIRST_ITEM_FROM_LIST },
-                {"Nutrition",   Company.FIRST_ITEM_FROM_LIST },
-                {"Exercises",   Company.FIRST_ITEM_FROM_LIST },
-                {"Alternative", Company.FIRST_ITEM_FROM_LIST },
-                {"Other",       Company.FIRST_ITEM_FROM_LIST },
+                {"Therapy",     Items.FIRST_ITEM_FROM_LIST },// just means that we want to choose the first item from dropdown list
+                {"Equipment",   Items.FIRST_ITEM_FROM_LIST },
+                {"Nutrition",   Items.FIRST_ITEM_FROM_LIST },
+                {"Exercises",   Items.FIRST_ITEM_FROM_LIST },
+                {"Alternative", Items.FIRST_ITEM_FROM_LIST },
+                {"Other",       Items.FIRST_ITEM_FROM_LIST },
 
-                {"Therapy",     Company.FOURTH_ITEM_FROM_LIST }, // just means that we want to choose the fourth item from dropdown list
-                {"Equipment",   Company.FOURTH_ITEM_FROM_LIST },
-                {"Nutrition",   Company.FOURTH_ITEM_FROM_LIST },
-                {"Exercises",   Company.FOURTH_ITEM_FROM_LIST },
-                {"Alternative", Company.FOURTH_ITEM_FROM_LIST },
-                {"Other",       Company.FOURTH_ITEM_FROM_LIST },
+                {"Therapy",     Items.FOURTH_ITEM_FROM_LIST }, // just means that we want to choose the fourth item from dropdown list
+                {"Equipment",   Items.FOURTH_ITEM_FROM_LIST },
+                {"Nutrition",   Items.FOURTH_ITEM_FROM_LIST },
+                {"Exercises",   Items.FOURTH_ITEM_FROM_LIST },
+                {"Alternative", Items.FOURTH_ITEM_FROM_LIST },
+                {"Other",       Items.FOURTH_ITEM_FROM_LIST },
         };
     }
 
@@ -127,14 +128,15 @@ public class WhatWorksOnMainTest {
 
 
     // Click on Category button then choose item from the item list.
-    // // Check that you are able to send a post.
+    //  Check that you are able to send a post.
     // Category name and item number are given by data provider.
     @Test(groups = {"smoke", "positive"}, dataProvider = "myProvider" )
-    public void SendPostTest(String category, Company itemNumber) {
+    public void SendPostTest(String category, Items itemNumber) {
         Date date = new Date();
         String text = "My Post at " + date.toString() ;
         String otherItem = "My Other Item at " + date.toString() ;
-        System.out.println("Category " + category + " item number " + itemNumber + "\n");
+        Log.info("-------------------------------------------------------------------------------------------------");
+        Log.info("Positive test: Selecting Category " + category + " item number: " + itemNumber + " text: " + text);
         try {
             if(category.equals("Other")) // 'Other' option is different. It has no predetermined list
                 whatWorksOnMainPage
@@ -144,7 +146,7 @@ public class WhatWorksOnMainTest {
                         .rateItThree()                //Click on the third star
                         .fillTextField(text)
                         .sendPost();
-            else if (itemNumber == Company.LAST_ITEM_FROM_LIST) //We want to choose the last item from the dropdown list
+            else if (itemNumber == Items.LAST_ITEM_FROM_LIST) //We want to choose the last item from the dropdown list
             {   whatWorksOnMainPage
                     .clickOnOption(category)
                     .clickOnItemList()
@@ -176,7 +178,7 @@ public class WhatWorksOnMainTest {
                 assertTrue(whatWorksOnMainPage.verifyOtherItemCorrectInSentPost(otherItem));
             else
                 assertTrue(whatWorksOnMainPage.verifyListItemCorrectInSentPost());
-
+            Reporter.log("Publishing of post was Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,8 +188,10 @@ public class WhatWorksOnMainTest {
     // Check that you are not able to send a post.
     @Test(groups = {"smoke", "negative"})
     public void EmptyCategoryTest() {
-        String text = "My Empty Category Post";
-
+        Date date = new Date();
+        String text = "My Empty Category Post at " + date.toString();
+        Log.info("---------------------------------------------------------------");
+        Log.info("Negative test: Not Selecting Category");
         try {
             whatWorksOnMainPage.clickOnItemList();
             // here we check that we can not choose from the list if our Category is empty
@@ -199,6 +203,7 @@ public class WhatWorksOnMainTest {
                     .sendPost();
             sleep(2000); // wait  to see sent post.
             assertFalse(whatWorksOnMainPage.verifyTextFromSentPost(text));
+            Reporter.log("Checking that we can not send post - Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -207,11 +212,12 @@ public class WhatWorksOnMainTest {
     // Negative tests - Click on Category button but do not click on item list.
     // Check that you are not able to send a post.
     // Category name is given by data provider.
-    @Test(groups = {"smoke", "negative"}, dataProvider = "myNegativeProvider" )
+    @Test(groups = {"smoke", "negative"}, dataProvider = "myNegativeProvider")
     public void EmptyListItemTest(String category) {
-        System.out.println("Category " + category + " Negative test\n");
+        Log.info("-------------------------------------------------------------------------");
+        Log.info("Negative test: Selecting Category " + category + " but Not Selecting Item");
         Date date = new Date();
-        String text = "My Post at " + date.toString();
+        String text = "My Empty Item Post at " + date.toString();
         try {
             whatWorksOnMainPage
                     .clickOnOption(category);// Here we cover the test that category button should be highlighted after clicking
@@ -222,6 +228,7 @@ public class WhatWorksOnMainTest {
                     .sendPost();
             sleep(2000); // wait  to see sent post.
             assertFalse(whatWorksOnMainPage.verifyTextFromSentPost(text));
+            Reporter.log("Checking that we can not send post - Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }

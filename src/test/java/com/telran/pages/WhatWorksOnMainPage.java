@@ -143,7 +143,7 @@ public class WhatWorksOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
     WebElement  UpperSentPostTab;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-scope']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-scope ng-isolate-scope']")
     WebElement  SentPostText;
 
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
@@ -168,7 +168,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Sort of array but without size limits. Keeps only variables of  WebElement type.
     // has two methods - add() and put()  (see below)
-    private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
+   // private ArrayList<WebElement> itemsInListById = new ArrayList<WebElement>();
 
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
@@ -181,6 +181,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilWhatWorksPanelIsLoaded() {
+        Log.info("Waiting Until WhatWorksPanel Is Loaded" );
         try {
             waitUntilElementIsLoaded(categorySymptomTitle);
         } catch (IOException e) {
@@ -197,30 +198,22 @@ public class WhatWorksOnMainPage extends Page {
     }
     // Fills data structure optionsLocator (has type HashMap<String,WebElement>)
     // and data structure itemsInListById ( has type ArrayList<WebElement> )
-    public void defineOptionsLocatorsAndItemList(){
+    public void defineOptionsLocators(){
 
         highLightedOptionsLocator.put("Therapy",highLightedTherapyButton);
         highLightedOptionsLocator.put("Equipment",highLightedEquipmentButton);
         highLightedOptionsLocator.put("Nutrition",highLightedNutritionButton);
         highLightedOptionsLocator.put("Exercises",highLightedExercisesButton);
         highLightedOptionsLocator.put("Alternative",highLightedAlternativeButton);
-        highLightedOptionsLocator.put("Other",highLightedOtherButton);
+        highLightedOptionsLocator.put("Other", highLightedOtherButton);
 
-        optionsLocator.put("Therapy",therapyButton);
-        optionsLocator.put("Equipment",equipmentButton);
-        optionsLocator.put("Nutrition",nutritionButton);
-        optionsLocator.put("Exercises",exercisesButton);
-        optionsLocator.put("Alternative",alternativeButton);
+        optionsLocator.put("Therapy", therapyButton);
+        optionsLocator.put("Equipment", equipmentButton);
+        optionsLocator.put("Nutrition", nutritionButton);
+        optionsLocator.put("Exercises", exercisesButton);
+        optionsLocator.put("Alternative", alternativeButton);
         optionsLocator.put("Other",otherButton);
 
-        itemsInListById.add(null);
-        itemsInListById.add(firstItemInList);
-        itemsInListById.add(secondItemInList);
-        itemsInListById.add(thirdItemInList);
-        itemsInListById.add(fourthItemInList);
-        itemsInListById.add(fifthItemInList);
-        itemsInListById.add(sixthItemInList);
-        itemsInListById.add(seventhItemInList);
     }
 
     public WhatWorksOnMainPage clickOnOption(String option) {
@@ -279,13 +272,14 @@ public class WhatWorksOnMainPage extends Page {
         return this;
     }
 
-    // Waits until our item from dropdoown list appears on the screen
+    // Waits until our item from dropdown list appears on the screen
     public WhatWorksOnMainPage waitUntilItemFromItemListIsLoaded(int itemNumber) {
         Log.info("Waiting Until Number " + itemNumber + " Item From Item List Is Loaded");
-        WebElement optionChooser;
+        // We fill list of elements with items from the dropdown list
+        List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
+        WebElement optionChooser = elements.get( itemNumber - 1 );
         try {
-            optionChooser = itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
-            waitUntilElementIsLoaded(optionChooser);
+             waitUntilElementIsLoaded(optionChooser);
         } catch (Exception e) {
             e.printStackTrace();           // In this way we define our own exception
             System.out.println("Wrong item number! \nItem with number :" + itemNumber + " does not exist!");
@@ -296,16 +290,12 @@ public class WhatWorksOnMainPage extends Page {
 
     public WhatWorksOnMainPage chooseItemFromItemList( int itemNumber ) {
         Log.info("Choosing Number " + itemNumber + " Item From Item List ");
-        WebElement optionChooser;
-        try {
-            optionChooser=itemsInListById.get(itemNumber); // choose item that corresponds to number 'itemNumber'
+            // We fill list of elements with items from the dropdown list
+            List<WebElement> elements = ItemListOptions.findElements(By.tagName("li"));
+            WebElement optionChooser = elements.get( itemNumber - 1 );
             textInListItem = optionChooser.getText();
             clickElement(optionChooser);
-        }
-        catch (Exception e){ e.printStackTrace();           // In this way we define our own exception
-            System.out.println("Wrong item number! \nItem with number :"+itemNumber+" does not exist!");
-        }
-        return this;
+            return this;
     }
 
     public WhatWorksOnMainPage fillTextField(String post) {
@@ -337,6 +327,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Click on the third star
     public WhatWorksOnMainPage rateItThree() {
+        Log.info("Clicking on the third star " );
         clickElement(thirdRatingStar);
         return this;
     }

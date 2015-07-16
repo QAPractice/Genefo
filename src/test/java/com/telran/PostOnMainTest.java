@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.util.Date;
@@ -81,14 +82,16 @@ public class PostOnMainTest {
     public void SendPostSuccessTest() {
         Date date = new Date();
         String text = "My 'Post Category' post at "  + date.toString();
-        Log.info("Positive test: 'Post Category' post: " + text );
+        Log.info("---------------------------------------------------------------");
+        Log.info("Positive test: 'Post Category' post: " + text);
         try {
             postOnMainPage
                     .fillTextField(text)
                     .sendPost();
             sleep(2000);
 
-            assertTrue(mainPage.verifyTextFromSentPost(text));
+            assertTrue(postOnMainPage.verifyTextFromSentPost(text));
+            Reporter.log("Publishing of post was Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,6 +99,7 @@ public class PostOnMainTest {
 
     @Test(groups = {"smoke", "negative"})
     public void SendEmptyPostTest() {
+        Log.info("---------------------------------------------------------------");
         Log.info("Negative test: 'Post Category' empty post. ");
         String text = "" ;
 
@@ -105,7 +109,8 @@ public class PostOnMainTest {
                     .sendPost();
             sleep(2000);
 
-            assertFalse(mainPage.verifyTextFromSentPost(text));
+            assertFalse(postOnMainPage.verifyTextFromSentPost(text));
+            Reporter.log("Negative Test: Publishing of empty post was not Successful as planned");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -113,6 +118,7 @@ public class PostOnMainTest {
 
     @Test(groups = {"smoke", "negative"})
     public void SendOneLetterPostTest() {
+        Log.info("---------------------------------------------------------------");
         Log.info("Negative test: 'Post Category' one letter post. ");
         String text = "A" ;
 
@@ -121,12 +127,12 @@ public class PostOnMainTest {
                     .fillTextField(text)
                     .sendPost();
             sleep(2000);
-            assertFalse(mainPage.verifyTextFromSentPost(text));
+            assertFalse(postOnMainPage.verifyTextFromSentPost(text));
+            Reporter.log("Negative Test: Publishing of one letter post was not Successful as planned");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @AfterClass(alwaysRun = true)
      public void teardown() {

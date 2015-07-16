@@ -45,6 +45,12 @@ public class LikesPage extends Page{
 
     }
 
+    public LikesPage reloadPage() {
+        Log.info("Reloading Page");
+        driver.navigate().refresh();
+        return this;
+    }
+
     public LikesPage clickToLike() {
         Log.info("Clicking to like");
         clickElement(likeForClick);

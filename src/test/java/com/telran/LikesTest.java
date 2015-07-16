@@ -64,7 +64,7 @@ public class LikesTest {
 
     @Test
     public void NormalLikeTest() throws InterruptedException {
-        //postOnMainPage.createAndSendPost();
+        postOnMainPage.createAndSendPost();
         int likesNumberBefore = likesPage.getLikesNumber();
         Log.info("Getting initial number of likes - " + likesNumberBefore + "");
         Log.info("Verifying that 'like' symbol is unchecked");

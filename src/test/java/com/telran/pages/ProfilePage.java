@@ -32,8 +32,9 @@ public class ProfilePage extends Page {
     WebElement profileGender;
 
     //dropdown
-    @FindBy(xpath = "//*[@name='relationID']/*[@value='2']")
+    @FindBy(xpath = "//*[@name='relationID']/*[@value='2']/..")
     WebElement profilePatientDropdown;
+
     @FindBy()
     WebElement profileGenderTooltip;
     @FindBy()

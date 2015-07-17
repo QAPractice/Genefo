@@ -78,3 +78,5 @@ buildNumber.properties
 
 Genefo.iml
 pom.xml
+log4j.properties
+logging.log

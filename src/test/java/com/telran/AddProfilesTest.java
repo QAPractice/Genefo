@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -97,8 +96,8 @@ public class AddProfilesTest {
         profilePage.fillProfileFirstNameField(first_name);
         Log.info("Fill Last Name");
         profilePage.fillProfileLastNameField(last_name);
-        //Log.info("Select Profile patient type");
-        //profilePage.selectProfilePatient(patient_profile_type);
+        Log.info("Select Profile patient type");
+        profilePage.selectProfilePatient(patient_profile_type);
         Log.info("Select Gender");
         profilePage.selectGender(gender);
         Log.info("Fill condition");

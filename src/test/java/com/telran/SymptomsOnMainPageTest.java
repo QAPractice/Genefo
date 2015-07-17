@@ -14,6 +14,7 @@ import org.testng.annotations.*;
 
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tanyagaus, Lev on 6/10/15.
@@ -36,9 +37,10 @@ public class SymptomsOnMainPageTest{
     public void setup(){
         this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
         wait = new WebDriverWait(driver, 5);
-        mainPage = PageFactory.initElements(driver,MainPage.class);
-        loginPage = PageFactory.initElements(driver,LoginPage.class);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
+        loginPage = PageFactory.initElements(driver,LoginPage.class);
+        mainPage = PageFactory.initElements(driver,MainPage.class);
         symptomsOnMainPage = PageFactory.initElements(driver, SymptomsOnMainPage.class);
 
         try {

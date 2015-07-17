@@ -64,7 +64,7 @@ public class LikesTest {
 
     @Test
     public void NormalLikeTest() throws InterruptedException {
-        postOnMainPage.createAndSendPost();
+     //   postOnMainPage.createAndSendPost();
         int likesNumberBefore = likesPage.getLikesNumber();
         Log.info("Getting initial number of likes - " + likesNumberBefore + "");
         Log.info("Verifying that 'like' symbol is unchecked");
@@ -86,7 +86,7 @@ public class LikesTest {
 
     @Test
     public void addLiketoUserTest() throws InterruptedException {
-        postOnMainPage.createAndSendPost();
+       // postOnMainPage.createAndSendPost();
         Log.info("Verifying that 'like' symbol is unchecked");
         Assert.assertTrue(likesPage.likeUnchecked(), "Like sign in not unchecked before pressing Like button");
         Reporter.log("Like is unchecked before pressing Like button");

@@ -26,7 +26,7 @@ public class PostOnMainPage extends Page{
     @FindBy(xpath = "//button[@id='submit'][contains(text(),'Post')]")
     WebElement submitButton;
 
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-scope ng-isolate-scope']")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-isolate-scope']")
     WebElement  SentPostText;
 
 

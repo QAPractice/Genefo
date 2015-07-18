@@ -4,6 +4,9 @@ package com.telran.pages;
  * Created by alex on 28/05/2015.
  */
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -13,72 +16,54 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-
 public class MainPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     // Upper Menu buttons
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Post')]")
     WebElement postButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Medicine')]")
     WebElement medicineButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Milestone')]")
     WebElement milestoneButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Symptoms')]")
     WebElement symptomsButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'What Works')]")
     WebElement whatWorksButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'MD Rating')]")
     WebElement mdRatingButton;
-
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Question')]")
     WebElement questionButton;
 
     //Buttons
     @FindBy(xpath = "//div[@class='container']//i[@class='fa fa-cog fa-2x']")
     WebElement cogwheelButton;
-
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
-
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'My Account')]")
     WebElement myAccountButton;
-
     @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
     WebElement logOutButton;
-
     @FindBy(xpath="//ul[@class='nav navbar-nav']")
     WebElement myHomeButton;
-
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement firstPostNameLink;
 
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
     WebElement  UpperSentPostTab;
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
     WebElement  SentPostText;
-
     @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
     WebElement  firstFollowed;
-
     @FindBy(xpath = "//div[@class='col-md-10']/input")
     WebElement  viewConditionFieldForDoctor;
-
     @FindBy(xpath = "//div[@class='top-row']//a[@class='ng-scope ng-binding']")
     WebElement  dropDownConditionDoctor;
-
     @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
     WebElement  viewButton;
-
     @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
     WebElement requiredFieldsMessage;
 
@@ -90,6 +75,7 @@ public class MainPage extends Page {
         super(driver);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://52.10.6.51:8080/home";
+        PropertyConfigurator.configure("log4j.properties");
     }
 
     public MainPage openMainPage() {
@@ -107,7 +93,6 @@ public class MainPage extends Page {
             e.printStackTrace();
         }return this;
     }
-
 
     public MainPage openPostPanel() {
         clickElement(postButton);
@@ -150,6 +135,7 @@ public class MainPage extends Page {
 
     public boolean isOnMainPage() {
         waitUntilMainPageIsLoaded();
+        Log.info("Wait for load Main page");
         return exists(whatWorksButton);
     }
 
@@ -214,13 +200,11 @@ public class MainPage extends Page {
         return(exists(myHomeButton));
     }
 
-
 // Methods for verifying items on sent upper post
 
     public Boolean verifyTextFromSentPost(String text)  {
         return verifyTextBoolean(SentPostText, text);
     }
-
 
     public boolean getRequiredFieldsMessage(){
         return exists(requiredFieldsMessage);

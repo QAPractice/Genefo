@@ -1,64 +1,33 @@
 package com.telran;
 
 import com.telran.pages.*;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
 public class AddProfilesTest {
 
-    private static String EMAIL="ri-lopatina@yandex.ru";
-    private static String PASSWORD="111111";
-    private static String FIRST_MAME = "AAA";
-    private static String LAST_NAME = "BBB";
-    private static String PATIENT_PROFILE_TYPE="2";
-    private static String PATIENT_PROFILE_TYPE_CHECK="Friend";
-    private static String GENDER="0";
-    private static String GENDER_CHECK="Male";
-    private static String CONDITION = "Alstrom";
-    private static String MONTH="6";
-    private static String MONTH_CHECK="July";
-    private static String DAY = "9";
-    private static String DAY_CHECK = "10";
-    private static String YEAR="5";
-    private static String YEAR_CHECK="2010";
-    private static String DIAGNOSE_YEAR="1";
-    private static String DIAGNOSE_YEAR_CHECK="2014";
-    //Constants for checking another profile test
-    private static String FIRST_MAME1="Reg";
-    private static String LAST_NAME1="Lop";
-    private static String PATIENT_PROFILE_TYPE_CHECK1 = "me";
-    private static String GENDER_CHECK1="Female";
-    private static String CONDITION1 = "Diarrhea";
-    private static String MONTH_CHECK1 = "October";
-    private static String DAY_CHECK1="17";
-    private static String YEAR_CHECK1="1983";
-    private static String DIAGNOSE_YEAR_CHECK1 = "1987";
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
+    private static String EMAIL="ri-lopatina@yandex.ru";
+    private static String PASSWORD="111111";
     MyProfilesPage myProfilesPage;
     ProfilePage profilePage;
     LoginPage loginPage;
     MainPage mainPage;
     SummaryPage summaryPage;
 
-
     @BeforeClass
     public void setup() {
-        PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -67,11 +36,8 @@ public class AddProfilesTest {
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
         summaryPage = PageFactory.initElements(driver, SummaryPage.class);
-
         try {
-            Log.info("Opening Login page");
             loginPage.openLoginPage();
-            Log.info("Wait for load Login page");
             loginPage.isOnLoginPage();
             loginPage.fillEmailField(EMAIL)
                     .fillPasswordField(PASSWORD)
@@ -80,330 +46,227 @@ public class AddProfilesTest {
             e.printStackTrace();
         }
     }
-
     @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
-    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month, String day, String year,
-                                  String diagnose_year) {
-        Log.info("Wait for load Main page");
+    public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                  String day,String year,String diagnose_year, String patient_profile_check, String condition_check, String gender_check,
+                                  String birth_date_check,String diagnose_year_check, String name_check, String last_name_check) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
-        Log.info("Wait for load MyProfilesPage page");
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
-        Log.info("Wait for load Profile page");
         profilePage.isOnProfilePage();
-        Log.info("Fill First Name");
         profilePage.fillProfileFirstNameField(first_name);
-        Log.info("Fill Last Name");
         profilePage.fillProfileLastNameField(last_name);
-        Log.info("Select Profile patient type");
         profilePage.selectProfilePatient(patient_profile_type);
-        Log.info("Select Gender");
         profilePage.selectGender(gender);
-        Log.info("Fill condition");
         profilePage.fillProfileConditionField(condition);
-        Log.info("Auto fill condition");
         profilePage.autoFillCondition();
-        Log.info("Select Month");
         profilePage.selectMonth(month);
         profilePage.selectDay(day);
-        Log.info("Select year");
         profilePage.selectYear(year);
-        Log.info("Select diagnose year");
         profilePage.selectDiagnoseYear(diagnose_year);
-        Log.info("Submit");
         profilePage.clickToSubmit();
         assertTrue("The Summary Page doesn't open", summaryPage.isOnSummaryPage());
+        summaryPage.clickOnLastProfile();
+        assertTrue(summaryPage.areProfileFieldsCorrect(patient_profile_check, condition_check, gender_check, birth_date_check, diagnose_year_check, name_check, last_name_check));
+        Reporter.log("New profile created successfuly");
         summaryPage.clickOnDiscoverHome();
-
     }
+
     //  Negative tests
-    @Test(groups = {"smoke", "negative"})    //Bug!!!
-    public void AddProfileWithoutCondition() {
+//    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")    //Bug, because the condition field is filled automatically !!!
+    public void AddProfileWithoutCondition(String first_name, String last_name, String patient_profile_type, String gender, String month,
+                                           String day,String year,String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileLastNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
         profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without condition): profile is not created");
+        profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "negative"})
-    public void AddProfileWoutLastName() {
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutFirstName(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                           String day,String year,String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
         myProfilesPage.clickToPlus();
         profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
         profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"smoke", "negative"})
-    public void AddProfileWoutFirstName() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutPatientType() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutGender() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutMonth() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutDay() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutYear() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(FIRST_MAME);
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectDiagnoseYear(DIAGNOSE_YEAR);
-        profilePage.isDiagnoseYearSelected(DIAGNOSE_YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    @Test (groups = {"negative"})
-    public void AddProfileWoutDiagnoseYear() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickToPlus();
-        profilePage.isOnProfilePage();
-        profilePage.fillProfileFirstNameField(LAST_NAME);
-        profilePage.selectProfilePatient(PATIENT_PROFILE_TYPE);
-        profilePage.isPatientSelected(PATIENT_PROFILE_TYPE_CHECK);
-        profilePage.selectGender(GENDER);
-        profilePage.isGenderSelected(GENDER_CHECK);
-        profilePage.fillProfileConditionField(CONDITION);
-        profilePage.autoFillCondition();
-        profilePage.selectMonth(MONTH);
-        profilePage.isMonthSelected(MONTH_CHECK);
-        profilePage.selectDay(DAY);
-        profilePage.isDaySelected(DAY_CHECK);
-        profilePage.selectYear(YEAR);
-        profilePage.isYearSelected(YEAR_CHECK);
-        profilePage.clickToSubmit();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
-    }
-    //Sitechko: TCFB 2
-    @Test(groups = {"smoke", "positive"})
-    public void CheckAnotherProfile() {
-        mainPage.isOnMainPage();
-        mainPage.selectMyProfile();
-        myProfilesPage.isOnMyProfilesPage();
-        myProfilesPage.clickSecondProfile();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        summaryPage.isOnSummaryPage();
-        assertTrue(summaryPage.areProfileFieldsCorrect(PATIENT_PROFILE_TYPE_CHECK, FIRST_MAME, LAST_NAME, CONDITION, GENDER_CHECK, MONTH_CHECK, DAY_CHECK, YEAR_CHECK, DIAGNOSE_YEAR_CHECK));
-        summaryPage.clickOnFirstProfile();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertTrue(summaryPage.areProfileFieldsCorrect(PATIENT_PROFILE_TYPE_CHECK1, FIRST_MAME1, LAST_NAME1, CONDITION1, GENDER_CHECK1, MONTH_CHECK1, DAY_CHECK1, YEAR_CHECK1, DIAGNOSE_YEAR_CHECK1));
-        summaryPage.clickOnDiscoverHome();
+        Reporter.log("Negative test(profile without first name): profile is not created");
+        profilePage.clickOnDiscoverHome();
     }
 
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWoutLastName(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                       String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without last name): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutPatientType(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                             String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without patient type): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutGender(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                        String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without condition): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutMonth(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                       String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without month): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutDay(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                              String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectYear(year);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePageNegative());
+        Reporter.log("Negative test(profile without day): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutYear(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                               String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectDiagnoseYear(diagnose_year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without year): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    public void AddProfileWithoutDiagnoseYear(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
+                                              String day,String year,String diagnose_year) {
+        mainPage.isOnMainPage();
+        mainPage.selectMyProfile();
+        myProfilesPage.isOnMyProfilesPage();
+        myProfilesPage.clickToPlus();
+        profilePage.isOnProfilePage();
+        profilePage.fillProfileFirstNameField(first_name);
+        profilePage.fillProfileLastNameField(last_name);
+        profilePage.selectProfilePatient(patient_profile_type);
+        profilePage.selectGender(gender);
+        profilePage.fillProfileConditionField(condition);
+        profilePage.selectMonth(month);
+        profilePage.selectDay(day);
+        profilePage.selectYear(year);
+        profilePage.clickToSubmit();
+        assertTrue("Main Page is opened", profilePage.isOnProfilePage());
+        Reporter.log("Negative test(profile without diagnose year): profile is not created");
+        profilePage.clickOnDiscoverHome();
+    }
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();

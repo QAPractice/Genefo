@@ -1,5 +1,8 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +14,7 @@ import java.io.IOException;
  * Created by Л on 5/19/2015.
  */
 public class MyProfilesPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     //Labels
     @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
@@ -25,6 +29,7 @@ public class MyProfilesPage extends Page {
 
     public MyProfilesPage(WebDriver driver) {
         super(driver);
+        PropertyConfigurator.configure("log4j.properties");
         PageFactory.initElements(driver, this);
     }
 
@@ -42,12 +47,14 @@ public class MyProfilesPage extends Page {
         }
     }
     public boolean isOnMyProfilesPage() {
+        Log.info("Wait for load MyProfilesPage page");
         waitUntilMyProfilesPageIsLoaded();
         return exists(addPlusButton);
     }
     public void clickToPlus() {
         clickElement(addPlusButton);
     }
+
     public void clickSecondProfile() {
         clickElement(secondProfile);
     }

@@ -1,5 +1,8 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +16,8 @@ import java.util.LinkedList;
  * Created by Л on 5/20/2015.
  */
 public class SummaryPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
     @FindBy(xpath = "//div[@class='progress' and contains(.,'75% Complete')]")
     WebElement progressBar;
     @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']//a [@class='btn btn-success btn-discover-homepage']")
@@ -31,10 +36,13 @@ public class SummaryPage extends Page {
     WebElement birthdayField;
     @FindBy(xpath = "//ul[@class='profile_list people_list_sidebar']/li[1]//div[@class='profileName ng-binding']")
     WebElement firstProfileButton;
+    @FindBy(xpath = "//ul[@class='profile_list people_list_sidebar']/*[last()]//div[@class='profileName ng-binding']")
+    WebElement lastProfileButton;
 
     public SummaryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        PropertyConfigurator.configure("log4j.properties");
     }
 
     public void waitUntilProfilePageIsLoaded() {
@@ -66,21 +74,27 @@ public class SummaryPage extends Page {
     public void clickOnFirstProfile() {
         clickElement(firstProfileButton);
     }
+    public void clickOnLastProfile() {
+        clickElement(lastProfileButton);
+    }
 
-    public boolean areProfileFieldsCorrect(String relation, String name, String lName, String condition, String gender, String month, String day, String year, String diagnoseYear) {
+    public boolean areProfileFieldsCorrect(String patient_profile_check, String condition_check, String gender_check,
+                                           String birth_date_check, String diagnose_year_check, String name_check, String last_name_check) {
         LinkedList<String> allReqField = new LinkedList<String>();
         String xpath = null;
-        allReqField.add(relation);
-        allReqField.add(name);
-        allReqField.add(lName);
-        allReqField.add(condition);
-        allReqField.add(gender);
-        allReqField.add(month + " " + day + ", " + year);
-        allReqField.add(diagnoseYear);
+        allReqField.add(patient_profile_check);
+        allReqField.add(condition_check);
+        allReqField.add(gender_check);
+        allReqField.add(birth_date_check);
+        allReqField.add(diagnose_year_check);
+        allReqField.add(name_check);
+        allReqField.add(last_name_check);
         try {
+                Thread.sleep(1000);
             for (String s : allReqField) {
                 xpath = "//div [@class='col-lg-9']//*[contains(text(), '" + s + "')][@class='col-xs-7 text-left text-capitalize ng-binding']";
                 driver.findElement(By.xpath(xpath));
+                Log.info("Element " + s + " checked");
             }
         } catch (NoSuchElementException e) {
             System.out.println("--------------------------------------------");
@@ -88,6 +102,8 @@ public class SummaryPage extends Page {
             System.out.println("xpath of the element:" + xpath);
             System.out.println("--------------------------------------------");
             return false;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return true;
     }

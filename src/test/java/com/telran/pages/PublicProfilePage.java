@@ -22,9 +22,9 @@ public class PublicProfilePage extends Page{
     @FindBy(xpath = "//div[@class='panel panel-default']/div[@class='panel-body'][@ng-click='removeNetwork()']")
     WebElement unFollowPanel;
     //Buttons
-    @FindBy(xpath = "//div[@ng-click='addNetwork()']/span[@class='fa-stack']")
+    @FindBy(xpath = "//div[@class='col-md-7 ng-isolate-scope']/div[1]//span[@ class='fa-stack']")
     WebElement plusFollowButton;
-    @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='panel-body']")
+    @FindBy(xpath = "//div[@class='col-md-5']//*[7]//span[@class='fa-stack']")
     WebElement minusFollowButton;
     @FindBy(xpath = "//*[@class='navbar-header']/a")
     WebElement homeTitle;

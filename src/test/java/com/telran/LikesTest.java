@@ -86,7 +86,7 @@ public class LikesTest {
 
     @Test
     public void addLiketoUserTest() throws InterruptedException {
-       // postOnMainPage.createAndSendPost();
+        // postOnMainPage.createAndSendPost();
         Log.info("Verifying that 'like' symbol is unchecked");
         Assert.assertTrue(likesPage.likeUnchecked(), "Like sign in not unchecked before pressing Like button");
         Reporter.log("Like is unchecked before pressing Like button");
@@ -95,13 +95,21 @@ public class LikesTest {
         Log.info("Verifying that 'like' symbol is checked");
         Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
         Reporter.log("Like is checked after pressing Like button");
+    }
+
+    @Test
+    public void addLikeEndReloudedPage() {
+        likesPage.clickToLike();
+        likesPage.reloadPage();
+
 
     }
+
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }
 
-}
+    }
 
 

@@ -14,23 +14,18 @@ import java.io.IOException;
  */
 public class PostOnMainPage extends Page{
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     // Serves as indication that we are on 'Post' Panel. We need double quota inside. Do not remove it, please
     @FindBy(xpath = "//a[@class='ng-scope active'][@ng-class=\"{active : isType('general')}\"]")
 
     WebElement postButtonHighLighted;
-
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
     WebElement postField;
-
     @FindBy(xpath = "//button[@id='submit'][contains(text(),'Post')]")
     WebElement submitButton;
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-isolate-scope']")
     WebElement  SentPostText;
-
-
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     public PostOnMainPage(WebDriver driver) {
         super(driver);
@@ -68,8 +63,20 @@ public class PostOnMainPage extends Page{
         return this;
     }
 
-    public Boolean verifyTextFromSentPost(String text)  {
-        return verifyTextBoolean(SentPostText, text);
+    public PostOnMainPage createAndSendPost() {
+
+        String text = "New text for testing purpose";
+        Log.info("'Posting' post: " + text);
+        try {
+
+            fillTextField(text);
+            sendPost();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
 

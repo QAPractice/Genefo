@@ -56,4 +56,5 @@ public class LikesPage extends Page{
         clickElement(likeForClick);
         return this;
     }
+
 }

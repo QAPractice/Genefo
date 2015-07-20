@@ -51,7 +51,7 @@ public class MainPage extends Page {
     WebElement myHomeButton;
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[6]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default'][1]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement firstPostNameLink;
 
     // Upper Tab of sent posts

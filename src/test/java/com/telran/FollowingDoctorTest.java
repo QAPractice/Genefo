@@ -55,6 +55,11 @@ public class FollowingDoctorTest {
         mainPage.chooseConditionForDoctor("Insomnia");
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
         try {
@@ -93,6 +98,11 @@ public class FollowingDoctorTest {
             e.printStackTrace();
         }
         publicProfilePage.removeFollow();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();

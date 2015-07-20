@@ -102,10 +102,6 @@ public class AddProfilePage extends Page {
             return false;
         }
     }
-    public AddProfilePage click_ButtonCancel(){
-        ButtonCancel.click();
-        return this;
-    }
 
     public AddProfilePage select_How_do_you_know(String itemNumber){
         Select select = new Select(How_do_you_know);

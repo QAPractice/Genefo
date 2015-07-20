@@ -1,5 +1,8 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +14,7 @@ import java.io.IOException;
  * Created by Oleg on 29.05.2015.
  */
 public class ProfileDoctorPage extends Page{
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     //lables
     @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
@@ -26,7 +30,7 @@ public class ProfileDoctorPage extends Page{
     @FindBy(xpath = "//*[@class='btn btn-success ng-binding']")
     WebElement EditHealthcareProfessionalInformationButton;
 
-    @FindBy(xpath = "//*[@class='btn btn-success btn-discover-homepage']")
+    @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']/*[5]")
     WebElement DiscoverYourHomePageButton;
 
     @FindBy(xpath = "//div[@class='container']//i[@class='fa fa-cog fa-2x']")
@@ -36,12 +40,11 @@ public class ProfileDoctorPage extends Page{
     WebElement logOutButton;
 
 
-
-
     public ProfileDoctorPage (WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://52.10.6.51:8080/account_hcp";
         PageFactory.initElements(driver, this);
+        PropertyConfigurator.configure("log4j.properties");
     }
 
     public ProfileDoctorPage openProfileDoctorPage() {
@@ -50,6 +53,7 @@ public class ProfileDoctorPage extends Page{
     }
 
     public ProfileDoctorPage waitUntilProfileDoctorPageIsLoaded() {
+        Log.info("Wait for load Profile Doctor page");
         try {
             waitUntilElementIsLoaded(HCPAccountLable);
         } catch (IOException e) {
@@ -76,6 +80,7 @@ public class ProfileDoctorPage extends Page{
     }
 
     public ProfileDoctorPage clickOnDisYourHP() {
+        Log.info("Wait for load Main page");
         clickElement(DiscoverYourHomePageButton);
         return this;
     }
@@ -87,7 +92,8 @@ public class ProfileDoctorPage extends Page{
     }
 
     public boolean isOnProfileDoctorPage() {
-
+        Log.info("Wait for load Profile Doctor page");
+        waitUntilProfileDoctorPageIsLoaded();
         return exists(HCPAccountLable);
     }
 

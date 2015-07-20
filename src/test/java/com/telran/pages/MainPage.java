@@ -11,10 +11,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class MainPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -134,8 +137,8 @@ public class MainPage extends Page {
     }
 
     public boolean isOnMainPage() {
-        waitUntilMainPageIsLoaded();
         Log.info("Wait for load Main page");
+        waitUntilMainPageIsLoaded();
         return exists(whatWorksButton);
     }
 
@@ -157,9 +160,11 @@ public class MainPage extends Page {
     }
     //For Following tests
     public void openConnectPeopleThisConditionProfile() {
+        Log.info("Open connect people with this condition 1 profile");
         clickElement(connectPeopleThisCondition1Button);
     }
     public boolean isFollowingNamePresents(String name) {
+        Log.info("Assert that new following name presents/not presents");
         try {
             String[] arrName = name.split(" ");
             driver.findElement(By.xpath("//div[@class='panel panel-primary']/../div[7]//li[last()]//span[@class='profileName ng-binding'][contains(text()," + arrName[0] + ")]"));
@@ -169,24 +174,30 @@ public class MainPage extends Page {
         }
     }
     public MainPage openFollow(){
+        Log.info("Open first following profile");
         clickElement(firstFollowed);
         return this;
     }
     public String getFollowName(){
+        Log.info("Profile name memorization");
         return firstFollowed.getText();
     }
     public MainPage openPostNameLink() {
+        Log.info("Click first post link to profile");
         clickElement(firstPostNameLink);
         return this;
     }
     public void chooseConditionForDoctor(String condition){
+        Log.info("Choosing condition for doctor");
         setElementText(viewConditionFieldForDoctor, condition);
     }
     public MainPage chooseConditionFromDropDown(){
+        Log.info("Choosing condition for doctor from dropdown");
         clickElement(dropDownConditionDoctor);
         return this;
     }
     public MainPage clickViewButton(){
+        Log.info("Click on view button");
         clickElement(viewButton);
         return this;
     }

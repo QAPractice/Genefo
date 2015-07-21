@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class ContactUSPage extends Page {
 
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(name = "email")
     WebElement emailField;
@@ -41,27 +43,32 @@ public class ContactUSPage extends Page {
     }
 
     public ContactUSPage openContactPage() {
+        Log.info("Opening ContactUs page");
         driver.get(PAGE_URL);
         return this;
     }
 
     public ContactUSPage fillEmailField(String email) {
+        Log.info("Entering Email");
         setElementText(emailField, email);
         return this;
     }
 
     public ContactUSPage fillMessageField(String message) {
+        Log.info("Entering Message");
         setElementText(messageField, message);
         return this;
     }
 
     public ContactUSPage fillFirstNameField(String firstName) {
+        Log.info("Entering First name");
         setElementText(nameField, firstName);
         return this;
     }
 
 
     public ContactUSPage clickOnSendButton() {
+        Log.info("Clicking on 'Send' button");
         clickElement(sendButton);
         return this;
     }

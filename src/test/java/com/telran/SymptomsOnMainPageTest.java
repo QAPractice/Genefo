@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class SymptomsOnMainPageTest{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    private static String MY_EMAIL="vika2711t@gmail.com";
-    private static String MY_Password="v1681v";
+    private static String MY_EMAIL = "jakoff+444@gmail.com";
+    private static String MY_Password = "111111";
     private static String PATH_TO_Miki= Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
 
     public WebDriver driver;
@@ -47,7 +47,7 @@ public class SymptomsOnMainPageTest{
 
             loginPage.login(MY_EMAIL, MY_Password);
             mainPage.waitUntilMainPageIsLoaded();
-            Assert.assertTrue(mainPage.isOnMainPage(), "Login ok");
+            Assert.assertTrue(mainPage.isOnMainPage(), "Login not ok");
 
         } catch (Exception e) {
             e.printStackTrace();

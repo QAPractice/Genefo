@@ -12,11 +12,11 @@ import java.io.IOException;
 /**
  * Created by alex on 01/06/2015.
  */
-public class PostOnMainPage extends Page{
+public class PostOnMainPage extends Page {
 
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     // Serves as indication that we are on 'Post' Panel. We need double quota inside. Do not remove it, please
-    @FindBy(xpath = "//a[@class='ng-scope active'][@ng-class=\"{active : isType('general')}\"]")
+    @FindBy(xpath = "//a[@class='ng-scope active']//*[contains(@ng-class, \"isType('general')\")]")
 
     WebElement postButtonHighLighted;
     // text field for posting
@@ -25,7 +25,7 @@ public class PostOnMainPage extends Page{
     @FindBy(xpath = "//button[@id='submit'][contains(text(),'Post')]")
     WebElement submitButton;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-isolate-scope']")
-    WebElement  SentPostText;
+    WebElement SentPostText;
 
     public PostOnMainPage(WebDriver driver) {
         super(driver);
@@ -35,7 +35,7 @@ public class PostOnMainPage extends Page{
 
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilPostPanelIsLoaded() {
-        Log.info("Waiting Until Post Panel Is Loaded" );
+        Log.info("Waiting Until Post Panel Is Loaded");
         try {
             waitUntilElementIsLoaded(postButtonHighLighted);
         } catch (IOException e) {
@@ -58,9 +58,13 @@ public class PostOnMainPage extends Page{
     }
 
     public PostOnMainPage sendPost() {
-        Log.info("Sending post" );
+        Log.info("Sending post");
         clickElement(submitButton);
         return this;
+    }
+
+    public Boolean verifyTextFromSentPost(String text) {
+        return verifyTextBoolean(SentPostText, text);
     }
 
     public PostOnMainPage createAndSendPost() {

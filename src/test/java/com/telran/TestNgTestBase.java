@@ -6,45 +6,39 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import ru.stqa.selenium.factory.WebDriverFactory;
-import ru.stqa.selenium.factory.WebDriverFactoryMode;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for TestNG-based test classes
  */
 public class TestNgTestBase {
 
-  //  protected static String gridHubUrl;
-//  protected static String baseUrl;
+
   protected static Capabilities capabilities;
 
   protected WebDriver driver;
-
-  public TestNgTestBase(){
-    try {
-    //  TestUtils.setSystemVar();
-      initTestSuite();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+  protected String gridHubUrl;
+  protected String baseUrl;
 
   @BeforeClass
-  public void initTestSuite() throws IOException {
-//    baseUrl = PropertyLoader.loadProperty("site.url");
-//    gridHubUrl = PropertyLoader.loadProperty("grid.url");
-//    if ("".equals(gridHubUrl)) {
-//      gridHubUrl = null;
-//    }
-    capabilities = PropertyLoader.loadCapabilities();
-    WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
-    driver = WebDriverFactory.getDriver(capabilities);
-  }
+  public void init() throws IOException {
+    baseUrl = PropertyLoader.loadProperty("site.url");
+    gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
 
+    Capabilities capabilities = PropertyLoader.loadCapabilities();
+
+    driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
+
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
-    WebDriverFactory.dismissAll();
+    if (driver != null) {
+      WebDriverFactory.dismissDriver(driver);
+    }
   }
+
 }

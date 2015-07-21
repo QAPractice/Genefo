@@ -3,15 +3,17 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.PostOnMainPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -25,31 +27,20 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class PostOnMainTest {
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public PostOnMainPage postOnMainPage;
     private boolean acceptNextAlert = true;
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
-    @Parameters({"browser"})
-    public void setup(String browser) {
-        //PropertyConfigurator.configure("log4j.properties");
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
-            this.driver = new FirefoxDriver();
-            Log.info("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            Log.info("We are in Chrome browser");
-        }
-        else if (browser.equalsIgnoreCase("InternetExplorer")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            Log.info("We are in Internet Explorer browser");
-        }
+
+    public void setup() {
+
+        PropertyConfigurator.configure("log4j.properties");
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);

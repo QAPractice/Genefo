@@ -94,6 +94,7 @@ public class MainPage extends Page {
 
     public MainPage dealWithTutorial() {
         if (exists(notShowTutorialAgainCheckBox)) {
+            Log.info("Closing tutorial");
             clickElement(notShowTutorialAgainCheckBox);
             clickElement(skipTutorialButton);
             waitUntilMainPageIsLoaded();

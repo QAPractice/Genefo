@@ -99,10 +99,13 @@ public class LikesTest {
 
     @Test
     public void addLikeEndReloudedPage() {
+        postOnMainPage.createAndSendPost();
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign in not unchecked before pressing Like button");
         likesPage.clickToLike();
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
         likesPage.reloadPage();
-
-
+        mainPage.isOnMainPage();
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
     }
 
     @AfterClass(alwaysRun = true)

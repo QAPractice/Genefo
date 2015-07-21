@@ -11,13 +11,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class MainPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -74,6 +71,15 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[text()='See More Graphs']")
     WebElement SeeMoreGraphsButton;
 
+
+    //New tutorial elements
+    @FindBy(xpath = "//*[@id='skip-tutorial-checkbox']")
+    WebElement notShowTutorialAgainCheckBox;
+    @FindBy(xpath = "//*[@ng-click='skipTutorial()']")
+    WebElement skipTutorialButton;
+    @FindBy(xpath = "//*[@class='close']")
+    WebElement closeBetaMessage;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -84,6 +90,16 @@ public class MainPage extends Page {
     public MainPage openMainPage() {
         driver.get(PAGE_URL);
          return this;
+    }
+
+    public MainPage dealWithTutorial() {
+        if (exists(notShowTutorialAgainCheckBox)) {
+            clickElement(notShowTutorialAgainCheckBox);
+            clickElement(skipTutorialButton);
+            waitUntilMainPageIsLoaded();
+            clickElement(closeBetaMessage);
+        }
+        return this;
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

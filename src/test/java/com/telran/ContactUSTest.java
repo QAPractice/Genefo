@@ -2,11 +2,9 @@ package com.telran;
 
 import com.telran.pages.ContactUSPage;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -19,7 +17,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class ContactUSTest extends TestNgTestBase {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
+
     public WebDriverWait wait;
     ContactUSPage contactUSPage;
     private boolean acceptNextAlert = true;
@@ -67,8 +65,5 @@ public class ContactUSTest extends TestNgTestBase {
         Reporter.log("Message sent successfuly - confirmation is appeared");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+
 }

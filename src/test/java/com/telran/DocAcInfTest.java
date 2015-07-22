@@ -39,7 +39,7 @@ public class DocAcInfTest {
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
     private String EMAIL1 = "osh_il+19@yahoo.com";
-    private String EMAIL2 = "osh_il+18@yahoo.com";
+    private String EMAIL2 = "osh_il+20@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -90,7 +90,6 @@ public class DocAcInfTest {
                     .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
             assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
-            Reporter.log("all correct data added successful");
             mainPage.selectMyAccount();
             Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
@@ -108,6 +107,8 @@ public class DocAcInfTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
+
     }
 
     @Test(groups = {"smoke", "positive"})

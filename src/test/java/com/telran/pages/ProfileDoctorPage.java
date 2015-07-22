@@ -80,7 +80,7 @@ public class ProfileDoctorPage extends Page{
     }
 
     public ProfileDoctorPage clickOnDisYourHP() {
-        Log.info("Wait for load Main page");
+        Log.info("Main page is open");
         clickElement(DiscoverYourHomePageButton);
         return this;
     }

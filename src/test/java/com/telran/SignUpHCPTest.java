@@ -84,7 +84,7 @@ public class SignUpHCPTest {
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutLastName() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without last name ");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -101,12 +101,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without last name");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutFirstName() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without first name");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -124,12 +124,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without first name");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutPassword() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without Password");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -146,12 +146,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without Password");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutEmail() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without Email");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -167,12 +167,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without Email");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBox18() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without age verification");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -188,12 +188,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without age verification");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBoxTerms() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without terms verification");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
@@ -209,14 +209,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without terms verification");
     }
 
     //EmailField
     //1
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutAtInEmailField() {
-        Log.info("Checking that all correct data added successfully");
+        Log.info("Checking that registration is not possible without @ in email");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -232,7 +232,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Reporter.log("all correct data added successful");
+        Reporter.log("registration is not possible without @ in email");
     }
 
     //2

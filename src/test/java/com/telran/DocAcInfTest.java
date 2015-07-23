@@ -38,8 +38,8 @@ public class DocAcInfTest {
     public DocAcInfPage docAcInfPage;
     private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
-    private String EMAIL1 = "osh_il+19@yahoo.com";
-    private String EMAIL2 = "osh_il+20@yahoo.com";
+    private String EMAIL1 = "osh_il+20@yahoo.com";
+    private String EMAIL2 = "osh_il+19@yahoo.com";
 
     @BeforeClass
     public void setup() {
@@ -63,7 +63,6 @@ public class DocAcInfTest {
     @BeforeMethod
     public void beforeMethodSetUp() {
         try {
-            Log.info("Opening Profile HCP page");
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 mainPage.selectMyAccount();
             }
@@ -103,7 +102,7 @@ public class DocAcInfTest {
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
-            //assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
+            assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,10 +117,10 @@ public class DocAcInfTest {
             docAcInfPage
                     .clickOnCancel();
             assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
-            Reporter.log("operation is canceled successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("operation is canceled successful");
     }
 
     @Test(groups = {"smoke", "negative"})
@@ -135,10 +134,10 @@ public class DocAcInfTest {
             assertTrue("The Email is valid", docAcInfPage.alertMessageInvalidEmail());
             assertTrue("The Password is valid",docAcInfPage.alertMessageInvalidPassword());
             assertTrue("The current page is changed", docAcInfPage.isOnDocAcInfPage());
-            Reporter.log("empty fields are not updated successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("empty fields are not updated successful");
     }
 
 

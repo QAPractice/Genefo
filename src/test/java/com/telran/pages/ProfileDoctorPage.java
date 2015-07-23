@@ -92,7 +92,6 @@ public class ProfileDoctorPage extends Page{
     }
 
     public boolean isOnProfileDoctorPage() {
-        Log.info("Wait for load Profile Doctor page");
         waitUntilProfileDoctorPageIsLoaded();
         return exists(HCPAccountLable);
     }

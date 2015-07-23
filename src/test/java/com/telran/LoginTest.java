@@ -66,18 +66,19 @@ public class LoginTest {
                     .clickOnLogin();
             mainPage.waitUntilMainPageIsLoaded();
             assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-            Reporter.log("Login successful");
             mainPage.logOut();
             homePage.waitUntilHomePageIsLoaded();
             //assertTrue("The Home Page doesn't open", homePage.isOnHomePage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Login successful");
     }
 
     @Test(groups = {"smoke", "positive"})
     public void LoginLogoutLogin() {
         Log.info("Checking ability login ,logout and login again with another user");
+        try {
         loginPage
                 .fillEmailField(USER)
                 .fillPasswordField(PASSWORD)
@@ -93,8 +94,12 @@ public class LoginTest {
                 .clickOnLogin();
         mainPage.waitUntilMainPageIsLoaded();
         assertTrue("The Main Page doesn't open", mainPage.isOnMainPage());
-        Reporter.log("Login successful");
         mainPage.logOut();
+        homePage.waitUntilHomePageIsLoaded();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Reporter.log("Login successful");
     }
 
     @Test(groups = {"smoke", "negative"})
@@ -107,11 +112,11 @@ public class LoginTest {
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
-            assertTrue("The current page is changed",loginPage.isOnLoginPage());
-            Reporter.log("Not logged in successful");
+            assertTrue("The current page is changed", loginPage.isOnLoginPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Not logged in successful");
     }
     @Test(groups = {"smoke", "negative"})
     public void LoginWithPasswordContains1Symbol() {
@@ -123,11 +128,11 @@ public class LoginTest {
                     .waitUntilAllertPasswordIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Password is valid", loginPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed",loginPage.isOnLoginPage());
-            Reporter.log("Not logged in successful");
+            assertTrue("The current page is changed", loginPage.isOnLoginPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Not logged in successful");
     }
 
     @Test(groups = {"smoke", "positive"})
@@ -140,10 +145,10 @@ public class LoginTest {
             assertTrue("The Reset Password Page doesn't open", resetYourPasswordPage.isOnResetPage());
             resetYourPasswordPage.fillEmailField(USER);
             resetYourPasswordPage.clickOnEmailMe();
-            Reporter.log("Password recreated successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Password recreated successful");
     }
 
     @Test(groups = {"smoke", "negative"})
@@ -156,12 +161,12 @@ public class LoginTest {
                     .waitUntilAllertEmailIsLogIsLoaded()
                     .clickOnLogin();
             assertTrue("The Email is valid", loginPage.alertMessageInvalidEmail());
-            assertTrue("The Password is valid",loginPage.alertMessageInvalidPassword());
-            assertTrue("The current page is changed",loginPage.isOnLoginPage());
-            Reporter.log("Not logged in successful");
+            assertTrue("The Password is valid", loginPage.alertMessageInvalidPassword());
+            assertTrue("The current page is changed", loginPage.isOnLoginPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Not logged in successful");
     }
 
 

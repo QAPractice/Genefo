@@ -74,16 +74,17 @@ public class SignUpHCPTest {
                     .clickOnSignUp();
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             assertTrue("Profile HCP Page doesn't open", profileDoctorPage.isOnProfileDoctorPage());
-            Reporter.log("all correct data added successful");
             profileDoctorPage.logOut();
             sleep();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutLastName() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -100,10 +101,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutFirstName() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -121,10 +124,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutPassword() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -141,10 +146,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutEmail() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -160,10 +167,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBox18() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -179,10 +188,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBoxTerms() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
@@ -198,12 +209,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //EmailField
     //1
     @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutAtInEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -219,11 +232,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"negative"})
     public void RegTestWithSpecialCharactersInEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -239,11 +254,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //3
     @Test(groups = {"negative"})
     public void RegTestWithoutLocalPartInEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -259,11 +276,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //4
     @Test(groups = {"negative"})
     public void RegTestWithoutDomainPartInEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -279,12 +298,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //5
 
     @Test(groups = {"negative"})
     public void RegTestWithConsecutiveDotsInEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -300,11 +321,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //6
     @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginingLocalPartEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -320,11 +343,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //7
     @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningDomainPartEmailField() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -340,11 +365,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //8
     @Test(groups = {"negative"})
     public void RegTestWithEmailContains256Symbols() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -364,12 +391,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //PasswordField
     //1
     @Test(groups = {"negative"})
     public void RegTestWithPasswordContains5Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -386,11 +415,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"negative"})
     public void RegTestWithPasswordContains13Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -407,12 +438,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //FirstName
     //1
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsSpecialCharacters() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -429,11 +462,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsDigits() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -451,11 +486,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //3
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsUnderscore() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -472,11 +509,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //4
     @Test(groups = {"negative"})
     public void RegTestWithFirstNameContains26Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -493,12 +532,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //LastName
     //1
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsSpecialCharacters() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -515,11 +556,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsDigits() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -535,11 +578,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //3
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsUnderscore() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -556,11 +601,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //4
     @Test(groups = {"negative"})
     public void RegTestWithLastNameContains26Symbols() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -577,6 +624,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
 
@@ -585,6 +633,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestEmailLocalPartBeginsNumber() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
@@ -603,11 +652,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"positive"})
     public void RegTestEmailDomainNameBeginsNumber() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
@@ -626,12 +677,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //3
 
     @Test(groups = {"positive"})
     public void RegTestEmailWithDotsLocalAndDomain() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -649,12 +702,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //4
 
     @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInLocalPart() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -673,12 +728,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
 
     //5
     @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInDomainPart() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -696,12 +753,14 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //6
 
     @Test(groups = {"positive"})
     public void RegTestEmailWithUnderscoreInLocalPart() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -719,6 +778,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //Positive test for password
@@ -726,6 +786,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestPassword6Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -744,11 +805,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"positive"})
     public void RegTestPassword8Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -767,11 +830,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //3
     @Test(groups = {"positive"})
     public void RegTestPassword12Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -790,6 +855,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //Positive Tests for FirstNameField
@@ -797,6 +863,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestFirstName25Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -815,11 +882,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
 
     @Test(groups = {"positive"})
     public void RegTestFirstName1Symbol() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -838,6 +907,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
 
@@ -846,6 +916,7 @@ public class SignUpHCPTest {
     //1
     @Test(groups = {"positive"})
     public void RegTestLastName25Symbols() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
@@ -864,11 +935,13 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     //2
     @Test(groups = {"positive"})
     public void RegTestLastName1Symbol() {
+        Log.info("Checking that all correct data added successfully");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
@@ -887,10 +960,12 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @Test(groups = {"positive"})
     public void TermOfServiceClick() {
+        Log.info("Checking that all correct data added successfully");
         try {
             signUpHCPPage
                     .openHCPRegPage()
@@ -900,6 +975,7 @@ public class SignUpHCPTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("all correct data added successful");
     }
 
     @AfterClass(alwaysRun = true)

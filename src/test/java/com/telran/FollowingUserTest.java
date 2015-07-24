@@ -90,7 +90,7 @@ public class FollowingUserTest {
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
         mainPage.isOnMainPage();
-        mainPage.openPostNameLink();
+       // mainPage.openPostNameLink();
         publicProfilePage.isOnPublicProfilePage();
         try {
             Thread.sleep(1000);

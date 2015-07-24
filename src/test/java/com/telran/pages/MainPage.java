@@ -15,6 +15,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 
 public class MainPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -40,30 +42,33 @@ public class MainPage extends Page {
     WebElement cogwheelButton;
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Profiles')]")
     WebElement myProfilesButton;
-    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'My Account')]")
+    @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Account')]")
     WebElement myAccountButton;
-    @FindBy(xpath="//li[@class='ng-scope']/*[contains(text(),'Logout')]")
+    @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'Logout')]")
     WebElement logOutButton;
-    @FindBy(xpath="//ul[@class='nav navbar-nav']")
+    @FindBy(xpath = "//ul[@class='nav navbar-nav']")
     WebElement myHomeButton;
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
     WebElement connectPeopleThisCondition1Button;
     @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default'][1]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement firstPostNameLink;
-
+    @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
+    WebElement allPostNameLinks;
+    @FindBy(xpath = "//div[@class='profile_selector_active profile_selector_active_hcp']//div[@class='profile_selector_name ng-binding']")
+    WebElement myName;
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
-    WebElement  UpperSentPostTab;
+    WebElement UpperSentPostTab;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
-    WebElement  SentPostText;
+    WebElement SentPostText;
     @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
-    WebElement  firstFollowed;
+    WebElement firstFollowed;
     @FindBy(xpath = "//div[@class='col-md-10']/input")
-    WebElement  viewConditionFieldForDoctor;
+    WebElement viewConditionFieldForDoctor;
     @FindBy(xpath = "//div[@class='top-row']//a[@class='ng-scope ng-binding']")
-    WebElement  dropDownConditionDoctor;
+    WebElement dropDownConditionDoctor;
     @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
-    WebElement  viewButton;
+    WebElement viewButton;
     @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
     WebElement requiredFieldsMessage;
 
@@ -80,6 +85,9 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[@class='close']")
     WebElement closeBetaMessage;
 
+    @FindBy(xpath = "//ul[@class='people_list']/li")
+    WebElement followNames;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -89,7 +97,7 @@ public class MainPage extends Page {
 
     public MainPage openMainPage() {
         driver.get(PAGE_URL);
-         return this;
+        return this;
     }
 
     public MainPage dealWithTutorial() {
@@ -111,7 +119,8 @@ public class MainPage extends Page {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }return this;
+        }
+        return this;
     }
 
     public MainPage openPostPanel() {
@@ -143,6 +152,7 @@ public class MainPage extends Page {
         clickElement(mdRatingButton);
         return this;
     }
+
     public MainPage clikToSeeMoreGraphsButton() {
         clickElement(SeeMoreGraphsButton);
         return this;
@@ -159,12 +169,13 @@ public class MainPage extends Page {
         return exists(whatWorksButton);
     }
 
-    public MainPage selectMyProfile () {
+    public MainPage selectMyProfile() {
         clickElement(cogwheelButton);
         clickElement(myProfilesButton);
         return this;
     }
-    public MainPage selectMyAccount () {
+
+    public MainPage selectMyAccount() {
         clickElement(cogwheelButton);
         clickElement(myAccountButton);
         return this;
@@ -175,11 +186,13 @@ public class MainPage extends Page {
         clickElement(logOutButton);
         return this;
     }
+
     //For Following tests
     public void openConnectPeopleThisConditionProfile() {
         Log.info("Open connect people with this condition 1 profile");
         clickElement(connectPeopleThisCondition1Button);
     }
+
     public boolean isFollowingNamePresents(String name) {
         Log.info("Assert that new following name presents/not presents");
         try {
@@ -190,51 +203,57 @@ public class MainPage extends Page {
             return false;
         }
     }
-    public MainPage openFollow(){
+
+    public MainPage openFollow() {
         Log.info("Open first following profile");
         clickElement(firstFollowed);
         return this;
     }
-    public String getFollowName(){
+
+    public String getFollowName() {
         Log.info("Profile name memorization");
         return firstFollowed.getText();
     }
-    public MainPage openPostNameLink() {
-        Log.info("Click first post link to profile");
-        clickElement(firstPostNameLink);
+
+    public MainPage openPostNameLink(WebElement current) {
+        Log.info("Click post link to profile");
+        clickElement(current);
         return this;
     }
-    public void chooseConditionForDoctor(String condition){
+
+    public void chooseConditionForDoctor(String condition) {
         Log.info("Choosing condition for doctor");
         setElementText(viewConditionFieldForDoctor, condition);
     }
-    public MainPage chooseConditionFromDropDown(){
+
+    public MainPage chooseConditionFromDropDown() {
         Log.info("Choosing condition for doctor from dropdown");
         clickElement(dropDownConditionDoctor);
         return this;
     }
-    public MainPage clickViewButton(){
+
+    public MainPage clickViewButton() {
         Log.info("Click on view button");
         clickElement(viewButton);
         return this;
     }
 
-    public MainPage clickMyHomeButton(){
+    public MainPage clickMyHomeButton() {
         clickElement(myHomeButton);
         return this;
     }
 
-    public boolean isMyHomeExists(){
-        return(exists(myHomeButton));
+    public boolean isMyHomeExists() {
+        return (exists(myHomeButton));
     }
 
 // Methods for verifying items on sent upper post
 
-    public Boolean verifyTextFromSentPost(String text)  {
+    public Boolean verifyTextFromSentPost(String text) {
         return verifyTextBoolean(SentPostText, text);
     }
 
-    public boolean getRequiredFieldsMessage(){
+    public boolean getRequiredFieldsMessage() {
         return exists(requiredFieldsMessage);
     }
 
@@ -243,4 +262,38 @@ public class MainPage extends Page {
         waitUntilElementIsLoaded(requiredFieldsMessage);
         return this;
     }
+
+    private HashSet<String> followers = new HashSet<String>();
+
+    public void fillSet() {
+        List<WebElement> followList;
+        try {
+            followList = followNames.findElements(By.tagName("li"));
+            if (followList != null)
+                for (WebElement current : followList) {
+                    Log.info(current.getText() + " is adding to follow name set");
+                    followers.add(current.getText());
+                }
+        } catch (NoSuchElementException e) {
+            Log.info("No followers");
+        }
+        Log.info(myName.getText() + " is adding to follow name set");
+        followers.add(myName.getText());
+    }
+
+    public WebElement getNameFromPost() {
+        List<WebElement> postNamesList = allPostNameLinks.findElements(By.tagName("li"));
+        for (WebElement current : postNamesList) {
+            String name = current.getText();
+            if (!isFollowNameExists(name))
+                Log.info("New name for follow: "+ name);
+                return current;
+        }
+        Log.info("No names to add to follow");
+        return null;
+    }
+    public boolean isFollowNameExists(String name){
+        return followers.contains(name);
+    }
+
 }

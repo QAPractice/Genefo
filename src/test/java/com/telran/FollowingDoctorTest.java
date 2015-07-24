@@ -1,17 +1,22 @@
 package com.telran;
 
-import com.telran.pages.*;
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.ProfileDoctorPage;
+import com.telran.pages.PublicProfilePage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
+
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -40,7 +45,7 @@ public class FollowingDoctorTest {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded()
-                    .login("ri-lopatina1@yandex.ru", "123456");
+                    .login("gjgfytf@jhghtf.com", "123456");
             profileDoctorPage.isOnProfileDoctorPage();
             profileDoctorPage.clickOnDisYourHP();
         } catch (Exception e) {
@@ -114,10 +119,13 @@ public class FollowingDoctorTest {
         Reporter.log("AddFollowSuccessFromPosts test");
         Log.info("AddFollowSuccessFromPosts test");
         mainPage.isOnMainPage();
-        mainPage.chooseConditionForDoctor("Insomnia");
+        mainPage.chooseConditionForDoctor("Alstrom");
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
-        mainPage.openPostNameLink();
+        mainPage.fillSet();
+        WebElement temp = mainPage.getNameFromPost();
+        if (temp==null) return;
+        mainPage.openPostNameLink(temp);
         publicProfilePage.isOnPublicProfilePage();
         try {
             Thread.sleep(1000);

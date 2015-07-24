@@ -34,7 +34,7 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars Sent Post
-    @FindBy(xpath = "//*[@ng-model='medicine_effect']//*[@class='sr-only ng-binding']")
+    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty'][@ng-model='medicine_effect']")
     WebElement allStarsTogether;
 
     // Rating star( marked one. Have asterisk sign in definition)
@@ -85,7 +85,7 @@ public class MedicineOnMainPage extends Page {
     WebElement reasonName;
 
     //alerts
-    @FindBy(xpath = "//*[@class = 'alert alert-danger alert-dismissible ng-hide']/div")
+    @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement errorRequiredFields;
 
 
@@ -218,11 +218,11 @@ public class MedicineOnMainPage extends Page {
         return exists(errorRequiredFields);
     }
 
-    public Boolean verifyFirstStarCheckedInSentPost() {
+    public boolean verifyFirstStarCheckedInSentPost() {
         return exists(markedFirstStarInSentPost);
     }
 
-    public Boolean verifySecondStarNonCheckedInSentPost() {
+    public boolean verifySecondStarNonCheckedInSentPost() {
         return exists(unmarkedSecondStarInSentPost);
     }
 
@@ -241,6 +241,3 @@ public class MedicineOnMainPage extends Page {
 
 
 }
-
-
-

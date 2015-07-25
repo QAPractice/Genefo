@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -131,7 +132,7 @@ public class FollowingDoctorTest {
         assertTrue(mainPage.isFollowingNamePresents(name));
         Reporter.log("3.New profile was added to follow successfully from posts");
     }
-    //@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }

@@ -3,10 +3,13 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.PublicProfilePage;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,11 +28,12 @@ public class FollowingUserTest {
     LoginPage loginPage;
     MainPage mainPage;
     PublicProfilePage publicProfilePage;
-    private boolean acceptNextAlert = true;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     public void setup() {
-        this.driver = new InternetExplorerDriver();
+        PropertyConfigurator.configure("log4j.properties");
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -39,7 +43,7 @@ public class FollowingUserTest {
         try {
             loginPage.openLoginPage()
                     .waitUntilLoginPageIsLoaded()
-                    .login("jakoff+444@gmail.com", "111111");
+                    .login("ri-lopatina@yandex.ru", "111111");
             mainPage.waitUntilMainPageIsLoaded();
 
         } catch (Exception e) {
@@ -49,7 +53,14 @@ public class FollowingUserTest {
 
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromConnectPeopleConditionField(){
+        Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
+        Log.info("AddFollowSuccessFromConnectPeopleConditionField test");
         mainPage.isOnMainPage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
         try {
@@ -68,10 +79,13 @@ public class FollowingUserTest {
             e.printStackTrace();
         }
         assertTrue(mainPage.isFollowingNamePresents(name));
+        Reporter.log("New profile was added to following successfully from ConnectPeopleThisConditionProfile");
     }
 
     @Test (groups = {"smoke", "positive"})
     public void unFollowSuccess(){
+        Reporter.log("UnFollowSuccess test");
+        Log.info("UnFollowSuccess test");
         mainPage.isOnMainPage();
         String name = mainPage.getFollowName();
         mainPage.openFollow();
@@ -81,16 +95,27 @@ public class FollowingUserTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-         publicProfilePage.removeFollow();
-       assertTrue(publicProfilePage.plusFollowPanel());
+        publicProfilePage.removeFollow();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertTrue(publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertFalse(mainPage.isFollowingNamePresents(name));
+        Reporter.log("New profile was unfollowed successfully");
     }
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
+        Reporter.log("AddFollowSuccessFromPosts test");
+        Log.info("AddFollowSuccessFromPosts test");
         mainPage.isOnMainPage();
-       // mainPage.openPostNameLink();
+        mainPage.fillSet();
+        mainPage.addMyUserNameToFillSet();
+        if (!mainPage.addNewFollowerFromPost())
+            return;
         publicProfilePage.isOnPublicProfilePage();
         try {
             Thread.sleep(1000);
@@ -103,7 +128,9 @@ public class FollowingUserTest {
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertTrue(mainPage.isFollowingNamePresents(name));
-    }
+        Reporter.log("New profile was added to follow successfully from posts");
+
+}
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();

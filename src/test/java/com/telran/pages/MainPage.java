@@ -55,7 +55,9 @@ public class MainPage extends Page {
     @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement allPostNameLinks;
     @FindBy(xpath = "//div[@class='profile_selector_active profile_selector_active_hcp']//div[@class='profile_selector_name ng-binding']")
-    WebElement myName;
+    WebElement myNameDoctor;
+    @FindBy(xpath = "//div[@class='profile_selector_active profile_selector_active_regular']//div[@class='profile_selector_name ng-binding']")
+    WebElement myNameUser;
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
     WebElement UpperSentPostTab;
@@ -263,35 +265,54 @@ public class MainPage extends Page {
         return this;
     }
 
-    private HashSet<String> followers = new HashSet<String>();
+    private HashSet<String> followers = new HashSet<>();
 
     public void fillSet() {
         List<WebElement> followList;
         try {
-            followList = followNames.findElements(By.tagName("li"));
+            followList = driver.findElements(By.xpath("//ul[@class='people_list']/li"));
             if (followList != null)
                 for (WebElement current : followList) {
-                    Log.info(current.getText() + " is adding to follow name set");
-                    followers.add(current.getText());
+                    String name = current.getText();
+                    name = name.replace('\n', ' ');
+                    Log.info(name + " is adding to follow name set");
+                    followers.add(name);
                 }
         } catch (NoSuchElementException e) {
             Log.info("No followers");
         }
-        Log.info(myName.getText() + " is adding to follow name set");
-        followers.add(myName.getText());
     }
+    public void addMyDoctorNameToFillSet() {
+        String strMyName = myNameDoctor.getText();
+        Log.info(strMyName + " is adding to follow name set");
+        followers.add(strMyName);
+    }
+    public void addMyUserNameToFillSet() {
+        String strMyName = myNameUser.getText();
+        Log.info(strMyName + " is adding to follow name set");
+        followers.add(strMyName);
+    }
+    //Method returns true if it finds a new name to follow from posts and goes to his profile page and returns false
+    //if there are no new names to add to follow
+    public boolean addNewFollowerFromPost() {
 
-    public WebElement getNameFromPost() {
-        List<WebElement> postNamesList = allPostNameLinks.findElements(By.tagName("li"));
+        List<WebElement> postNamesList = driver.findElements(By.xpath("//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']"));
+        int count = 0;
         for (WebElement current : postNamesList) {
             String name = current.getText();
-            if (!isFollowNameExists(name))
-                Log.info("New name for follow: "+ name);
-                return current;
+            if (!isFollowNameExists(name)) {
+                Log.info("New name for follow: " + name);
+                Log.info("Click post number " + count); //post number to click
+                postNamesList.get(count).click();
+                return true;
+            }
+            count++;
         }
         Log.info("No names to add to follow");
-        return null;
+        Log.info(count + " posts was checked");//When we open the main page only 10 posts are loaded
+        return false;
     }
+    //Method returns true if a name from posts is contained in the list People You Are Following
     public boolean isFollowNameExists(String name){
         return followers.contains(name);
     }

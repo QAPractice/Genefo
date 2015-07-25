@@ -7,7 +7,6 @@ import com.telran.pages.PublicProfilePage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -51,15 +50,15 @@ public class FollowingDoctorTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    @Test (groups = {"smoke", "positive"})
-    public void addFollowSuccessFromConnectPeopleConditionField(){
-        Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
-        Log.info("AddFollowSuccessFromConnectPeopleConditionField test");
         mainPage.isOnMainPage();
         mainPage.chooseConditionForDoctor("Insomnia");
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
+    }
+    @Test (groups = {"smoke", "positive"})
+    public void addFollowSuccessFromConnectPeopleConditionField(){
+        Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
+        Log.info("1.AddFollowSuccessFromConnectPeopleConditionField test");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -83,17 +82,13 @@ public class FollowingDoctorTest {
             e.printStackTrace();
         }
         assertTrue(mainPage.isFollowingNamePresents(name));
-        Reporter.log("New profile was added to following successfully from ConnectPeopleThisConditionProfile");
+        Reporter.log("1.New profile was added to following successfully from ConnectPeopleThisConditionProfile");
     }
 
     @Test (groups = {"smoke", "positive"})
     public void unFollowSuccess(){
         Reporter.log("UnFollowSuccess test");
-        Log.info("UnFollowSuccess test");
-        mainPage.isOnMainPage();
-        mainPage.chooseConditionForDoctor("Insomnia");
-        mainPage.chooseConditionFromDropDown();
-        mainPage.clickViewButton();
+        Log.info("2.UnFollowSuccess test");
         String name = mainPage.getFollowName();
         mainPage.openFollow();
         publicProfilePage.isOnPublicProfilePage();
@@ -112,20 +107,16 @@ public class FollowingDoctorTest {
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertFalse(mainPage.isFollowingNamePresents(name));
-        Reporter.log("New profile was unfollowed successfully");
+        Reporter.log("2.New profile was unfollowed successfully");
     }
     @Test (groups = {"smoke", "positive"})
     public void addFollowSuccessFromPosts(){
         Reporter.log("AddFollowSuccessFromPosts test");
-        Log.info("AddFollowSuccessFromPosts test");
-        mainPage.isOnMainPage();
-        mainPage.chooseConditionForDoctor("Alstrom");
-        mainPage.chooseConditionFromDropDown();
-        mainPage.clickViewButton();
+        Log.info("3.AddFollowSuccessFromPosts test");
         mainPage.fillSet();
-        WebElement temp = mainPage.getNameFromPost();
-        if (temp==null) return;
-        mainPage.openPostNameLink(temp);
+        mainPage.addMyDoctorNameToFillSet();
+        if (!mainPage.addNewFollowerFromPost())
+            return;
         publicProfilePage.isOnPublicProfilePage();
         try {
             Thread.sleep(1000);
@@ -138,10 +129,10 @@ public class FollowingDoctorTest {
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
         assertTrue(mainPage.isFollowingNamePresents(name));
-        Reporter.log("New profile was added to follow successfully from posts");
+        Reporter.log("3.New profile was added to follow successfully from posts");
     }
-    /*@AfterClass(alwaysRun = true)
+    //@AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
-    }*/
+    }
 }

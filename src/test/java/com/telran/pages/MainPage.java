@@ -55,7 +55,9 @@ public class MainPage extends Page {
     @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement allPostNameLinks;
     @FindBy(xpath = "//div[@class='profile_selector_active profile_selector_active_hcp']//div[@class='profile_selector_name ng-binding']")
-    WebElement myName;
+    WebElement myNameDoctor;
+    @FindBy(xpath = "//div[@class='profile_selector_active profile_selector_active_regular']//div[@class='profile_selector_name ng-binding']")
+    WebElement myNameUser;
     // Upper Tab of sent posts
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]")
     WebElement UpperSentPostTab;
@@ -263,7 +265,7 @@ public class MainPage extends Page {
         return this;
     }
 
-    private HashSet<String> followers = new HashSet<String>();
+    private HashSet<String> followers = new HashSet<>();
 
     public void fillSet() {
         List<WebElement> followList;
@@ -279,13 +281,21 @@ public class MainPage extends Page {
         } catch (NoSuchElementException e) {
             Log.info("No followers");
         }
-        String strMyName = myName.getText();
+    }
+    public void addMyDoctorNameToFillSet() {
+        String strMyName = myNameDoctor.getText();
+        Log.info(strMyName + " is adding to follow name set");
+        followers.add(strMyName);
+    }
+    public void addMyUserNameToFillSet() {
+        String strMyName = myNameUser.getText();
         Log.info(strMyName + " is adding to follow name set");
         followers.add(strMyName);
     }
     //Method returns true if it finds a new name to follow from posts and goes to his profile page and returns false
     //if there are no new names to add to follow
     public boolean addNewFollowerFromPost() {
+
         List<WebElement> postNamesList = driver.findElements(By.xpath("//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']"));
         int count = 0;
         for (WebElement current : postNamesList) {

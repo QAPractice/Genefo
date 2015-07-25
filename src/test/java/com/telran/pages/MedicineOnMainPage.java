@@ -1,5 +1,7 @@
 package com.telran.pages;
 
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import java.io.IOException;
-
+import java.util.List;
 /**
  * Created by Marina and Olga on 5/28/2015.
  */
@@ -21,6 +23,10 @@ public class MedicineOnMainPage extends Page {
     WebElement reasonForMedicineField;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicineField;
+    @FindBy(id = "typeahead-00K-2639")
+    WebElement nameOfMedicineOptions;
+    @FindBy(id = "typeahead-00L-842")
+    WebElement reasonForMedicineOptions;
 
     //elements of dropdown list
     @FindBy(xpath = "//*[contains(@id,'typeahead')][@ng-show='isOpen()']/li[1]")
@@ -134,12 +140,67 @@ public class MedicineOnMainPage extends Page {
 
     /**
      *
-     * @param nameMedicineShort
-     * @param nameMedicineFull
+  //   * @param nameMedicineShort
+  //   * @param nameMedicineFull
      * @return
      * @throws IOException
      * @throws InterruptedException
      */
+    public void createMedicinePost(){
+        setNameOfMedicine("a");
+        WebElement nameOfMedicine;
+        List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
+        int nameOfMedicineCounter = 0;
+        while (nameOfMedicineCounter < nameOfMedicineList.size()){
+            nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
+            nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);
+            String name = nameOfMedicine.getText();
+            try{
+                waitUntilElementIsLoaded(nameOfMedicine);
+            }catch (IOException e){
+                e.printStackTrace();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            clickElement(nameOfMedicine);
+            // Log.info("Selecting name of Medicine: " + name + " ");
+
+            setReasonForMedicine("a");
+            WebElement reasonForMedicine;
+            List<WebElement> reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
+            int nameOfReasonCounter = 0;
+            while (nameOfReasonCounter < 8){
+                reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
+                reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
+                String reason = reasonForMedicine.getText();
+                try{
+                    waitUntilElementIsLoaded(reasonForMedicine);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+                clickElement(reasonForMedicine);
+                // Log.info("Selecting reason for Medicine: " + reason + " ");
+            }
+        }
+
+    }
+
+
+
+
+
+    public MedicineOnMainPage setNameOfMedicine(String nameMedicine) {
+        setElementText(nameOfMedicinefield, nameMedicine);
+        return this;
+    }
+
+    public MedicineOnMainPage setReasonForMedicine(String nameOfReason){
+        setElementText(reasonForMedicineField,nameOfReason);
+        return this;
+    }
+
     public MedicineOnMainPage fillExistingNameOfMedicine(String nameMedicineShort, String nameMedicineFull) throws IOException, InterruptedException {
         setElementText(nameOfMedicinefield, nameMedicineShort);
         waitUntilIsLoaded(tooltipNameOfMedicine);

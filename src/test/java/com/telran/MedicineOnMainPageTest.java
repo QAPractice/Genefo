@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -52,7 +53,18 @@ public class MedicineOnMainPageTest {
         }
     }
 
+    @BeforeMethod
+    public void beforeMethodSetUp() {
+        mainPage
+                .openMedicinePanel();
+        medicineOnMainPage.waitUntilMedicinePanelIsLoaded();
+    }
     //Positive tests
+
+    @Test
+    public void postSomeMedicine(){
+        medicineOnMainPage.createMedicinePost();
+    }
 
     @Test(groups = {"smoke", "positive"})
     public void sendMedicineWithShortMedNameReasonTest() {

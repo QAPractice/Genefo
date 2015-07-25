@@ -7,7 +7,6 @@ import com.telran.pages.PublicProfilePage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -123,9 +122,8 @@ public class FollowingDoctorTest {
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
         mainPage.fillSet();
-        WebElement temp = mainPage.getNameFromPost();
-        if (temp==null) return;
-        mainPage.openPostNameLink(temp);
+        if (!mainPage.addNewFollowerFromPost())
+            return;
         publicProfilePage.isOnPublicProfilePage();
         try {
             Thread.sleep(1000);

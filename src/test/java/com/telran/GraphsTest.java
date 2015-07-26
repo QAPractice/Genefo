@@ -9,16 +9,11 @@ import com.telran.pages.MainPage;
 import junit.framework.Assert;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 /*
 *
@@ -28,9 +23,9 @@ import java.util.concurrent.TimeUnit;
 */
 
 
-public class GraphsTest {
+public class GraphsTest extends TestNgTestBase {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
+
     public WebDriverWait wait;
     public LoginPage loginPage;
     public MainPage mainPage;
@@ -43,9 +38,8 @@ public class GraphsTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         grafsPage = PageFactory.initElements(driver, GrafsPage.class);
@@ -74,11 +68,6 @@ public class GraphsTest {
 
     }
 
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 
     private String closeAlertAndGetItsText() {
         try {

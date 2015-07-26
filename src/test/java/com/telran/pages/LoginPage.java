@@ -35,7 +35,7 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/login";
+        this.PAGE_URL = baseUrl;
         PageFactory.initElements(driver, this);
     }
 

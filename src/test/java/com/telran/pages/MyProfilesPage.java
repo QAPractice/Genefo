@@ -34,7 +34,7 @@ public class MyProfilesPage extends Page {
     }
 
     public MyProfilesPage openMyProfilesPage() {
-        driver.get(PAGE_URL);
+        driver.get(PAGE_URL + "/profiles");
         return this;
     }
         public void waitUntilMyProfilesPageIsLoaded() {

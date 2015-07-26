@@ -89,11 +89,12 @@ public class MainPage extends Page {
 
     @FindBy(xpath = "//ul[@class='people_list']/li")
     WebElement followNames;
+    private HashSet<String> followers = new HashSet<>();
 
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://52.10.6.51:8080/home";
+        this.PAGE_URL = baseUrl + "/home";
         PropertyConfigurator.configure("log4j.properties");
     }
 
@@ -245,11 +246,11 @@ public class MainPage extends Page {
         return this;
     }
 
+// Methods for verifying items on sent upper post
+
     public boolean isMyHomeExists() {
         return (exists(myHomeButton));
     }
-
-// Methods for verifying items on sent upper post
 
     public Boolean verifyTextFromSentPost(String text) {
         return verifyTextBoolean(SentPostText, text);
@@ -264,8 +265,6 @@ public class MainPage extends Page {
         waitUntilElementIsLoaded(requiredFieldsMessage);
         return this;
     }
-
-    private HashSet<String> followers = new HashSet<>();
 
     public void fillSet() {
         List<WebElement> followList;

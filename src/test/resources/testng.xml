@@ -6,18 +6,13 @@
       <groups>
           <run>
               <include name="smoke"/>
-              <include name="positive"/>
-              <include name="negative"/>
           </run>
       </groups>
 
       <classes>
-          <class name="com.telran.AddProfilePageTest"/>
-          <class name="com.telran.FollowingDoctorTest"/>
-          <class name="com.telran.FollowingUserTest"/>
-          <class name="com.telran.MDRatingTest">
-
-          </class>
+          <class name="com.telran.SymptomsOnMainPageTest"/>
+          <class name="com.telran.AddProfilesTest"/>
+          <class name="com.telran.SignUpHCPTest"/>
 
       </classes>
 

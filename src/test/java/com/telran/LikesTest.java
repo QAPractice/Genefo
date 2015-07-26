@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Yura 10-July-15.
  */
@@ -28,7 +30,7 @@ public class LikesTest {
     PostOnMainPage postOnMainPage;
 
     @BeforeTest
-    public void setup (){
+    public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -39,10 +41,10 @@ public class LikesTest {
         postOnMainPage = PageFactory.initElements(driver, PostOnMainPage.class);
         try {
             loginPage.openLoginPage()
-
                     .waitUntilLoginPageIsLoaded()
                     .login("jakoff+444@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
+            assertTrue("Main page isn't loaded", mainPage.isOnMainPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +66,7 @@ public class LikesTest {
 
     @Test
     public void NormalLikeTest() throws InterruptedException {
-     //   postOnMainPage.createAndSendPost();
+        //   postOnMainPage.createAndSendPost();
         int likesNumberBefore = likesPage.getLikesNumber();
         Log.info("Getting initial number of likes - " + likesNumberBefore + "");
         Log.info("Verifying that 'like' symbol is unchecked");
@@ -99,13 +101,23 @@ public class LikesTest {
 
     @Test
     public void addLikeEndReloudedPage() {
+        Log.info("Creating new post");
         postOnMainPage.createAndSendPost();
-        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign in not unchecked before pressing Like button");
+        Log.info("Verifying, that 'Like' sign is Uncheked yet");
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign is not unchecked before pressing Like button");
+        Log.info(" - Like is unchecked before pressing Like button");
+        Reporter.log("Like is unchecked before pressing Like button");
         likesPage.clickToLike();
-        Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
+        Reporter.log("Like is checked after pressing Like button");
+        Log.info("Reloading page...");
         likesPage.reloadPage();
+        mainPage.waitUntilMainPageIsLoaded();
         mainPage.isOnMainPage();
-        Assert.assertTrue(likesPage.likeChecked(), "Like sign in not checked after pressing Like button");
+        Log.info("... and we are back!");
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
+        Log.info(" -Like is still checked after page reloading");
+        Reporter.log("Like is still checked after page reloading");
     }
 
     @AfterClass(alwaysRun = true)
@@ -113,6 +125,6 @@ public class LikesTest {
         this.driver.quit();
     }
 
-    }
+}
 
 

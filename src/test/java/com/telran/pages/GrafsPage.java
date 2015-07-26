@@ -92,7 +92,7 @@ public class GrafsPage extends Page {
     public GrafsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-
+        this.PAGE_URL = baseUrl + "/home";
     }
 
 

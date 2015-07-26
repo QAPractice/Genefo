@@ -18,9 +18,10 @@ public class TestNgTestBase {
 
   protected static Capabilities capabilities;
 
-  protected WebDriver driver;
+  public WebDriver driver;
   protected String gridHubUrl;
   protected String baseUrl;
+
 
   @BeforeClass
   public void init() throws IOException {

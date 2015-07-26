@@ -88,7 +88,7 @@ public class RegistrationTest {
             assertTrue(profilePage.isOnProfilePage());
             Reporter.log("SignUp Successful");
             profilePage.selectGender("2");
-            assertTrue(profilePage.isGenderSelected("Other"));
+            assertTrue("", profilePage.isGenderSelected("Other"));
 
         } catch (Exception e) {
             e.printStackTrace();

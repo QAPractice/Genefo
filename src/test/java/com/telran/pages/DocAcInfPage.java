@@ -53,7 +53,7 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/account_hcp/account";
+        this.PAGE_URL = baseUrl + "/account_hcp/account";
         PageFactory.initElements(driver, this);
     }
 

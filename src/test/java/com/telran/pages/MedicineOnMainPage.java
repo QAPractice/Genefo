@@ -23,9 +23,9 @@ public class MedicineOnMainPage extends Page {
     WebElement reasonForMedicineField;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicineField;
-    @FindBy(id = "typeahead-00K-2639")
+    @FindBy(xpath = "//*[@id='typeahead-016-9042']")
     WebElement nameOfMedicineOptions;
-    @FindBy(id = "typeahead-00L-842")
+    @FindBy(xpath = "//*[@id = 'typeahead-00L-842']")
     WebElement reasonForMedicineOptions;
 
     //elements of dropdown list
@@ -111,7 +111,7 @@ public class MedicineOnMainPage extends Page {
     public MedicineOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://52.10.6.51:8080/home";
+        this.PAGE_URL = baseUrl + "/home";
     }
 
 

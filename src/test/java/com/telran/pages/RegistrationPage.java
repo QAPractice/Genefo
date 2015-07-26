@@ -89,7 +89,7 @@ public class RegistrationPage extends Page {
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/signup_regular";
+        this.PAGE_URL = baseUrl + "/signup_regular";
         PageFactory.initElements(driver, this);
      }
 

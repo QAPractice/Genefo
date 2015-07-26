@@ -38,7 +38,7 @@ public class ContactUSPage extends Page {
 
     public ContactUSPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/legal/contact";
+        this.PAGE_URL = baseUrl + "/legal/contact";
         PageFactory.initElements(driver, this);
     }
 

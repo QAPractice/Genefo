@@ -12,13 +12,6 @@ import java.io.IOException;
  */
 public class FiltersOfPatientOnMainPage extends Page {
 
-    //constructor
-    public FiltersOfPatientOnMainPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://52.10.6.51:8080/home";
-    }
-
     //fields of Patient MainPage
     @FindBy(xpath = "//div[@class='condition-column-title condition-column-title-regular col-md-9 ng-binding']")
     WebElement conditionFieldOfPatientOnMainPage;
@@ -26,14 +19,12 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement nameFieldOfPatientOnMainPage;
     @FindBy(xpath = "//div[@class='panel-body']/span[1]")
     WebElement displayingMyPosts;
-
     //Change Filter button
     @FindBy(xpath = "//span[@class='btn-filter btn ng-binding btn-default']")
     WebElement changeFilterButton;
     //Apply Filter button
     @FindBy(xpath = "//span[@class='btn-filter btn ng-binding btn-success']")
     WebElement applyFilterButton;
-
     //radioButton for change of filter
     @FindBy(xpath = ".//*[@id='post_type_profile']")
     WebElement myPostsOnlyRadioButton;
@@ -41,8 +32,6 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement peopleIAmFollowingAndMyPostsOnlyRadioButton;
     @FindBy(xpath = ".//*[@id='post_type_condition']")
     WebElement myConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton;
-
-
     //names of posted posts  (amount: 7 posts down the list)
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerFirstPost;
@@ -58,8 +47,6 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement nameOfOwnerSixthPost;
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[13]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerSeventhPost;
-
-
     //time of posted posts  (amount: 7 posts down the list)
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='post-timestamp ng-binding']")
     WebElement timeOfFirstPost;
@@ -75,6 +62,13 @@ public class FiltersOfPatientOnMainPage extends Page {
     WebElement timeOfSixthPost;
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[12]//*[@class='post-timestamp ng-binding']")
     WebElement timeOfSeventhPost;
+
+    //constructor
+    public FiltersOfPatientOnMainPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+        this.PAGE_URL = baseUrl + "/home";
+    }
 
  /*   //for doctor account
 

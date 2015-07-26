@@ -16,13 +16,13 @@ import java.util.HashMap;
  *
  */
 public class MilestoneOnMainPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
     @FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement developmentalMilestoneTitle;
     @FindBy(xpath = "//div [@class='col-sm-4']/label")
     WebElement treatmentMilestoneTitle;
-
     //Category Developmental Milestone buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
@@ -36,11 +36,9 @@ public class MilestoneOnMainPage extends Page {
     WebElement toiletingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
-
     //Dropdown list Button
     @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectDropDownListButton;
-
     // DropdownList elements of Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSmiles;
@@ -52,8 +50,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemTwoThreeWords;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
-
-
     // DropdownList elements of Movement
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsHead;
@@ -71,19 +67,16 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemWalk;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
-
     // DropdownList elements of Eating
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsBottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
-
     // DropdownList elements of Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemToiletTrained;//+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;//+
-
     //DropdownList elements of Treatment
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSurgery;
@@ -91,7 +84,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemMedicalTrial;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemRemission;
-
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
     WebElement yearsButton;
@@ -108,7 +100,6 @@ public class MilestoneOnMainPage extends Page {
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
     WebElement submitButton;
-
     //alerts
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
@@ -119,7 +110,6 @@ public class MilestoneOnMainPage extends Page {
    // @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
     @FindBy(xpath = "//*[@placeholder='Years']/../span")
     WebElement numbersOnlyForYears;
-
     //elements in created post
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
@@ -129,18 +119,15 @@ public class MilestoneOnMainPage extends Page {
     WebElement milestoneOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textNewCreatedPost;
-
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textInNewCreatedPost;
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://52.10.6.51:8080/home";
+        this.PAGE_URL = baseUrl + "/home";
     }
 
     // Waits until title of our 'Milestone' Panel appears on the screen

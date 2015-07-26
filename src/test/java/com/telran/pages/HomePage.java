@@ -37,7 +37,7 @@ public class HomePage extends Page {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
-        this.PAGE_URL = "http://52.10.6.51:8080";
+        this.PAGE_URL = baseUrl;
         PageFactory.initElements(driver, this);
     }
 

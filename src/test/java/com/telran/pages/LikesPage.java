@@ -26,7 +26,7 @@ public class LikesPage extends Page{
     public LikesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://52.10.6.51:8080/home";
+        this.PAGE_URL = baseUrl;
     }
 
 
@@ -53,7 +53,7 @@ public class LikesPage extends Page{
 
     public LikesPage clickToLike() {
         Log.info("Clicking to like");
-        clickElement(likeForClick);
+        clickElement(likeUnchecked);
         return this;
     }
 

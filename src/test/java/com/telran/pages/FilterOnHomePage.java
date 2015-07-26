@@ -1,11 +1,9 @@
 package com.telran.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -20,7 +18,7 @@ public class FilterOnHomePage extends Page {
     @FindBy(xpath = "//*[contains(text(),'Change Filter')]")
     WebElement changeFilterButton;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@class = 'panel-body']//*[contains(text(),'Apply Filter')]")
     WebElement applayFilterButton;
 
 
@@ -63,7 +61,7 @@ public class FilterOnHomePage extends Page {
     public FilterOnHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://www.52.10.6.51:8080";
+        this.PAGE_URL = baseUrl;
     }
 
     /**

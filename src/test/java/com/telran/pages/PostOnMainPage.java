@@ -30,7 +30,7 @@ public class PostOnMainPage extends Page {
     public PostOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        //this.PAGE_URL = "http://52.10.6.51:8080/home";
+        this.PAGE_URL = baseUrl + "/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

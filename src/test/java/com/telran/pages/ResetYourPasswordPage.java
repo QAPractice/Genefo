@@ -36,7 +36,7 @@ public class ResetYourPasswordPage extends Page{
 
     public ResetYourPasswordPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://52.10.6.51:8080/reset";
+        this.PAGE_URL = baseUrl + "/reset";
         PageFactory.initElements(driver, this);
     }
 

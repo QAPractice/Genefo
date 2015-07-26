@@ -250,7 +250,7 @@ public class SymptomsOnMainPage  extends Page {
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = "http://www.52.10.6.51:8080";
+        this.PAGE_URL = baseUrl;
     }
 
     /**

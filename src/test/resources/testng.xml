@@ -10,9 +10,7 @@
       </groups>
 
       <classes>
-          <class name="com.telran.SymptomsOnMainPageTest"/>
-          <class name="com.telran.AddProfilesTest"/>
-          <class name="com.telran.SignUpHCPTest"/>
+          <class name="com.telran."/>
 
       </classes>
 

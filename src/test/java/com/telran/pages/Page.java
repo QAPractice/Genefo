@@ -1,6 +1,6 @@
 package com.telran.pages;
 
-import com.telran.TestNgTestBase;
+import com.telran.util.PropertyLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +18,11 @@ import java.util.NoSuchElementException;
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
  */
-public abstract class Page extends TestNgTestBase {
-
+public abstract class Page {
+public String baseUrl;
   public String PAGE_URL;
   public String PAGE_TITLE;
-
+protected WebDriver driver;
   protected StringBuffer verificationErrors = new StringBuffer();
   HashMap<String, String> allElementsMap;
   /*
@@ -32,9 +32,13 @@ public abstract class Page extends TestNgTestBase {
    */
 
   public Page(WebDriver driver) {
-    driver = this.driver;
-    PAGE_URL = baseUrl;
+    this.driver=driver;
     this.allElementsMap = new HashMap<String, String>();
+    try {
+      baseUrl = PropertyLoader.loadProperty("site.url");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private WebElement getWebElement(String name) {

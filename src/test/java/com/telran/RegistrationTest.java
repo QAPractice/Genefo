@@ -4,16 +4,11 @@ import com.telran.pages.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
@@ -21,10 +16,10 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Iakov Volf, Olga  on 5/4/2015.
  */
-public class RegistrationTest {
+public class RegistrationTest extends TestNgTestBase {
 
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
+
     public WebDriverWait wait;
     public LoginPage loginPage;
     public String EmailNickname; // Keeps the part of email before sign @
@@ -36,9 +31,9 @@ public class RegistrationTest {
     @BeforeClass
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
-        this.driver = new FirefoxDriver();
+        //this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
@@ -1096,10 +1091,6 @@ public class RegistrationTest {
             }
      }
 
-        @AfterClass(alwaysRun = true)
-        public void teardown(){
-            this.driver.quit();
-        }
 
     private String closeAlertAndGetItsText() {
         try {

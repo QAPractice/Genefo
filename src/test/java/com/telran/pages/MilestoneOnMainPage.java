@@ -16,29 +16,38 @@ import java.util.HashMap;
  *
  */
 public class MilestoneOnMainPage extends Page {
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
-    @FindBy(xpath = "//div [@class='col-sm-8']/label")
+    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']")
+    //WebElement developmentalYourProgressTitle;
+    WebElement developmentalMilestoneTitle;
+    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']/span")
+   // WebElement treatmentReportYourProgressTitle;
+    WebElement treatmentMilestoneTitle;
+
+    /*@FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement developmentalMilestoneTitle;
     @FindBy(xpath = "//div [@class='col-sm-4']/label")
-    WebElement treatmentMilestoneTitle;
-    //Category Developmental Milestone buttons
+    WebElement treatmentMilestoneTitle;*/
+
+    //Category Developmental Progress buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
     WebElement movementButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")
-    WebElement eatingButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")
-    WebElement treatmentButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Toileting')]")
-    WebElement toiletingButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Daily living')]")
+    WebElement dailyLivingButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Procedure')]")
+    WebElement procedureButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complication')]")
+    WebElement complicationButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
+
     //Dropdown list Button
     @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectDropDownListButton;
+
     // DropdownList elements of Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemSmiles;
@@ -50,6 +59,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemTwoThreeWords;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
+
     // DropdownList elements of Movement
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemHoldsHead;
@@ -67,23 +77,60 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemWalk;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemRuns;
-    // DropdownList elements of Eating
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsBottles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemEatsWithSpoon;
-    // DropdownList elements of Toileting
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemToiletTrained;//+
+
+    // DropdownList elements of Daily living
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemDressesAlone;//+
-    //DropdownList elements of Treatment
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemSurgery;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemMedicalTrial;
+    WebElement itemEatsWithSpoon;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemHoldsBottles;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemToiletTrained;//+
+
+    //DropdownList elements of Procedure
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemAchillesTendonLengthening;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemBrainMRI;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemGastrostomy;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemMedicalTrial;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemRemission;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement itemSpinalFusionSurgeryForScoliosis;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement itemStrabismusSurgery;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemSurgery;
+
+    //DropdownList elements of Complication
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemBehavioralProblems;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemConstipation;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemDevelopmentalDelay;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemFailureToThrive;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemFeedingDifficulties;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement itemGastroespophagealReflux;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement itemHearingLoss;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement itemIntellectualDisability;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemObesity;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
+    WebElement itemSeizures;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='10']")
+    WebElement itemSleepDisorders;
+
+
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
     WebElement yearsButton;
@@ -100,16 +147,18 @@ public class MilestoneOnMainPage extends Page {
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
     WebElement submitButton;
+
     //alerts
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
-    @FindBy(xpath = ".//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
+    @FindBy(xpath = ".//*[@id='milestone_years']/../span[contains(text(),'Must be a number between 0 and 200')]")
    // @FindBy(xpath = ".//*[@id='milestone_years']/../span")
-    WebElement numbersOnlyForMonths;
+    WebElement yearsNumber;
    // @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
-    @FindBy(xpath = "//*[@placeholder='Years']/../span")
-    WebElement numbersOnlyForYears;
+    @FindBy(xpath = ".//*[@id='milestone_months']/../span[contains(text(),'Must be number between 0 and 48')]")
+    WebElement monthsNumber;
+
     //elements in created post
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
@@ -119,15 +168,18 @@ public class MilestoneOnMainPage extends Page {
     WebElement milestoneOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textNewCreatedPost;
+
+
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textInNewCreatedPost;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
+        this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 
     // Waits until title of our 'Milestone' Panel appears on the screen
@@ -198,11 +250,11 @@ public class MilestoneOnMainPage extends Page {
 
     //check alert presence
     public boolean alertMessageNotValidYear() {
-        return exists(numbersOnlyForYears);
+        return exists(yearsNumber);
     }
 
     public boolean alertMessageNotValidMonth() {
-        return exists(numbersOnlyForMonths);
+        return exists(monthsNumber);
     }
 
     public boolean alertMessageRequiredFields() {
@@ -224,9 +276,9 @@ public class MilestoneOnMainPage extends Page {
         // buttons with names from WebPage
         buttonsAndItemsMap.put(languageButton.getText(),languageButton);
         buttonsAndItemsMap.put(movementButton.getText(),movementButton);
-        buttonsAndItemsMap.put(eatingButton.getText(),eatingButton);
-        buttonsAndItemsMap.put(treatmentButton.getText(),treatmentButton);
-        buttonsAndItemsMap.put(toiletingButton.getText(),toiletingButton);
+        buttonsAndItemsMap.put(dailyLivingButton.getText(),dailyLivingButton);
+        buttonsAndItemsMap.put(procedureButton.getText(),procedureButton);
+        buttonsAndItemsMap.put(complicationButton.getText(),complicationButton);
         buttonsAndItemsMap.put(otherButton.getText(),otherButton);
         //items with names from category "Language"
         buttonsAndItemsMap.put("Smiles",itemSmiles);
@@ -243,16 +295,34 @@ public class MilestoneOnMainPage extends Page {
         buttonsAndItemsMap.put("Pulls to stand",itemPullsToStand);
         buttonsAndItemsMap.put("Walk",itemWalk);
         buttonsAndItemsMap.put("Runs",itemRuns);
-        // items with names from category "Eating"
-        buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
-        buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
-        // items with names from category "Toileting"
-        buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
+        // items with names from category "Daily living"
         buttonsAndItemsMap.put("Dresses alone",itemDressesAlone);
-        // items with names from category "Treatment"
-        buttonsAndItemsMap.put("Surgery",itemSurgery);
+        buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
+        buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
+        buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
+
+        // items with names from category "Procedure"
+        buttonsAndItemsMap.put("Achilles tendon lengthening",itemAchillesTendonLengthening);
+        buttonsAndItemsMap.put("BrainMRI",itemBrainMRI);
+        buttonsAndItemsMap.put("Gastrostomy",itemGastrostomy);
         buttonsAndItemsMap.put("Medical trial",itemMedicalTrial);
         buttonsAndItemsMap.put("Remission",itemRemission);
+        buttonsAndItemsMap.put("Spinal fusion surgery for scoliosis",itemSpinalFusionSurgeryForScoliosis);
+        buttonsAndItemsMap.put("Strabismus surgery",itemStrabismusSurgery);
+        buttonsAndItemsMap.put("Surgery",itemSurgery);
+       //items with names from category " Complication"
+        buttonsAndItemsMap.put("Behavioral problems",itemBehavioralProblems);
+        buttonsAndItemsMap.put("Constipation",itemConstipation);
+        buttonsAndItemsMap.put("DevelopmentalDelay",itemDevelopmentalDelay);
+        buttonsAndItemsMap.put("Failure to thrive",itemFailureToThrive);
+        buttonsAndItemsMap.put("Feeding difficulties",itemFeedingDifficulties);
+        buttonsAndItemsMap.put("Gastroespophageal reflux",itemGastroespophagealReflux);
+        buttonsAndItemsMap.put("Hearing loss",itemHearingLoss);
+        buttonsAndItemsMap.put("Intellectual disability",itemIntellectualDisability);
+        buttonsAndItemsMap.put("Obesity",itemObesity);
+        buttonsAndItemsMap.put("Seizures",itemSeizures);
+        buttonsAndItemsMap.put("Sleep disorders",itemSleepDisorders);
+
     }
 
     public boolean isMilestoneTrue(String name){return this.verifyTextBoolean(milestoneOnNewCreatedPost,name);}

@@ -100,7 +100,7 @@ public class LikesTest {
     }
 
     @Test
-    public void addLikeEndReloudedPage() {
+    public void addLikeEndReloudedPageTest() {
         Log.info("Creating new post");
         postOnMainPage.createAndSendPost();
         Log.info("Verifying, that 'Like' sign is Uncheked yet");
@@ -120,11 +120,22 @@ public class LikesTest {
         Reporter.log("Like is still checked after page reloading");
     }
 
+    @Test
+    public void pressTheLikeTwiceTest() {
+        postOnMainPage.createAndSendPost();
+        Log.info("Verifying, that 'Like' sign is Uncheked yet");
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign is not unchecked before pressing Like button");
+        likesPage.clickToLike();
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
+        likesPage.clickToLike();
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
+        Reporter.log("Like is still checked once after press twice");
+    }
+
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }
-
 }
 
 

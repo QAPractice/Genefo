@@ -3,18 +3,15 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.WhatWorksOnMainPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertFalse;
@@ -23,45 +20,18 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by alex on 5/29/2015.
  */
-public class WhatWorksOnMainTest {
-
-    // We define variables of enum type to give meaning to numbers 0, 1 and 3
-    // And then we use this variables instead of numbers
-    public enum Items {
-        LAST_ITEM_FROM_LIST(0), FIRST_ITEM_FROM_LIST(1), FOURTH_ITEM_FROM_LIST(4);
-        private int value;
-        private Items(int value) {
-            this.value = value;
-        }
-    }
+public class WhatWorksOnMainTest extends TestNgTestBase {
 
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public WhatWorksOnMainPage whatWorksOnMainPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
-    @Parameters({"browser"})
-    public void setup(String browser) {
-        //PropertyConfigurator.configure("log4j.properties");
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
-           this.driver = new FirefoxDriver();
-           Log.info("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            Log.info("We are in Chrome browser");
-        }
-        else if (browser.equalsIgnoreCase("InternetExplorer")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            Log.info("We are in Internet Explorer browser");
-        }
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+    public void setup() {
+
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
@@ -125,7 +95,6 @@ public class WhatWorksOnMainTest {
                 {"Other"},
              };
     }
-
 
     // Click on Category button then choose item from the item list.
     //  Check that you are able to send a post.
@@ -231,6 +200,17 @@ public class WhatWorksOnMainTest {
             Reporter.log("Checking that we can not send post - Successful");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    // We define variables of enum type to give meaning to numbers 0, 1 and 3
+    // And then we use this variables instead of numbers
+    public enum Items {
+        LAST_ITEM_FROM_LIST(0), FIRST_ITEM_FROM_LIST(1), FOURTH_ITEM_FROM_LIST(4);
+        private int value;
+
+        Items(int value) {
+            this.value = value;
         }
     }
 
@@ -773,9 +753,6 @@ public class WhatWorksOnMainTest {
             }
         }
     */
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+
 
 }

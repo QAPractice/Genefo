@@ -58,6 +58,18 @@ protected WebDriver driver;
     return this;
   }
 
+  public void goBackBrowserButton() {
+    driver.navigate().back();
+  }
+
+  public void goForwardBrowserButton() {
+    driver.navigate().forward();
+  }
+
+  public void reloadPage() {
+    driver.navigate().refresh();
+  }
+
   public void waitUntilIsLoaded(String name) throws IOException, InterruptedException {
     WebElement element = getWebElement(name);
 
@@ -161,7 +173,7 @@ protected WebDriver driver;
     }catch (TimeoutException e){
 
       System.out.println("---------------------------------");
-      System.out.println("No element. Method: Page.waitUntilElementIsLoaded()");
+      System.out.println("No element found. Method: Page.waitUntilElementIsLoaded()");
       System.out.println("---------------------------------");
     }
   }

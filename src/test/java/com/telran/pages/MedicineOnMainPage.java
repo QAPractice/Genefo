@@ -23,9 +23,9 @@ public class MedicineOnMainPage extends Page {
     WebElement reasonForMedicineField;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicineField;
-    @FindBy(xpath = "//*[@id='typeahead-016-9042']")
+    @FindBy(xpath = "//*[@id='typeahead-02P-91']")
     WebElement nameOfMedicineOptions;
-    @FindBy(xpath = "//*[@id = 'typeahead-00L-842']")
+    @FindBy(xpath = "//*[@id='typeahead-02Q-2475']")
     WebElement reasonForMedicineOptions;
 
     //elements of dropdown list
@@ -146,11 +146,14 @@ public class MedicineOnMainPage extends Page {
      * @throws IOException
      * @throws InterruptedException
      */
+
+
+
     public void createMedicinePost(){
         setNameOfMedicine("a");
         WebElement nameOfMedicine;
         List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
-        int nameOfMedicineCounter = 0;
+        int nameOfMedicineCounter = 8;
         while (nameOfMedicineCounter < nameOfMedicineList.size()){
             nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
             nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);

@@ -1,20 +1,25 @@
 package com.telran.pages;
 
 
+import com.telran.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+
 /**
  * Created by Marina and Olga on 5/28/2015.
  */
 public class MedicineOnMainPage extends Page {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     //Fields
     @FindBy(id = "medicine_name")
@@ -23,9 +28,9 @@ public class MedicineOnMainPage extends Page {
     WebElement reasonForMedicineField;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicineField;
-    @FindBy(xpath = "//*[@id='typeahead-02P-91']")
+    @FindBy(xpath = "//input[@id='medicine_name']/../ul[contains (@id,'typeahead')]")
     WebElement nameOfMedicineOptions;
-    @FindBy(xpath = "//*[@id='typeahead-02Q-2475']")
+    @FindBy(xpath = "//input[@id='medicine_reason']/../ul[contains (@id,'typeahead')]")
     WebElement reasonForMedicineOptions;
 
     //elements of dropdown list
@@ -40,15 +45,15 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars Sent Post
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty'][@ng-model='medicine_effect']")
+    @FindBy(xpath = "//*[contains (@class,'ng-isolate-scope ng-valid')][@ng-model='medicine_effect']")
     WebElement allStarsTogether;
 
     // Rating star( marked one. Have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[contains(text(),'*')]")
+    @FindBy(xpath = "//*[contains (@class,'ng-isolate-scope ng-valid')]/*[3]/*[contains(text(),'*')]")
     WebElement thirdMarkedRatingStar;
 
     // Rating star( non-marked one. Do not have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]/*[not(contains(text(),'*'))]")
+    @FindBy(xpath = "//*[contains (@class,'ng-isolate-scope ng-valid')]/*[3]/*[not(contains(text(),'*'))]")
     WebElement thirdNonMarkedRatingStar;
 
     // Rating marked First Star
@@ -119,6 +124,7 @@ public class MedicineOnMainPage extends Page {
 
     public MedicineOnMainPage waitUntilMedicinePanelIsLoaded() {
         try {
+
             waitUntilElementIsLoaded(nameOfMedicineTitle);
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,68 +145,118 @@ public class MedicineOnMainPage extends Page {
     //Methods
 
     /**
+     * //   * @param nameMedicineShort
+     * //   * @param nameMedicineFull
      *
-  //   * @param nameMedicineShort
-  //   * @param nameMedicineFull
      * @return
      * @throws IOException
      * @throws InterruptedException
      */
 
 
-
-    public void createMedicinePost(){
-        setNameOfMedicine("a");
+    public void createMedicinePost(String nameOfMed, String reasonOfMed) {
+        setNameOfMedicine(nameOfMed);
         WebElement nameOfMedicine;
         List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
         int nameOfMedicineCounter = 8;
-        while (nameOfMedicineCounter < nameOfMedicineList.size()){
+        while (nameOfMedicineCounter < nameOfMedicineList.size()) {
             nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
             nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);
             String name = nameOfMedicine.getText();
-            try{
+            try {
                 waitUntilElementIsLoaded(nameOfMedicine);
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             clickElement(nameOfMedicine);
-            // Log.info("Selecting name of Medicine: " + name + " ");
 
-            setReasonForMedicine("a");
+
+            setReasonForMedicine(reasonOfMed);
             WebElement reasonForMedicine;
             List<WebElement> reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
             int nameOfReasonCounter = 0;
-            while (nameOfReasonCounter < 8){
+            while (nameOfReasonCounter < 8) {
                 reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
                 reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
                 String reason = reasonForMedicine.getText();
-                try{
+                try {
                     waitUntilElementIsLoaded(reasonForMedicine);
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
-                }catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 clickElement(reasonForMedicine);
-                // Log.info("Selecting reason for Medicine: " + reason + " ");
+
             }
         }
 
     }
 
 
+    public void createMedicinePostRandom(String nameOfMed, String reasonOfMed) {
+        setNameOfMedicine(nameOfMed);
+        WebElement nameOfMedicine;
+        //creating list of proposed Eleemtns
+        List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
+        //picking random element
+        Random rand = new Random();
+        int nameOfMedicineCounter = rand.nextInt(9);
+        nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);
+        String name = nameOfMedicine.getText();
+        Log.info("Choosing randomly name of medicine from list: " + name + " ");
+        try {
+            waitUntilElementIsLoaded(nameOfMedicine);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        clickElement(nameOfMedicine);
 
+
+        setReasonForMedicine(reasonOfMed);
+        WebElement reasonForMedicine;
+        List<WebElement> reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
+        Random rand2 = new Random();
+        int nameOfReasonCounter = rand2.nextInt(9);
+        reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
+        String reason = reasonForMedicine.getText();
+        Log.info("Choosing randomly name of medicine from list: " + reason + " ");
+        try {
+            waitUntilElementIsLoaded(reasonForMedicine);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        clickElement(reasonForMedicine);
+        Log.info("Typing text in 'Tell Us More' field: Testing post ");
+        typeTellUsMore("Testing post");
+        clickOnAllStarsTogether();
+        rateFifeStars();
+        clickOnPostButton();
+        Log.info("Checking, that medicine and medicine reason are posted in a right way");
+        Assert.assertEquals(medicineName.getText(), name, "Medicine name doesen't match");
+        Log.info("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
+        Reporter.log("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
+        Assert.assertEquals(reasonName.getText(), reason, "Medicine reason name doesen't match");
+        Log.info("Medicine reason is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
+        Reporter.log("Medicine is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
+    }
 
 
     public MedicineOnMainPage setNameOfMedicine(String nameMedicine) {
+        Log.info("Filling 'name of Medicine' field: " + nameMedicine + " ");
         setElementText(nameOfMedicinefield, nameMedicine);
         return this;
     }
 
-    public MedicineOnMainPage setReasonForMedicine(String nameOfReason){
-        setElementText(reasonForMedicineField,nameOfReason);
+    public MedicineOnMainPage setReasonForMedicine(String nameOfReason) {
+        Log.info("Filling 'Medicine Reason' field: " + nameOfReason + " ");
+        setElementText(reasonForMedicineField, nameOfReason);
         return this;
     }
 

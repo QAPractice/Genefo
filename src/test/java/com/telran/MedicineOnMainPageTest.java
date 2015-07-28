@@ -3,8 +3,6 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MedicineOnMainPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -12,16 +10,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Marina on 6/1/2015.
  */
-public class MedicineOnMainPageTest {
-    public WebDriver driver;
+public class MedicineOnMainPageTest extends TestNgTestBase {
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
@@ -30,21 +25,12 @@ public class MedicineOnMainPageTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver(); //new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         medicineOnMainPage = PageFactory.initElements(driver, MedicineOnMainPage.class);
 
         try {
-            loginPage.login("stritenko@gmail.com", "111111");
-            try {
-                sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            assertTrue(mainPage.isOnMainPage());
+            loginPage.login("jakoff+Rere@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded()
                     .openMedicinePanel();
             medicineOnMainPage.isOnMedicinePanel();
@@ -59,10 +45,15 @@ public class MedicineOnMainPageTest {
                 .openMedicinePanel();
         medicineOnMainPage.waitUntilMedicinePanelIsLoaded();
     }
+
     //Positive tests
+    @Test(groups = {"smoke", "positive"})
+    public void postSomeMedicineRandom() {
+        medicineOnMainPage.createMedicinePostRandom("ab", "a");
+    }
 
     @Test
-    public void postSomeMedicine(){
+    public void postSomeMedicine() {
         //     medicineOnMainPage.createMedicinePost1();
     }
 
@@ -78,8 +69,8 @@ public class MedicineOnMainPageTest {
             medicineOnMainPage
                     .fillExistingNameOfMedicine(shortName, fullName)
                     .fillExistingReasonForMedicine(shortReason, fullReason)
-                    //.clickOnAllStarsTogether()
-                    //.rateThreeStars()             //Click on the third star
+                            //.clickOnAllStarsTogether()
+                            //.rateThreeStars()             //Click on the third star
                     .typeTellUsMore(text)
                     .clickOnPostButton();
             //sleep(3000);
@@ -87,9 +78,9 @@ public class MedicineOnMainPageTest {
 
             //assertTrue(mainPage.verifyTextFromSentPost(text));
             //assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
-           // assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
+            // assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
             //assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-           // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
+            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
 
 
         } catch (Exception e) {

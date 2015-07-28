@@ -63,7 +63,7 @@ public class MedicineOnMainPageTest {
 
     @Test
     public void postSomeMedicine(){
-        medicineOnMainPage.createMedicinePost();
+        //     medicineOnMainPage.createMedicinePost1();
     }
 
     @Test(groups = {"smoke", "positive"})

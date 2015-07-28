@@ -20,7 +20,7 @@ public class LikesPage extends Page{
     @FindBy(xpath = "//*[@class='post-top-right']//*[@class='post-like']")
     WebElement likeBlock;
     //universal like - for clicking to it, for the first or not the first time
-    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[contains (@class,'fa fa-heart')]")
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[contains (@class,'fa-heart')]")
     WebElement likeForClick;
 
     public LikesPage(WebDriver driver) {
@@ -41,19 +41,34 @@ public class LikesPage extends Page{
     public int getLikesNumber() {
         Log.info("Getting likes number");
         String text = likeBlock.getText();
-        return Integer.parseInt(text.replaceAll("[\\D]", ""));
+        int likesNumber = Integer.parseInt(text.replaceAll("[\\D+]", ""));
+        Log.info("Number of likes is " + likesNumber);
+        return likesNumber;
 
     }
 
-    public LikesPage reloadPage() {
+    public LikesPage pressBackBrowserButton() {
+        Log.info("Going back using browser button");
+        goBackBrowserButton();
+        return this;
+    }
+
+    public LikesPage pressForwardBrowserButton() {
+        Log.info("Going back using browser button");
+        goForwardBrowserButton();
+        return this;
+    }
+
+    public LikesPage refreshPage() {
         Log.info("Reloading Page");
-        driver.navigate().refresh();
+        reloadPage();
         return this;
     }
 
     public LikesPage clickToLike() {
         Log.info("Clicking to like");
-        clickElement(likeUnchecked);
+        clickElement(likeForClick);
+        waitUntilIsLoaded(likeChecked);
         return this;
     }
 

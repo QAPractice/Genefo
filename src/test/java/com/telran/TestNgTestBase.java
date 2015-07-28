@@ -26,11 +26,11 @@ public class TestNgTestBase {
   @BeforeClass
   public void init() throws IOException {
     baseUrl = PropertyLoader.loadProperty("site.url");
-    gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
+    // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
 
     Capabilities capabilities = PropertyLoader.loadCapabilities();
 
-    driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
+    driver = WebDriverFactory.getDriver(capabilities);
 
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }

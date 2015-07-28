@@ -33,19 +33,19 @@ public class FiltersOfPatientOnMainPage extends Page {
     @FindBy(xpath = ".//*[@id='post_type_condition']")
     WebElement myConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton;
     //names of posted posts  (amount: 7 posts down the list)
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerFirstPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[8]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerSecondPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[9]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[7]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerThirdPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[10]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[8]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerFourthPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[11]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[9]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerFifthPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[12]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[10]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerSixthPost;
-    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[13]//*[@class='profileName post-owner ng-binding']")
+    @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[11]//*[@class='profileName post-owner ng-binding']")
     WebElement nameOfOwnerSeventhPost;
     //time of posted posts  (amount: 7 posts down the list)
     @FindBy(xpath = ". //*[@class='panel story-panel ng-scope panel-default']/../div[6]//*[@class='post-timestamp ng-binding']")

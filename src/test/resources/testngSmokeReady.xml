@@ -11,7 +11,12 @@
 
         <classes>
             <class name="com.telran.RegistrationTest"/>
-
+            <class name="com.telran.DocAcInfTest"/>
+            <class name="com.telran.DocBasInfTest"/>
+            <class name="com.telran.DocProfInfTest"/>
+            <class name="com.telran.LoginTest"/>
+            <class name="com.telran.ProfileDoctorTest"/>
+            <class name="com.telran.SignUpHCPTest"/>
         </classes>
 
 

@@ -22,10 +22,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Oleg on 05.06.2015.
  */
-public class DocProfInfTest {
+public class DocProfInfTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
+
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
@@ -34,14 +33,10 @@ public class DocProfInfTest {
 
     @BeforeClass
     public void setup() {
-        //this.driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
         docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
             loginPage.login(LoginTest.USER,LoginTest.PASSWORD);
@@ -67,7 +62,6 @@ public class DocProfInfTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Test(groups = {"smoke", "positive"})

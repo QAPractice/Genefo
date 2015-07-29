@@ -1,5 +1,6 @@
 package com.telran;
 
+import com.telran.pages.DataProviders;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.MedicineOnMainPage;
@@ -47,167 +48,11 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
     }
 
     //Positive tests
-    @Test(groups = {"smoke", "positive"})
-    public void postSomeMedicineRandom() {
-        medicineOnMainPage.createMedicinePostRandom("ab", "a");
+    @Test(groups = {"smoke", "positive"},enabled = true, dataProviderClass = DataProviders.class,dataProvider = "loadMedicineTypesFromFile")
+    public void postSomeMedicineRandom(String name,String reason) throws InterruptedException {
+        medicineOnMainPage.createMedicinePostRandom(name,reason);
+        sleep(3000);
     }
-
-    @Test
-    public void postSomeMedicine() {
-        //     medicineOnMainPage.createMedicinePost1();
-    }
-
-    @Test(groups = {"smoke", "positive"})
-    public void sendMedicineWithShortMedNameReasonTest() {
-        String text = "take with food or milk";
-        String shortName = "adv";
-        String fullName = "advil";
-        String shortReason = "hea";
-        String fullReason = "headache";
-
-        try {
-            medicineOnMainPage
-                    .fillExistingNameOfMedicine(shortName, fullName)
-                    .fillExistingReasonForMedicine(shortReason, fullReason)
-                            //.clickOnAllStarsTogether()
-                            //.rateThreeStars()             //Click on the third star
-                    .typeTellUsMore(text)
-                    .clickOnPostButton();
-            //sleep(3000);
-
-
-            //assertTrue(mainPage.verifyTextFromSentPost(text));
-            //assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
-            // assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            //assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            // assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Test(groups = {"smoke", "positive"})
-    public void sendMedicineWithFullMedNameReasonTest() {
-        String text = "take with food or milk";
-        String newName = "folic acid";
-        String newReason = "drowsiness";
-
-        try {
-            medicineOnMainPage
-                    .fillNewNameOfMedicine(newName)
-                    .fillNewReasonForMedicine(newReason)
-                    .clickOnAllStarsTogether()
-                    .rateOneStar()            //Click on the first star
-                    .typeTellUsMore(text)
-                    .clickOnPostButton();
-            sleep(3000);
-
-
-            assertTrue(mainPage.verifyTextFromSentPost(text));
-            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
-            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            assertTrue(medicineOnMainPage.verifyFirstStarCheckedInSentPost());
-            assertTrue(medicineOnMainPage.verifySecondStarNonCheckedInSentPost());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test(groups = {"positive"})
-    public void sendMedicineWithShortUpperKeyMedNameReasonTest() {
-        String text = "TAKE WITH FOOD OR MILK";
-        String shortName = "ADV";
-        String fullName = "advil";
-        String shortReason = "HEA";
-        String fullReason = "headache";
-
-        try {
-            medicineOnMainPage
-                    .fillExistingNameOfMedicine(shortName, fullName)
-                    .fillExistingReasonForMedicine(shortReason, fullReason)
-                    .clickOnAllStarsTogether()
-                    .rateFifeStars()            //Click on the fifth star
-                    .typeTellUsMore(text)
-                    .clickOnPostButton();
-            sleep(3000);
-
-
-            assertTrue(mainPage.verifyTextFromSentPost(text));
-            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(fullName));
-            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(fullReason));
-            assertTrue(medicineOnMainPage.verifyFifthStarCheckedInSentPost());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test(groups = {"positive"})
-    public void sendMedicineWithFullUpperKeyMedNameReasonTest() {
-        String text = "take with food or milk";
-        String newName = "VALIDOLUM";
-        String newReason = "PALPITATION";
-
-        try {
-            medicineOnMainPage
-                    .fillNewNameOfMedicine(newName)
-                    .fillNewReasonForMedicine(newReason)
-                    .clickOnAllStarsTogether()
-                    .rateThreeStars()             //Click on the third star
-                    .typeTellUsMore(text)
-                    .clickOnPostButton();
-            sleep(3000);
-
-
-            assertTrue(mainPage.verifyTextFromSentPost(text));
-            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
-            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test(groups = {"positive"})
-    public void sendMedicineWithSpecialCharactersTest() {
-        String text = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
-        String newName = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
-        String newReason = "@#?:\"{}[];()_+<>’~`!@#$%^&*";
-
-        try {
-            medicineOnMainPage
-                    .fillNewNameOfMedicine(newName)
-                    .fillNewReasonForMedicine(newReason)
-                    .clickOnAllStarsTogether()
-                    .rateThreeStars()             //Click on the third star
-                    .typeTellUsMore(text)
-                    .clickOnPostButton();
-            sleep(3000);
-
-
-            assertTrue(mainPage.verifyTextFromSentPost(text));
-            assertTrue(medicineOnMainPage.verifyNewNameFromSentPost(newName));
-            assertTrue(medicineOnMainPage.verifyNewReasonFromSentPost(newReason));
-            assertTrue(medicineOnMainPage.verifyThirdStarCheckedInSentPost());
-            assertTrue(medicineOnMainPage.verifyFourthStarNonCheckedInSentPost());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
     //Negative tests
 
     @Test(groups = {"smoke", "negative"})

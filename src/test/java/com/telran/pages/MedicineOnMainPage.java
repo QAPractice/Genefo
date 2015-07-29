@@ -45,7 +45,7 @@ public class MedicineOnMainPage extends Page {
 
 
     //Rate Stars Sent Post
-    @FindBy(xpath = "//*[contains (@class,'ng-isolate-scope ng-valid')][@ng-model='medicine_effect']")
+    @FindBy(xpath = "//*[@class='panel-body ng-isolate-scope ng-valid ng-dirty']//*[@ng-model='medicine_effect']//i[contains(@class, 'glyphicon' )]")
     WebElement allStarsTogether;
 
     // Rating star( marked one. Have asterisk sign in definition)
@@ -152,51 +152,7 @@ public class MedicineOnMainPage extends Page {
      * @throws IOException
      * @throws InterruptedException
      */
-
-
-    public void createMedicinePost(String nameOfMed, String reasonOfMed) {
-        setNameOfMedicine(nameOfMed);
-        WebElement nameOfMedicine;
-        List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
-        int nameOfMedicineCounter = 8;
-        while (nameOfMedicineCounter < nameOfMedicineList.size()) {
-            nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
-            nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);
-            String name = nameOfMedicine.getText();
-            try {
-                waitUntilElementIsLoaded(nameOfMedicine);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            clickElement(nameOfMedicine);
-
-
-            setReasonForMedicine(reasonOfMed);
-            WebElement reasonForMedicine;
-            List<WebElement> reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
-            int nameOfReasonCounter = 0;
-            while (nameOfReasonCounter < 8) {
-                reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
-                reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
-                String reason = reasonForMedicine.getText();
-                try {
-                    waitUntilElementIsLoaded(reasonForMedicine);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                clickElement(reasonForMedicine);
-
-            }
-        }
-
-    }
-
-
-    public void createMedicinePostRandom(String nameOfMed, String reasonOfMed) {
+    public void createMedicinePostRandom(String nameOfMed, String reasonOfMed) throws InterruptedException {
         setNameOfMedicine(nameOfMed);
         WebElement nameOfMedicine;
         //creating list of proposed Eleemtns
@@ -282,7 +238,7 @@ public class MedicineOnMainPage extends Page {
 
 
     // We need to click on all stars together to set free each one of them
-    public MedicineOnMainPage clickOnAllStarsTogether() {
+    public MedicineOnMainPage clickOnAllStarsTogether()throws InterruptedException {
         clickElement(allStarsTogether);
         return this;
     }

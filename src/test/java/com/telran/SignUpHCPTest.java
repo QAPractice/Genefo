@@ -7,6 +7,7 @@ import com.telran.pages.SignUpHCPPage;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,10 +26,8 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 31.05.2015.
  */
-public class SignUpHCPTest {
+public class SignUpHCPTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
     public SignUpHCPPage signUpHCPPage;
     public ProfileDoctorPage profileDoctorPage;
     private boolean acceptNextAlert = true;
@@ -40,9 +39,7 @@ public class SignUpHCPTest {
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        PropertyConfigurator.configure("log4j.properties");
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
        }

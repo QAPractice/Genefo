@@ -4,6 +4,7 @@ import com.telran.pages.*;
 import com.telran.util.TestUtils;
 import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,11 +26,9 @@ import static org.testng.Reporter.log;
 /**
  * Created by Oleg on 20.06.2015.
  */
-public class ProfileDoctorTest {
+public class ProfileDoctorTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
-    public WebDriver driver;
-    public WebDriverWait wait;
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
@@ -37,22 +36,19 @@ public class ProfileDoctorTest {
     public DocBasInfPage docBasInfPage;
     public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
-    public String EmailNickname; // Keeps the part of email before sign @
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
+        PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
         docAcInfPage = PageFactory.initElements(driver, DocAcInfPage.class);
         docBasInfPage = PageFactory.initElements(driver, DocBasInfPage.class);
         docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
-            loginPage.login("osh_il+4@yahoo.com","111111");
+            loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

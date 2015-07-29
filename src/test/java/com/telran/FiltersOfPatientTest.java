@@ -3,16 +3,11 @@ package com.telran;
 import com.telran.pages.FiltersOfPatientOnMainPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
@@ -20,21 +15,18 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Christina on 6/22/15.
  */
-public class FiltersOfPatientTest {
+public class FiltersOfPatientTest extends TestNgTestBase {
     private static String PATIENT_ONE = "Pat One";
     private static String PATIENT_TWO = "Pat Two";
     private static String PATIENT_THREE = "Pat Three";
-    public WebDriver driver;
-    public WebDriverWait wait;
+
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         filtersOfPatientOnMainPage = PageFactory.initElements(driver, FiltersOfPatientOnMainPage.class);

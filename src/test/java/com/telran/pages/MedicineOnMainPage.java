@@ -207,13 +207,6 @@ public class MedicineOnMainPage extends Page {
         nameOfMedicine = nameOfMedicineList.get(nameOfMedicineCounter);
         String name = nameOfMedicine.getText();
         Log.info("Choosing randomly name of medicine from list: " + name + " ");
-        try {
-            waitUntilElementIsLoaded(nameOfMedicine);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         clickElement(nameOfMedicine);
 
 
@@ -225,14 +218,8 @@ public class MedicineOnMainPage extends Page {
         reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
         String reason = reasonForMedicine.getText();
         Log.info("Choosing randomly name of medicine from list: " + reason + " ");
-        try {
-            waitUntilElementIsLoaded(reasonForMedicine);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         clickElement(reasonForMedicine);
+
         Log.info("Typing text in 'Tell Us More' field: Testing post ");
         typeTellUsMore("Testing post");
         clickOnAllStarsTogether();

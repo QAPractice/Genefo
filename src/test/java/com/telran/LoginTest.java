@@ -5,6 +5,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,24 +23,21 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Oleg on 30.05.2015.
  */
-public class LoginTest {
+public class LoginTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
+
     public HomePage homePage;
     public LoginPage loginPage;
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
-    private boolean acceptNextAlert = true;
     public static String USER ="osh_il+4@yahoo.com";
     public static String PASSWORD ="111111";
     public static String USER1 ="osh_il+1@yahoo.com";
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
@@ -169,24 +167,9 @@ public class LoginTest {
         Reporter.log("Not logged in successful");
     }
 
-
     @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }
 
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
 }

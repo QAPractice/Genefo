@@ -37,7 +37,6 @@ public class LoginTest extends TestNgTestBase{
     @BeforeClass
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
-        this.driver = new FirefoxDriver();
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);

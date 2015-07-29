@@ -5,6 +5,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
@@ -28,11 +29,12 @@ public class DocAcInfTest extends TestNgTestBase {
     public DocAcInfPage docAcInfPage;
     public String EmailNickname; // Keeps the part of email before sign @
     private boolean acceptNextAlert = true;
-    private String EMAIL1 = "osh_il+20@yahoo.com";
+    private String EMAIL1 = "osh_il+21@yahoo.com";
     private String EMAIL2 = "osh_il+19@yahoo.com";
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);

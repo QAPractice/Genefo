@@ -5,6 +5,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -34,6 +35,7 @@ public class DocBasInfTest extends TestNgTestBase{
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);

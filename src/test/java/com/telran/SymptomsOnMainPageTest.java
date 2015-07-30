@@ -107,9 +107,7 @@ public class SymptomsOnMainPageTest{
 
     @Test(groups = {"smoke", "positive"})
     public void TryAllSymptoms() {
-
-        symptomsOnMainPage.createSymptomPost_2();
-
+        symptomsOnMainPage.createSymptomPost();
     }
 
     @AfterClass(alwaysRun=true)

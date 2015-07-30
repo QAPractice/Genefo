@@ -1,50 +1,40 @@
 package com.telran;
 
-import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.DocAcInfPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
+
 import java.util.concurrent.TimeUnit;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.Reporter.log;
 
 /**
  * Created by Oleg on 31.05.2015.
  */
-public class DocAcInfTest {
+public class DocAcInfTest extends TestNgTestBase {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
     public DocAcInfPage docAcInfPage;
-    private boolean acceptNextAlert = true;
     public String EmailNickname; // Keeps the part of email before sign @
-    private String EMAIL1 = "osh_il+20@yahoo.com";
+    private boolean acceptNextAlert = true;
+    private String EMAIL1 = "osh_il+21@yahoo.com";
     private String EMAIL2 = "osh_il+19@yahoo.com";
 
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
+        PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);

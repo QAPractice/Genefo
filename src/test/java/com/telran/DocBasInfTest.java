@@ -5,6 +5,7 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,21 +24,18 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 03.06.2015.
  */
-public class DocBasInfTest {
+public class DocBasInfTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
+
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
     public DocBasInfPage docBasInfPage;
     private boolean acceptNextAlert = true;
 
-
     @BeforeClass
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
+        PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);

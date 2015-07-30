@@ -14,6 +14,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -281,20 +283,33 @@ public class MainPage extends Page {
             Log.info("No followers");
         }
     }
+
     public void addMyDoctorNameToFillSet() {
         String strMyName = myNameDoctor.getText();
         Log.info(strMyName + " is adding to follow name set");
         followers.add(strMyName);
     }
+
     public void addMyUserNameToFillSet() {
         String strMyName = myNameUser.getText();
         Log.info(strMyName + " is adding to follow name set");
         followers.add(strMyName);
     }
+
+    public void mouseScrolling() {
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+    robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+}
     //Method returns true if it finds a new name to follow from posts and goes to his profile page and returns false
     //if there are no new names to add to follow
     public boolean addNewFollowerFromPost() {
-
+        mouseScrolling();
         List<WebElement> postNamesList = driver.findElements(By.xpath("//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']"));
         int count = 0;
         for (WebElement current : postNamesList) {

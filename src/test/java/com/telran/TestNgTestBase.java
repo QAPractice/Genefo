@@ -1,6 +1,7 @@
 package com.telran;
 
 import com.telran.util.PropertyLoader;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
@@ -29,7 +30,7 @@ public class TestNgTestBase {
     // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
 
     Capabilities capabilities = PropertyLoader.loadCapabilities();
-
+    PropertyConfigurator.configure("log4j.properties");
     driver = WebDriverFactory.getDriver(capabilities);
 
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

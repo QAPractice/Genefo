@@ -14,7 +14,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
-public class AddProfilesTest {
+public class AddProfilesTest extends TestNgTestBase {
 
     public WebDriver driver;
     public WebDriverWait wait;

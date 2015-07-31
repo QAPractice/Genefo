@@ -180,6 +180,23 @@ public class DataProviders {
 
         return userData.iterator();
     }
+    @DataProvider
+    public static Iterator<Object[]> loadDataForMDRating() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                DataProviders.class.getResourceAsStream("/mdrating.data")));
+
+        List<Object[]> userData = new ArrayList<Object[]>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+
+        in.close();
+
+        return userData.iterator();
+    }
+
 
     @DataProvider
     public Iterator<Object[]> users() {

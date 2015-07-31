@@ -4,6 +4,7 @@ import com.telran.util.PropertyLoader;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import ru.stqa.selenium.factory.WebDriverFactory;
@@ -36,7 +37,7 @@ public class TestNgTestBase {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
-  @AfterSuite(alwaysRun = true)
+  @AfterClass(alwaysRun = true)
   public void tearDown() {
     if (driver != null) {
       WebDriverFactory.dismissDriver(driver);

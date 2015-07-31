@@ -315,7 +315,7 @@ public class SymptomsOnMainPage  extends Page {
         clickElement(tooltipSymptom);
         return this;
     }
-
+/*
     public void createSymptomPost() {
         selectGeneralArea();
         WebElement genArea;
@@ -380,86 +380,10 @@ public class SymptomsOnMainPage  extends Page {
         }
 
     }
+*/
 
-
-    public void createSymptomPost_1() {
-        selectGeneralArea();
-        WebElement genArea;
-        //List<WebElement> genAreaList = driver.findElements(By.xpath("//*[@class='chosen-results']/*[contains (@class,'active-result')]"));
-        List<WebElement> genAreaList = generalAreaOptions.findElements(By.tagName("li")); //was added
-        int genAreaListCounter = 0;
-        while (genAreaListCounter < genAreaList.size() ) {
-            genAreaList = generalAreaOptions.findElements(By.tagName("li"));
-            genArea = genAreaList.get(genAreaListCounter);
-            String general = genArea.getText();
-            clickElement(genArea);
-            Log.info("Selecting General area: " + general + " ");
-
-            selectSpecificArea();
-            new Actions(driver).moveToElement(tooltipSpecificArea).perform();
-            //List<WebElement> specificAreaList = driver.findElements(By.xpath("//*[contains (@class,'active-result')]"));
-            List<WebElement> specificAreaList = specificAreaOptions.findElements(By.tagName("li")); //was added
-            int specificAreaListCounter = 0;
-            while (specificAreaListCounter < specificAreaList.size() ) {
-                specificAreaList = specificAreaOptions.findElements(By.tagName("li"));
-                specificArea =  specificAreaList.get(specificAreaListCounter);
-                String specific = specificArea.getText();
-                Log.info("Selecting Specific area: " + specific + " ");
-                specificArea.click();
-
-                selectSymptom();
-                 new Actions(driver).moveToElement(tooltipSymptom).perform();
-                //List<WebElement> symptomList = driver.findElements(By.xpath("//*[@class='chosen-results']/*[contains (@class,'active-result')]"));
-                List<WebElement> symptomList = symptomAreaOptions.findElements(By.tagName("li")); //was added
-                int symptomListCounter = 0;
-                while ( symptomListCounter < symptomList.size()) {
-                    String symptom;
-                    symptomList = symptomAreaOptions.findElements(By.tagName("li")); //was added
-                    WebElement sympptom = symptomList.get(symptomListCounter);
-                    symptom = sympptom.getText();
-                    Log.info("Selecting Symptom: " + symptom + " ");
-                    clickElement(sympptom);
-                    String post = ("general Area - " + general + " Specific Area - " + specific + ", Symptom - " + symptom);
-                    postText(      "general Area - " + general + " Specific Area - " + specific + ", Symptom - " + symptom);
-                    submitPost();
-                    waitForPostLoaded();
-                   // Assert.assertEquals(specificAreaOnPost.getText(), specific, "Specific area text is wrong");
-                  //  Assert.assertEquals(generalAreaOnPost.getText(), general, "General area text is wrong");
-                  //  Assert.assertEquals(symptomOnPost.getText(), symptom, "Symptom text is wrong");
-                  //  Assert.assertEquals(textOnPost.getText(), post, "Post text is wrong");
-                    Reporter.log("New post created with data: \n general Area - " + general + "\n Specific Area - " + specific + ", \n Symptom - " + symptom);
-                    selectGeneralArea();
-                    sleep(3);
-                    genAreaList = generalAreaOptions.findElements(By.tagName("li")); //was added
-                    genArea = genAreaList.get(genAreaListCounter);
-                    clickElement(genArea);
-                    selectSpecificArea();
-                    specificAreaList = specificAreaOptions.findElements(By.tagName("li"));
-                    specificArea = specificAreaList.get(specificAreaListCounter);
-                    clickElement(specificArea);
-                    selectSymptom();// was added
-                    sleep(3);
-                    symptomListCounter = symptomListCounter + 1;
-                }
-                specificAreaListCounter = specificAreaListCounter + 1;
-                sleep(3);
-                selectGeneralArea();
-                genAreaList = generalAreaOptions.findElements(By.tagName("li")); //was added
-                genArea = genAreaList.get(genAreaListCounter);
-                clickElement(genArea);
-                selectSpecificArea();
-                new Actions(driver).moveToElement(tooltipSpecificArea).perform();
-
-            }
-            genAreaListCounter = genAreaListCounter + 1;
-            selectGeneralArea();
-            new Actions(driver).moveToElement(tooltipGeneralArea).perform();
-        }
-
-    }
-
-
-    public void createSymptomPost_2() {
+   // Chooses all possibilities from dropdown lists - one after another
+    public void createSymptomPost() {
         selectGeneralArea();
         WebElement genArea;
         List<WebElement> genAreaList = generalAreaOptions.findElements(By.tagName("li"));

@@ -27,6 +27,10 @@ public class PostOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//span[@class='ng-binding ng-isolate-scope']")
     WebElement SentPostText;
 
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-type']//i[contains(@class,'pencil')]")
+    WebElement PencilPicture;
+
+
     public PostOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -49,6 +53,20 @@ public class PostOnMainPage extends Page {
     public boolean isOnPostPanel() {
         waitUntilPostPanelIsLoaded();
         return exists(postButtonHighLighted);
+    }
+
+
+    // Checks that title of our 'Post' Panel have appeared on the screen so we can work with it.
+    public boolean isPencilPictureExists() {
+        Log.info("Checking that pencil icon in top right corner is present ");
+        try {
+            waitUntilElementIsLoaded(PencilPicture);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return exists(PencilPicture);
     }
 
     public PostOnMainPage fillTextField(String post) {

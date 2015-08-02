@@ -3,6 +3,7 @@ package com.telran;
 import com.telran.pages.FiltersOfPatientOnMainPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -19,10 +21,12 @@ public class FiltersOfPatientTest extends TestNgTestBase {
     private static String PATIENT_ONE = "Pat One";
     private static String PATIENT_TWO = "Pat Two";
     private static String PATIENT_THREE = "Pat Three";
+    private static String PATIENT_FOUR = "Pat Four";
 
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     public void setup() {
@@ -31,7 +35,7 @@ public class FiltersOfPatientTest extends TestNgTestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         filtersOfPatientOnMainPage = PageFactory.initElements(driver, FiltersOfPatientOnMainPage.class);
         try {
-            loginPage.login("patone@pat.ru", "111111");
+            loginPage.login("pat1@pat.ru", "111111");
             mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,9 +63,10 @@ public class FiltersOfPatientTest extends TestNgTestBase {
                     .clickOnMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
             filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
-            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerFirstPost is not visible'", filtersOfPatientOnMainPage.isNameOfPatOne(PATIENT_ONE));
+      //      assertFalse("Alert:'NameTwoPatient is visible'", filtersOfPatientOnMainPage.isNameOfPatTwo(PATIENT_TWO));
+      //      assertFalse("Alert:'NameThreePatient is visible'", filtersOfPatientOnMainPage.isNameOfPatThree(PATIENT_THREE));
+      //      assertFalse("Alert:'NameFourPatient is visible'", filtersOfPatientOnMainPage.isNameOfPatFour(PATIENT_FOUR));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,10 +80,10 @@ public class FiltersOfPatientTest extends TestNgTestBase {
                     .clickOnPeopleIAmFollowingAndMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
             filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
-            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_TWO));
-            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerFirstPost is not visible'", filtersOfPatientOnMainPage.isNameOfPatOne(PATIENT_ONE));
+            assertTrue("Alert:'NameTwoPatient is not visible'", filtersOfPatientOnMainPage.isNameOfPatTwo(PATIENT_TWO));
+            // assertFalse("Alert:'NameTwoPatient is visible'", filtersOfPatientOnMainPage.isNameOfPatThree(PATIENT_THREE));
+           // assertFalse("Alert:'NameFourPatient is visible'", filtersOfPatientOnMainPage.isNameOfPatFour(PATIENT_FOUR));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,20 +97,19 @@ public class FiltersOfPatientTest extends TestNgTestBase {
                     .clickOnMyConditionAndPeopleIAmFollowingAndMyPostsOnlyRadioButton()
                     .clickOnApplyFilterButton();
             filtersOfPatientOnMainPage.waitForDisplayingMyPosts();
-            assertTrue("Alert:'NameOwnerFirstPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFirstPost(PATIENT_THREE));
-            assertTrue("Alert:'NameOwnerSecondPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerSecondPost(PATIENT_TWO));
-            assertTrue("Alert:'NameOwnerThirdPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerThirdPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerForthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFourthPost(PATIENT_ONE));
-            assertTrue("Alert:'NameOwnerFifthPost is not correct'", filtersOfPatientOnMainPage.isNameOfOwnerFifthPost(PATIENT_ONE));
+            assertTrue("Alert:'NameOwnerFirstPost is not visible'", filtersOfPatientOnMainPage.isNameOfPatOne(PATIENT_ONE));
+            assertTrue("Alert:'NameTwoPatient is not visible'", filtersOfPatientOnMainPage.isNameOfPatTwo(PATIENT_TWO));
+            assertTrue("Alert:'NameTwoPatient is not visible'", filtersOfPatientOnMainPage.isNameOfPatThree(PATIENT_THREE));
+            assertTrue("Alert:'NameFourPatient is not visible'", filtersOfPatientOnMainPage.isNameOfPatFour(PATIENT_FOUR));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //patone@pat.ru 111111    Pat One  Bardet-Biedl syndrome Community     following Pat Two
-    //doctor1@mail.ru 111111   Doctor One    Bardet-Biedl syndrome Community
-    //pattwo@mail.ru 111111    Pat Two
-    //patthree@mail.ru 111111   Pat Three  Bardet-Biedl syndrome Community
+    //pat1@pat.ru 111111    Pat One  Donnai-Barrow Syndrome     following Pat Two
+    //pat2@pat.ru 111111    Pat Two  Donnai-Barrow Syndrome
+    //pat3@par.ru 111111    Pat Three  Donnai-Barrow Syndrome
+    //pat4@pat.ru 111111    Pat Four   Donnai-Barrow Syndrome
 
     @AfterClass(alwaysRun = true)
     public void teardown() {

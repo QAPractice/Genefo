@@ -1,41 +1,40 @@
 package com.telran;
 
+import com.telran.pages.DataProviders;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MDRatingOnMainPage;
 import com.telran.pages.MainPage;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Л on 5/30/2015.
  */
-public class MDRatingTest {
+public class MDRatingTest extends TestNgTestBase {
     private static String EMAIL = "jakoff+444@gmail.com";
     private static String PASSWORD = "111111";
-    private static String FACILITY_NAME = "chicagoMed";
-    private static String PHYSICIAN_FNAME = "Phil";
-    private static String PHYSICIAN_LNAME = "Richards";
-    private static String TEXT = "post";
     public WebDriver driver;
     public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public MDRatingOnMainPage mdRatingOnMainPage;
-    private boolean acceptNextAlert = true;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -60,131 +59,147 @@ public class MDRatingTest {
     }
 
 
-    @Test (groups = {"smoke", "positive"})
-    //@Parameters({"facilityname","physicianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostSuccess() {
+    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingPostSuccess(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        Reporter.log("SendMDRatingPostSuccess test");
+        Log.info("SendMDRatingPostSuccess test");
         try {
+            int number = Integer.parseInt(starNumber);
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
-                    .fillTextField(TEXT)
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields(physician_fname, physician_lname)
+                    .clickOnAnyStar(number)
+                    .fillTextField(text)
                     .sendPost()
                     .waitUntilNewPostisLoaded();
-                    sleep(2000);
-            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
-            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));
-            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(TEXT));
+            sleep(2000);
+            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow(number), "Matched star is not yellow");
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facility_name), "Facility name is not correct");
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(physician_fname + " " + physician_lname), "Physician name is not correct");
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect(text), "Something wrong with post");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("MDRating post was sent successfully");
     }
 
-    @Test (groups = {"smoke", "negative"})
-    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostTestWithoutFacilityName() {
-        try {
+        @Test (groups = {"smoke", "negative"},dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingPostTestWithoutFacilityName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+            Reporter.log("sendMDRatingPostTestWithoutFacilityName test");
+            Log.info("sendMDRatingPostTestWithoutFacilityName test");
+            int number = Integer.parseInt(starNumber);
+            try {
             mdRatingOnMainPage
-                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
-                    .fillTextField(TEXT)
+                    .fillPhysicianFields(physician_fname, physician_lname)
+                    .clickOnAnyStar(number)
+                    .fillTextField(text)
                     .sendPost();
                     mainPage.waitForErrorMessage();
-            assertTrue(mainPage.getRequiredFieldsMessage());
+            assertTrue("No alert message", mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+            Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"})
-    //@Parameters({"facilityname", "physitianLastName", "text"})
-    public void sendMDRatingPostWithoutPhysicianFName() {
+    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingPostWithoutPhysicianFName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        Reporter.log("sendMDRatingPostWithoutPhysicianFName test");
+        Log.info("sendMDRatingPostWithoutPhysicianFName test");
+        int number = Integer.parseInt(starNumber);
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields("", PHYSICIAN_LNAME)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
-                    .fillTextField(TEXT)
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields("", physician_lname)
+                    .clickOnAnyStar(number)
+                    .fillTextField(text)
                     .sendPost();
                     mainPage.waitForErrorMessage();
-            assertTrue(mainPage.getRequiredFieldsMessage());
+            assertTrue("No alert message", mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"})
-    //@Parameters({"facilityname","physitianFirstName", "text"})
-    public void sendMDRatingPostWithoutPhysicianLName() {
+    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingPostWithoutPhysicianLName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        Reporter.log("sendMDRatingPostWithoutPhysicianLName test");
+        Log.info("sendMDRatingPostWithoutPhysicianLName test");
+        int number = Integer.parseInt(starNumber);
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields(PHYSICIAN_FNAME, "")
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
-                    .fillTextField(TEXT)
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields(physician_fname, "")
+                    .clickOnAnyStar(number)
+                    .fillTextField(text)
                     .sendPost();
             mainPage.waitForErrorMessage();
-            assertTrue(mainPage.getRequiredFieldsMessage());
+            assertTrue("No alert message", mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"})
-    //@Parameters({"facilityname","physitianFirstName", "physitianLastName"})
-    public void sendMDRatingWithEmptyPost() {
-
+    /*@Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingWithEmptyPost(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        int number = Integer.parseInt(starNumber);
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields(physician_fname, physician_lname)
+                    .clickOnAnyStar(number)
                     .sendPost();
+            mainPage.waitForErrorMessage();
+            assertTrue("No alert message", mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    @Test (groups = {"negative"})
-    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRatingPostWithoutRating() {
+        Reporter.log("Post is not sent");
+    }*/
+    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRatingPostWithoutRating(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        Reporter.log("sendMDRatingPostWithoutRating test");
+        Log.info("sendMDRatingPostWithoutRating test");
+        int number = Integer.parseInt(starNumber);
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
-                    .fillTextField(TEXT)
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields(physician_fname, physician_lname)
+                    .fillTextField(text)
                     .sendPost();
+            mainPage.waitForErrorMessage();
+            assertTrue("No alert message", mainPage.getRequiredFieldsMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("Post is not sent");
     }
-    @Test (groups = {"positive"})
-    //@Parameters({"facilityname","physitianFirstName", "physitianLastName", "text"})
-    public void sendMDRating1LatterPost() {
+    @Test (groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    public void sendMDRating1LatterPost(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
+        Reporter.log("sendMDRating1LatterPost test");
+        Log.info("sendMDRating1LatterPost test");
+        int number = Integer.parseInt(starNumber);
         try {
             mdRatingOnMainPage
-                    .fillMedicalFacilityField(FACILITY_NAME)
-                    .fillPhysicianFields(PHYSICIAN_FNAME, PHYSICIAN_LNAME)
-                    .clickOnAllStarsTogether()
-                    .rateItThree()              //Click on the third star
+                    .fillMedicalFacilityField(facility_name)
+                    .fillPhysicianFields(physician_fname, physician_lname)
+                    .clickOnAnyStar(number)
                     .fillTextField("p")
                     .sendPost()
                     .waitUntilNewPostisLoaded();
                     sleep(2000);
-            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow());
-            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(FACILITY_NAME));
-            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(PHYSICIAN_FNAME + " " + PHYSICIAN_LNAME));
-            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect("p"));
+            Assert.assertTrue(mdRatingOnMainPage.isThirdStarYellow(number), "Matched star is not yellow");
+            Assert.assertTrue(mdRatingOnMainPage.isFacilityNameCorrect(facility_name), "Facility name is not correct");
+            Assert.assertTrue(mdRatingOnMainPage.isPhysicianNameCorrect(physician_fname + " " + physician_lname), "Physician name is not correct");
+            Assert.assertTrue(mdRatingOnMainPage.isTextCorrect("p"), "Something wrong with the post");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Reporter.log("1 latter post was sent successfully");
     }
 
     @AfterClass(alwaysRun = true)

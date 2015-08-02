@@ -51,7 +51,6 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
     @Test(groups = {"smoke", "positive"},enabled = true, dataProviderClass = DataProviders.class,dataProvider = "loadMedicineTypesFromFile")
     public void postSomeMedicineRandom(String name,String reason) throws InterruptedException {
         medicineOnMainPage.createMedicinePostRandom(name,reason);
-        sleep(3000);
     }
     //Negative tests
 

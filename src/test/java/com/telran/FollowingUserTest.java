@@ -22,7 +22,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 6/2/2015.
  */
-public class FollowingUserTest {
+public class FollowingUserTest extends TestNgTestBase {
     public WebDriver driver;
     public WebDriverWait wait;
     LoginPage loginPage;

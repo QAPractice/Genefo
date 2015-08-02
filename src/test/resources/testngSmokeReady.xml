@@ -19,6 +19,7 @@
             <class name="com.telran.SignUpHCPTest"/>
             <class name="com.telran.PostOnMainTest"/>
             <class name="com.telran.WhatWorksOnMainTest"/>
+            <class name="com.telran.FiltersOfPatientTest"/>
         </classes>
 
 

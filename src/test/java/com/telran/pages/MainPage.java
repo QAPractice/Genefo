@@ -28,8 +28,8 @@ public class MainPage extends Page {
     WebElement postButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Medicine')]")
     WebElement medicineButton;
-    @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Milestone')]")
-    WebElement milestoneButton;
+    @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Progress')]")
+    WebElement progressButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Symptoms')]")
     WebElement symptomsButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'What Works')]")
@@ -139,7 +139,7 @@ public class MainPage extends Page {
     }
 
     public MainPage openMilestonePanel() {
-        clickElement(milestoneButton);
+        clickElement(progressButton);
         return this;
     }
 

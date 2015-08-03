@@ -28,12 +28,12 @@ public class MilestoneOnMainPage extends Page {
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
     WebElement movementButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Eating')]")
-    WebElement eatingButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Treatment')]")
-    WebElement treatmentButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Toileting')]")
-    WebElement toiletingButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Daily living')]")
+    WebElement dailyLivingButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Procedure')]")
+    WebElement procedureButton;
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complication')]")
+    WebElement complicationsButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
     //Dropdown list Button
@@ -41,49 +41,82 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectDropDownListButton;
     // DropdownList elements of Language
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemSmiles;
+    WebElement itemTwoThreeWords;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstWord;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemTwoThreeWords;
+    WebElement itemSmiles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
     // DropdownList elements of Movement
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsHead;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemReachesForObjects;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemRollsOver;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemSitsWithoutSupport;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemCrawls;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemHoldsHead;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemPullsToStand;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
-    WebElement itemWalk;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemReachesForObjects;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement itemRollsOver;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemRuns;
-    // DropdownList elements of Eating
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsBottles;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement itemSitsWithoutSupport;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemWalk;
+    // DropdownList elements of Daily living
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemDressesAlone;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
-    // DropdownList elements of Toileting
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemToiletTrained;//+
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemDressesAlone;//+
-    //DropdownList elements of Treatment
+    WebElement itemHoldsBottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemSurgery;
+    WebElement itemToiletTrained;
+    //DropdownList elements of Procedure
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemAchillesTendonLengthening;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemMedicalTrial;
+    WebElement itemBrainMRI;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemGastrostomy;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemMedicalTrial;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemRemission;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement itemSpinalFusionSurgeryForScoliosis;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement itemStrabismusSurgery;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemSurgery;
+    //DropdownList elements of Complication
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemBehavioralProblems;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemConstipation;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    WebElement itemDevelopmentalDelay;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemFailureToThrive;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemFeedingDifficulties;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    WebElement itemGastroespophagealReflux;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    WebElement itemHearingLoss;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    WebElement itemIntellectualDisability;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemObesity;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
+    WebElement itemSeizures;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='10']")
+    WebElement itemSleepDisorders;
+
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
     WebElement yearsButton;
@@ -224,16 +257,18 @@ public class MilestoneOnMainPage extends Page {
         // buttons with names from WebPage
         buttonsAndItemsMap.put(languageButton.getText(),languageButton);
         buttonsAndItemsMap.put(movementButton.getText(),movementButton);
-        buttonsAndItemsMap.put(eatingButton.getText(),eatingButton);
-        buttonsAndItemsMap.put(treatmentButton.getText(),treatmentButton);
-        buttonsAndItemsMap.put(toiletingButton.getText(),toiletingButton);
+        buttonsAndItemsMap.put(dailyLivingButton.getText(),dailyLivingButton);
+        buttonsAndItemsMap.put(procedureButton.getText(),procedureButton);
+        buttonsAndItemsMap.put(complicationsButton.getText(),complicationsButton);
         buttonsAndItemsMap.put(otherButton.getText(),otherButton);
         //items with names from category "Language"
-        buttonsAndItemsMap.put("Smiles",itemSmiles);
-        buttonsAndItemsMap.put("Babbles",itemBabbles);
-        buttonsAndItemsMap.put("First word",itemFirstWord);
-        buttonsAndItemsMap.put("2-3 words",itemTwoThreeWords);
-        buttonsAndItemsMap.put("Speaks in full sentences",itemSpeaksInFullSentences);
+      /*  buttonsAndItemsMap.put("Crawls",);
+        buttonsAndItemsMap.put("Holds head",);
+        buttonsAndItemsMap.put("Pulls to stand",);
+        buttonsAndItemsMap.put("Reaches for objects",);
+        buttonsAndItemsMap.put("Rolls over",);
+        buttonsAndItemsMap.put("Runs",);
+        buttonsAndItemsMap.put("Sits without support",);*/
         // items with names from category "Movement"
         buttonsAndItemsMap.put("Holds head",itemHoldsHead);
         buttonsAndItemsMap.put("Reaches for objects",itemReachesForObjects);

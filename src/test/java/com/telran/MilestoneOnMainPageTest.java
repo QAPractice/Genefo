@@ -51,7 +51,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
             //Log.info("Opening Registration page");
-            loginPage.login("mili9@mail.ru", "999999");
+            loginPage.login("mili99@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
 
                     .openMilestonePanel();
@@ -217,7 +217,7 @@ public class MilestoneOnMainPageTest {
     4)Message:Length:length=1.*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest4(){
-        type = "Eating";
+        type = "Daily living";
         milestone = "Eats with spoon";
         post = randomAlphabetic(1);
         try {

@@ -1,9 +1,6 @@
 package com.telran;
 
-import com.telran.pages.DataProviders;
-import com.telran.pages.LoginPage;
-import com.telran.pages.MainPage;
-import com.telran.pages.MilestoneOnMainPage;
+import com.telran.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +20,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Zizi, Christina and Mariya on 5/30/2015.
  */
-public class MilestoneOnMainPageTest {
+public class MilestoneOnMainPageTest extends TestNgTestBase {
 
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public WebDriver driver;
@@ -51,7 +48,7 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
             //Log.info("Opening Registration page");
-            loginPage.login("mili99@mail.ru", "999999");
+            loginPage.login("mili9@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
 
                     .openMilestonePanel();
@@ -62,6 +59,22 @@ public class MilestoneOnMainPageTest {
         milestoneOnMainPage.fillAllElementsAndItemsToMap();
 
     }
+
+
+   /* @BeforeClass
+    public void setup() {
+
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        milestoneOnMainPage= PageFactory.initElements(driver, MilestoneOnMainPage.class);
+        try {
+            loginPage.login("mili99@mail.ru", "999999");
+            mainPage.waitUntilMainPageIsLoaded();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
 
 
     @BeforeMethod

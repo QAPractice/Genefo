@@ -49,43 +49,44 @@ public class MilestoneOnMainPage extends Page {
     WebElement selectDropDownListButton;
 
     // DropdownList elements of Language
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemSmiles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstWord;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemTwoThreeWords;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
 
     // DropdownList elements of Movement
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemReachesForObjects;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemRollsOver;
+    WebElement itemHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemSitsWithoutSupport;
+    WebElement itemReachesForObjects;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
-    WebElement itemCrawls;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
-    WebElement itemPullsToStand;
+    WebElement itemRollsOver;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
-    WebElement itemWalk;
+    WebElement itemSitsWithoutSupport;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemCrawls;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    WebElement itemPullsToStand;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    WebElement itemWalk;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemRuns;
 
     // DropdownList elements of Daily living
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemDressesAlone;//+
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemHoldsBottles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemToiletTrained;//+
 
     //DropdownList elements of Procedure
@@ -303,7 +304,7 @@ public class MilestoneOnMainPage extends Page {
 
         // items with names from category "Procedure"
         buttonsAndItemsMap.put("Achilles tendon lengthening",itemAchillesTendonLengthening);
-        buttonsAndItemsMap.put("BrainMRI",itemBrainMRI);
+        buttonsAndItemsMap.put("Brain MRI",itemBrainMRI);
         buttonsAndItemsMap.put("Gastrostomy",itemGastrostomy);
         buttonsAndItemsMap.put("Medical trial",itemMedicalTrial);
         buttonsAndItemsMap.put("Remission",itemRemission);
@@ -313,7 +314,7 @@ public class MilestoneOnMainPage extends Page {
        //items with names from category " Complication"
         buttonsAndItemsMap.put("Behavioral problems",itemBehavioralProblems);
         buttonsAndItemsMap.put("Constipation",itemConstipation);
-        buttonsAndItemsMap.put("DevelopmentalDelay",itemDevelopmentalDelay);
+        buttonsAndItemsMap.put("Developmental delay",itemDevelopmentalDelay);
         buttonsAndItemsMap.put("Failure to thrive",itemFailureToThrive);
         buttonsAndItemsMap.put("Feeding difficulties",itemFeedingDifficulties);
         buttonsAndItemsMap.put("Gastroespophageal reflux",itemGastroespophagealReflux);

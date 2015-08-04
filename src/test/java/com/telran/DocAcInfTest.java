@@ -9,7 +9,6 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -78,7 +77,7 @@ public class DocAcInfTest extends TestNgTestBase {
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
-            assertTrue("Alert1", docAcInfPage.alertMessageAccountSuccess());
+            assertTrue("Confirmation message 'Account Login Information Updated' didn't appeared", docAcInfPage.alertMessageAccountSuccess());
             mainPage.selectMyAccount();
             Log.info("Wait for load Profile HCP page");
             profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
@@ -92,7 +91,7 @@ public class DocAcInfTest extends TestNgTestBase {
                     .waitUntilEnterYourCurrentPassIsLoaded()
                     .fillCurrentPasswordField(LoginTest.PASSWORD)
                     .clickOnCurSaveButton();
-            assertTrue("Alert2", docAcInfPage.alertMessageAccountSuccess());
+            assertTrue("Confirmation message 'Account Login Information Updated' didn't appeared", docAcInfPage.alertMessageAccountSuccess());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,11 +129,6 @@ public class DocAcInfTest extends TestNgTestBase {
         Reporter.log("empty fields are not updated successful");
     }
 
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 
     private String closeAlertAndGetItsText() {
         try {

@@ -107,6 +107,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
             whatWorksOnMainPage.clickOnItemList();
             // here we check that we can not choose from the list if our Category is empty
             assertFalse("Item List Is Chosable despite of 'Category' absence",whatWorksOnMainPage.verifyItemListIsChosen() );
+            Log.info("Hurra! Item from the list wasn't choosen, because Category is empty");
             whatWorksOnMainPage
                     .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
@@ -114,6 +115,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
                     .sendPost();
             sleep(2000); // wait  to see sent post.
             assertFalse("Post was sent despite of 'Category' absence", whatWorksOnMainPage.verifyTextFromSentPost(text));
+            Log.info("Hurra! Post wasn't sent");
             Reporter.log("Checking that we can not send post - Successful");
         } catch (Exception e) {
             e.printStackTrace();

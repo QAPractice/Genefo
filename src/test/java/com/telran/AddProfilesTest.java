@@ -9,17 +9,19 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
+
 import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
-public class AddProfilesTest extends TestNgTestBase {
+public class AddProfilesTest {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
     private static String EMAIL="ri-lopatina@yandex.ru";
     private static String PASSWORD="111111";
+    public WebDriver driver;
+    public WebDriverWait wait;
     MyProfilesPage myProfilesPage;
     ProfilePage profilePage;
     LoginPage loginPage;

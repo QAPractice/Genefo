@@ -1,6 +1,8 @@
 package com.telran.pages;
 
+import com.telran.LogLog4j;
 import com.telran.util.PropertyLoader;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +21,7 @@ import java.util.NoSuchElementException;
  * Abstract class representation of a Page in the UI. Page object pattern
  */
 public abstract class Page {
+  private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 public String baseUrl;
   public String PAGE_URL;
   public String PAGE_TITLE;
@@ -103,17 +106,34 @@ protected WebDriver driver;
   public void setElementText(WebElement element, String text) {
     element.click();
     element.clear();
+    Log.info("entering text '" + text + "' into element " + element);
     element.sendKeys(text);
   // Assert.assertEquals(element.getAttribute("value"), text);
   }
 
 
   public void clickElement(WebElement element) {
+    Log.info("clicking on element " + element + "");
     element.click();
   }
 
+  public void waitUntilIsLoadedCustomTime(WebElement element, int time) {
+    try {
+      new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public void waitUntilIsLoaded(WebElement element) {
-    new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
+    try {
+      new WebDriverWait(driver, 7).until(ExpectedConditions.visibilityOf(element));
+    } catch (Exception e) {
+      Log.info("---------------------------------");
+      Log.info("element " + element + " can not be found by ExpectedConditions.visibilityOf(element)");
+      Log.info("---------------------------------");
+      e.printStackTrace();
+    }
   }
 
   // public void selectValueInDropdown(WebElement dropdown, String value) {
@@ -134,6 +154,9 @@ protected WebDriver driver;
       element.getTagName();
       return true;
     } catch (NoSuchElementException e) {
+      Log.info("---------------------------------");
+      Log.info("element " + element + " can not be found by  element.getTagName()");
+      Log.info("---------------------------------");
       return false;
     }
   }
@@ -147,6 +170,7 @@ protected WebDriver driver;
   }
 
   public boolean verifyTextBoolean(WebElement element, String text) {
+    Log.info("verifying that text from element " + element + " - ('" + element.getText() + "') - is equal to text '" + text + "'");
     return text.equals(element.getText());
   }
 
@@ -159,24 +183,19 @@ protected WebDriver driver;
     try {
       return element.isDisplayed();
     } catch (org.openqa.selenium.NoSuchElementException ignored) {
-      System.out.println("---------------------------------");
-      System.out.println("element can not be found by Page.isDisplayed()" );
-      System.out.println("---------------------------------");
       return false;
     }
   }
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     try {
-      new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
+      new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
 
     }catch (TimeoutException e){
 
-      System.out.println("---------------------------------");
-      System.out.println("No element found. Method: Page.waitUntilElementIsLoaded()");
-      System.out.println("---------------------------------");
     }
   }
+
 
   public void waitForElement(WebDriverWait wait, String element) {
     wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(element)));
@@ -187,6 +206,9 @@ protected WebDriver driver;
       driver.findElement(by);
       return true;
     } catch (org.openqa.selenium.NoSuchElementException e) {
+      Log.info("----------ALERT-----------------");
+      Log.info("element " + by + " can not be found by ExpectedConditions.visibilityOf(element)");
+      Log.info("---------ALERT------------------");
       return false;
     }
   }

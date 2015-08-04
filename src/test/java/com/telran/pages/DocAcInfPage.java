@@ -133,6 +133,7 @@ public class DocAcInfPage extends Page{
     }
 
     public boolean alertMessageAccountSuccess() {
+        waitUntilIsLoadedCustomTime(accountSuccess, 5);
         return exists(accountSuccess);
     }
 

@@ -4,6 +4,9 @@
     <test name="Test1">
 
         <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
         </groups>
 
         <packages>

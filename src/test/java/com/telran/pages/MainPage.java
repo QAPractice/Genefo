@@ -186,7 +186,13 @@ public class MainPage extends Page {
         return this;
     }
 
+    public boolean isLoggedIn() {
+
+        return exists(cogwheelButton);
+    }
+
     public MainPage logOut() {
+        Log.info("Loggin Out");
         clickElement(cogwheelButton);
         clickElement(logOutButton);
         return this;

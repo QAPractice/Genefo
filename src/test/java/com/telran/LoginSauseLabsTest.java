@@ -95,7 +95,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
     }
 
 
-    @Test(groups = {"smoke", "positive"})
+    //@Test(groups = {"smoke", "positive"})
     public void LoginSuccess() {
 
         try {
@@ -111,7 +111,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    // @Test(groups = {"smoke", "negative"})
     public void LoginWithoutAtInEmailField() {
 
         try {
@@ -128,7 +128,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    //  @Test(groups = {"smoke", "negative"})
     public void LoginWithPasswordContains1Symbol() {
 
         try {
@@ -145,7 +145,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
         }
     }
 
-    @Test(groups = {"smoke", "positive"})
+    // @Test(groups = {"smoke", "positive"})
     public void ForgotPassword() {
 
         try {
@@ -160,7 +160,7 @@ public class LoginSauseLabsTest implements SauceOnDemandSessionIdProvider, Sauce
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    // @Test(groups = {"smoke", "negative"})
     public void LoginWithEmptyFields() {
 
         try {

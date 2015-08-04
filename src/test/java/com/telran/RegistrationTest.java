@@ -7,7 +7,9 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -22,7 +24,8 @@ public class RegistrationTest extends TestNgTestBase {
 
     public WebDriverWait wait;
     public LoginPage loginPage;
-    public String EmailNickname; // Keeps the part of email before sign @
+    public String emailNickname; // Keeps the part of email before sign @
+    public String emailPositive; // Generates unique Email for positive tests @
     RegistrationPage registrationPage;
     ProfilePage profilePage;
     MainPage mainPage;
@@ -49,6 +52,12 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
+    @BeforeMethod
+    public void GenerateData() {
+        emailNickname = randomAlphabetic(7);
+        emailPositive = "one" + emailNickname + "@yopmail.com";
+    }
+
     @Test
     public void AsteriskTest() {
         Log.info("Checking that FirstNAme has asterisk");
@@ -57,25 +66,50 @@ public class RegistrationTest extends TestNgTestBase {
 
     }
 
-
-    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
-    public void RegTestSuccess(String condition) {
+    @Test(groups = {"positive", "smoke"})
+    public void RegTestSuccess() {
 
         try {
 
-            EmailNickname = randomAlphabetic(5);
+
             registrationPage
                     .openRegistrationPage();
-            if (mainPage.isOnMainPage() == true || profilePage.isOnProfilePage() == true) {
-                mainPage.logOut();
-                registrationPage.openRegistrationPage();
-            }
+
             registrationPage
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@yopmail.com")
+                    .fillEmailField(emailPositive)
+                    .fillConditionField("Alstrom")
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            assertTrue(profilePage.isOnProfilePage());
+            Reporter.log("SignUp Successful");
+            profilePage.selectGender("2");
+            assertTrue("", profilePage.isGenderSelected("Other"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    public void RegTestSuccessWithAllConditions(String condition) {
+
+        try {
+
+
+            registrationPage
+                    .openRegistrationPage();
+
+            registrationPage
+                    .fillFirstNameField("gggg")
+                    .checkThatFirstNameFieldHasAsterisk()
+                    .fillLastNameField("")
+                    .fillPasswordField("111111")
+                    .fillEmailField(emailPositive)
                     .fillConditionField(condition)
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -90,7 +124,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCondition() {
 
         try {
@@ -112,7 +146,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "positive"})
     public void RegTestWithoutLastName() {
 
         try {
@@ -135,7 +169,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastName256() {
 
         try {
@@ -157,7 +191,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutFirstName() {
 
         try {
@@ -178,7 +212,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutPassword() {
 
         try {
@@ -201,7 +235,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutEmail() {
 
         try {
@@ -224,7 +258,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBox18() {
 
         try {
@@ -246,7 +280,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutCheckBoxTerms() {
 
         try {
@@ -270,7 +304,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //EmailField
     //1
-    @Test
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithoutAtInEmailField() {
 
         try {
@@ -294,7 +328,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithSpecialCharactersInEmailField() {
 
         try {
@@ -318,7 +352,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithoutLocalPartInEmailField() {
 
         try {
@@ -342,7 +376,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithoutDomainPartInEmailField() {
 
         try {
@@ -367,7 +401,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //5
 
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithConsecutiveDotsInEmailField() {
 
         try {
@@ -391,7 +425,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //6
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningLocalPartEmailField() {
 
         try {
@@ -415,7 +449,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //7
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningDomainPartEmailField() {
 
         try {
@@ -439,7 +473,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //8
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithEmailContains256Symbols() {
 
         try {
@@ -468,7 +502,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //PasswordField
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains5Symbols() {
 
         try {
@@ -492,7 +526,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains13Symbols() {
 
         try {
@@ -517,7 +551,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //FirstName
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsSpecialCharacters() {
 
         try {
@@ -541,7 +575,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsDigits() {
 
         try {
@@ -565,7 +599,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsUnderscore() {
 
         try {
@@ -589,7 +623,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContains26Symbols() {
 
         try {
@@ -614,7 +648,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //LastName
     //1
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsSpecialCharacters() {
 
         try {
@@ -638,7 +672,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsDigits() {
 
         try {
@@ -662,7 +696,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsUnderscore() {
 
         try {
@@ -686,7 +720,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContains26Symbols() {
 
         try {
@@ -710,7 +744,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //Condition
-    @Test
+    @Test(groups = {"negative"})
     public void RegTestWithConditionNotFromList() {
 
         try {
@@ -737,7 +771,7 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests emails variations
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailLocalPartBeginsNumber() {
 
         try {
@@ -759,7 +793,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailDomainNameBeginsNumber() {
 
         try {
@@ -783,7 +817,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //3
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithDotsLocalAndDomain() {
 
         try {
@@ -806,7 +840,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //4
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInLocalPart() {
 
         try {
@@ -829,7 +863,7 @@ public class RegistrationTest extends TestNgTestBase {
 
 
     //5
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithHypenInDomainPart() {
 
         try {
@@ -852,7 +886,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     //6
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestEmailWithUnderscoreInLocalPart() {
 
         try {
@@ -876,7 +910,7 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive test for password
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword6Symbols() {
 
         try {
@@ -898,7 +932,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword8Symbols() {
 
         try {
@@ -919,7 +953,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestPassword12Symbols() {
 
         try {
@@ -943,7 +977,7 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests for FirstNameField
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestFirstName25Symbols() {
 
         try {
@@ -965,7 +999,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
 
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestFirstName1Symbol() {
 
         try {
@@ -990,7 +1024,7 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests for LastNameField
 
     //1
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestLastName25Symbols() {
 
         try {
@@ -1012,7 +1046,7 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestLastName1Symbol() {
 
         try {
@@ -1040,7 +1074,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
 
-            EmailNickname = randomAlphabetic(5);
+            emailNickname = randomAlphabetic(5);
             registrationPage
                     .openRegistrationPage()
                     .fillFirstNameField("gggg")
@@ -1050,7 +1084,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .checkThatPasswordFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+                    .fillEmailField("one" + emailNickname + "@usgenefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -1065,16 +1099,15 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
 
-
-    @Test
+    @Test(groups = {"positive"})
     public void RegTestCheckAgreeBox () {
         try {
-            EmailNickname = randomAlphabetic(5);
+            emailNickname = randomAlphabetic(5);
                 registrationPage
                         .openRegistrationPage()
                         .fillLastNameField("")
                         .fillPasswordField("111111")
-                        .fillEmailField("one" + EmailNickname + "@usgenefo.com")
+                        .fillEmailField("one" + emailNickname + "@usgenefo.com")
                         .fillConditionField("Alstrom")
                         .clickToCheckBox18()
                         .clickToCheckBoxAgree()
@@ -1107,6 +1140,12 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
+    @AfterMethod
+    public void postcondition() {
+        if (mainPage.isLoggedIn()) {
+            mainPage.logOut();
+        }
+    }
 }
 
 

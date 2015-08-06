@@ -20,11 +20,9 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Zizi, Christina and Mariya on 5/30/2015.
  */
-public class MilestoneOnMainPageTest extends TestNgTestBase {
+public class MilestoneOnMainPageTest extends TestNgTestBase{
 
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public WebDriver driver;
-    public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public MilestoneOnMainPage milestoneOnMainPage;
@@ -40,9 +38,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase {
     @BeforeClass
     public void setup() {
         // PropertyConfigurator.configure("log4j.properties");
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
@@ -59,22 +54,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase {
         milestoneOnMainPage.fillAllElementsAndItemsToMap();
 
     }
-
-
-   /* @BeforeClass
-    public void setup() {
-
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
-        milestoneOnMainPage= PageFactory.initElements(driver, MilestoneOnMainPage.class);
-        try {
-            loginPage.login("mili99@mail.ru", "999999");
-            mainPage.waitUntilMainPageIsLoaded();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
 
 
     @BeforeMethod

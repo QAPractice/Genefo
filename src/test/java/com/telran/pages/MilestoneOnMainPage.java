@@ -39,7 +39,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement dailyLivingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Procedure')]")
     WebElement procedureButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complication')]")
+    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complications')]")
     WebElement complicationButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
@@ -110,25 +110,25 @@ public class MilestoneOnMainPage extends Page {
     //DropdownList elements of Complication
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemBehavioralProblems;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
-    WebElement itemConstipation;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
-    WebElement itemDevelopmentalDelay;
+    WebElement itemConstipation;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
-    WebElement itemFailureToThrive;
+    WebElement itemDevelopmentalDelay;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
-    WebElement itemFeedingDifficulties;
+    WebElement itemFailureToThrive;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
-    WebElement itemGastroespophagealReflux;
+    WebElement itemFeedingDifficulties;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
-    WebElement itemHearingLoss;
+    WebElement itemGastroespophagealReflux;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
-    WebElement itemIntellectualDisability;
+    WebElement itemHearingLoss;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
-    WebElement itemObesity;
+    WebElement itemIntellectualDisability;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
-    WebElement itemSeizures;
+    WebElement itemObesity;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='10']")
+    WebElement itemSeizures;
+    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='11']")
     WebElement itemSleepDisorders;
 
 

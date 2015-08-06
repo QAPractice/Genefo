@@ -223,7 +223,7 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public boolean isGraphLoaded(String element) {
+    public boolean isGraphLoaded(String element) throws IOException, InterruptedException {
         java.lang.String xpath = "xxx";
 
 

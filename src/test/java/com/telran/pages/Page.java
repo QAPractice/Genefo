@@ -3,7 +3,6 @@ package com.telran.pages;
 import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 /**
@@ -21,37 +19,30 @@ import java.util.NoSuchElementException;
  */
 public abstract class Page {
   private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-  public String PAGE_URL;
   public String PAGE_TITLE;
-  public WebDriver webDriver;
+  protected WebDriver webDriver;
   protected StringBuffer verificationErrors = new StringBuffer();
-  HashMap<String, String> allElementsMap;
   /*
    * Constructor injecting the WebDriver interface
    * 
    * @param webDriver
    */
-
   public Page(WebDriver webDriver) {
+
     this.webDriver = webDriver;
-    this.allElementsMap = new HashMap<String, String>();
   }
 
-  private WebElement getWebElement(String name) {
-    return webDriver.findElement(By.xpath(allElementsMap.get(name)));
+  public String getTitle() {
+    return webDriver.getTitle();
   }
 
-  public Page clickWebElement(String name) {
-    getWebElement(name).click();
-    return this;
+
+  public String getPageTitle() {
+    return PAGE_TITLE;
   }
 
-  public Page setElementText(String name, String text) {
-    WebElement element = getWebElement(name);
-    element.clear();
-    element.sendKeys(text);
-  //  Assert.assertEquals(element.getAttribute("value"), text);
-    return this;
+  public void loadPage() {
+    //assertEquals(getTitle(), getPageTitle());
   }
 
   public void goBackBrowserButton() {
@@ -62,44 +53,16 @@ public abstract class Page {
     webDriver.navigate().forward();
   }
 
+  public void waitUntilIsLoaded(WebElement element) {
+    new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(element));
+  }
+
   public void reloadPage() {
     webDriver.navigate().refresh();
   }
 
-  public void waitUntilIsLoaded(String name) throws IOException, InterruptedException {
-    WebElement element = getWebElement(name);
-
-    new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(element));
-  }
-
-  public boolean verifyTextBoolean(String name, String text) {
-    WebElement element = getWebElement(name);
-    return text.equals(element.getText());
-  }
-
-
-
-  public String getTitle() {
-    return webDriver.getTitle();
-  }
-
-  public String getPageUrl() {
-    return PAGE_URL;
-  }
-
-  public String getPageTitle() {
-    return PAGE_TITLE;
-  }
-
-  public void loadPage() {
-    webDriver.get(getPageUrl());
-//  Assert.assertEquals(getTitle(), getPageTitle());
-  }
-
   public void setElementText(WebElement element, String text) {
-    element.click();
     element.clear();
-    Log.debug("entering text '" + text + "' into element " + element);
     element.sendKeys(text);
   // Assert.assertEquals(element.getAttribute("value"), text);
   }
@@ -114,17 +77,6 @@ public abstract class Page {
     try {
       new WebDriverWait(webDriver, time).until(ExpectedConditions.visibilityOf(element));
     } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public void waitUntilIsLoaded(WebElement element) {
-    try {
-      new WebDriverWait(webDriver, 7).until(ExpectedConditions.visibilityOf(element));
-    } catch (Exception e) {
-      Log.debug("---------------------------------");
-      Log.debug("element " + element + " can not be found by ExpectedConditions.visibilityOf(element)");
-      Log.debug("---------------------------------");
       e.printStackTrace();
     }
   }
@@ -181,14 +133,8 @@ public abstract class Page {
   }
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
-    try {
-      new WebDriverWait(webDriver, 15).until(ExpectedConditions.visibilityOf(element));
-
-    }catch (TimeoutException e){
-
-    }
+    new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(element));
   }
-
 
   public void waitForElement(WebDriverWait wait, String element) {
     wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(element)));
@@ -226,8 +172,7 @@ public abstract class Page {
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
-  }
+    }
+
+
 }
-
-
-

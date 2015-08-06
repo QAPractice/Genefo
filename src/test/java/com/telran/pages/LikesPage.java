@@ -67,7 +67,6 @@ public class LikesPage extends Page{
     public LikesPage clickToLike() {
         Log.info("Clicking to like");
         clickElement(likeForClick);
-        waitUntilIsLoaded(likeChecked);
         return this;
     }
 

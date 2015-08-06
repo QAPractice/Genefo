@@ -15,6 +15,8 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 /*
 *
  * Created by Yura on 19.06.2015.
@@ -62,7 +64,13 @@ public class GraphsTest extends TestNgTestBase {
     public void TestGraphsLink(String graph) {
         grafsPage.loadGraphs(graph);
         Log.info("Checking " + graph + " link");
-        Assert.assertTrue("Graph element isn't found", grafsPage.isGraphLoaded(graph));
+        try {
+            Assert.assertTrue("Graph element isn't found", grafsPage.isGraphLoaded(graph));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Log.info("Hurra!!! Graph " + graph + " is presented!");
         Reporter.log("Graph " + graph + " is presented");
 

@@ -47,7 +47,6 @@ public class ProfileDoctorPage extends Page{
     }
 
     public ProfileDoctorPage openProfileDoctorPage() {
-        webDriver.get(PAGE_URL);
         return this;
     }
 

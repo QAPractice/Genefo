@@ -1,7 +1,6 @@
 package com.telran.pages;
 
 import com.telran.LogLog4j;
-import com.telran.util.PropertyLoader;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -22,10 +21,10 @@ import java.util.NoSuchElementException;
  */
 public abstract class Page {
   private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-public String baseUrl;
   public String PAGE_URL;
+  public String baseUrl = "52.10.6.51:8080";
   public String PAGE_TITLE;
-protected WebDriver driver;
+  public WebDriver driver;
   protected StringBuffer verificationErrors = new StringBuffer();
   HashMap<String, String> allElementsMap;
   /*
@@ -35,13 +34,9 @@ protected WebDriver driver;
    */
 
   public Page(WebDriver driver) {
-    this.driver=driver;
+    this.driver = driver;
     this.allElementsMap = new HashMap<String, String>();
-    try {
-      baseUrl = PropertyLoader.loadProperty("site.url");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
   }
 
   private WebElement getWebElement(String name) {

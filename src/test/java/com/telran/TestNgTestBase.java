@@ -1,15 +1,15 @@
 package com.telran;
 
 import com.telran.util.PropertyLoader;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import ru.stqa.selenium.factory.WebDriverFactory;
+import ru.stqa.selenium.factory.WebDriverFactoryMode;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for TestNG-based test classes
@@ -17,30 +17,30 @@ import java.util.concurrent.TimeUnit;
 public class TestNgTestBase {
 
 
+  protected static String gridHubUrl;
+  protected static String baseUrl;
   protected static Capabilities capabilities;
 
-  public WebDriver driver;
-  protected String gridHubUrl;
-  protected String baseUrl;
+  protected WebDriver driver;
 
+  @BeforeSuite
+  public void initTestSuite() throws IOException {
+    baseUrl = PropertyLoader.loadProperty("site.url");
+    gridHubUrl = PropertyLoader.loadProperty("grid.url");
+    if ("".equals(gridHubUrl)) {
+      gridHubUrl = null;
+    }
+    capabilities = PropertyLoader.loadCapabilities();
+    WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
+  }
 
   @BeforeClass
-  public void init() throws IOException {
-    baseUrl = PropertyLoader.loadProperty("site.url");
-    gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
-
-    Capabilities capabilities = PropertyLoader.loadCapabilities();
-    PropertyConfigurator.configure("log4j.properties");
-    driver = WebDriverFactory.getDriver(capabilities);
-
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  public void initWebDriver() {
+    driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterSuite(alwaysRun = true)
   public void tearDown() {
-    if (driver != null) {
-      WebDriverFactory.dismissDriver(driver);
-    }
+    WebDriverFactory.dismissAll();
   }
-
 }

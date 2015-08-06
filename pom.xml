@@ -255,15 +255,16 @@
       <properties>
         <grid.url></grid.url>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
     <profile>
       <id>grid</id>
       <properties>
         <grid.url>54.175.21.240:4444/</grid.url>
       </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+
     </profile>
   </profiles>
 </project>

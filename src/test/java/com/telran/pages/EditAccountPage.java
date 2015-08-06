@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,7 @@ public class EditAccountPage extends Page{
     public EditAccountPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = baseUrl + "/account";
+        PageFactory.initElements(driver, this);
     }
 
     public EditAccountPage openEditAccountPage(){

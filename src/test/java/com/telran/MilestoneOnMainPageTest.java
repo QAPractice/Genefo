@@ -1,17 +1,15 @@
 package com.telran;
 
-import com.telran.pages.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import com.telran.pages.DataProviders;
+import com.telran.pages.LoginPage;
+import com.telran.pages.MainPage;
+import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -218,11 +216,10 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
                     .clickOnYearsOption("שלושל");
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
                     milestoneOnMainPage.clickOnMonthOption("-One");
 
             assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
-            assertTrue("Alert 'Numbers only' for year did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
                     milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());

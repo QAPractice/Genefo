@@ -16,20 +16,20 @@ import java.util.HashMap;
  *
  */
 public class MilestoneOnMainPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
     @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']")
     //WebElement developmentalYourProgressTitle;
     WebElement developmentalMilestoneTitle;
-    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']/span")
-   // WebElement treatmentReportYourProgressTitle;
-    WebElement treatmentMilestoneTitle;
 
     /*@FindBy(xpath = "//div [@class='col-sm-8']/label")
     WebElement developmentalMilestoneTitle;
     @FindBy(xpath = "//div [@class='col-sm-4']/label")
     WebElement treatmentMilestoneTitle;*/
-
+    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']/span")
+    // WebElement treatmentReportYourProgressTitle;
+            WebElement treatmentMilestoneTitle;
     //Category Developmental Progress buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
     WebElement languageButton;
@@ -44,12 +44,10 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
     WebElement otherButton;
 
+    // DropdownList elements of Language
     //Dropdown list Button
     @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
     WebElement selectDropDownListButton;
-
-    // DropdownList elements of Language
-
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemSmiles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
@@ -60,7 +58,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemTwoThreeWords;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
-
     // DropdownList elements of Movement
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemHoldsHead;
@@ -78,7 +75,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemWalk;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemRuns;
-
     // DropdownList elements of Daily living
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemDressesAlone;//+
@@ -88,7 +84,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemHoldsBottles;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemToiletTrained;//+
-
     //DropdownList elements of Procedure
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemAchillesTendonLengthening;
@@ -106,7 +101,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemStrabismusSurgery;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemSurgery;
-
     //DropdownList elements of Complication
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemBehavioralProblems;
@@ -130,8 +124,6 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemSeizures;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='11']")
     WebElement itemSleepDisorders;
-
-
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
     WebElement yearsButton;
@@ -148,7 +140,6 @@ public class MilestoneOnMainPage extends Page {
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
     WebElement submitButton;
-
     //alerts
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
@@ -157,9 +148,8 @@ public class MilestoneOnMainPage extends Page {
    // @FindBy(xpath = ".//*[@id='milestone_years']/../span")
     WebElement yearsNumber;
    // @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
-    @FindBy(xpath = ".//*[@id='milestone_months']/../span[contains(text(),'Must be number between 0 and 48')]")
+   @FindBy(xpath = "//*[@class='col-sm-2']/span[contains(text(),'Must be number between 0 and 48')]")
     WebElement monthsNumber;
-
     //elements in created post
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
     WebElement ageOnNewCreatedPost;
@@ -169,11 +159,8 @@ public class MilestoneOnMainPage extends Page {
     WebElement milestoneOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textNewCreatedPost;
-
-
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='post-note']")
     WebElement textInNewCreatedPost;
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
     //constructor

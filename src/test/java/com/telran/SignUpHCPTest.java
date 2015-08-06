@@ -1,20 +1,12 @@
 package com.telran;
 
-import com.telran.pages.HomePage;
-import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -28,14 +20,14 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class SignUpHCPTest extends TestNgTestBase{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    public SignUpHCPPage signUpHCPPage;
-    public ProfileDoctorPage profileDoctorPage;
-    private boolean acceptNextAlert = true;
     //private String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email1 = "one" + randomAlphabetic(5) + "usgenefo.com";
     private static String email2 = "on.e" + randomAlphabetic(5) + "@us.genefo.com";
     private static String email3 = "o_ne" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email4 = "one" + randomAlphabetic(5) + "@us-genefo.com";
+    public SignUpHCPPage signUpHCPPage;
+    public ProfileDoctorPage profileDoctorPage;
+    private boolean acceptNextAlert = true;
 
     @BeforeClass
     public void setup() {
@@ -570,8 +562,8 @@ public class SignUpHCPTest extends TestNgTestBase{
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid", signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed", signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -593,8 +585,8 @@ public class SignUpHCPTest extends TestNgTestBase{
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid", signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed", signUpHCPPage.isOnSignUpHCPPage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -615,8 +607,8 @@ public class SignUpHCPTest extends TestNgTestBase{
                     .clickOnCheckBox18()
                     .clickOnCheckBoxAgree()
                     .clickOnSignUp();
-            assertTrue("The Last Name is valid",signUpHCPPage.alertMessageNotValidLastName());
-            assertTrue("The current page is changed",signUpHCPPage.isOnSignUpHCPPage());
+            assertTrue("The Last Name is valid", signUpHCPPage.alertMessageNotValidLastName());
+            assertTrue("The current page is changed", signUpHCPPage.isOnSignUpHCPPage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -975,10 +967,6 @@ public class SignUpHCPTest extends TestNgTestBase{
         Reporter.log("Term Of Service Page open by clicking on the link");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 
     private String closeAlertAndGetItsText() {
         try {

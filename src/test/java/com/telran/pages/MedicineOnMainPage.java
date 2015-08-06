@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Marina and Olga on 5/28/2015.
  */
@@ -182,11 +184,10 @@ public class MedicineOnMainPage extends Page {
         rateFifeStars();
         clickOnPostButton();
         Log.info("Checking, that medicine and medicine reason are posted in a right way");
-        name.equalsIgnoreCase(medicineName.getText());
-        Log.info("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
+        assertTrue("Medicine name doesen't match", name.equalsIgnoreCase(medicineName.getText()));
+      Log.info("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
         Reporter.log("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
-        reason.equalsIgnoreCase(reasonName.getText());
-        //Assert.assertEquals(reasonName.getText(), reason, "Medicine reason name doesen't match");
+        assertTrue("Medicine reason name doesen't match", reason.equalsIgnoreCase(reasonName.getText()));
         Log.info("Medicine reason is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
         Reporter.log("Medicine is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
     }

@@ -6,7 +6,6 @@ import com.telran.pages.MainPage;
 import com.telran.pages.MedicineOnMainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -97,10 +96,6 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
         }
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 
 
 }

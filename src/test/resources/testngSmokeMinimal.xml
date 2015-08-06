@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuperTest" verbose="5">
+    <test name="Test1">
+
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.telran.LoginTest"/>
+            <class name="com.telran.ProfileDoctorTest"/>
+            <class name="com.telran.SignUpHCPTest"/>
+            <class name="com.telran.PostOnMainTest"/>
+
+        </classes>
+
+
+    </test>
+
+</suite>

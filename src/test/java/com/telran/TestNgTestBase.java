@@ -5,7 +5,6 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import ru.stqa.selenium.factory.WebDriverFactory;
 
@@ -28,7 +27,7 @@ public class TestNgTestBase {
   @BeforeClass
   public void init() throws IOException {
     baseUrl = PropertyLoader.loadProperty("site.url");
-    // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
+    gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
 
     Capabilities capabilities = PropertyLoader.loadCapabilities();
     PropertyConfigurator.configure("log4j.properties");

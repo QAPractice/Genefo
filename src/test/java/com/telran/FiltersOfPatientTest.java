@@ -5,13 +5,11 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static java.lang.Thread.sleep;
-import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -22,11 +20,10 @@ public class FiltersOfPatientTest extends TestNgTestBase {
     private static String PATIENT_TWO = "Pat Two";
     private static String PATIENT_THREE = "Pat Three";
     private static String PATIENT_FOUR = "Pat Four";
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public LoginPage loginPage;                                 // Pages that we use in our tests
     public MainPage mainPage;
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     public void setup() {
@@ -111,9 +108,5 @@ public class FiltersOfPatientTest extends TestNgTestBase {
     //pat3@par.ru 111111    Pat Three  Donnai-Barrow Syndrome
     //pat4@pat.ru 111111    Pat Four   Donnai-Barrow Syndrome
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 }
 

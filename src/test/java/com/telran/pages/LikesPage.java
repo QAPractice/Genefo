@@ -26,7 +26,6 @@ public class LikesPage extends Page{
     public LikesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl;
     }
 
 

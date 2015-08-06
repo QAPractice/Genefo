@@ -35,7 +35,7 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/login";
+        this.PAGE_URL = "http://52.10.6.51:8080/login";
         PageFactory.initElements(driver, this);
     }
 
@@ -45,7 +45,6 @@ public class LoginPage extends Page {
     }
     public LoginPage openLoginPage() {
         Log.info("Opening login page");
-        driver.get(PAGE_URL);
         return this;
     }
 
@@ -107,7 +106,6 @@ public class LoginPage extends Page {
     }
 
     public LoginPage login(String email, String password) {
-        openLoginPage();
         waitUntilLoginPageIsLoaded();
         fillEmailField(email);
         fillPasswordField(password);

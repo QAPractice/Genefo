@@ -5,14 +5,12 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -250,7 +248,6 @@ public class SymptomsOnMainPage  extends Page {
     public SymptomsOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl;
     }
 
     /**
@@ -511,7 +508,7 @@ public class SymptomsOnMainPage  extends Page {
         WebElement element;
 
         String str="//ul[@class='chosen-results']/li[@data-option-array-index='"+i+"']";
-        element=driver.findElement(By.xpath(str));
+        element = webDriver.findElement(By.xpath(str));
         return element;
 
     }
@@ -526,9 +523,9 @@ public class SymptomsOnMainPage  extends Page {
             cansellInput();
             sleep(1);
 
-            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a General Area')]/.."));
+            WebElement element = webDriver.findElement(By.xpath("//span[contains(text(),'Select a General Area')]/.."));
             element.click();
-            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a General Area']/../div/div/ul/li[contains(text(),'"+value+"')]"));
+            WebElement element3 = webDriver.findElement(By.xpath("//select[@data-placeholder='Select a General Area']/../div/div/ul/li[contains(text(),'" + value + "')]"));
             element3.click();
             sleep(1);
         }catch (RuntimeException e){
@@ -549,9 +546,9 @@ public class SymptomsOnMainPage  extends Page {
      */
     public boolean select_Specific_Area(int value){
         try {
-            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Specific Area')]/.."));
+            WebElement element = webDriver.findElement(By.xpath("//span[contains(text(),'Select a Specific Area')]/.."));
             element.click();
-            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a Specific Area']/../div/div/ul/li["+value+"]"));
+            WebElement element3 = webDriver.findElement(By.xpath("//select[@data-placeholder='Select a Specific Area']/../div/div/ul/li[" + value + "]"));
             element3.click();
         }catch (RuntimeException e){
             System.out.println("--------------------------------------");
@@ -570,9 +567,9 @@ public class SymptomsOnMainPage  extends Page {
      */
     public boolean select_Symptom(int value){
         try {
-            WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Select a Symptom')]/.."));
+            WebElement element = webDriver.findElement(By.xpath("//span[contains(text(),'Select a Symptom')]/.."));
             element.click();
-            WebElement element3 = driver.findElement(By.xpath("//select[@data-placeholder='Select a Symptom']/../div/div/ul/li["+value+"]"));
+            WebElement element3 = webDriver.findElement(By.xpath("//select[@data-placeholder='Select a Symptom']/../div/div/ul/li[" + value + "]"));
             element3.click();
         }catch (RuntimeException e){
             System.out.println("--------------------------------------");
@@ -590,7 +587,7 @@ public class SymptomsOnMainPage  extends Page {
      */
     public SymptomsOnMainPage cansellInput(){
         try {
-            WebElement element = driver.findElement(By.xpath("//abbr[@class='search-choice-close']"));
+            WebElement element = webDriver.findElement(By.xpath("//abbr[@class='search-choice-close']"));
             element.click();
 
         }catch (RuntimeException e){

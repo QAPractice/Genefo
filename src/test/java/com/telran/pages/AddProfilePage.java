@@ -89,7 +89,6 @@ public class AddProfilePage extends Page {
 
     public AddProfilePage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl+"/profiles";
         PageFactory.initElements(driver, this);
 
     }
@@ -133,10 +132,10 @@ public boolean isErrorMessage()
         try {
             for (String s : allReqField) {
                 xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'"+s+"')]//span[@class='req_star']";
-                driver.findElement(By.xpath(xpath));
+                webDriver.findElement(By.xpath(xpath));
             }
             xpath = "//div[@ng-controller='ProfileNewController']//*[contains(text(),'Diagnosis')]/..//span[@class='req_star']";
-            driver.findElement(By.xpath(xpath));
+            webDriver.findElement(By.xpath(xpath));
         }catch (NoSuchElementException e){
             System.out.println("--------------------------------------------");
             System.out.println("Error Required element was not found!");
@@ -164,7 +163,7 @@ public boolean isErrorMessage()
     }
     public AddProfilePage select_Patient_Race(String itemName){
         Patient_Race.click();
-        WebElement  element= driver.findElement(By.xpath("//ul[@class='chosen-results']/li[contains(text(),'"+itemName+"')]"));
+        WebElement  element= webDriver.findElement(By.xpath("//ul[@class='chosen-results']/li[contains(text(),'"+itemName+"')]"));
 
         element.click();
         return this;
@@ -189,7 +188,7 @@ public boolean isErrorMessage()
         setElementText(Patient_Location, location);
 //        BUG nothing to choose
         String xpath = "//*[contains(@id, 'typeahead')]/*[1]";
-        WebElement element = driver.findElement(By.xpath(xpath));
+        WebElement element = webDriver.findElement(By.xpath(xpath));
         element.click();
         return this;
     }
@@ -214,7 +213,7 @@ public boolean isErrorMessage()
         sleep(1);
         xpath = "//*[@class='dropdown-menu ng-isolate-scope']//*[contains(text(),'"+input.substring(1,input.length())+"')]";
         try {
-            driver.findElement(By.xpath(xpath)).click();
+            webDriver.findElement(By.xpath(xpath)).click();
         }catch (NoSuchElementException e){
             System.out.println("----------------------------------------");
             System.out.println("AddProfilePage.input_Condition(): nothing to choose in Field: 'Condition' xpath="+xpath);
@@ -264,7 +263,7 @@ public boolean isErrorMessage()
 
     public boolean uploadFile(String path){
         Locatable hoverMe = (Locatable) fileUploadMenuBox;
-        Mouse mouse = ((HasInputDevices)driver).getMouse();
+        Mouse mouse = ((HasInputDevices)webDriver).getMouse();
         try {
             mouse.mouseMove(hoverMe.getCoordinates());
             fileUploadMenu.sendKeys(path);

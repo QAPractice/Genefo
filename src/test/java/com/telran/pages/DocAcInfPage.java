@@ -53,7 +53,6 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/account_hcp/account";
         PageFactory.initElements(driver, this);
     }
 
@@ -93,7 +92,7 @@ public class DocAcInfPage extends Page{
     public DocAcInfPage fillPasswordField(String password) {
         setElementText(passwordField, password);
         Log.info("entering password: " + password + " ");
-        new Actions(driver).moveToElement(saveButton).perform();
+        new Actions(webDriver).moveToElement(saveButton).perform();
         return this;
     }
 

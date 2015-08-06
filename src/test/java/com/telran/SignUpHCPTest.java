@@ -3,9 +3,9 @@ package com.telran;
 import com.telran.pages.ProfileDoctorPage;
 import com.telran.pages.SignUpHCPPage;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,29 +18,30 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 31.05.2015.
  */
-public class SignUpHCPTest extends TestNgTestBase{
+public class SignUpHCPTest extends TestNgTestBase {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //private String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email1 = "one" + randomAlphabetic(5) + "usgenefo.com";
     private static String email2 = "on.e" + randomAlphabetic(5) + "@us.genefo.com";
     private static String email3 = "o_ne" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email4 = "one" + randomAlphabetic(5) + "@us-genefo.com";
+    public WebDriverWait wait;
     public SignUpHCPPage signUpHCPPage;
     public ProfileDoctorPage profileDoctorPage;
     private boolean acceptNextAlert = true;
 
     @BeforeClass
     public void setup() {
-        PropertyConfigurator.configure("log4j.properties");
-        signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
-        profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
+
        }
 
     @BeforeMethod
     public void beforemethodsetup() {
         try {
+            signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
+            profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
             Log.info("Opening SignUp HCP page");
-            signUpHCPPage.openHCPRegPage();
+            driver.get(baseUrl + "/signup_hcp");
             Log.info("Wait for load SignUp HCP page");
             signUpHCPPage.waitUntilSignUpHCPPageIsLoaded();
         }catch (Exception e) {
@@ -54,6 +55,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
+                    .waitForHCPRegPage()
                     .fillEmailField(email)
                     .fillFirstNameField("gggg")
                     .fillLastNameField("gggg")
@@ -77,7 +79,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillEmailField(email)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("")
@@ -99,7 +101,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillEmailField(email)
                     .fillFirstNameField("")
                     .fillLastNameField("Pen")
@@ -122,7 +124,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
@@ -143,7 +145,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that registration is not possible without Email");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -165,7 +167,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -186,7 +188,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
-                    .openHCPRegPage()
+                     .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -208,7 +210,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that registration is not possible without @ in email");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -230,7 +232,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that special characters are not valid in email");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -252,7 +254,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid without local part");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -274,7 +276,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid without domain part");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -297,7 +299,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid with consecutive dots");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -319,7 +321,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid with dot in the local beginning");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -341,7 +343,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid with dot in the domain beginning");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -363,7 +365,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is not valid with 256 symbols");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -391,7 +393,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
@@ -414,7 +416,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
@@ -438,7 +440,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -461,7 +463,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -485,7 +487,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -508,7 +510,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -532,7 +534,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
@@ -554,7 +556,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that last name is not valid with digite");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
@@ -577,7 +579,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
@@ -599,7 +601,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that last name is not valid with 26 symbols");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
@@ -626,7 +628,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "55" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
-                    .openHCPRegPage()
+                     .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -651,7 +653,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@55usgenefo.com";
         try {
              signUpHCPPage
-                    .openHCPRegPage()
+                     .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -676,7 +678,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is valid with dots in local and domain parts");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -702,7 +704,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "on-e" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -727,7 +729,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is valid with dash in domain part");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -752,7 +754,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that email is valid with underscore in local part");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -779,7 +781,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
@@ -804,7 +806,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
@@ -829,7 +831,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -856,7 +858,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -881,7 +883,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -909,7 +911,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
              signUpHCPPage
-                    .openHCPRegPage()
+                     .waitForHCPRegPage()
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
@@ -934,7 +936,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")
@@ -957,16 +959,15 @@ public class SignUpHCPTest extends TestNgTestBase{
         Log.info("Checking that Term Of Service Page open by clicking on the link");
         try {
             signUpHCPPage
-                    .openHCPRegPage()
+                    .waitForHCPRegPage()
                     .clickOnTermOfService()
                     .openTOSPage();
-            assertTrue("Term Of Service Page doesn't open",signUpHCPPage.isOnTOSage());
+            assertTrue("Term Of Service Page doesn't open", signUpHCPPage.isOnTOSage());
         } catch (Exception e) {
             e.printStackTrace();
         }
         Reporter.log("Term Of Service Page open by clicking on the link");
     }
-
 
     private String closeAlertAndGetItsText() {
         try {

@@ -61,7 +61,6 @@ public class FilterOnHomePage extends Page {
     public FilterOnHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl;
     }
 
     /**

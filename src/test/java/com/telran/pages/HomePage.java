@@ -37,12 +37,10 @@ public class HomePage extends Page {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
-        this.PAGE_URL = baseUrl;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(webDriver, this);
     }
 
     public HomePage openHomePage() {
-        driver.get(PAGE_URL);
         return this;
     }
 

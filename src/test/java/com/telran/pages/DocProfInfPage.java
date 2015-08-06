@@ -108,7 +108,6 @@ public class DocProfInfPage extends Page{
 
     public DocProfInfPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/account_hcp/hcp";
         PageFactory.initElements(driver, this);
     }
 

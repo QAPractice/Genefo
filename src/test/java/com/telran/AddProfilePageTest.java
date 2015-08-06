@@ -30,7 +30,7 @@ public class AddProfilePageTest extends TestNgTestBase {
         super();
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
 
 

@@ -40,15 +40,14 @@ public class ProfileDoctorPage extends Page{
     WebElement logOutButton;
 
 
-    public ProfileDoctorPage (WebDriver driver) {
-        super(driver);
-        this.PAGE_URL = baseUrl + "/account_hcp";
-        PageFactory.initElements(driver, this);
+    public ProfileDoctorPage(WebDriver webDriver) {
+        super(webDriver);
+        PageFactory.initElements(webDriver, this);
         PropertyConfigurator.configure("log4j.properties");
     }
 
     public ProfileDoctorPage openProfileDoctorPage() {
-        driver.get(PAGE_URL);
+        webDriver.get(PAGE_URL);
         return this;
     }
 

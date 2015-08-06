@@ -6,18 +6,24 @@ import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Oleg on 30.05.2015.
  */
-public class LoginTest extends TestNgTestBase{
+public class LoginTest {
     public static String USER = "osh_il+4@yahoo.com";
     public static String PASSWORD = "111111";
     public static String USER1 = "osh_il+1@yahoo.com";
@@ -26,9 +32,13 @@ public class LoginTest extends TestNgTestBase{
     public LoginPage loginPage;
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     @BeforeClass
     public void setup() {
+        this.driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -159,5 +169,9 @@ public class LoginTest extends TestNgTestBase{
         Reporter.log("Not logged in successful");
     }
 
+    @AfterClass(alwaysRun = true)
+    public void teardown() {
+        this.driver.quit();
+    }
 
 }

@@ -118,7 +118,6 @@ public class MedicineOnMainPage extends Page {
     public MedicineOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
     }
 
 

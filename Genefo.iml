@@ -82,15 +82,10 @@
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-support:2.46.0" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-leg-rc:2.46.0" level="project" />
     <orderEntry type="library" name="Maven: com.codeborne:phantomjsdriver:1.2.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_testng:2.1.20" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:sauce_java_common:2.1.20" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.saucelabs:saucerest:1.0.22" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.json:json:20090211" level="project" />
-    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.ggasoftware.uitest:gga-selenium-framework-core:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.ggasoftware.uitest:gga-selenium-framework-logging:1.0" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-javadoc-plugin:2.9.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-core:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-settings:2.2.1" level="project" />

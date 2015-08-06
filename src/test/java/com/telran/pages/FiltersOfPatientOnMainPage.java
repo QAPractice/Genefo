@@ -49,7 +49,6 @@ public class FiltersOfPatientOnMainPage extends Page {
     //constructor
     public FiltersOfPatientOnMainPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/home";
         PageFactory.initElements(driver, this);
 
     }

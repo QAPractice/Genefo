@@ -128,7 +128,6 @@ public class WhatWorksOnMainPage extends Page {
     public WhatWorksOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
     }
 
     // Waits until title of our 'What works' Panel appears on the screen

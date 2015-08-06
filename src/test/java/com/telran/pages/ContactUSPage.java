@@ -38,13 +38,11 @@ public class ContactUSPage extends Page {
 
     public ContactUSPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/legal/contact";
         PageFactory.initElements(driver, this);
     }
 
     public ContactUSPage openContactPage() {
         Log.info("Opening ContactUs page");
-        driver.get(PAGE_URL);
         return this;
     }
 

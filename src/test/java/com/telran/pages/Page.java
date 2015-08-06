@@ -22,9 +22,8 @@ import java.util.NoSuchElementException;
 public abstract class Page {
   private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
   public String PAGE_URL;
-  public String baseUrl = "52.10.6.51:8080";
   public String PAGE_TITLE;
-  public WebDriver driver;
+  public WebDriver webDriver;
   protected StringBuffer verificationErrors = new StringBuffer();
   HashMap<String, String> allElementsMap;
   /*
@@ -33,14 +32,13 @@ public abstract class Page {
    * @param webDriver
    */
 
-  public Page(WebDriver driver) {
-    this.driver = driver;
+  public Page(WebDriver webDriver) {
+    this.webDriver = webDriver;
     this.allElementsMap = new HashMap<String, String>();
-
   }
 
   private WebElement getWebElement(String name) {
-    return driver.findElement(By.xpath(allElementsMap.get(name)));
+    return webDriver.findElement(By.xpath(allElementsMap.get(name)));
   }
 
   public Page clickWebElement(String name) {
@@ -57,21 +55,21 @@ public abstract class Page {
   }
 
   public void goBackBrowserButton() {
-    driver.navigate().back();
+    webDriver.navigate().back();
   }
 
   public void goForwardBrowserButton() {
-    driver.navigate().forward();
+    webDriver.navigate().forward();
   }
 
   public void reloadPage() {
-    driver.navigate().refresh();
+    webDriver.navigate().refresh();
   }
 
   public void waitUntilIsLoaded(String name) throws IOException, InterruptedException {
     WebElement element = getWebElement(name);
 
-    new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
+    new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(element));
   }
 
   public boolean verifyTextBoolean(String name, String text) {
@@ -82,7 +80,7 @@ public abstract class Page {
 
 
   public String getTitle() {
-    return driver.getTitle();
+    return webDriver.getTitle();
   }
 
   public String getPageUrl() {
@@ -94,7 +92,7 @@ public abstract class Page {
   }
 
   public void loadPage() {
-    driver.get(getPageUrl());
+    webDriver.get(getPageUrl());
 //  Assert.assertEquals(getTitle(), getPageTitle());
   }
 
@@ -114,7 +112,7 @@ public abstract class Page {
 
   public void waitUntilIsLoadedCustomTime(WebElement element, int time) {
     try {
-      new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
+      new WebDriverWait(webDriver, time).until(ExpectedConditions.visibilityOf(element));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -122,7 +120,7 @@ public abstract class Page {
 
   public void waitUntilIsLoaded(WebElement element) {
     try {
-      new WebDriverWait(driver, 7).until(ExpectedConditions.visibilityOf(element));
+      new WebDriverWait(webDriver, 7).until(ExpectedConditions.visibilityOf(element));
     } catch (Exception e) {
       Log.debug("---------------------------------");
       Log.debug("element " + element + " can not be found by ExpectedConditions.visibilityOf(element)");
@@ -184,7 +182,7 @@ public abstract class Page {
 
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
     try {
-      new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
+      new WebDriverWait(webDriver, 15).until(ExpectedConditions.visibilityOf(element));
 
     }catch (TimeoutException e){
 
@@ -198,7 +196,7 @@ public abstract class Page {
 
   protected boolean isElementPresent(By by) {
     try {
-      driver.findElement(by);
+      webDriver.findElement(by);
       return true;
     } catch (org.openqa.selenium.NoSuchElementException e) {
       Log.debug("----------ALERT-----------------");

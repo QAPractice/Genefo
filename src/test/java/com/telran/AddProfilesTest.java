@@ -28,7 +28,7 @@ public class AddProfilesTest {
     MainPage mainPage;
     SummaryPage summaryPage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);

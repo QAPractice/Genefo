@@ -64,7 +64,7 @@ public class SummaryPage extends Page {
     }
     public boolean isProfileNamePresents(String name) {
         try {
-            driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
+            webDriver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -93,7 +93,7 @@ public class SummaryPage extends Page {
                 Thread.sleep(1000);
             for (String s : allReqField) {
                 xpath = "//div [@class='col-lg-9']//*[contains(text(), '" + s + "')][@class='col-xs-7 text-left text-capitalize ng-binding']";
-                driver.findElement(By.xpath(xpath));
+                webDriver.findElement(By.xpath(xpath));
                 Log.info("Element " + s + " checked");
             }
         } catch (NoSuchElementException e) {

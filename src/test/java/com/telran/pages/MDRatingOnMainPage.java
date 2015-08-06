@@ -57,7 +57,6 @@ public class MDRatingOnMainPage extends Page {
     public MDRatingOnMainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
     }
 
     // Waits until title of our 'MD Rating' Panel appears on the screen
@@ -119,7 +118,7 @@ public class MDRatingOnMainPage extends Page {
     }
 
     public boolean isThirdStarYellow(int i) {
-        WebElement star = driver.findElement(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[5]/td[2]//span[@class='ng-isolate-scope ng-pristine ng-valid']/i[" + i + "]/span"));
+        WebElement star = webDriver.findElement(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[5]/td[2]//span[@class='ng-isolate-scope ng-pristine ng-valid']/i[" + i + "]/span"));
         return exists(star);
     }
 
@@ -152,7 +151,7 @@ public class MDRatingOnMainPage extends Page {
 
     public MDRatingOnMainPage clickOnAnyStar(int number) {
         Log.info("Click on star");
-        List<WebElement> stars = driver.findElements(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']//i/span"));
+        List<WebElement> stars = webDriver.findElements(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']//i/span"));
         int count = 1;
         for (WebElement current : stars) {
             if (count == number) {

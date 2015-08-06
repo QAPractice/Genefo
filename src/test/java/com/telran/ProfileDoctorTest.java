@@ -4,6 +4,8 @@ import com.telran.pages.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
@@ -14,9 +16,9 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Oleg on 20.06.2015.
  */
-public class ProfileDoctorTest extends TestNgTestBase{
+public class ProfileDoctorTest {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-
+    public WebDriver driver;
     public LoginPage loginPage;
     public MainPage mainPage;
     public ProfileDoctorPage profileDoctorPage;
@@ -27,6 +29,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
 
     @BeforeClass
     public void setup() {
+        driver = new FirefoxDriver();
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -43,7 +46,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         Log.info("Opening Profile Doctor Page");
         profileDoctorPage.openProfileDoctorPage();

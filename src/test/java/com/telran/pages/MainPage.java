@@ -96,12 +96,11 @@ public class MainPage extends Page {
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
+
         PropertyConfigurator.configure("log4j.properties");
     }
 
     public MainPage openMainPage() {
-        driver.get(PAGE_URL);
         return this;
     }
 
@@ -208,7 +207,7 @@ public class MainPage extends Page {
         Log.info("Assert that new following name presents/not presents");
         try {
             String[] arrName = name.split(" ");
-            driver.findElement(By.xpath("//div[@class='panel panel-primary']/../div[7]//li[last()]//span[@class='profileName ng-binding'][contains(text()," + arrName[0] + ")]"));
+            webDriver.findElement(By.xpath("//div[@class='panel panel-primary']/../div[7]//li[last()]//span[@class='profileName ng-binding'][contains(text()," + arrName[0] + ")]"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -277,7 +276,7 @@ public class MainPage extends Page {
     public void fillSet() {
         List<WebElement> followList;
         try {
-            followList = driver.findElements(By.xpath("//ul[@class='people_list']/li"));
+            followList = webDriver.findElements(By.xpath("//ul[@class='people_list']/li"));
             if (followList != null)
                 for (WebElement current : followList) {
                     String name = current.getText();
@@ -316,7 +315,7 @@ public class MainPage extends Page {
     //if there are no new names to add to follow
     public boolean addNewFollowerFromPost() {
         mouseScrolling();
-        List<WebElement> postNamesList = driver.findElements(By.xpath("//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']"));
+        List<WebElement> postNamesList = webDriver.findElements(By.xpath("//div[@class='panel story-panel ng-scope panel-default']//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']"));
         int count = 0;
         for (WebElement current : postNamesList) {
             String name = current.getText();

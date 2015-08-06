@@ -197,7 +197,7 @@ public class ProfilePage extends Page {
         Log.info("Submit");
         clickElement(saveProfileButton);
         ProfilePage profilePage;
-        profilePage = PageFactory.initElements(driver, ProfilePage.class);
+        profilePage = PageFactory.initElements(webDriver, ProfilePage.class);
     }
     public String getProfileName(){
         return profileFirstNameField.getText() + " " + profileLastNameField.getText();

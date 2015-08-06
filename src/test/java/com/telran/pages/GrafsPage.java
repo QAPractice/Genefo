@@ -92,7 +92,6 @@ public class GrafsPage extends Page {
     public GrafsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.PAGE_URL = baseUrl + "/home";
     }
 
 
@@ -300,8 +299,8 @@ public class GrafsPage extends Page {
                 break;
         }
 
-        waitUntilIsLoaded(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
-        return exists(driver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
+        waitUntilIsLoaded(webDriver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
+        return exists(webDriver.findElement(By.xpath("//*[contains(text(), '" + xpath + "')]")));
     }
 
     public void loadGraphs(String element) {

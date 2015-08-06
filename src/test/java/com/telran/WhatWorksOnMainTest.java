@@ -4,7 +4,9 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.WhatWorksOnMainPage;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -21,8 +23,9 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by alex on 5/29/2015.
  */
 public class WhatWorksOnMainTest extends TestNgTestBase {
-
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    public WebDriver driver;
+    public WebDriverWait wait;
     public LoginPage loginPage;                         // Pages that we use in our tests
     public MainPage mainPage;
     public WhatWorksOnMainPage whatWorksOnMainPage;
@@ -33,7 +36,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
-
+        driver.get(baseUrl + "/home");
         try {
             loginPage.login("telrantests@yahoo.com", "12345.com");
             mainPage.waitUntilMainPageIsLoaded();

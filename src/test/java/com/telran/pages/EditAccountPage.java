@@ -50,7 +50,6 @@ public class EditAccountPage extends Page{
 
     public EditAccountPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/account";
         PageFactory.initElements(driver, this);
     }
 

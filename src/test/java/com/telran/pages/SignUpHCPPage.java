@@ -69,12 +69,10 @@ public class SignUpHCPPage extends Page{
 
     public SignUpHCPPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = baseUrl + "/signup_hcp";
         PageFactory.initElements(driver, this);
     }
 
-    public SignUpHCPPage openHCPRegPage() {
-        driver.get(PAGE_URL);
+    public SignUpHCPPage waitForHCPRegPage() {
         waitUntilSignUpHCPPageIsLoaded();
         return this;
     }

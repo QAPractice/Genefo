@@ -35,12 +35,10 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
 
     @BeforeClass
     public void setup() {
-        // PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
-            //Log.info("Opening Registration page");
             loginPage.login("mili9@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
 
@@ -135,11 +133,9 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         post = randomAlphabetic(200);
         try {
             milestoneOnMainPage
-                    .clickOnYearsOption(" ")
                     .clickOnMonthOption("A");
-            assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
-                   milestoneOnMainPage .fillTextField(post)
+            milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
         }  catch (Exception e) {
@@ -149,17 +145,18 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     }
     /*1)Years:abc
      2)Months:&^$
-     3)Milestone:Language:abc
+     3)Milestone:Language:
      4)Message:Length:250*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest2(){
         type = "Language";
+        milestone = "Babbles";
         post = randomAlphabetic(250);
         try {
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
-                    .clickOnLanguageItemOption("abc")
+                    .clickOnElement(milestone)
                     .clickOnYearsOption("abc")
                     .clickOnMonthOption("&^$");
             assertTrue("Alert 'Numbers only' for months appeared", milestoneOnMainPage.alertMessageNotValidMonth());
@@ -180,18 +177,17 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     4)Message:Length:length>500*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest3(){
-
+        type = "Movement";
+        milestone = "Rolls over";
+        post = randomAlphabetic(500);
         try {
-            type = "Movement";
-            milestone = "Rolls over";
-            post = randomAlphabetic(500);
             milestoneOnMainPage
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
-                    .clickOnYearsOption("Два");
+                    .clickOnYearsOption("Два")
+                    .clickOnMonthOption("-12");
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
-                    milestoneOnMainPage.clickOnMonthOption("-12");
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
                     milestoneOnMainPage.fillTextField(post)
                     .sendPost();
@@ -215,10 +211,9 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
-                    .clickOnYearsOption("שלושל");
+                    .clickOnYearsOption("שלושל")
+                    .clickOnMonthOption("-One");
             assertTrue("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
-                    milestoneOnMainPage.clickOnMonthOption("-One");
-
             assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
                     milestoneOnMainPage.fillTextField(post)
                     .sendPost();
@@ -239,8 +234,10 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         try {
             milestoneOnMainPage
                     .clickOnYearsOption("583687348237560327234686")
-                    .clickOnMonthOption("36")
-                    .fillTextField("post")
+                    .clickOnMonthOption("49");
+            assertTrue("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
+            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+            milestoneOnMainPage.fillTextField("post")
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
         }  catch (Exception e) {
@@ -256,10 +253,10 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     public void MilestoneNegativeTest6(){
         try {
             milestoneOnMainPage
-                    .clickOnYearsOption("עשרים ואחד");
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidYear());
-                    milestoneOnMainPage.clickOnMonthOption("00")
-                    .sendPost();
+                    .clickOnYearsOption("עשרים ואחד")
+                    .clickOnMonthOption("00");
+            assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
+            milestoneOnMainPage.sendPost();
             assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
         }  catch (Exception e) {
             e.printStackTrace();
@@ -272,7 +269,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     4)Message:Length>2252*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest7(){
-        type = "Toileting";
+        type = "Daily living";
         milestone = "Dresses alone";
         post = randomAlphabetic(500);
         try {
@@ -280,10 +277,10 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnElement(type)
                     .clickOnSelectItemOption()
                     .clickOnElement(milestone)
-                    .clickOnYearsOption("-int");
+                    .clickOnYearsOption("-int")
+                    .clickOnMonthOption("16");
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
-                    milestoneOnMainPage.clickOnMonthOption("16")
-                    .fillTextField("")
+            milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
         }  catch (Exception e) {

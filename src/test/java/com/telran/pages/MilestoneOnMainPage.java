@@ -19,7 +19,7 @@ public class MilestoneOnMainPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
-    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']")
+    @FindBy(xpath = "//label[contains(text(),'Developmental Milestone')]")
     //WebElement developmentalYourProgressTitle;
     WebElement developmentalMilestoneTitle;
 
@@ -46,13 +46,13 @@ public class MilestoneOnMainPage extends Page {
 
     // DropdownList elements of Language
     //Dropdown list Button
-    @FindBy(xpath = "//*[@class ='chosen-single']/div/b")
+    @FindBy(xpath = "//*[@class='col-sm-12']/select")
     WebElement selectDropDownListButton;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//*[contains(text(),'Smiles')]")
     WebElement itemSmiles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[contains(text(),'Babbles')]")
     WebElement itemBabbles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    @FindBy(xpath = "//*[contains(text(),'First Word')]")
     WebElement itemFirstWord;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemTwoThreeWords;
@@ -63,7 +63,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemHoldsHead;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemReachesForObjects;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    @FindBy(xpath = "//*[contains(text(),'Rolls over')]")
     WebElement itemRollsOver;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement itemSitsWithoutSupport;
@@ -76,9 +76,9 @@ public class MilestoneOnMainPage extends Page {
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemRuns;
     // DropdownList elements of Daily living
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[contains(text(),'Dresses alone')]")
     WebElement itemDressesAlone;//+
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[contains(text(),'Eats with spoon')]")
     WebElement itemEatsWithSpoon;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemHoldsBottles;

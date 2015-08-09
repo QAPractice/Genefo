@@ -103,7 +103,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         try {
             milestoneOnMainPage
                     .clickOnElement(type)
-                    .clickOnSelectOtherItemOption()
                     .fillOtherField(textOtherField)
                     .clickOnYearsOption(year)
                     .clickOnMonthOption(month)

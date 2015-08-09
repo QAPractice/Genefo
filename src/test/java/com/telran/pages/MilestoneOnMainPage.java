@@ -41,7 +41,7 @@ public class MilestoneOnMainPage extends Page {
     WebElement procedureButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complications')]")
     WebElement complicationButton;
-    @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Other')]")
+    @FindBy(xpath = "//div [@class='btn-group']/button[@class='btn btn-default milestone_category_other ng-binding ng-scope'][contains(text(),'Other')]")
     WebElement otherButton;
 
     // DropdownList elements of Language
@@ -193,12 +193,12 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-    //for other
+   /* //for other
     public MilestoneOnMainPage clickOnSelectOtherItemOption() {
         Log.info("Select other item option");
         clickElement(otherButton);
         return this;}
-
+*/
     //for year
     public MilestoneOnMainPage clickOnYearsOption(String year) {
         Log.info("Years option:" + year);

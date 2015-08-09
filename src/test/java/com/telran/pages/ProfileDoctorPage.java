@@ -20,6 +20,9 @@ public class ProfileDoctorPage extends Page{
     @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
     WebElement HCPAccountLable;
 
+    @FindBy(xpath = "//*[@class='ng-binding ng-scope'][@ng-repeat='specialty in profile.hcpSpecialties']")
+    WebElement specialties;
+
     //buttons
     @FindBy(xpath = "//*[contains(@ng-click,'account_hcp_account')]")
     WebElement EditAccountInformationButton;
@@ -94,6 +97,10 @@ public class ProfileDoctorPage extends Page{
     public boolean isOnProfileDoctorPage() {
         waitUntilProfileDoctorPageIsLoaded();
         return exists(HCPAccountLable);
+    }
+
+    public boolean isSpecialtiesExist() {
+        return exists(specialties);
     }
 
 }

@@ -141,7 +141,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"positive"})
     public void AddDelSpecialties() {
         Log.info("Checking that Specialties added and deleted");
         try {
@@ -152,6 +152,25 @@ public class DocProfInfTest extends TestNgTestBase{
                     .clickOnConfSpecButton();
             Assert.assertTrue(docProfInfPage.isSpecExists(), "The specialty exists");
             Reporter.log("Specialties added and deleted");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"negative"})
+    public void AddSpecialtiesWithoutAddButton() {
+        Log.info("Checking that added Specialties are not published");
+        try {
+            if (docProfInfPage.isSpecExists()) {
+                docProfInfPage
+                        .clickOnDelSpecButton()
+                        .clickOnConfSpecButton();
+            }
+            docProfInfPage
+                    .fillSpecialtiesField("efgh")
+                    .clickOnDoneButton();
+            Assert.assertTrue(profileDoctorPage.isSpecialtiesExist(), "The specialty published");
+            Reporter.log("Specialties are not published");
         } catch (Exception e) {
             e.printStackTrace();
         }

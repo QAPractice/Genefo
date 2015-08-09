@@ -52,77 +52,77 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemSmiles;
     @FindBy(xpath = "//*[contains(text(),'Babbles')]")
     WebElement itemBabbles;
-    @FindBy(xpath = "//*[contains(text(),'First Word')]")
+    @FindBy(xpath = "//*[contains(text(),'First word')]")
     WebElement itemFirstWord;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[contains(text(),'2-3 words')]")
     WebElement itemTwoThreeWords;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    @FindBy(xpath = "//*[contains(text(),'Speaks in full sentences')]")
     WebElement itemSpeaksInFullSentences;
     // DropdownList elements of Movement
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[contains(text(),'Holds Head')]")
     WebElement itemHoldsHead;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//*[contains(text(),'Toilet trained')]")
     WebElement itemReachesForObjects;
     @FindBy(xpath = "//*[contains(text(),'Rolls over')]")
     WebElement itemRollsOver;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    @FindBy(xpath = "//*[contains(text(),'Sits without support')]")
     WebElement itemSitsWithoutSupport;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[contains(text(),'Crawls')]")
     WebElement itemCrawls;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    @FindBy(xpath = "//*[contains(text(),'Pulls to stand')]")
     WebElement itemPullsToStand;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    @FindBy(xpath = "//*[contains(text(),'Walk')]")
     WebElement itemWalk;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    @FindBy(xpath = "//*[contains(text(),'Runs')]")
     WebElement itemRuns;
     // DropdownList elements of Daily living
     @FindBy(xpath = "//*[contains(text(),'Dresses alone')]")
     WebElement itemDressesAlone;//+
     @FindBy(xpath = "//*[contains(text(),'Eats with spoon')]")
     WebElement itemEatsWithSpoon;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    @FindBy(xpath = "//*[contains(text(),'Holds bottle')]")
     WebElement itemHoldsBottles;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//*[contains(text(),'Toilet trained')]")
     WebElement itemToiletTrained;//+
     //DropdownList elements of Procedure
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[contains(text(),'Achilles tendon lengthening')]")
     WebElement itemAchillesTendonLengthening;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[contains(text(),'Brain MRI')]")
     WebElement itemBrainMRI;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    @FindBy(xpath = "//*[contains(text(),'Gastrostomy')]")
     WebElement itemGastrostomy;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//*[contains(text(),'Medical trial')]")
     WebElement itemMedicalTrial;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    @FindBy(xpath = "//*[contains(text(),'Remission')]")
     WebElement itemRemission;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    @FindBy(xpath = "//*[contains(text(),'Spinal fusion surgery for scoliosis')]")
     WebElement itemSpinalFusionSurgeryForScoliosis;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    @FindBy(xpath = "//*[contains(text(),'Strabismus surgery')]")
     WebElement itemStrabismusSurgery;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    @FindBy(xpath = "//*[contains(text(),'Surgery')]")
     WebElement itemSurgery;
     //DropdownList elements of Complication
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
+    @FindBy(xpath = "//*[contains(text(),'Behavioral problems')]")
     WebElement itemBehavioralProblems;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
+    @FindBy(xpath = "//*[contains(text(),'Constipation')]")
     WebElement itemConstipation;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='3']")
+    @FindBy(xpath = "//*[contains(text(),'Developmental delay')]")
     WebElement itemDevelopmentalDelay;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='4']")
+    @FindBy(xpath = "//*[contains(text(),'Failure to thrive')]")
     WebElement itemFailureToThrive;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='5']")
+    @FindBy(xpath = "//*[contains(text(),'Feeding difficulties')]")
     WebElement itemFeedingDifficulties;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='6']")
+    @FindBy(xpath = "//*[contains(text(),'Gastroespophageal reflux')]")
     WebElement itemGastroespophagealReflux;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
+    @FindBy(xpath = "//*[contains(text(),'Hearing loss')]")
     WebElement itemHearingLoss;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='8']")
+    @FindBy(xpath = "//*[contains(text(),'Intellectual disability')]")
     WebElement itemIntellectualDisability;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='9']")
+    @FindBy(xpath = "//*[contains(text(),'Intellectual disability')]")
     WebElement itemObesity;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='10']")
+    @FindBy(xpath = "//*[contains(text(),'Seizures')]")
     WebElement itemSeizures;
-    @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='11']")
+    @FindBy(xpath = "//*[contains(text(),'Sleep disorders')]")
     WebElement itemSleepDisorders;
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")

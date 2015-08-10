@@ -176,6 +176,26 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
+    @Test(groups = {"positive"})
+    public void AddSpecialtiesWithAddButton() {
+        Log.info("Checking that added Specialties are published");
+        try {
+            if (docProfInfPage.isSpecExists()) {
+                docProfInfPage
+                        .clickOnDelSpecButton()
+                        .clickOnConfSpecButton();
+            }
+            docProfInfPage
+                    .fillSpecialtiesField("abcd")
+                    .clickOnAddSpecialtiesButton()
+                    .clickOnDoneButton();
+            Assert.assertFalse(profileDoctorPage.isSpecialtiesExist(), "The specialty unpublished");
+            Reporter.log("Specialties are published");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test(groups = {"negative"})
     public void AddEmptyLocationWPandFillNameWPFields() {
         Log.info("Checking that Work Place Name added and Work Place Location not");

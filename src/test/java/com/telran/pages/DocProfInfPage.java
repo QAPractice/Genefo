@@ -149,16 +149,18 @@ public class DocProfInfPage extends Page{
     }
 
     public boolean isAreasExists() {
-        return exists(areas);
-    }
-
-    public boolean isNameWPExists() {
-        return exists(workName);
-    }
+        return exists(areas);  }
 
     public boolean isLocationWPExists() {
         return exists(workLocation);
     }
+
+    public boolean isWorkNameCorrect(String name) {
+        return verifyTextBoolean(workName, name);}
+
+    public boolean isWorkLocationCorrect(String name) {
+        return verifyTextBoolean(workLocation, name);}
+
 //Fill
     public DocProfInfPage fillSpecialtiesField(String specialties) {
         setElementText(specField, specialties);

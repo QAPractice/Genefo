@@ -98,11 +98,12 @@ public class DocProfInfTest extends TestNgTestBase{
         try {
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
-                    .fillWorkPlacesLocationField("J")
+                    .fillWorkPlacesLocationField("Tel Aviv")
                     .clickOnTooltipWP()
                     .clickOnAddWorkPlacesButton()
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
+            Assert.assertTrue(docProfInfPage.isWorkNameCorrect("Ikhilov"), "Work Name is not added");
+            Assert.assertTrue(docProfInfPage.isWorkLocationCorrect("Tel Aviv-Yafo, Israel"), "Work Location is not added");
             Reporter.log("work place information added successful");
         } catch (Exception e) {
             e.printStackTrace();

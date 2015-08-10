@@ -46,83 +46,83 @@ public class MilestoneOnMainPage extends Page {
 
     // DropdownList elements of Language
     //Dropdown list Button
-    @FindBy(xpath = "//*[@class='col-sm-12']/select")
+   @FindBy(xpath = "//*[@class='col-sm-12']/select")
     WebElement selectDropDownListButton;
-    @FindBy(xpath = "//*[contains(text(),'Smiles')]")
-    WebElement itemSmiles;
-    @FindBy(xpath = "//*[contains(text(),'Babbles')]")
-    WebElement itemBabbles;
-    @FindBy(xpath = "//*[contains(text(),'First word')]")
-    WebElement itemFirstWord;
-    @FindBy(xpath = "//*[contains(text(),'2-3 words')]")
-    WebElement itemTwoThreeWords;
-    @FindBy(xpath = "//*[contains(text(),'Speaks in full sentences')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Speaks in full sentences']")
     WebElement itemSpeaksInFullSentences;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Babbles']")
+    WebElement itemBabbles;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='First word']")
+    WebElement itemFirstWord;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='2-3 words']")
+    WebElement itemTwoThreeWords;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Smiles']")
+    WebElement itemSmiles;
     // DropdownList elements of Movement
-    @FindBy(xpath = "//*[contains(text(),'Holds Head')]")
-    WebElement itemHoldsHead;
-    @FindBy(xpath = "//*[contains(text(),'Toilet trained')]")
-    WebElement itemReachesForObjects;
-    @FindBy(xpath = "//*[contains(text(),'Rolls over')]")
-    WebElement itemRollsOver;
-    @FindBy(xpath = "//*[contains(text(),'Sits without support')]")
-    WebElement itemSitsWithoutSupport;
-    @FindBy(xpath = "//*[contains(text(),'Crawls')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Crawls']")
     WebElement itemCrawls;
-    @FindBy(xpath = "//*[contains(text(),'Pulls to stand')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Holds head']")
+    WebElement itemHoldsHead;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Pulls to stand']")
     WebElement itemPullsToStand;
-    @FindBy(xpath = "//*[contains(text(),'Walk')]")
-    WebElement itemWalk;
-    @FindBy(xpath = "//*[contains(text(),'Runs')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Reaches for objects']")
+    WebElement itemReachesForObjects;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Rolls over']")
+    WebElement itemRollsOver;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Runs']")
     WebElement itemRuns;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Sits without support']")
+    WebElement itemSitsWithoutSupport;
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Walk']")
+    WebElement itemWalk;
     // DropdownList elements of Daily living
-    @FindBy(xpath = "//*[contains(text(),'Dresses alone')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Dresses alone']")
     WebElement itemDressesAlone;//+
-    @FindBy(xpath = "//*[contains(text(),'Eats with spoon')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Eats with spoon']")
     WebElement itemEatsWithSpoon;
-    @FindBy(xpath = "//*[contains(text(),'Holds bottle')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Holds bottle']")
     WebElement itemHoldsBottles;
-    @FindBy(xpath = "//*[contains(text(),'Toilet trained')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Toilet trained']")
     WebElement itemToiletTrained;//+
     //DropdownList elements of Procedure
-    @FindBy(xpath = "//*[contains(text(),'Achilles tendon lengthening')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Achilles tendon lengthening']")
     WebElement itemAchillesTendonLengthening;
-    @FindBy(xpath = "//*[contains(text(),'Brain MRI')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Brain MRI']")
     WebElement itemBrainMRI;
-    @FindBy(xpath = "//*[contains(text(),'Gastrostomy')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Gastrostomy']")
     WebElement itemGastrostomy;
-    @FindBy(xpath = "//*[contains(text(),'Medical trial')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Medical trial']")
     WebElement itemMedicalTrial;
-    @FindBy(xpath = "//*[contains(text(),'Remission')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Remission']")
     WebElement itemRemission;
-    @FindBy(xpath = "//*[contains(text(),'Spinal fusion surgery for scoliosis')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Spinal fusion surgery for scoliosis']")
     WebElement itemSpinalFusionSurgeryForScoliosis;
-    @FindBy(xpath = "//*[contains(text(),'Strabismus surgery')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Strabismus surgery']")
     WebElement itemStrabismusSurgery;
-    @FindBy(xpath = "//*[contains(text(),'Surgery')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Surgery']")
     WebElement itemSurgery;
     //DropdownList elements of Complication
-    @FindBy(xpath = "//*[contains(text(),'Behavioral problems')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Behavioral problems']")
     WebElement itemBehavioralProblems;
-    @FindBy(xpath = "//*[contains(text(),'Constipation')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Constipation']")
     WebElement itemConstipation;
-    @FindBy(xpath = "//*[contains(text(),'Developmental delay')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Developmental delay']")
     WebElement itemDevelopmentalDelay;
-    @FindBy(xpath = "//*[contains(text(),'Failure to thrive')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Failure to thrive']")
     WebElement itemFailureToThrive;
-    @FindBy(xpath = "//*[contains(text(),'Feeding difficulties')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Feeding difficulties']")
     WebElement itemFeedingDifficulties;
-    @FindBy(xpath = "//*[contains(text(),'Gastroespophageal reflux')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Gastroespophageal reflux']")
     WebElement itemGastroespophagealReflux;
-    @FindBy(xpath = "//*[contains(text(),'Hearing loss')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Hearing loss']")
     WebElement itemHearingLoss;
-    @FindBy(xpath = "//*[contains(text(),'Intellectual disability')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Intellectual disability']")
     WebElement itemIntellectualDisability;
-    @FindBy(xpath = "//*[contains(text(),'Intellectual disability')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Obesity']")
     WebElement itemObesity;
-    @FindBy(xpath = "//*[contains(text(),'Seizures')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Seizures']")
     WebElement itemSeizures;
-    @FindBy(xpath = "//*[contains(text(),'Sleep disorders')]")
+    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Sleep disorders']")
     WebElement itemSleepDisorders;
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")

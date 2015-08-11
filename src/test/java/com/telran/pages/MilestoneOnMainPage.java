@@ -46,17 +46,17 @@ public class MilestoneOnMainPage extends Page {
 
     // DropdownList elements of Language
     //Dropdown list Button
-   @FindBy(xpath = "//*[@class='col-sm-12']/select")
+   @FindBy(xpath = "//select[@class='ng-pristine ng-untouched ng-valid']")
     WebElement selectDropDownListButton;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Speaks in full sentences']")
+    @FindBy(xpath = "//option[contains(text(),'Speaks in full sentences')]")
     WebElement itemSpeaksInFullSentences;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Babbles']")
+    @FindBy(xpath = "//option[contains(text(),'Babbles')]")
     WebElement itemBabbles;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='First word']")
+    @FindBy(xpath = "//option[contains(text(),'First word')]")
     WebElement itemFirstWord;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='2-3 words']")
+    @FindBy(xpath = "//option[contains(text(),'2-3 words')]")
     WebElement itemTwoThreeWords;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Smiles']")
+    @FindBy(xpath = "//option[contains(text(),'Smiles')]")
     WebElement itemSmiles;
     // DropdownList elements of Movement
     @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Crawls']")

@@ -33,7 +33,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     public String milestone;
 
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -52,7 +52,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         mainPage.openMainPage();
         mainPage.waitUntilMainPageIsLoaded()
@@ -61,7 +61,36 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     }
 
 
-    @Test(groups = {"smoke", "positive"}, enabled = true, dataProviderClass = DataProviders.class, dataProvider = "loadTypesFromFile")
+    @Test(groups = {"smoke", "positive"}, enabled = true)
+    public void SendOtherPostTest() {
+        type = "Other";
+        year = "10";
+        month = "5";
+        age = year + " years " + month + " months";
+        post = randomAlphabetic(500);
+        textOtherField = "ABCD";
+        try {
+            milestoneOnMainPage
+                    .clickOnElement(type)
+                    .fillOtherField(textOtherField)
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(3000);
+            assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Other field is not fill", milestoneOnMainPage.isOtherTextCorrect(textOtherField));
+            assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert:'The text is not correct'", milestoneOnMainPage.isTextCorrect(post));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test(groups = {"smoke", "positive"}, description = "Send Milestone Post", enabled = true, dataProviderClass = DataProviders.class, dataProvider = "loadTypesFromFile")
     public void SendMilestonePostDataDrivenTest(String _type, String _milestone, String _year, String _month) {
         type = _type;
         milestone = _milestone;
@@ -80,7 +109,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .fillTextField(post)
                     .sendPost()
                     .waitForPostLoaded();
-            sleep(3000);
+            sleep(1000);
             assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
             assertTrue("Alert:'Milestone is not correct'", milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
@@ -92,35 +121,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     }
 
 
-    @Test(groups={"smoke","positive"}, enabled = true)
-    public  void SendOtherPostTest() {
-        type = "Other";
-        year="10";
-        month="5";
-        age=year+" years "+month+" months";
-        post = randomAlphabetic(500);
-        textOtherField="ABCD";
-        try {
-            milestoneOnMainPage
-                    .clickOnElement(type)
-                    .fillOtherField(textOtherField)
-                    .clickOnYearsOption(year)
-                    .clickOnMonthOption(month)
-                    .fillTextField(post)
-                    .sendPost()
-                    .waitForPostLoaded();
-            sleep(3000);
-            assertTrue("Alert:'Milestone type is not correct'",milestoneOnMainPage.isTypeTrue(type));
-            assertTrue("Other field is not fill",milestoneOnMainPage.isOtherTextCorrect(textOtherField));
-            assertTrue("Alert:'The age is not correct'",milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue("Alert:'The text is not correct'",milestoneOnMainPage.isTextCorrect(post));
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     //Send Post Milestone Negative Tests
 
     /* 1)Years:empty
@@ -129,7 +129,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
     4)Message: Length>500*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest1(){
-        post = randomAlphabetic(200);
+        post = randomAlphabetic(20);
         try {
             milestoneOnMainPage
                     .clickOnMonthOption("A");

@@ -6,14 +6,9 @@ import com.telran.pages.MainPage;
 import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -41,7 +36,7 @@ public class DocProfInfTest extends TestNgTestBase{
         docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
 
         try {
-            loginPage.login(LoginTest.USER,LoginTest.PASSWORD);
+            loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();
         } catch (Exception e) {
@@ -132,11 +127,11 @@ public class DocProfInfTest extends TestNgTestBase{
 
     @Test(groups = {"smoke", "negative"})
      public void AddEmptySpecialties() {
-        Log.info("Checking that Specialties empty field added");
+        Log.info("Checking that Specialties with empty field cannot added");
         try {
             docProfInfPage
                     .fillSpecialtiesField("");
-            Assert.assertTrue(docProfInfPage.isAddSpecButtonExists() == false, "The Add Specialties Button Enable");
+            Assert.assertTrue(docProfInfPage.isAddSpecButtonDisabled(), "The Add Specialties Button is Enabled");
             Reporter.log("Specialties Button disnable");
         } catch (Exception e) {
             e.printStackTrace();

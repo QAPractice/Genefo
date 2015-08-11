@@ -31,7 +31,7 @@ public class RegistrationTest extends TestNgTestBase {
     MainPage mainPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         //this.driver = new FirefoxDriver();
@@ -52,7 +52,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void GenerateData() {
         emailNickname = randomAlphabetic(7);
         emailPositive = "one" + emailNickname + "@yopmail.com";
@@ -133,7 +133,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("NoCon")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -155,7 +155,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -178,7 +178,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("ggg")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -199,7 +199,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .openRegistrationPage()
                     .fillFirstNameField("1")
                     .fillLastNameField("Pen").fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -221,7 +221,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -267,7 +267,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
@@ -289,7 +289,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToSubmit();
@@ -511,7 +511,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -535,7 +535,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -560,7 +560,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -584,7 +584,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -608,7 +608,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -632,7 +632,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -657,7 +657,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -681,7 +681,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -705,7 +705,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -729,7 +729,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -753,7 +753,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Appendicitis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -919,7 +919,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -940,7 +940,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -962,7 +962,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -986,7 +986,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -1008,7 +1008,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -1033,7 +1033,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -1055,7 +1055,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")
-                    .fillEmailField("us000998@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
@@ -1140,7 +1140,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void postcondition() {
         if (mainPage.isLoggedIn()) {
             mainPage.logOut();

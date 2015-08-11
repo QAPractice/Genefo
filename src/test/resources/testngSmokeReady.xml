@@ -2,13 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="SuperTest" verbose="5">
     <test name="Test1">
-
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
-
         <classes>
             <class name="com.telran.RegistrationTest"/>
             <class name="com.telran.DocAcInfTest"/>

@@ -44,7 +44,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
             e.printStackTrace();
         }
         mainPage.isOnMainPage();
-        mainPage.chooseConditionForDoctor("Insomnia");
+        mainPage.chooseConditionForDoctor("Alstrom");
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
     }

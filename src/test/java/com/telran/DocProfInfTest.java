@@ -56,11 +56,12 @@ public class DocProfInfTest extends TestNgTestBase{
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
                 docProfInfPage.clickOnDoneButton();
             }
-            Log.info("Wait for load Profile HCP page");
-            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+//            Log.info("Wait for load Profile HCP page");
+//            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnHealInf();
             Log.info("Wait for load DocProfInf page");
-            docProfInfPage.waitUntilDocProfInfPageIsLoaded();
+            docProfInfPage.waitUntilDocProfInfPageIsLoaded()
+                          .clearAllData();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,11 +97,6 @@ public class DocProfInfTest extends TestNgTestBase{
     public void AddWorkPlaceInf() {
         Log.info("Checking that work place information added");
         try {
-            if (docProfInfPage.isLocationWPExists()) {
-                docProfInfPage
-                        .clickOnDelWorkPlacesButton()
-                        .clickOnConfWorkPlacesButton();
-            }
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
                     .fillWorkPlacesLocationField("Tel Aviv")
@@ -167,15 +163,10 @@ public class DocProfInfTest extends TestNgTestBase{
     public void AddSpecialtiesWithoutAddButton() {
         Log.info("Checking that added Specialties are not published");
         try {
-            if (docProfInfPage.isSpecExists()) {
-                docProfInfPage
-                        .clickOnDelSpecButton()
-                        .clickOnConfSpecButton();
-            }
             docProfInfPage
                     .fillSpecialtiesField("efgh")
                     .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isSpecialtiesExist(), "The specialty published");
+            Assert.assertFalse(profileDoctorPage.isSpecialtiesExist(), "The specialty published");
             Reporter.log("Specialties are not published");
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,16 +177,11 @@ public class DocProfInfTest extends TestNgTestBase{
     public void AddSpecialtiesWithAddButton() {
         Log.info("Checking that added Specialties are published");
         try {
-            if (docProfInfPage.isSpecExists()) {
-                docProfInfPage
-                        .clickOnDelSpecButton()
-                        .clickOnConfSpecButton();
-            }
             docProfInfPage
                     .fillSpecialtiesField("abcd")
                     .clickOnAddSpecialtiesButton()
                     .clickOnDoneButton();
-            Assert.assertFalse(profileDoctorPage.isSpecialtiesExist(), "The specialty unpublished");
+            Assert.assertTrue(profileDoctorPage.isSpecialtiesExist(), "The specialty unpublished");
             Reporter.log("Specialties are published");
         } catch (Exception e) {
             e.printStackTrace();
@@ -234,10 +220,8 @@ public class DocProfInfTest extends TestNgTestBase{
     public void DeleteLocationWPandNameWP() {
         Log.info("Checking that Work Place Name and Work Place Location added and deleted");
         try {
-            sleep();
             docProfInfPage
                     .fillWorkPlacesNameField("Assuta");
-            //sleep();
             docProfInfPage
                     .fillWorkPlacesLocationField("t")
                     .clickOnTooltipWP()
@@ -250,67 +234,6 @@ public class DocProfInfTest extends TestNgTestBase{
             e.printStackTrace();
         }
     }
-
-    @Test(groups = {"positive"})
-    public void DeleteAllDataIfExist() {
-        Log.info("Checking that All Data deleted");
-        try {
-            sleep();
-                    if (docProfInfPage.isSpecExists()) {
-                        docProfInfPage
-                                .clickOnDelSpecButton()
-                                .clickOnConfSpecButton();
-                    }
-                    if (docProfInfPage.isSubspecExists()) {
-                        docProfInfPage
-                                .clickOnDelSubspecButton()
-                                .clickOnConflSubspecButton();
-                    }
-                    if (docProfInfPage.isTitlesExists()) {
-                        docProfInfPage
-                                .clickOnDelTitleButton()
-                                .clickOnConfTitleButton();
-                    }
-                    if (docProfInfPage.isAreasExists()) {
-                        docProfInfPage
-                                .clickOnDelAreasButton()
-                                .clickOnConfAreasButton();
-                    }
-                    if (docProfInfPage.isLocationWPExists()) {
-                        docProfInfPage
-                                .clickOnDelWorkPlacesButton()
-                                .clickOnConfWorkPlacesButton();
-                    }
-
-            docProfInfPage
-                    .clickOnDoneButton();
-            Assert.assertTrue(profileDoctorPage.isOnProfileDoctorPage(), "Profile HCP Page doesn't open");
-            Reporter.log("All Data deleted");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
-
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
-
 
     private void sleep (){
         try {

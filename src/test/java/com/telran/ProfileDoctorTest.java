@@ -101,7 +101,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
     }
 
     @Test(groups = {"smoke", "positive"})
-    public void EditHealthcareProfInf() {
+    public void AddHealthcareProfInf() {
         Log.info("Checking that Healthcare Professional Information Page open");
         try {
             profileDoctorPage.clickOnHealInf();
@@ -112,10 +112,10 @@ public class ProfileDoctorTest extends TestNgTestBase{
         Reporter.log("Healthcare Professional Information Page open");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void teardown() {
+//        this.driver.quit();
+//    }
 
     private String closeAlertAndGetItsText() {
         try {

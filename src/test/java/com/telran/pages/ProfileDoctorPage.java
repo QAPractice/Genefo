@@ -31,7 +31,7 @@ public class ProfileDoctorPage extends Page{
     WebElement EditBasicInformationButton;
 
     @FindBy(xpath = "//*[@class='btn btn-success ng-binding']")
-    WebElement EditHealthcareProfessionalInformationButton;
+    WebElement AddHealthcareProfessionalInformationButton;
 
     @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']/*[5]")
     WebElement DiscoverYourHomePageButton;
@@ -78,7 +78,7 @@ public class ProfileDoctorPage extends Page{
     }
 
     public ProfileDoctorPage clickOnHealInf() {
-        clickElement(EditHealthcareProfessionalInformationButton);
+        clickElement(AddHealthcareProfessionalInformationButton);
         return this;
     }
 

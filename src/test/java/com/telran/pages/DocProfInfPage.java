@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Oleg on 02.06.2015.
  */
@@ -153,6 +155,10 @@ public class DocProfInfPage extends Page{
 
     public boolean isLocationWPExists() {
         return exists(workLocation);
+    }
+
+    public boolean isDelWPExists() {
+        return exists(delWorkPlacesButton);
     }
 
     public boolean isWorkNameCorrect(String name) {
@@ -312,7 +318,40 @@ public class DocProfInfPage extends Page{
         return this;
     }
 
+    public void clearAllData() {
+        while (isSpecExists()) {
+            clickOnDelSpecButton();
+            clickOnConfSpecButton();
+            sleep();
+        }
+        while (isSubspecExists()) {
+            clickOnDelSubspecButton();
+            clickOnConflSubspecButton();
+            sleep();
+        }
+        while (isTitlesExists()) {
+            clickOnDelTitleButton();
+            clickOnConfTitleButton();
+            sleep();
+        }
+        while (isAreasExists()) {
+            clickOnDelAreasButton();
+            clickOnConfAreasButton();
+            sleep();
+        }
 
-
+        while (isDelWPExists())   {
+            clickOnDelWorkPlacesButton();
+            clickOnConfWorkPlacesButton();
+            sleep();
+        };
+    }
+    private void sleep (){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

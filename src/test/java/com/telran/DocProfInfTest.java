@@ -96,14 +96,19 @@ public class DocProfInfTest extends TestNgTestBase{
     public void AddWorkPlaceInf() {
         Log.info("Checking that work place information added");
         try {
+            if (docProfInfPage.isLocationWPExists()) {
+                docProfInfPage
+                        .clickOnDelWorkPlacesButton()
+                        .clickOnConfWorkPlacesButton();
+            }
             docProfInfPage
                     .fillWorkPlacesNameField("Ikhilov")
                     .fillWorkPlacesLocationField("Tel Aviv")
                     .clickOnTooltipWP()
-                    .clickOnAddWorkPlacesButton()
-                    .clickOnDoneButton();
+                    .clickOnAddWorkPlacesButton();
             Assert.assertTrue(docProfInfPage.isWorkNameCorrect("Ikhilov"), "Work Name is not added");
             Assert.assertTrue(docProfInfPage.isWorkLocationCorrect("Tel Aviv-Yafo, Israel"), "Work Location is not added");
+            docProfInfPage.clickOnDoneButton();
             Reporter.log("work place information added successful");
         } catch (Exception e) {
             e.printStackTrace();

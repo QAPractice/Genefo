@@ -41,7 +41,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         try {
             loginPage.login("mili9@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
-
                     .openMilestonePanel();
             milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
         } catch (Exception e) {
@@ -58,35 +57,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         mainPage.waitUntilMainPageIsLoaded()
                 .openMilestonePanel();
         milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
-    }
-
-
-    @Test(groups = {"smoke", "positive"}, enabled = true)
-    public void SendOtherPostTest() {
-        type = "Other";
-        year = "10";
-        month = "5";
-        age = year + " years " + month + " months";
-        post = randomAlphabetic(500);
-        textOtherField = "ABCD";
-        try {
-            milestoneOnMainPage
-                    .clickOnElement(type)
-                    .fillOtherField(textOtherField)
-                    .clickOnYearsOption(year)
-                    .clickOnMonthOption(month)
-                    .fillTextField(post)
-                    .sendPost()
-                    .waitForPostLoaded();
-            sleep(3000);
-            assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
-            assertTrue("Other field is not fill", milestoneOnMainPage.isOtherTextCorrect(textOtherField));
-            assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
-            assertTrue("Alert:'The text is not correct'", milestoneOnMainPage.isTextCorrect(post));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -109,7 +79,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .fillTextField(post)
                     .sendPost()
                     .waitForPostLoaded();
-            sleep(1000);
+            sleep(2000);
             assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
             assertTrue("Alert:'Milestone is not correct'", milestoneOnMainPage.isMilestoneTrue(milestone));
             assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
@@ -120,13 +90,36 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
 
     }
 
+    @Test(groups = {"smoke", "positive"}, enabled = true)
+    public void SendOtherPostTest() {
+        type = "Other";
+        year = "10";
+        month = "5";
+        age = year + " years " + month + " months";
+        post = randomAlphabetic(500);
+        textOtherField = "ABCD";
+        try {
+            milestoneOnMainPage
+                    .clickOnElement(type)
+                    .fillOtherField(textOtherField)
+                    .clickOnYearsOption(year)
+                    .clickOnMonthOption(month)
+                    .fillTextField(post)
+                    .sendPost()
+                    .waitForPostLoaded();
+            sleep(2000);
+            assertTrue("Alert:'Milestone type is not correct'", milestoneOnMainPage.isTypeTrue(type));
+            assertTrue("Other field is not fill", milestoneOnMainPage.isOtherTextCorrect(textOtherField));
+            assertTrue("Alert:'The age is not correct'", milestoneOnMainPage.isAgeIsCorrect(age));
+            assertTrue("Alert:'The text is not correct'", milestoneOnMainPage.isTextCorrect(post));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //Send Post Milestone Negative Tests
-
-    /* 1)Years:empty
-    2)Months:
-    3)Milestone:empty
-    4)Message: Length>500*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest1(){
         post = randomAlphabetic(20);
@@ -142,10 +135,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         }
 
     }
-    /*1)Years:abc
-     2)Months:&^$
-     3)Milestone:Language:
-     4)Message:Length:250*/
+
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest2(){
         type = "Language";
@@ -170,10 +160,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
 
     }
 
-    /* 1)Years:Два
-    2)Months:-12
-    3)Milestone:Movement:Rolls over
-    4)Message:Length:length>500*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest3(){
         type = "Movement";
@@ -196,10 +182,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         }
     }
 
-    /*1)Years:שלושל
-    2)Months:-One
-    3)Milestone:Eating:Eats with spoon
-    4)Message:Length:length=1.*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest4(){
         type = "Daily living";
@@ -223,10 +205,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         }
     }
 
-    /*1)Years:583687348237560327234686
-    2)Months:36
-    3)Milestone:empty
-    4)Message:Length:length>2252*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest5(){
         post = randomAlphabetic(500);
@@ -244,10 +222,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         }
     }
 
-    /*1)Years:עשרים ואחד
-    2)Months:00
-    3)Milestone:empty
-    4)Message::empty*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest6(){
         try {
@@ -262,10 +236,6 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
         }
     }
 
-    /*1)Years:-int
-    2)Months:16
-    3)Milestone:Toileting:dresses alone
-    4)Message:Length>2252*/
     @Test(groups={"smoke","negative"}, enabled = true)
     public void MilestoneNegativeTest7(){
         type = "Daily living";

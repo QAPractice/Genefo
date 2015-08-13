@@ -68,7 +68,7 @@ public class DataProviders {
     @DataProvider
     public static Iterator<Object[]> loadTypesFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                DataProviders.class.getResourceAsStream("/types.data")));
+                DataProviders.class.getResourceAsStream("/progress.data")));
 
         List<Object[]> userData = new ArrayList<Object[]>();
         String line = in.readLine();

@@ -34,7 +34,7 @@ public class LoginTest extends TestNgTestBase{
     public static String PASSWORD ="111111";
     public static String USER1 ="osh_il+1@yahoo.com";
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -43,7 +43,7 @@ public class LoginTest extends TestNgTestBase{
         resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()

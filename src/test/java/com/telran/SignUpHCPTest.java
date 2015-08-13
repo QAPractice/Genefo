@@ -975,11 +975,6 @@ public class SignUpHCPTest extends TestNgTestBase{
         Reporter.log("Term Of Service Page open by clicking on the link");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
-
     private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();

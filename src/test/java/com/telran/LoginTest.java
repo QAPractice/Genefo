@@ -166,9 +166,4 @@ public class LoginTest extends TestNgTestBase{
         Reporter.log("Not logged in successful");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
-
 }

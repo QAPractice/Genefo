@@ -112,11 +112,6 @@ public class ProfileDoctorTest extends TestNgTestBase{
         Reporter.log("Healthcare Professional Information Page open");
     }
 
-//    @AfterClass(alwaysRun = true)
-//    public void teardown() {
-//        this.driver.quit();
-//    }
-
     private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();

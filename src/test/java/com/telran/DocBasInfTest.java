@@ -118,11 +118,6 @@ public class DocBasInfTest extends TestNgTestBase{
         }
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
-
     private String closeAlertAndGetItsText() {
         try {
             Alert alert = driver.switchTo().alert();

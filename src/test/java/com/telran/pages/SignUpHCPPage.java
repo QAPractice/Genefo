@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 /**
@@ -87,7 +88,7 @@ public class SignUpHCPPage extends Page{
     public SignUpHCPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = baseUrl + "/signup_hcp";
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
     public SignUpHCPPage openHCPRegPage() {

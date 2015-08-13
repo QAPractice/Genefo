@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 
@@ -55,7 +56,7 @@ public class ProfileDoctorPage extends Page{
     public ProfileDoctorPage (WebDriver driver) {
         super(driver);
         this.PAGE_URL = baseUrl + "/account_hcp";
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
         PropertyConfigurator.configure("log4j.properties");
     }
 

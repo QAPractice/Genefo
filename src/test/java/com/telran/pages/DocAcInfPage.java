@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 /**
@@ -65,8 +66,8 @@ public class DocAcInfPage extends Page{
 
     public DocAcInfPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
         this.PAGE_URL = baseUrl + "/account_hcp/account";
-        PageFactory.initElements(driver, this);
     }
 
     public DocAcInfPage waitUntilDocAcInfPageIsLoaded() {

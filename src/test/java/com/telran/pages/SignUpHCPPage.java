@@ -4,6 +4,7 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,55 +17,71 @@ public class SignUpHCPPage extends Page{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(name = "email")
+    @CacheLookup
     WebElement emailField;
 
     @FindBy(name = "password")
+    @CacheLookup
     WebElement passwordField;
 
     @FindBy(name = "firstName")
+    @CacheLookup
     WebElement firstNameField;
 
     @FindBy(name = "lastName")
+    @CacheLookup
     WebElement lastNameField;
 
     //lables
     @FindBy(xpath = "//*[@class='col-sm-2 control-label' and contains(.,'Last') and contains(.,'*')]")
+    @CacheLookup
     WebElement lastNameLableHCP;
 
     @FindBy(xpath = "//*[@id='myModalLabel']")
+    @CacheLookup
     WebElement termOfSeviceLable;
 
     //buttons
     @FindBy(id = "submit")
+    @CacheLookup
     WebElement signUpHCPButton;
 
     @FindBy(xpath = "//*[@class='ng-pristine ng-valid']/a")
+    @CacheLookup
     WebElement termOfServiceLink;
 
     //checkboxs
     @FindBy(name = "isOver18")
+    @CacheLookup
     WebElement checkBox18;
 
     @FindBy(name = "TOS")
+    @CacheLookup
     WebElement checkBoxAgree;
 
     //alerts
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'email')]")
+    @CacheLookup
     WebElement nonValidEmail;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'password')]")
+    @CacheLookup
     WebElement nonValidPassword;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'first name')]")
+    @CacheLookup
     WebElement nonValidFirstName;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'last name')]")
+    @CacheLookup
     WebElement nonValidLastName;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'18 or older')]")
+    @CacheLookup
     WebElement alertToCheckBox18;
 
     @FindBy(xpath = "//*[@class='col-sm-4 col-xs-12' and contains(.,'Terms')]")
+    @CacheLookup
     WebElement alertToCheckBoxAgree;
 
     public SignUpHCPPage(WebDriver driver) {

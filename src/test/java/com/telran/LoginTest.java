@@ -6,44 +6,39 @@ import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static org.testng.AssertJUnit.assertTrue;
 
-import java.util.concurrent.TimeUnit;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Oleg on 30.05.2015.
  */
 public class LoginTest extends TestNgTestBase{
+    public static String USER = "osh_il+4@yahoo.com";
+    public static String PASSWORD = "111111";
+    public static String USER1 = "osh_il+1@yahoo.com";
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-
     public HomePage homePage;
     public LoginPage loginPage;
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
-    public static String USER ="osh_il+4@yahoo.com";
-    public static String PASSWORD ="111111";
-    public static String USER1 ="osh_il+1@yahoo.com";
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
+        loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
+
         PropertyConfigurator.configure("log4j.properties");
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
-        homePage = PageFactory.initElements(driver, HomePage.class);
-        resetYourPasswordPage = PageFactory.initElements(driver, ResetYourPasswordPage.class);
+
+        homePage = new HomePage(driver);
+        resetYourPasswordPage = new ResetYourPasswordPage(driver);
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()

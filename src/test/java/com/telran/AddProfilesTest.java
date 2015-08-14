@@ -1,12 +1,7 @@
 package com.telran;
 
 import com.telran.pages.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,28 +11,24 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
  */
-public class AddProfilesTest {
+public class AddProfilesTest extends TestNgTestBase {
 
-    private static String EMAIL="ri-lopatina@yandex.ru";
-    private static String PASSWORD="111111";
-    public WebDriver driver;
-    public WebDriverWait wait;
+    private static String EMAIL = "ri-lopatina@yandex.ru";
+    private static String PASSWORD = "111111";
     MyProfilesPage myProfilesPage;
     ProfilePage profilePage;
     LoginPage loginPage;
     MainPage mainPage;
     SummaryPage summaryPage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
-        myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
-        profilePage = PageFactory.initElements(driver, ProfilePage.class);
-        summaryPage = PageFactory.initElements(driver, SummaryPage.class);
+        loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
+        myProfilesPage = new MyProfilesPage(driver);
+        profilePage = new ProfilePage(driver);
+        summaryPage = new SummaryPage(driver);
         try {
             loginPage.openLoginPage();
             loginPage.isOnLoginPage();
@@ -48,10 +39,11 @@ public class AddProfilesTest {
             e.printStackTrace();
         }
     }
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
+
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForProfile")
     public void AddProfileSuccess(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                  String day,String year,String diagnose_year, String patient_profile_check, String condition_check, String gender_check,
-                                  String birth_date_check,String diagnose_year_check, String name_check, String last_name_check) {
+                                  String day, String year, String diagnose_year, String patient_profile_check, String condition_check, String gender_check,
+                                  String birth_date_check, String diagnose_year_check, String name_check, String last_name_check) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -78,7 +70,7 @@ public class AddProfilesTest {
     //  Negative tests
 //    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")    //Bug, because the condition field is filled automatically !!!
     public void AddProfileWithoutCondition(String first_name, String last_name, String patient_profile_type, String gender, String month,
-                                           String day,String year,String diagnose_year) {
+                                           String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -97,9 +89,10 @@ public class AddProfilesTest {
         Reporter.log("Negative test(profile without condition): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutFirstName(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                           String day,String year,String diagnose_year) {
+                                           String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -121,7 +114,7 @@ public class AddProfilesTest {
 
     @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWoutLastName(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                       String day,String year,String diagnose_year) {
+                                       String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -141,9 +134,9 @@ public class AddProfilesTest {
         profilePage.clickOnDiscoverHome();
     }
 
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutPatientType(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                             String day,String year,String diagnose_year) {
+                                             String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -163,9 +156,9 @@ public class AddProfilesTest {
         profilePage.clickOnDiscoverHome();
     }
 
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutGender(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                        String day,String year,String diagnose_year) {
+                                        String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -184,9 +177,10 @@ public class AddProfilesTest {
         Reporter.log("Negative test(profile without condition): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutMonth(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                       String day,String year,String diagnose_year) {
+                                       String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -205,9 +199,10 @@ public class AddProfilesTest {
         Reporter.log("Negative test(profile without month): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutDay(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                              String day,String year,String diagnose_year) {
+                                     String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -227,9 +222,9 @@ public class AddProfilesTest {
         profilePage.clickOnDiscoverHome();
     }
 
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutYear(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                               String day,String year,String diagnose_year) {
+                                      String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -248,9 +243,10 @@ public class AddProfilesTest {
         Reporter.log("Negative test(profile without year): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutDiagnoseYear(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
-                                              String day,String year,String diagnose_year) {
+                                              String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
         mainPage.selectMyProfile();
         myProfilesPage.isOnMyProfilesPage();
@@ -269,8 +265,5 @@ public class AddProfilesTest {
         Reporter.log("Negative test(profile without diagnose year): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+
 }

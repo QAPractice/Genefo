@@ -26,10 +26,9 @@ public class FollowingDoctorTest extends TestNgTestBase {
     PublicProfilePage publicProfilePage;
     ProfileDoctorPage profileDoctorPage;
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
-
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -48,7 +47,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
         mainPage.chooseConditionFromDropDown();
         mainPage.clickViewButton();
     }
-    @Test (groups = {"smoke", "positive"})
+    @Test (groups = {"smoke", "positive"}, description = "addFollowSuccessFromConnectPeopleConditionField")
     public void addFollowSuccessFromConnectPeopleConditionField(){
         Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
         Log.info("1.AddFollowSuccessFromConnectPeopleConditionField test");
@@ -78,7 +77,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
         Reporter.log("1.New profile was added to following successfully from ConnectPeopleThisConditionProfile");
     }
 
-    @Test (groups = {"smoke", "positive"})
+    @Test (groups = {"smoke", "positive"}, description = "unFollowSuccess")
     public void unFollowSuccess(){
         Reporter.log("UnFollowSuccess test");
         Log.info("2.UnFollowSuccess test");
@@ -102,7 +101,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
         assertFalse(mainPage.isFollowingNamePresents(name));
         Reporter.log("2.New profile was unfollowed successfully");
     }
-    @Test (groups = {"smoke", "positive"})
+    @Test (groups = {"smoke", "positive"}, description = "addFollowSuccessFromPosts")
     public void addFollowSuccessFromPosts(){
         Reporter.log("AddFollowSuccessFromPosts test");
         Log.info("3.AddFollowSuccessFromPosts test");

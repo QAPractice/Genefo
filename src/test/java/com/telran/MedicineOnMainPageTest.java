@@ -6,7 +6,6 @@ import com.telran.pages.MainPage;
 import com.telran.pages.MedicineOnMainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,7 +23,7 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
     public MedicineOnMainPage medicineOnMainPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -40,7 +39,7 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         mainPage
                 .openMedicinePanel();
@@ -48,7 +47,7 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
     }
 
     //Positive tests
-    @Test(groups = {"smoke", "positive"},enabled = true, dataProviderClass = DataProviders.class,dataProvider = "loadMedicineTypesFromFile")
+    @Test(groups = {"smoke", "positive"}, enabled = true, description = "Post medicine Randomly", dataProviderClass = DataProviders.class, dataProvider = "loadMedicineTypesFromFile")
     public void postSomeMedicineRandom(String name,String reason) throws InterruptedException {
         medicineOnMainPage.createMedicinePostRandom(name,reason);
     }
@@ -97,10 +96,6 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
         }
     }
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
 
 
 }

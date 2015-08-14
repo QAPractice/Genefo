@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -32,7 +33,7 @@ public class MDRatingTest extends TestNgTestBase {
     public MainPage mainPage;
     public MDRatingOnMainPage mdRatingOnMainPage;
 
-    @BeforeClass
+    @BeforeClass (alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         //this.driver = new FirefoxDriver();
@@ -59,7 +60,7 @@ public class MDRatingTest extends TestNgTestBase {
     }
 
 
-    @Test (groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test (groups = {"smoke", "positive"}, description = "sendMDRatingPostSuccess", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostSuccess(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("SendMDRatingPostSuccess test");
         Log.info("SendMDRatingPostSuccess test");
@@ -84,7 +85,7 @@ public class MDRatingTest extends TestNgTestBase {
         Reporter.log("MDRating post was sent successfully");
     }
 
-        @Test (groups = {"smoke", "negative"},dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+        @Test (groups = {"smoke", "negative"}, description = "sendMDRatingPostTestWithoutFacilityName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostTestWithoutFacilityName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
             Reporter.log("sendMDRatingPostTestWithoutFacilityName test");
             Log.info("sendMDRatingPostTestWithoutFacilityName test");
@@ -103,7 +104,7 @@ public class MDRatingTest extends TestNgTestBase {
             Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutPhysicianFName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutPhysicianFName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutPhysicianFName test");
         Log.info("sendMDRatingPostWithoutPhysicianFName test");
@@ -123,7 +124,7 @@ public class MDRatingTest extends TestNgTestBase {
         Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutPhysicianLName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutPhysicianLName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutPhysicianLName test");
         Log.info("sendMDRatingPostWithoutPhysicianLName test");
@@ -143,7 +144,7 @@ public class MDRatingTest extends TestNgTestBase {
         Reporter.log("Post is not sent");
     }
 
-    /*@Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    /*@Test (groups = {"negative"}, description = "sendMDRatingWithEmptyPost", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingWithEmptyPost(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         int number = Integer.parseInt(starNumber);
         try {
@@ -159,7 +160,7 @@ public class MDRatingTest extends TestNgTestBase {
         }
         Reporter.log("Post is not sent");
     }*/
-    @Test (groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutRating", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutRating(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutRating test");
         Log.info("sendMDRatingPostWithoutRating test");
@@ -177,7 +178,7 @@ public class MDRatingTest extends TestNgTestBase {
         }
         Reporter.log("Post is not sent");
     }
-    @Test (groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test (groups = {"positive"}, description = "sendMDRating1LatterPost", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRating1LatterPost(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRating1LatterPost test");
         Log.info("sendMDRating1LatterPost test");
@@ -202,10 +203,9 @@ public class MDRatingTest extends TestNgTestBase {
         Reporter.log("1 latter post was sent successfully");
     }
 
-   /* @AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         this.driver.quit();
     }
-*/
 }
 

@@ -22,147 +22,136 @@ public class MilestoneOnMainPage extends Page {
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
     @FindBy(xpath = "//label[contains(text(),'Developmental Milestone')]")
-    @CacheLookup
-    //WebElement developmentalYourProgressTitle;
+//    @CacheLookup
     WebElement developmentalMilestoneTitle;
 
-    /*@FindBy(xpath = "//div [@class='col-sm-8']/label")
-    WebElement developmentalMilestoneTitle;
-    @FindBy(xpath = "//div [@class='col-sm-4']/label")
-    WebElement treatmentMilestoneTitle;*/
-    @FindBy(xpath = "//*[@class='ng-scope active'][@popover='Report your progress']/span")
-    @CacheLookup
-    // WebElement treatmentReportYourProgressTitle;
-            WebElement treatmentMilestoneTitle;
     //Category Developmental Progress buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
-    @CacheLookup
+ //   @CacheLookup
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
-    @CacheLookup
+ //   @CacheLookup
     WebElement movementButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Daily living')]")
-    @CacheLookup
+//    @CacheLookup
     WebElement dailyLivingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Procedure')]")
-    @CacheLookup
+//    @CacheLookup
     WebElement procedureButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complications')]")
-    @CacheLookup
+//    @CacheLookup
     WebElement complicationButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[@class='btn btn-default milestone_category_other ng-binding ng-scope'][contains(text(),'Other')]")
-    @CacheLookup
+ //   @CacheLookup
     WebElement otherButton;
 
-    // DropdownList elements of Language
     //Dropdown list Button
-   @FindBy(xpath = "//select[@class='ng-pristine ng-untouched ng-valid']")
+    @FindBy(xpath = "//*[@class='chosen-single']/div/b")
     WebElement selectDropDownListButton;
-    @FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-touched']/option[contains(text(),'Speaks in full sentences')]")
+    // DropdownList elements of Language
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemSpeaksInFullSentences;
-    @FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-touched']/option[contains(text(),'Babbles')]")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBabbles;
-    @FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-touched']/option[contains(text(),'First word')]")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemFirstWord;
-    @FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-touched']/option[contains(text(),'2-3 words')]")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemTwoThreeWords;
-    @FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-touched']/option[contains(text(),'Smiles')]")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemSmiles;
     // DropdownList elements of Movement
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']/option[@label='Crawls']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemCrawls;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Holds head']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemHoldsHead;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Pulls to stand']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemPullsToStand;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Reaches for objects']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemReachesForObjects;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Rolls over']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemRollsOver;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Runs']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemRuns;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Sits without support']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement itemSitsWithoutSupport;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Walk']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemWalk;
     // DropdownList elements of Daily living
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Dresses alone']")
-    WebElement itemDressesAlone;//+
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Eats with spoon']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='1']")
+    WebElement itemDressesAlone;
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemEatsWithSpoon;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Holds bottle']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemHoldsBottles;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Toilet trained']")
-    WebElement itemToiletTrained;//+
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='4']")
+    WebElement itemToiletTrained;
     //DropdownList elements of Procedure
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Achilles tendon lengthening']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemAchillesTendonLengthening;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Brain MRI']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemBrainMRI;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Gastrostomy']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemGastrostomy;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Medical trial']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemMedicalTrial;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Remission']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemRemission;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Spinal fusion surgery for scoliosis']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemSpinalFusionSurgeryForScoliosis;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Strabismus surgery']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement itemStrabismusSurgery;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Surgery']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemSurgery;
     //DropdownList elements of Complication
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Behavioral problems']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement itemBehavioralProblems;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Constipation']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='2']")
     WebElement itemConstipation;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Developmental delay']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='3']")
     WebElement itemDevelopmentalDelay;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Failure to thrive']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='4']")
     WebElement itemFailureToThrive;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Feeding difficulties']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='5']")
     WebElement itemFeedingDifficulties;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Gastroespophageal reflux']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='6']")
     WebElement itemGastroespophagealReflux;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Hearing loss']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement itemHearingLoss;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Intellectual disability']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='8']")
     WebElement itemIntellectualDisability;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Obesity']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='9']")
     WebElement itemObesity;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Seizures']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='10']")
     WebElement itemSeizures;
-    @FindBy(xpath = "//*[@class='ng-valid ng-touched ng-dirty ng-valid-parse']//option[@label='Sleep disorders']")
+    @FindBy(xpath = "//*[@class='chosen-results']/li[@data-option-array-index='11']")
     WebElement itemSleepDisorders;
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
-    @CacheLookup
+  //  @CacheLookup
     WebElement yearsButton;
     @FindBy(xpath = ".//*[@id='milestone_months']")
-    @CacheLookup
+//    @CacheLookup
     WebElement monthButton;
     //field input text for language
     @FindBy(xpath = "//*[@class='chosen-search']/input")
     WebElement selectLanguageField;
     //Field for input PostText
     @FindBy(xpath = "//*[@class='form-group']/textarea")
-    @CacheLookup
+//    @CacheLookup
     WebElement inputTextPostField;
     @FindBy(xpath = "//*[@class='col-sm-12']/input")
-    @CacheLookup
+ //   @CacheLookup
     WebElement textField;
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
-    @CacheLookup
+  //  @CacheLookup
     WebElement submitButton;
     //alerts
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
     WebElement alertRequiredFields;
     //*[contains(text(), "Numbers")]
     @FindBy(xpath = ".//*[@id='milestone_years']/../span[contains(text(),'Must be a number between 0 and 200')]")
-   // @FindBy(xpath = ".//*[@id='milestone_years']/../span")
     WebElement yearsNumber;
-   // @FindBy(xpath = "//*[@id='milestone_years']/../span[contains(text(),'Numbers only')]")
    @FindBy(xpath = "//*[@class='col-sm-2']/span[contains(text(),'Must be number between 0 and 48')]")
     WebElement monthsNumber;
     //elements in created post
@@ -208,12 +197,6 @@ public class MilestoneOnMainPage extends Page {
         return this;
     }
 
-   /* //for other
-    public MilestoneOnMainPage clickOnSelectOtherItemOption() {
-        Log.info("Select other item option");
-        clickElement(otherButton);
-        return this;}
-*/
     //for year
     public MilestoneOnMainPage clickOnYearsOption(String year) {
         Log.info("Years option:" + year);
@@ -303,7 +286,6 @@ public class MilestoneOnMainPage extends Page {
         buttonsAndItemsMap.put("Eats with spoon",itemEatsWithSpoon);
         buttonsAndItemsMap.put("Holds bottle",itemHoldsBottles);
         buttonsAndItemsMap.put("Toilet trained",itemToiletTrained);
-
         // items with names from category "Procedure"
         buttonsAndItemsMap.put("Achilles tendon lengthening",itemAchillesTendonLengthening);
         buttonsAndItemsMap.put("Brain MRI",itemBrainMRI);

@@ -6,6 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 
@@ -21,13 +22,16 @@ public class HomePage extends Page {
 
     //buttons
   @FindBy(xpath = "//*[@id='home_banner_small']//a[@class='landing_button']")
+  @CacheLookup
   WebElement freeSignUpButton;
 
     //lables
     @FindBy(xpath = "//*[@id='home_banner_small']/h1")
+    @CacheLookup
     WebElement titleLable;
 
   @FindBy(xpath = "//*[@class='btn btn-header btn-md navbar-btn' and contains(.,'Login')]")
+  @CacheLookup
   WebElement loginButton;
 
 //  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Healthcare Professional')]")
@@ -38,7 +42,7 @@ public class HomePage extends Page {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
         this.PAGE_URL = baseUrl;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
     public HomePage openHomePage() {

@@ -43,36 +43,39 @@ public class GrafsPage extends Page {
     WebElement genesLink;
 
     //elements of dropdown list from What Works For Me
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'What Works Best')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'What Works Best')]")
     WebElement whatWorksBestLink;
 
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Therapy')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'Therapy')]")
     WebElement therapyLink;
 
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Equipment')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'Equipment')]")
     WebElement equipmentLink;
 
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Nutrition')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'Nutrition')]")
     WebElement nutritionlink;
 
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Exercises')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'Exercises')]")
     WebElement exercisesLink;
 
-    @FindBy(xpath = "//*[contains(text(),'What')]/..//*[contains(text(),'Alternative Medicine')]")
+    @FindBy(xpath = "//*[contains(text(),'What Works For Me')]/..//*[contains(text(),'Alternative Medicine')]")
     WebElement alternativeMedicineLink;
 
-    //elements of dropdown list from Milestones
-    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Language Milestones')]")
-    WebElement languageMilestonesLink;
+    //elements of dropdown list from Progress
+    @FindBy(xpath = "//*[contains(text(),'Progress')]/..//*[contains(text(),'Language')]")
+    WebElement languageProgressLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Movement Milestones')]")
-    WebElement movementMilestonesLink;
+    @FindBy(xpath = "//*[contains(text(),'Progress')]/..//*[contains(text(),'Movement')]")
+    WebElement movementProgressLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Toileting Milestones')]")
-    WebElement toiletingMilestonesLink;
+    @FindBy(xpath = "//*[contains(text(),'Progress')]/..//*[contains(text(),'Daily living')]")
+    WebElement DailylivingProgressLink;
 
-    @FindBy(xpath = "//*[contains(text(),'Milestones')]/..//*[contains(text(),'Eating Milestones')]")
-    WebElement eatingMilestonesLink;
+    @FindBy(xpath = "//*[contains(text(),'Progress')]/..//*[contains(text(),'Procedure')]")
+    WebElement ProcedureProgressLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Progress')]/..//*[contains(text(),'Complications')]")
+    WebElement ComplicationsProgressLink;
 
     //elements of dropdown list from Medicines
 
@@ -189,18 +192,28 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public GrafsPage clikOnLanguageMilestonesLink() {
-        clickElement(languageMilestonesLink);
+    public GrafsPage clikOnLanguageProgressLink() {
+        clickElement(languageProgressLink);
         return this;
     }
 
-    public GrafsPage clikOnMovementMilestonesLink() {
-        clickElement(movementMilestonesLink);
+    public GrafsPage clikOnMovementProgressLink() {
+        clickElement(movementProgressLink);
         return this;
     }
 
-    public GrafsPage clikOnToiletingMilestonesLink() {
-        clickElement(toiletingMilestonesLink);
+    public GrafsPage clikOnDailylivingProgressLink() {
+        clickElement(DailylivingProgressLink);
+        return this;
+    }
+
+    public GrafsPage clikOnProcedureProgressLink() {
+        clickElement(ProcedureProgressLink);
+        return this;
+    }
+
+    public GrafsPage clikOnComplicationsProgressLink() {
+        clickElement(ComplicationsProgressLink);
         return this;
     }
 
@@ -219,10 +232,6 @@ public class GrafsPage extends Page {
         return this;
     }
 
-    public GrafsPage clikOnEatingMiletonesLink() {
-        clickElement(eatingMilestonesLink);
-        return this;
-    }
 
     public boolean isGraphLoaded(String element) {
         java.lang.String xpath = "xxx";
@@ -240,17 +249,20 @@ public class GrafsPage extends Page {
             case "Across Conditions":
                 xpath = "Across Conditions";
                 break;
-            case "Language Milestones":
-                xpath = "Milestones - Language";
+            case "Language Progress":
+                xpath = "Progress - Language";
                 break;
-            case "Movement Milestones":
-                xpath = "Developmental Milestones - Movement";
+            case "Movement Progress":
+                xpath = "Developmental Progress - Movement";
                 break;
-            case "Eating Milestones":
-                xpath = "Developmental Milestones - Eating";
+            case "Daily living Progress":
+                xpath = "Developmental Progress - Daily living";
                 break;
-            case "Toileting Milestones":
-                xpath = "Developmental Milestones - Toileting";
+            case "Procedure Progress":
+                xpath = "Developmental Progress - Procedure";
+                break;
+            case "Complications Progress":
+                xpath = "Developmental Progress - Complications";
                 break;
             case "What Works Best":
                 xpath = "What works best";
@@ -320,16 +332,24 @@ public class GrafsPage extends Page {
                 clikOnAcrossConditionsLink();
                 Log.info("Clicking " + element + " link");
                 break;
-            case "Language Milestones":
-                clikOnLanguageMilestonesLink();
+            case "Language Progress":
+                clikOnLanguageProgressLink();
                 Log.info("Clicking " + element + " link");
                 break;
-            case "Movement Milestones":
-                clikOnMovementMilestonesLink();
+            case "Movement Progress":
+                clikOnMovementProgressLink();
                 Log.info("Clicking " + element + " link");
                 break;
-            case "Toileting Milestones":
-                clikOnToiletingMilestonesLink();
+            case "Daily living Progress":
+                clikOnDailylivingProgressLink();
+                Log.info("Clicking " + element + " link");
+                break;
+            case "Procedure Progress":
+                clikOnProcedureProgressLink();
+                Log.info("Clicking " + element + " link");
+                break;
+            case "Complications Progress":
+                clikOnComplicationsProgressLink();
                 Log.info("Clicking " + element + " link");
                 break;
             case "What Works Best":
@@ -388,11 +408,6 @@ public class GrafsPage extends Page {
                 clikOnGenesLink();
                 Log.info("Clicking " + element + " link");
                 break;
-            case "Eating Milestones":
-                clikOnEatingMiletonesLink();
-                Log.info("Clicking " + element + " link");
-                break;
-
             case "Medicine":
                 clikOnMedicineLink();
                 Log.info("Clicking " + element + " link");

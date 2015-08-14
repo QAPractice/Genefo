@@ -33,7 +33,7 @@ public class DocBasInfTest extends TestNgTestBase{
     public DocBasInfPage docBasInfPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -51,7 +51,7 @@ public class DocBasInfTest extends TestNgTestBase{
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             Log.info("Opening Profile HCP page");
@@ -116,11 +116,6 @@ public class DocBasInfTest extends TestNgTestBase{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
     }
 
     private String closeAlertAndGetItsText() {

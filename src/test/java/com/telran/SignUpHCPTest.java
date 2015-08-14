@@ -37,14 +37,14 @@ public class SignUpHCPTest extends TestNgTestBase{
     private static String email3 = "o_ne" + randomAlphabetic(5) + "@usgenefo.com";
     private static String email4 = "one" + randomAlphabetic(5) + "@us-genefo.com";
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         signUpHCPPage = PageFactory.initElements(driver, SignUpHCPPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
        }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforemethodsetup() {
         try {
             Log.info("Opening SignUp HCP page");
@@ -973,11 +973,6 @@ public class SignUpHCPTest extends TestNgTestBase{
             e.printStackTrace();
         }
         Reporter.log("Term Of Service Page open by clicking on the link");
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
     }
 
     private String closeAlertAndGetItsText() {

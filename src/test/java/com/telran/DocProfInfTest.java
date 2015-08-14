@@ -27,7 +27,7 @@ public class DocProfInfTest extends TestNgTestBase{
     public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -44,7 +44,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             Log.info("Opening Profile HCP page");

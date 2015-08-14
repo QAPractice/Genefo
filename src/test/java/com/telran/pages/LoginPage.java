@@ -4,6 +4,7 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -18,20 +19,28 @@ public class LoginPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @FindBy(xpath = "//*[contains(text(),'Login to')]")
+    @CacheLookup
     WebElement loginTitle;
     @FindBy(name = "email")
+    @CacheLookup
     WebElement emailField;
     @FindBy(name = "password")
+    @CacheLookup
     WebElement passwordField;
     @FindBy(id = "submit")
+    @CacheLookup
     WebElement loginButton;
     @FindBy(xpath = "//*[contains(text(),'Sign Up')]")
+    @CacheLookup
     WebElement signUpButton;
     @FindBy(xpath = "//*[contains(text(),'Forgot')]")
+    @CacheLookup
     WebElement forgotLink;
     @FindBy(xpath = "//*[contains(text(),'Invalid Password')]")
+    @CacheLookup
     WebElement invalidPasswordAlert;
     @FindBy(xpath = "//*[contains(text(),'Invalid Email')]")
+    @CacheLookup
     WebElement invalidEmailAlert;
 
     public LoginPage(WebDriver driver) {

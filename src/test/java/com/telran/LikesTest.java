@@ -118,7 +118,6 @@ public class LikesTest extends TestNgTestBase {
         Log.info("Verifying, that 'Like' sign is Uncheked yet");
         Assert.assertTrue(likesPage.likeUnchecked(), "Like sign is not unchecked before pressing Like button");
         likesPage.clickToLike();
-
         int likesNumberBefore = likesPage.getLikesNumber();
         Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
         likesPage.clickToLike();
@@ -129,6 +128,21 @@ public class LikesTest extends TestNgTestBase {
         Assert.assertEquals(result, 0, "Additional like is added after second like of the same user on the same post");
         Reporter.log("Like is still checked once after press twice");
     }
+
+    @Test
+    public void AddLikeAndReloadPageTest() {
+        postOnMainPage.createAndSendPost();
+        Log.info("Verifying, that 'Like' sign is Uncheked yet");
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign is not unchecked before pressing Like button");
+        likesPage.clickToLike();
+        Log.info("Verifying, that 'Like' sign is Uncheked yet");
+        Assert.assertTrue(likesPage.likeUnchecked(), "Like sign is not unchecked before pressing Like button");
+        likesPage.refreshPage();
+        mainPage.waitUntilMainPageIsLoaded();
+        Assert.assertTrue(likesPage.likeChecked(), "Like sign is not checked after pressing Like button");
+
+    }
+
 
 
 }

@@ -28,7 +28,7 @@ public class FiltersOfPatientTest extends TestNgTestBase {
     public FiltersOfPatientOnMainPage filtersOfPatientOnMainPage;
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
 
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -42,7 +42,7 @@ public class FiltersOfPatientTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         mainPage.openMainPage();
         mainPage.waitUntilMainPageIsLoaded()

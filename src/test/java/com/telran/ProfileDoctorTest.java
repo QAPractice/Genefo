@@ -37,7 +37,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
     public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -55,7 +55,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforeMethodSetUp() {
         Log.info("Opening Profile Doctor Page");
         profileDoctorPage.openProfileDoctorPage();
@@ -111,11 +111,6 @@ public class ProfileDoctorTest extends TestNgTestBase{
         }
         Reporter.log("Healthcare Professional Information Page open");
     }
-
-//    @AfterClass(alwaysRun = true)
-//    public void teardown() {
-//        this.driver.quit();
-//    }
 
     private String closeAlertAndGetItsText() {
         try {

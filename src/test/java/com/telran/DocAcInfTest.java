@@ -31,7 +31,7 @@ public class DocAcInfTest extends TestNgTestBase {
     private String EMAIL1 = "osh_il+21@yahoo.com";
     private String EMAIL2 = "osh_il+19@yahoo.com";
 
-    @BeforeClass
+    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -49,7 +49,7 @@ public class DocAcInfTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {

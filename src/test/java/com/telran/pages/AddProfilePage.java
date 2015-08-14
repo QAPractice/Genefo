@@ -5,6 +5,8 @@ import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.LinkedList;
@@ -88,6 +90,7 @@ public class AddProfilePage extends Page {
 
     public AddProfilePage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
         this.PAGE_URL = baseUrl+"/profiles";
 
     }

@@ -6,11 +6,9 @@ import com.telran.pages.PublicProfilePage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -33,8 +31,8 @@ public class FollowingUserTest extends TestNgTestBase {
     @BeforeClass (alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
+        //this.driver = new FirefoxDriver();
+        //wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
@@ -131,8 +129,5 @@ public class FollowingUserTest extends TestNgTestBase {
         Reporter.log("New profile was added to follow successfully from posts");
 
 }
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+
 }

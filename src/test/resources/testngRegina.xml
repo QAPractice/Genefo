@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuperTest" verbose="5">
+
+        <test name="Tests Regina on FireFox">
+            <parameter name="browser" value="FireFox"/>
+
+            <classes>
+                <class name="com.telran.AddProfilesTest"/>
+                <class name="com.telran.FollowingDoctorTest"/>
+                <class name="com.telran.FollowingUserTest"/>
+                <class name="com.telran.MDRatingTest"/>
+            </classes>
+        </test>
+
+</suite>

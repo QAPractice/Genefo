@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -19,10 +20,12 @@ public class MyProfilesPage extends Page {
 
     //Labels
     @FindBy(xpath = "//*[@class='ng-binding' and contains(.,'HCP Account')]")
+    @CacheLookup
     WebElement MyProfilesLable;
 
     //Button
     @FindBy(xpath = "//div[@class='panel-body']//div[@class='btn-add-profile']/i")
+    @CacheLookup
     WebElement addPlusButton;
 
     @FindBy(xpath = "//ul[@class='people_list people_list_in_profiles']/*[last()]//div[@class='profileName ng-binding']")

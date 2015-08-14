@@ -8,9 +8,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
@@ -28,6 +29,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
 
     @BeforeClass (alwaysRun = true)
     public void setup() {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
@@ -123,8 +125,5 @@ public class FollowingDoctorTest extends TestNgTestBase {
         assertTrue(mainPage.isFollowingNamePresents(name));
         Reporter.log("3.New profile was added to follow successfully from posts");
     }
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-    }
+
 }

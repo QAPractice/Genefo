@@ -7,8 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -19,20 +21,28 @@ public class SummaryPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @FindBy(xpath = "//div[@class='progress' and contains(.,'75% Complete')]")
+    @CacheLookup
     WebElement progressBar;
     @FindBy(xpath = "//div[@class='profile-summary-section ng-scope']//a [@class='btn btn-success btn-discover-homepage']")
+    @CacheLookup
     WebElement discoverHomePage;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][1]")
+    @CacheLookup
     WebElement relationshipField;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][2]")
+    @CacheLookup
     WebElement nameField;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][3]")
+    @CacheLookup
     WebElement conditionField;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][4]")
+    @CacheLookup
     WebElement patientDiagnosisDateField;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][5]")
+    @CacheLookup
     WebElement genderField;
     @FindBy(xpath = "//div[@class='panel panel-default']//div[@class='col-xs-7 text-left text-capitalize ng-binding'][6]")
+    @CacheLookup
     WebElement birthdayField;
     @FindBy(xpath = "//ul[@class='profile_list people_list_sidebar']/li[1]//div[@class='profileName ng-binding']")
     WebElement firstProfileButton;
@@ -43,6 +53,7 @@ public class SummaryPage extends Page {
         super(driver);
         PageFactory.initElements(driver, this);
         PropertyConfigurator.configure("log4j.properties");
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
     public void waitUntilProfilePageIsLoaded() {

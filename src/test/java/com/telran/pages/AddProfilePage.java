@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -20,59 +21,79 @@ public class AddProfilePage extends Page {
     WebElement errorMessage;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@type='file']")
+    @CacheLookup
     WebElement fileUploadMenu;
+
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //div[@class='profilePicUploadDragBox ng-isolate-scope ng-valid ng-dirty']")
+    @CacheLookup
     WebElement fileUploadMenuBox;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController'] //input[@name='condition']" )
+    @CacheLookup
     WebElement Condition;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@value='Select Some Options']" )
+    @CacheLookup
     WebElement Patient_Race;
 
     @FindBy(xpath = "//*[@name='lastName']")
+    @CacheLookup
     WebElement Last_name;
 
     @FindBy(xpath = "//*[@name='firstName']")
+    @CacheLookup
     WebElement First_name;
 
     @FindBy(xpath = "//div[@class='panel-heading']//*[contains(text(),'Create New Profile')]")
+    @CacheLookup
     WebElement Create_New_Profile;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@type='file']")
+    @CacheLookup
     WebElement Add_Picture;
 
     @FindBy(xpath = "//h2[contains(text(),'My Profiles')]")
+    @CacheLookup
     WebElement My_Profiles;
 
     @FindBy(xpath = "//a[@href='/profile/new']")
+    @CacheLookup
     WebElement ADD_ANOTHER_PROFILE;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='relationID']")
+    @CacheLookup
     WebElement How_do_you_know;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='diagnosisMonth'] ")
+    @CacheLookup
     WebElement Patient_Diagnosis_Month;
 
     @FindBy(xpath ="//div[@ng-controller='ProfileNewController']//select[@name='diagnosisYear'] " )
+    @CacheLookup
     WebElement Patient_Diagnosis_Year;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='genderID']")
+    @CacheLookup
     WebElement Patient_Diagnosis_Gender;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='birthmonth']")
+    @CacheLookup
     WebElement Patient_Birthday_Month;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='birthday']")
+    @CacheLookup
     WebElement Patient_Birthday_Day;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//select[@name='birthyear']")
+    @CacheLookup
     WebElement Patient_Birthday_Year;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu ng-isolate-scope']/li[1]")
+    @CacheLookup
     WebElement Patient_Location_1;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//input[@name='location']")
+    @CacheLookup
     WebElement Patient_Location;
 
     @FindBy(xpath = "//div[@ng-controller='ProfileNewController']//button[@id='submit'][not(contains(@disabled,'disabled'))]")
@@ -82,9 +103,11 @@ public class AddProfilePage extends Page {
     WebElement ButtonSaveNotActive;
 
     @FindBy(xpath = "//button[contains(text(),'Cancel')]")
+    @CacheLookup
     WebElement ButtonCancel;
 
     @FindBy(xpath = "//textarea")
+    @CacheLookup
     WebElement Comment;
 
 

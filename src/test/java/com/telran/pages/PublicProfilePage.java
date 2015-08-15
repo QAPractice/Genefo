@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -20,26 +19,19 @@ public class PublicProfilePage extends Page{
 
     //Titles
     @FindBy(xpath = "//div[@class='col-md-5']/div[@class='panel panel-default']")
-    @CacheLookup
     WebElement publicProfilePanel;
     @FindBy(xpath = "//div[@class='panel panel-default']/div[@class='panel-body'][@ng-click='removeNetwork()']")
-    @CacheLookup
     WebElement unFollowPanel;
     //Buttons
     @FindBy(xpath = "//div[@class='col-md-7 ng-isolate-scope']/div[1]//span[@ class='fa-stack']")
-    @CacheLookup
     WebElement plusFollowButton;
     @FindBy(xpath = "//div[@class='col-md-5']//*[7]//span[@class='fa-stack']")
-    @CacheLookup
     WebElement minusFollowButton;
     @FindBy(xpath = "//*[@class='navbar-header']/a")
-    @CacheLookup
     WebElement homeTitle;
     @FindBy(xpath = "//div[@class='panel-heading']/div[@class='profile_selector_name ng-binding']")
-    @CacheLookup
     WebElement publicProfileName;
     @FindBy(xpath = "//div[@class='profilePic']")
-    @CacheLookup
     WebElement profilePicture;
 
     public PublicProfilePage(WebDriver driver) {

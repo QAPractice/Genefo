@@ -11,8 +11,6 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -29,7 +27,6 @@ public class FollowingDoctorTest extends TestNgTestBase {
 
     @BeforeClass (alwaysRun = true)
     public void setup() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         profileDoctorPage = PageFactory.initElements(driver, ProfileDoctorPage.class);
@@ -53,28 +50,13 @@ public class FollowingDoctorTest extends TestNgTestBase {
     public void addFollowSuccessFromConnectPeopleConditionField(){
         Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
         Log.info("1.AddFollowSuccessFromConnectPeopleConditionField test");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         mainPage.openConnectPeopleThisConditionProfile();
         publicProfilePage.isOnPublicProfilePage();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         assertTrue(mainPage.isFollowingNamePresents(name));
         Reporter.log("1.New profile was added to following successfully from ConnectPeopleThisConditionProfile");
     }
@@ -86,17 +68,9 @@ public class FollowingDoctorTest extends TestNgTestBase {
         String name = mainPage.getFollowName();
         mainPage.openFollow();
         publicProfilePage.isOnPublicProfilePage();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         publicProfilePage.removeFollow();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         assertTrue(publicProfilePage.plusFollowPanel());
         publicProfilePage.clickOnHome();
         mainPage.isOnMainPage();
@@ -112,11 +86,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
         if (!mainPage.addNewFollowerFromPost())
             return;
         publicProfilePage.isOnPublicProfilePage();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         String name = publicProfilePage.getPublicProfileName();
         publicProfilePage.addFollow();
         assertTrue(publicProfilePage.isUnFollowPanelOnPage());

@@ -2,7 +2,6 @@ package com.telran.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -17,21 +16,17 @@ import java.io.IOException;
 public class HomePage extends Page {
 
   @FindBy(how = How.TAG_NAME, using = "h1")
-  @CacheLookup
   public WebElement header;
 
     //buttons
   @FindBy(xpath = "//*[@id='home_banner_small']//a[@class='landing_button']")
-  @CacheLookup
   WebElement freeSignUpButton;
 
     //lables
     @FindBy(xpath = "//*[@id='home_banner_small']/h1")
-    @CacheLookup
     WebElement titleLable;
 
   @FindBy(xpath = "//*[@class='btn btn-header btn-md navbar-btn' and contains(.,'Login')]")
-  @CacheLookup
   WebElement loginButton;
 
 //  @FindBy(xpath = "//*[@class='col-md-6']//a[contains(text(),'Sign Up as a Healthcare Professional')]")

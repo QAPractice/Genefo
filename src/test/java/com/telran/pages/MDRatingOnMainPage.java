@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -20,21 +19,16 @@ public class MDRatingOnMainPage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //fields
     @FindBy(id = "medical_facility")
-    @CacheLookup
     WebElement medicalFacilityField;
     @FindBy(id = "medical_physician_first")
-    @CacheLookup
     WebElement physicianFirstNField;
     @FindBy(id = "medical_physician_last")
-    @CacheLookup
     WebElement physicianLastNField;
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
-    @CacheLookup
     WebElement postField;
     //Stars
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']")
-    @CacheLookup
     WebElement allStarsTogether;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medical_rating']/*[3]")
     WebElement thirdRatingStar;
@@ -45,21 +39,16 @@ public class MDRatingOnMainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@ng-model='medicalPro_effect']")
     WebElement allStarsTogetherInCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[1]/td[2]")
-    @CacheLookup
     WebElement facilityOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[2]/td[2]")
-    @CacheLookup
     WebElement physicianOnNewCreatedPost;
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note']")
-    @CacheLookup
     WebElement textInCreatedPost;
     //Title
     @FindBy(xpath = "//label[@for = 'medical_facility']")
-    @CacheLookup
     WebElement medicalFacilityTitle;
     //Buttons
     @FindBy(id = "submit")
-    @CacheLookup
     WebElement postButton;
 
     //for alerts
@@ -132,7 +121,7 @@ public class MDRatingOnMainPage extends Page {
     }
 
     public boolean isThirdStarYellow(int i) {
-        WebElement star = driver.findElement(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[5]/td[2]//span[@class='ng-isolate-scope ng-pristine ng-valid']/i[" + i + "]/span"));
+        WebElement star = driver.findElement(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[5]/td[2]//i[" + i + "]/span"));
         return exists(star);
     }
 

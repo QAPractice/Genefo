@@ -11,9 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -26,45 +26,32 @@ public class MainPage extends Page {
 
     // Upper Menu buttons
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Post')]")
-    @CacheLookup
     WebElement postButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Medicine')]")
-    @CacheLookup
     WebElement medicineButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Progress')]")
-    @CacheLookup
     WebElement progressButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Symptoms')]")
-    @CacheLookup
     WebElement symptomsButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'What Works')]")
-    @CacheLookup
     WebElement whatWorksButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'MD Rating')]")
-    @CacheLookup
     WebElement mdRatingButton;
     @FindBy(xpath = "//ul[@class='post_option']//span[contains(text(),'Question')]")
-    @CacheLookup
     WebElement questionButton;
 
     //Buttons
     @FindBy(xpath = "//div[@class='container']//i[@class='fa fa-cog fa-2x']")
-    @CacheLookup
     WebElement cogwheelButton;
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Profiles')]")
-    @CacheLookup
     WebElement myProfilesButton;
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'My Account')]")
-    @CacheLookup
     WebElement myAccountButton;
     @FindBy(xpath = "//li[@class='ng-scope']/*[contains(text(),'Logout')]")
-    @CacheLookup
     WebElement logOutButton;
     @FindBy(xpath = "//ul[@class='nav navbar-nav']")
-    @CacheLookup
     WebElement myHomeButton;
     @FindBy(xpath = "//ul[@class='people_list people-like-me-list']//li[1]//span[@class='profileName ng-binding']")
-    @CacheLookup
     WebElement connectPeopleThisCondition1Button;
     @FindBy(xpath = "//div[@class='panel story-panel ng-scope panel-default'][1]//div[@class='post-owner-timestamp-wrapper']//span[@class='profileName post-owner ng-binding']")
     WebElement firstPostNameLink;
@@ -80,22 +67,18 @@ public class MainPage extends Page {
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//div[@class='post-note ng-binding']")
     WebElement SentPostText;
     @FindBy(xpath = "//div[@class='panel panel-primary']//div[@class='panel-body']//li[1]//span[@class='profileName ng-binding']")
-    @CacheLookup
     WebElement firstFollowed;
     @FindBy(xpath = "//div[@class='col-md-10']/input")
-    @CacheLookup
     WebElement viewConditionFieldForDoctor;
     @FindBy(xpath = "//div[@class='top-row']//a[@class='ng-scope ng-binding']")
     WebElement dropDownConditionDoctor;
     @FindBy(xpath = "//div[@class='top-row']//button[@class='btn btn-default']")
-    @CacheLookup
     WebElement viewButton;
     @FindBy(xpath = "//*[contains(text(),'REQUIRED FIELDS')]")
     WebElement requiredFieldsMessage;
 
     //button link to Graphs Page
     @FindBy(xpath = "//*[text()='See More Graphs']")
-    @CacheLookup
     WebElement SeeMoreGraphsButton;
 
 
@@ -113,6 +96,7 @@ public class MainPage extends Page {
 
     public MainPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = baseUrl + "/home";
         PropertyConfigurator.configure("log4j.properties");

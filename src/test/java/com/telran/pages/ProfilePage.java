@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -20,37 +19,28 @@ public class ProfilePage extends Page {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @FindBy(xpath = "//ul[@class='nav navbar-nav']/li[1]/a[1]")
-    @CacheLookup
     WebElement discoverHomePage;
     //Titles
     @FindBy(xpath = "//div[@class='panel-heading']//*[contains(text(),'Create New Profile')]")
-    @CacheLookup
     WebElement profileTitle;
     //buttons
     @FindBy(id = "submit")
-    @CacheLookup
     WebElement saveProfileButton;
     @FindBy(xpath = "//*[@id='submit']/../*[1]/*[contains(text(),'Cancel')]")
-    @CacheLookup
     WebElement cancelButton;
 
     //fields
     @FindBy(name = "firstName")
-    @CacheLookup
     WebElement profileFirstNameField;
     @FindBy(name = "lastName")
-    @CacheLookup
     WebElement profileLastNameField;
     @FindBy(name = "condition")
-    @CacheLookup
     WebElement profileConditionField;
     @FindBy(name = "genderID")
-    @CacheLookup
     WebElement profileGender;
 
     //dropdown
     @FindBy(xpath = "//*[@name='relationID']/*[@value='2']/..")
-    @CacheLookup
     WebElement profilePatientDropdown;
 
     @FindBy()

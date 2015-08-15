@@ -5,8 +5,6 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Л on 5/19/2015
@@ -25,7 +23,6 @@ public class AddProfilesTest extends TestNgTestBase {
     public void setup() {
         //this.driver = new FirefoxDriver();
         //wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
         myProfilesPage = new MyProfilesPage(driver);

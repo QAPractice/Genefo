@@ -30,13 +30,13 @@ public class TestNgTestBase {
       PropertyConfigurator.configure("log4j.properties");
       DesiredCapabilities dCaps = new DesiredCapabilities();
       dCaps.setJavascriptEnabled(true);
-      dCaps.setCapability("takesScreenshot", true);
+      dCaps.setCapability("takesScreenshot", false);
       //dCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "d:/phantomjs.exe");
       driver = new PhantomJSDriver(dCaps);
 
       //baseUrl = PropertyLoader.loadProperty("site.url");
       // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
-      //driver = new FirefoxDriver();
+      // driver = new FirefoxDriver();
       //Capabilities capabilities = PropertyLoader.loadCapabilities();
       //PropertyConfigurator.configure("log4j.properties");
       // driver = WebDriverFactory.getDriver(capabilities);

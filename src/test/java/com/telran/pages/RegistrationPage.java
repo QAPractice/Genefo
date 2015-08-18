@@ -93,7 +93,7 @@ public class RegistrationPage extends Page {
         PageFactory.initElements(driver, this);
      }
 
-    public RegistrationPage openRegistrationPage(String address) {
+    public RegistrationPage openRegistrationPage(WebDriver driver, String address) {
         driver.get(address);
 
         return this;
@@ -105,13 +105,13 @@ public class RegistrationPage extends Page {
         return this;
     }
 
-    public RegistrationPage openRegWebinar1Page() {
+    public RegistrationPage openRegWebinar1Page(WebDriver driver) {
         driver.get(baseUrl + "signup_regular?webinar=1");
 
         return this;
     }
 
-    public RegistrationPage openRegWebinar2Page() {
+    public RegistrationPage openRegWebinar2Page(WebDriver driver) {
         driver.get(baseUrl + "signup_regular?webinar=2");
 
         return this;

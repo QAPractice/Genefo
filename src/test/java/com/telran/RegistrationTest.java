@@ -64,7 +64,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
@@ -118,7 +118,7 @@ public class RegistrationTest extends TestNgTestBase {
         try {
 
             registrationPage
-                    .openRegWebinar1Page();
+                    .openRegWebinar1Page(driver);
 
             registrationPage
                     .fillFirstNameField("gggg")
@@ -146,11 +146,10 @@ public class RegistrationTest extends TestNgTestBase {
         try {
 
             registrationPage
-                    .openRegWebinar2Page();
+                    .openRegWebinar2Page(driver);
 
             registrationPage
-                    .fillFirstNameField("gggg")
-                    .checkThatFirstNameFieldHasAsterisk()
+                    .fillFirstNameField("User")
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
@@ -168,12 +167,12 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutCondition(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -195,7 +194,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
@@ -218,7 +217,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("ggg")
                     .fillPasswordField("111111")
@@ -240,7 +239,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("1")
                     .fillLastNameField("Pen").fillPasswordField("111111")
                     .fillEmailField(emailPositive)
@@ -261,7 +260,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
@@ -283,7 +282,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -305,7 +304,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -326,7 +325,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -349,7 +348,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -367,14 +366,14 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithSpecialCharactersInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
-                    .fillFirstNameField("Piter")
-                    .fillLastNameField("Pen")
+                    .openRegistrationPage(driver, address)
+                    .fillFirstNameField("John")
+                    .fillLastNameField("Dow")
                     .fillPasswordField("111111")
                     .fillEmailField("!)*@#$%^&*.com")
                     .fillConditionField("Cystic Fibrosis")
@@ -395,9 +394,9 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
-                    .fillFirstNameField("Piter")
-                    .fillLastNameField("Pen")
+                    .openRegistrationPage(driver, address)
+                    .fillFirstNameField("John")
+                    .fillLastNameField("Donn")
                     .fillPasswordField("111111")
                     .fillEmailField("@genefo.com")
                     .fillConditionField("Cystic Fibrosis")
@@ -418,7 +417,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -442,7 +441,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -465,7 +464,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -488,7 +487,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -511,7 +510,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -539,7 +538,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
@@ -562,7 +561,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
@@ -586,7 +585,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -609,7 +608,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -632,7 +631,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -655,7 +654,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -679,7 +678,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
@@ -702,7 +701,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
@@ -725,7 +724,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
@@ -748,7 +747,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
@@ -771,7 +770,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -793,12 +792,12 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests emails variations
 
     //1
-    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestEmailLocalPartBeginsNumber(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -820,7 +819,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -844,7 +843,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -867,7 +866,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -890,7 +889,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -913,7 +912,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -937,7 +936,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
@@ -958,7 +957,7 @@ public class RegistrationTest extends TestNgTestBase {
     public void RegTestPassword8Symbols(String address, String type) {
 
         try {
-            registrationPage.openRegistrationPage(address)
+            registrationPage.openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
@@ -980,7 +979,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -1004,7 +1003,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -1026,7 +1025,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -1051,7 +1050,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
@@ -1073,7 +1072,7 @@ public class RegistrationTest extends TestNgTestBase {
 
         try {
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")
@@ -1098,7 +1097,7 @@ public class RegistrationTest extends TestNgTestBase {
 
             emailNickname = randomAlphabetic(5);
             registrationPage
-                    .openRegistrationPage(address)
+                    .openRegistrationPage(driver, address)
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .checkThatConditionFieldHasAsterisk()
@@ -1126,7 +1125,7 @@ public class RegistrationTest extends TestNgTestBase {
         try {
             emailNickname = randomAlphabetic(5);
                 registrationPage
-                        .openRegistrationPage(address)
+                        .openRegistrationPage(driver, address)
                         .fillFirstNameField("")
                         .fillPasswordField("111111")
                         .fillEmailField(emailPositive)

@@ -3,8 +3,7 @@ package com.telran;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -28,15 +27,15 @@ public class TestNgTestBase {
   public void init() throws IOException {
       baseUrl = "http://52.10.6.51:8080";
       PropertyConfigurator.configure("log4j.properties");
-      DesiredCapabilities dCaps = new DesiredCapabilities();
-      dCaps.setJavascriptEnabled(true);
-      dCaps.setCapability("takesScreenshot", true);
+      //DesiredCapabilities dCaps = new DesiredCapabilities();
+      // dCaps.setJavascriptEnabled(true);
+      // dCaps.setCapability("takesScreenshot", true);
       //dCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "d:/phantomjs.exe");
-      driver = new PhantomJSDriver(dCaps);
+      //  driver = new PhantomJSDriver(dCaps);
 
       //baseUrl = PropertyLoader.loadProperty("site.url");
       // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
-      //driver = new FirefoxDriver();
+      driver = new FirefoxDriver();
       //Capabilities capabilities = PropertyLoader.loadCapabilities();
       //PropertyConfigurator.configure("log4j.properties");
       // driver = WebDriverFactory.getDriver(capabilities);

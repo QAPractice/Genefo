@@ -44,7 +44,7 @@ public class FollowingUserTest extends TestNgTestBase {
         }
     }
 
-    @Test (groups = {"smoke", "positive"}, description = "addFollowSuccessFromConnectPeopleConditionField")
+    @Test(groups = {"smoke"}, description = "addFollowSuccessFromConnectPeopleConditionField")
     public void addFollowSuccessFromConnectPeopleConditionField(){
         Reporter.log("AddFollowSuccessFromConnectPeopleConditionField test");
         Log.info("AddFollowSuccessFromConnectPeopleConditionField test");
@@ -66,7 +66,7 @@ public class FollowingUserTest extends TestNgTestBase {
         Reporter.log("New profile was added to following successfully from ConnectPeopleThisConditionProfile");
     }
 
-    @Test (groups = {"smoke", "positive"}, description = "unFollowSuccess")
+    @Test(groups = {"positive"}, description = "unFollowSuccess")
     public void unFollowSuccess(){
         Reporter.log("UnFollowSuccess test");
         Log.info("UnFollowSuccess test");
@@ -86,7 +86,8 @@ public class FollowingUserTest extends TestNgTestBase {
         assertFalse(mainPage.isFollowingNamePresents(name));
         Reporter.log("New profile was unfollowed successfully");
     }
-    @Test (groups = {"smoke", "positive"}, description = "addFollowSuccessFromPosts")
+
+    @Test(groups = {"positive"}, description = "addFollowSuccessFromPosts")
     public void addFollowSuccessFromPosts(){
         Reporter.log("AddFollowSuccessFromPosts test");
         Log.info("AddFollowSuccessFromPosts test");

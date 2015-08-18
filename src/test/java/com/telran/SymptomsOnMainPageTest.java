@@ -44,7 +44,6 @@ public class SymptomsOnMainPageTest extends TestNgTestBase {
         try {
             loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(MY_EMAIL, MY_Password);
-            Thread.sleep(30000);
             mainPage.waitUntilMainPageIsLoaded();
 
 
@@ -104,12 +103,20 @@ public class SymptomsOnMainPageTest extends TestNgTestBase {
 
     }
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void TryAllSymptoms() {
         symptomsOnMainPage.createSymptomPost();
     }
 
+    @Test(groups = {"smoke", "positive"})
+    public void TryRandomSymptoms() {
+        symptomsOnMainPage.createSymptomRandom();
+    }
+
+
 
 }
+
+
 
 

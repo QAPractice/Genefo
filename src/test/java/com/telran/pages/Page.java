@@ -1,7 +1,6 @@
 package com.telran.pages;
 
 import com.telran.LogLog4j;
-import com.telran.util.PropertyLoader;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,11 +35,8 @@ protected WebDriver driver;
   public Page(WebDriver driver) {
     this.driver=driver;
     this.allElementsMap = new HashMap<String, String>();
-    try {
-      baseUrl = PropertyLoader.loadProperty("site.url");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    baseUrl = "http://52.10.6.51:8080";
+
   }
 
   private WebElement getWebElement(String name) {

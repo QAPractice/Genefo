@@ -39,15 +39,14 @@ public class AddProfilePageTest extends TestNgTestBase {
         thisPage = PageFactory.initElements(driver,AddProfilePage.class);
         editAccountPage = PageFactory.initElements(driver,EditAccountPage.class);
         myProfilesPage = PageFactory.initElements(driver, MyProfilesPage.class);
-        loginPage.openLoginPage()
+        loginPage.openLoginPage(driver, baseUrl)
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void loadThisPage(){
-        thisPage.loadPage();
-        thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
+        driver.get("http://52.10.6.51:8080/login");
     }
     //Verify that Add profile page exists
     //  @Test(groups = {"positive","smoke","special_for_debug"},enabled = true)

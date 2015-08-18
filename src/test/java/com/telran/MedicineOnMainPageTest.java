@@ -30,6 +30,7 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
         medicineOnMainPage = PageFactory.initElements(driver, MedicineOnMainPage.class);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("jakoff+Rere@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded()
                     .openMedicinePanel();

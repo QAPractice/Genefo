@@ -38,6 +38,7 @@ public class MilestoneOnMainPageTest extends TestNgTestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         milestoneOnMainPage = PageFactory.initElements(driver, MilestoneOnMainPage.class);
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("mili9@mail.ru", "999999");
             mainPage.waitUntilMainPageIsLoaded()
                     .openMilestonePanel();

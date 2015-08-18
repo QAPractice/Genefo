@@ -29,7 +29,7 @@ public class AddProfilesTest extends TestNgTestBase {
         profilePage = new ProfilePage(driver);
         summaryPage = new SummaryPage(driver);
         try {
-            loginPage.openLoginPage();
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.isOnLoginPage();
             loginPage.fillEmailField(EMAIL)
                     .fillPasswordField(PASSWORD)

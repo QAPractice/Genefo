@@ -35,6 +35,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
         whatWorksOnMainPage = PageFactory.initElements(driver, WhatWorksOnMainPage.class);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("telrantests@yahoo.com", "12345.com");
             mainPage.waitUntilMainPageIsLoaded();
                           // .openWhatWorksButtonPanel();
@@ -49,7 +50,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     @BeforeMethod(alwaysRun = true)
     public void beforemethodsetup() {
 
-        mainPage.openMainPage();
+        mainPage.openMainPage(driver, baseUrl);
         mainPage.waitUntilMainPageIsLoaded()
                             .openWhatWorksButtonPanel();
         whatWorksOnMainPage.waitUntilWhatWorksPanelIsLoaded();

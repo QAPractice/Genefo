@@ -46,7 +46,7 @@ public class GraphsTest extends TestNgTestBase {
 
 
         try {
-            loginPage.openLoginPage()
+            loginPage.openLoginPage(driver, baseUrl)
                     .waitUntilLoginPageIsLoaded()
                     .login("jakoff+444@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded()

@@ -32,6 +32,7 @@ public class FiltersOfPatientTest extends TestNgTestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         filtersOfPatientOnMainPage = PageFactory.initElements(driver, FiltersOfPatientOnMainPage.class);
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("pat1@pat.ru", "111111");
             mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
@@ -41,7 +42,7 @@ public class FiltersOfPatientTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        mainPage.openMainPage();
+        mainPage.openMainPage(driver, baseUrl);
         mainPage.waitUntilMainPageIsLoaded()
                 .openPostPanel();
         try {

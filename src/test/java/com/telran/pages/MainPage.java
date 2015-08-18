@@ -100,8 +100,8 @@ public class MainPage extends Page {
         PropertyConfigurator.configure("log4j.properties");
     }
 
-    public MainPage openMainPage() {
-        driver.get(PAGE_URL);
+    public MainPage openMainPage(WebDriver driver, String baseUrl) {
+        driver.get(baseUrl + "/home");
         return this;
     }
 

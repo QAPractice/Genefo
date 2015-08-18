@@ -19,10 +19,10 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class FollowingUserTest extends TestNgTestBase {
 
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     LoginPage loginPage;
     MainPage mainPage;
     PublicProfilePage publicProfilePage;
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass (alwaysRun = true)
     public void setup() {
@@ -34,7 +34,7 @@ public class FollowingUserTest extends TestNgTestBase {
         publicProfilePage = PageFactory.initElements(driver, PublicProfilePage.class);
 
         try {
-            loginPage.openLoginPage()
+            loginPage.openLoginPage(driver, baseUrl)
                     .waitUntilLoginPageIsLoaded()
                     .login("ri-lopatina@yandex.ru", "111111");
             mainPage.waitUntilMainPageIsLoaded();

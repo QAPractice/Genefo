@@ -36,6 +36,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
         docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             Thread.sleep(4000);
             // mainPage.waitUntilMainPageIsLoaded();

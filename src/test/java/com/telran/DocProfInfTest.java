@@ -36,6 +36,7 @@ public class DocProfInfTest extends TestNgTestBase{
         docProfInfPage = PageFactory.initElements(driver, DocProfInfPage.class);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();

@@ -41,6 +41,7 @@ public class DocAcInfTest extends TestNgTestBase {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(EMAIL1, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();

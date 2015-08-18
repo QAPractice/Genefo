@@ -4,12 +4,12 @@ import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.SymptomsOnMainPage;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.nio.file.Paths;
 import java.util.Date;
@@ -18,14 +18,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by tanyagaus, Lev on 6/10/15.
  */
-public class SymptomsOnMainPageTest {
+public class SymptomsOnMainPageTest extends TestNgTestBase {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static String MY_EMAIL = "jakoff+444@gmail.com";
     private static String MY_Password = "111111";
     private static String PATH_TO_Miki= Paths.get("").toAbsolutePath().toString()+"\\miki.gif";
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+
     public MainPage mainPage;
     public LoginPage loginPage;
     public String fillTellUs;
@@ -34,8 +33,8 @@ public class SymptomsOnMainPageTest {
     @BeforeClass(alwaysRun = true)
 
     public void setup(){
-        this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 5);
+
+
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         loginPage = PageFactory.initElements(driver,LoginPage.class);
@@ -43,7 +42,7 @@ public class SymptomsOnMainPageTest {
         symptomsOnMainPage = PageFactory.initElements(driver, SymptomsOnMainPage.class);
 
         try {
-
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(MY_EMAIL, MY_Password);
             Thread.sleep(30000);
             mainPage.waitUntilMainPageIsLoaded();
@@ -110,12 +109,6 @@ public class SymptomsOnMainPageTest {
         symptomsOnMainPage.createSymptomPost();
     }
 
-    @AfterClass(alwaysRun=true)
-
-    public void quiteWindow(){
-
-        this.driver.quit();
-    }
 
 }
 

@@ -7,12 +7,8 @@ import com.telran.pages.ProfileDoctorPage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -43,6 +39,7 @@ public class DocBasInfTest extends TestNgTestBase{
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
             mainPage.selectMyAccount();

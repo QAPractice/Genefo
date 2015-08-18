@@ -55,7 +55,7 @@ public class LoginPage extends Page {
         driver.get(PAGE_URL);
         return this;
     }
-    public LoginPage openLoginPage() {
+    public LoginPage openLoginPage(WebDriver driver, String baseUrl) {
         Log.info("Opening login page");
         driver.get(PAGE_URL);
         return this;
@@ -119,7 +119,7 @@ public class LoginPage extends Page {
     }
 
     public LoginPage login(String email, String password) {
-        openLoginPage();
+        //openLoginPage();
         waitUntilLoginPageIsLoaded();
         fillEmailField(email);
         fillPasswordField(password);

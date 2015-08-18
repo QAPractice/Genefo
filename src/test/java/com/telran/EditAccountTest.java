@@ -4,20 +4,18 @@ import com.telran.pages.EditAccountPage;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.*;
-import static org.testng.Reporter.log;
 
 
-public class EditAccountTest {
+public class EditAccountTest extends TestNgTestBase {
 
     private static int VALID_INPUT_LENGTH=25;
 
@@ -25,8 +23,8 @@ public class EditAccountTest {
     private static String MY_Password="12345.com";
     private static String MY_FirstName="Kalugin";
     private static String MY_LastName="Alexander";
-    public WebDriver driver;
-    public WebDriverWait wait;
+    //public WebDriver driver;
+    // public WebDriverWait wait;
     public MainPage mainPage;
     public LoginPage loginPage;
     public EditAccountPage thisPage;
@@ -36,28 +34,11 @@ public class EditAccountTest {
     @Parameters()
     public void setup(String browser) {
 
-        TestUtils.addTestToLog();
-
-        if (browser.equalsIgnoreCase("Firefox"))
-        {
-            this.driver = new FirefoxDriver();
-            log("We are in Firefox browser");
-        }
-        else if (browser.equalsIgnoreCase("Chrome")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.Chrome);
-            log("We are in Chrome browser");
-        }
-        else if (browser.equalsIgnoreCase("InternetExplorer")) {
-            driver = TestUtils.chooseDriver(WEB_DRIVER.InternetExplorer);
-            log("We are in InternetExplorer browser");
-        }
-        this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
-        wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver,MainPage.class);
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         thisPage = PageFactory.initElements(driver,EditAccountPage.class);
-        loginPage.openLoginPage()
+        loginPage.openLoginPage(driver, baseUrl)
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
 
@@ -67,7 +48,7 @@ public class EditAccountTest {
     @Test(groups = {"positive"}, enabled = false)
     public void dropDownMenuIsClickable(){
         TestUtils.addTestToLog();
-        mainPage.openMainPage()
+        mainPage
                 .waitUntilMainPageIsLoaded();
         assertTrue(mainPage.isOnMainPage(), "is on main page");
         mainPage.selectMyAccount();
@@ -128,11 +109,11 @@ public class EditAccountTest {
             assertEquals(thisPage.getEmailElement().getAttribute("value"), testEmail, "Check new e-mail after reload");
 
             mainPage
-                    .openMainPage()
+                    .openMainPage(driver, baseUrl)
                     .logOut();
             boolean errorMess=
                     loginPage
-                            .openLoginPage()
+                            .openLoginPage(driver, baseUrl)
                             .waitUntilLoginPageIsLoaded()
                             .login(testEmail, MY_Password)
                             .alertMessageInvalidEmail();
@@ -221,13 +202,7 @@ public class EditAccountTest {
                 .clickOnSubmitButton2();
     }
 
-    @AfterClass(alwaysRun=true)
-    public void quiteWindow(){
 
-        this.driver.quit();
-        TestUtils.addTestToLog();
-        TestUtils.logPrint();
-    }
     private boolean retainOldPassword(String newPassword,String oldPassword){
 
         thisPage.loadPage();
@@ -251,10 +226,10 @@ public class EditAccountTest {
                         .isSuccessAlert();
 
         mainPage
-                .openMainPage()
+                .openMainPage(driver, baseUrl)
                 .logOut();
         loginPage
-                .openLoginPage()
+                .openLoginPage(driver, baseUrl)
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, evalPass);
 

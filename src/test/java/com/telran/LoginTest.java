@@ -40,7 +40,7 @@ public class LoginTest extends TestNgTestBase{
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
-            loginPage.openLoginPage()
+            loginPage.openLoginPage(driver, baseUrl)
                     .waitUntilLoginPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();

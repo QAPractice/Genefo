@@ -34,6 +34,7 @@ public class LikesTest extends TestNgTestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         postOnMainPage = PageFactory.initElements(driver, PostOnMainPage.class);
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("jakoff+Rere@gmail.com", "111111");
             mainPage.waitUntilMainPageIsLoaded();
             assertTrue("Main page isn't loaded", mainPage.isOnMainPage());

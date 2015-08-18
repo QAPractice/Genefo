@@ -37,7 +37,7 @@ public class MDRatingTest extends TestNgTestBase {
         mdRatingOnMainPage = PageFactory.initElements(driver, MDRatingOnMainPage.class);
 
         try {
-            loginPage.openLoginPage();
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.isOnLoginPage();
             loginPage.fillEmailField(EMAIL)
                     .fillPasswordField(PASSWORD)

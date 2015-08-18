@@ -33,7 +33,7 @@ public class FollowingDoctorTest extends TestNgTestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         publicProfilePage = PageFactory.initElements(driver, PublicProfilePage.class);
         try {
-            loginPage.openLoginPage()
+            loginPage.openLoginPage(driver, baseUrl)
                     .waitUntilLoginPageIsLoaded()
                     .login("gjgfytf@jhghtf.com", "123456");
             profileDoctorPage.isOnProfileDoctorPage();

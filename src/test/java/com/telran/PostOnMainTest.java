@@ -35,6 +35,7 @@ public class PostOnMainTest extends TestNgTestBase {
         postOnMainPage = PageFactory.initElements(driver, PostOnMainPage.class);
 
         try {
+            loginPage.openLoginPage(driver, baseUrl);
             loginPage.login("telrantests@yahoo.com", "12345.com");
             mainPage.waitUntilMainPageIsLoaded();
                   //  .openPostPanel();
@@ -46,7 +47,7 @@ public class PostOnMainTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
         public void beforemethodsetup() {
-             mainPage.openMainPage();
+        mainPage.openMainPage(driver, baseUrl);
              mainPage.waitUntilMainPageIsLoaded()
                     .openPostPanel();
         //  postOnMainPage.waitUntilPostPanelIsLoaded();

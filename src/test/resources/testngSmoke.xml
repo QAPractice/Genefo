@@ -21,7 +21,6 @@
             <class name="com.telran.MedicineOnMainPageTest"/>
             <class name="com.telran.DocBasInfTest"/>
             <class name="com.telran.ProfileDoctorTest"/>
-            <class name="com.telran.AddProfilesTest"/>
         </classes>
 
 

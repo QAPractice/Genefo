@@ -66,7 +66,6 @@ public class RegistrationTest extends TestNgTestBase {
             registrationPage
                     .openRegistrationPage(driver, address)
                     .fillFirstNameField("gggg")
-                    .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
@@ -90,11 +89,11 @@ public class RegistrationTest extends TestNgTestBase {
         try {
 
             registrationPage
-                    .openRegistrationPage(driver);
+                    .openRegistrationPage(driver)
+                    .waitUntilRegPageIsLoaded();
 
             registrationPage
                     .fillFirstNameField("Name")
-                    .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
@@ -122,7 +121,7 @@ public class RegistrationTest extends TestNgTestBase {
 
             registrationPage
                     .fillFirstNameField("gggg")
-                    .checkThatFirstNameFieldHasAsterisk()
+
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)

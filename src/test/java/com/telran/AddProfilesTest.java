@@ -87,7 +87,8 @@ public class AddProfilesTest extends TestNgTestBase {
         Reporter.log("Negative test(profile without condition): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutFirstName", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"positive"}, description = "AddProfileWithoutFirstName", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutFirstName(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
                                            String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
@@ -131,7 +132,7 @@ public class AddProfilesTest extends TestNgTestBase {
         profilePage.clickOnDiscoverHome();
     }
 
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutPatientType", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    @Test(groups = {"positive"}, description = "AddProfileWithoutPatientType", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutPatientType(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
                                              String day, String year, String diagnose_year) {
         mainPage.isOnMainPage();
@@ -153,7 +154,7 @@ public class AddProfilesTest extends TestNgTestBase {
         profilePage.clickOnDiscoverHome();
     }
 
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutGender", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+    @Test(groups = {"positive"}, description = "AddProfileWithoutGender", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
    
     public void AddProfileWithoutGender(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
                                         String day,String year,String diagnose_year) {
@@ -175,7 +176,8 @@ public class AddProfilesTest extends TestNgTestBase {
         Reporter.log("Negative test(profile without condition): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutMonth", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"positive"}, description = "AddProfileWithoutMonth", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
 
     
     public void AddProfileWithoutMonth(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
@@ -198,7 +200,8 @@ public class AddProfilesTest extends TestNgTestBase {
         Reporter.log("Negative test(profile without month): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutDay", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"positive"}, description = "AddProfileWithoutDay", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutDay(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
                               String day,String year,String diagnose_year) {
         mainPage.isOnMainPage();
@@ -241,7 +244,8 @@ public class AddProfilesTest extends TestNgTestBase {
         Reporter.log("Negative test(profile without year): profile is not created");
         profilePage.clickOnDiscoverHome();
     }
-    @Test (groups = {"smoke", "positive"}, description = "AddProfileWithoutDiagnoseYear", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
+
+    @Test(groups = {"positive"}, description = "AddProfileWithoutDiagnoseYear", dataProviderClass = DataProviders.class, dataProvider = "loadNegativeDataForProfile")
     public void AddProfileWithoutDiagnoseYear(String first_name, String last_name, String patient_profile_type, String gender, String condition, String month,
                                               String day,String year,String diagnose_year) {
         mainPage.isOnMainPage();

@@ -100,7 +100,7 @@ public class RegistrationPage extends Page {
     }
 
     public RegistrationPage openRegistrationPage() {
-        driver.get(PAGE_URL);
+        driver.get("http://52.10.6.51:8080/signup_regular");
 
         return this;
     }

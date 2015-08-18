@@ -84,7 +84,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
     public void RegTestSuccessWithAllConditions(String condition) {
 
         try {
@@ -168,7 +168,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutCondition(String address, String type) {
 
         try {
@@ -190,7 +190,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutLastName(String address, String type) {
 
         try {
@@ -213,7 +213,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithLastName256(String address, String type) {
 
         try {
@@ -235,7 +235,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutFirstName(String address, String type) {
 
         try {
@@ -256,7 +256,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutPassword(String address, String type) {
 
         try {
@@ -278,7 +278,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutEmail(String address, String type) {
 
         try {
@@ -300,7 +300,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutCheckBox18(String address, String type) {
 
         try {
@@ -321,7 +321,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
     public void RegTestWithoutCheckBoxTerms(String address, String type) {
 
         try {
@@ -1091,7 +1091,7 @@ public class RegistrationTest extends TestNgTestBase {
 
     // **
     // Created by Olga Berenson
-    @Test
+    //@Test
     public void RegTestSuccessAsterisk(String address, String type) {
 
         try {

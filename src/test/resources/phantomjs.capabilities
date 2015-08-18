@@ -1,3 +1,2 @@
 browserName=phantomjs
 setJavascriptEnabled=true
-phantom.binary.path="C:\perlclip\phantomjs-2.0.0-windows\bin"

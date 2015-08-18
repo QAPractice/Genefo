@@ -225,7 +225,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithSpecialCharactersInEmailField() {
         Log.info("Checking that special characters are not valid in email");
         try {
@@ -269,7 +269,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //4
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithoutDomainPartInEmailField() {
         Log.info("Checking that email is not valid without domain part");
         try {
@@ -292,7 +292,7 @@ public class SignUpHCPTest extends TestNgTestBase{
 
     //5
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithConsecutiveDotsInEmailField() {
         Log.info("Checking that email is not valid with consecutive dots");
         try {
@@ -314,7 +314,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //6
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningLocalPartEmailField() {
         Log.info("Checking that email is not valid with dot in the local beginning");
         try {
@@ -336,7 +336,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //7
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithDotInTheBeginningDomainPartEmailField() {
         Log.info("Checking that email is not valid with dot in the domain beginning");
         try {
@@ -358,7 +358,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //8
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithEmailContains256Symbols() {
         Log.info("Checking that email is not valid with 256 symbols");
         try {
@@ -385,7 +385,7 @@ public class SignUpHCPTest extends TestNgTestBase{
 
     //PasswordField
     //1
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains5Symbols() {
         Log.info("Checking that password is not valid with 5 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -408,7 +408,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithPasswordContains13Symbols() {
         Log.info("Checking that password is not valid with 13 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -455,7 +455,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsDigits() {
         Log.info("Checking that first name is not valid with digits");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -479,7 +479,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //3
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContainsUnderscore() {
         Log.info("Checking that first name is not valid with underscore");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -502,7 +502,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //4
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithFirstNameContains26Symbols() {
         Log.info("Checking that first name is not valid with 26 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -526,7 +526,7 @@ public class SignUpHCPTest extends TestNgTestBase{
 
     //LastName
     //1
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsSpecialCharacters() {
         Log.info("Checking that last name is not valid with special characters");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -549,7 +549,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsDigits() {
         Log.info("Checking that last name is not valid with digite");
         try {
@@ -571,7 +571,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //3
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContainsUnderscore() {
         Log.info("Checking that last name is not valid with underscore");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -594,7 +594,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //4
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void RegTestWithLastNameContains26Symbols() {
         Log.info("Checking that last name is not valid with 26 symbols");
         try {
@@ -620,7 +620,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     //Positive Tests emails variations
 
     //1
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestEmailLocalPartBeginsNumber() {
         Log.info("Checking that email is valid with local part begins number");
         String email = "55" + randomAlphabetic(5) + "@usgenefo.com";
@@ -645,7 +645,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestEmailDomainNameBeginsNumber() {
         Log.info("Checking that email is valid with domain part begins number");
         String email = "one" + randomAlphabetic(5) + "@55usgenefo.com";
@@ -671,7 +671,7 @@ public class SignUpHCPTest extends TestNgTestBase{
 
     //3
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestEmailWithDotsLocalAndDomain() {
         Log.info("Checking that email is valid with dots in local and domain parts");
         try {
@@ -747,7 +747,7 @@ public class SignUpHCPTest extends TestNgTestBase{
 
     //6
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestEmailWithUnderscoreInLocalPart() {
         Log.info("Checking that email is valid with underscore in local part");
         try {
@@ -773,7 +773,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     //Positive test for password
 
     //1
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestPassword6Symbols() {
         Log.info("Checking that password is valid with 6 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -798,7 +798,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //2
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestPassword8Symbols() {
         Log.info("Checking that password is valid with 8 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -823,7 +823,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     }
 
     //3
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestPassword12Symbols() {
         Log.info("Checking that password is valid with 12 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -850,7 +850,7 @@ public class SignUpHCPTest extends TestNgTestBase{
     //Positive Tests for FirstNameField
 
     //1
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"positive"})
     public void RegTestFirstName25Symbols() {
         Log.info("Checking that first name is valid with 25 symbols");
         String email = "one" + randomAlphabetic(5) + "@usgenefo.com";
@@ -952,7 +952,7 @@ public class SignUpHCPTest extends TestNgTestBase{
         Reporter.log("last name is valid with 1 symbols");
     }
 
-    @Test(groups = {"positive"})
+    @Test(groups = {"smoke", "positive"})
     public void TermOfServiceClick() {
         Log.info("Checking that Term Of Service Page open by clicking on the link");
         try {

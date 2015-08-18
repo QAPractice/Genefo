@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -13,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.testng.AssertJUnit.assertTrue;
+
 
 /**
  * Created by Iakov Volf, Olga  on 5/4/2015.
@@ -42,14 +43,6 @@ public class RegistrationTest extends TestNgTestBase {
         profilePage = PageFactory.initElements(driver, ProfilePage.class);
         mainPage = PageFactory.initElements(driver, MainPage.class);
 
-        try {
-            Log.info("Opening Registration page");
-            registrationPage.openRegistrationPage();
-            Log.info("Wait for load Registration page");
-            registrationPage.waitUntilRegPageIsLoaded();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -58,24 +51,20 @@ public class RegistrationTest extends TestNgTestBase {
         emailPositive = "one" + emailNickname + "@yopmail.com";
     }
 
-    @Test(groups = {"positive", "smoke"})
-    public void AsteriskTest() {
+    // @Test(groups = {"positive", "smoke"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void AsteriskTest(String address, String type) {
         Log.info("Checking that FirstNAme has asterisk");
         registrationPage
                 .checkThatFirstNameFieldHasAsterisk();
 
     }
 
-    @Test(groups = {"positive", "smoke"})
-    public void RegTestSuccess() {
+    @Test(groups = {"positive", "smoke"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestSuccess(String address, String type) {
 
         try {
-
-
             registrationPage
-                    .openRegistrationPage();
-
-            registrationPage
+                    .openRegistrationPage(address)
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .fillLastNameField("")
@@ -85,10 +74,10 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
             Reporter.log("SignUp Successful");
             profilePage.selectGender("2");
-            assertTrue("", profilePage.isGenderSelected("Other"));
+            Assert.assertTrue(profilePage.isGenderSelected("Other"), "");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,22 +102,78 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
             Reporter.log("SignUp Successful");
             profilePage.selectGender("2");
-            assertTrue("", profilePage.isGenderSelected("Other"));
+            Assert.assertTrue(profilePage.isGenderSelected("Other"), "");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutCondition() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    public void RegTestSuccessWithAllConditionsWebinar(String condition) {
+
+        try {
+
+            registrationPage
+                    .openRegWebinar1Page();
+
+            registrationPage
+                    .fillFirstNameField("gggg")
+                    .checkThatFirstNameFieldHasAsterisk()
+                    .fillLastNameField("")
+                    .fillPasswordField("111111")
+                    .fillEmailField(emailPositive)
+                    .fillConditionField(condition)
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            Assert.assertTrue(profilePage.isOnProfilePage());
+            Reporter.log("SignUp Successful");
+            profilePage.selectGender("2");
+            Assert.assertTrue(profilePage.isGenderSelected("Other"), "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadConditionFromFile")
+    public void RegTestSuccessWithAllConditionsWebinar2(String condition) {
+
+        try {
+
+            registrationPage
+                    .openRegWebinar2Page();
+
+            registrationPage
+                    .fillFirstNameField("gggg")
+                    .checkThatFirstNameFieldHasAsterisk()
+                    .fillLastNameField("")
+                    .fillPasswordField("111111")
+                    .fillEmailField(emailPositive)
+                    .fillConditionField(condition)
+                    .clickToCheckBox18()
+                    .clickToCheckBoxAgree()
+                    .clickToSubmit();
+            Assert.assertTrue(profilePage.isOnProfilePage());
+            Reporter.log("SignUp Successful");
+            profilePage.selectGender("2");
+            Assert.assertTrue(profilePage.isGenderSelected("Other"), "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutCondition(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -137,20 +182,20 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
 
-            assertTrue(registrationPage.alertMessageNotValidCondition());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidCondition());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "positive"})
-    public void RegTestWithoutLastName() {
+    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutLastName(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
@@ -159,21 +204,21 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithLastName256() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithLastName256(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("ggg")
                     .fillPasswordField("111111")
@@ -181,21 +226,21 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutFirstName() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutFirstName(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("1")
                     .fillLastNameField("Pen").fillPasswordField("111111")
                     .fillEmailField(emailPositive)
@@ -203,20 +248,20 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
 
-            assertTrue(registrationPage.alertMessageNotValidFirstName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirstName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutPassword() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutPassword(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
@@ -224,21 +269,21 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidPassword());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidPassword());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutEmail() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutEmail(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -246,51 +291,51 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutCheckBox18() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutCheckBox18(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNonChecked18());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNonChecked18());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutCheckBoxTerms() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutCheckBoxTerms(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18();
-            assertTrue(registrationPage.alertMessageNonCheckedTerms());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNonCheckedTerms());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -299,12 +344,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //EmailField
     //1
-    @Test(groups = {"smoke", "negative"})
-    public void RegTestWithoutAtInEmailField() {
+    @Test(groups = {"smoke", "negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutAtInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -312,9 +357,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -322,12 +367,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"negative"})
-    public void RegTestWithSpecialCharactersInEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithSpecialCharactersInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -335,9 +380,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -345,12 +390,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test(groups = {"negative"})
-    public void RegTestWithoutLocalPartInEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutLocalPartInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -358,9 +403,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -368,12 +413,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test(groups = {"negative"})
-    public void RegTestWithoutDomainPartInEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithoutDomainPartInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -381,9 +426,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -392,12 +437,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //5
 
-    @Test(groups = {"negative"})
-    public void RegTestWithConsecutiveDotsInEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithConsecutiveDotsInEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -405,9 +450,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -415,12 +460,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //6
-    @Test(groups = {"negative"})
-    public void RegTestWithDotInTheBeginningLocalPartEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithDotInTheBeginningLocalPartEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -428,9 +473,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -438,12 +483,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //7
-    @Test(groups = {"negative"})
-    public void RegTestWithDotInTheBeginningDomainPartEmailField() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithDotInTheBeginningDomainPartEmailField(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -451,9 +496,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -461,12 +506,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //8
-    @Test(groups = {"negative"})
-    public void RegTestWithEmailContains256Symbols() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithEmailContains256Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -478,9 +523,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidEmail());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidEmail());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -489,12 +534,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //PasswordField
     //1
-    @Test(groups = {"negative"})
-    public void RegTestWithPasswordContains5Symbols() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithPasswordContains5Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
@@ -502,9 +547,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidPassword());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidPassword());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -512,12 +557,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"negative"})
-    public void RegTestWithPasswordContains13Symbols() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithPasswordContains13Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
@@ -525,9 +570,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidPassword());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidPassword());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -536,12 +581,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //FirstName
     //1
-    @Test(groups = {"negative"})
-    public void RegTestWithFirstNameContainsSpecialCharacters() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithFirstNameContainsSpecialCharacters(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("@#$%^&*(")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -549,9 +594,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidFirstName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirstName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -559,12 +604,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"negative"})
-    public void RegTestWithFirstNameContainsDigits() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithFirstNameContainsDigits(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("55Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -572,9 +617,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidFirstName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirstName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -582,12 +627,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test(groups = {"negative"})
-    public void RegTestWithFirstNameContainsUnderscore() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithFirstNameContainsUnderscore(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter_Pit")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -595,9 +640,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidFirstName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirstName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -605,12 +650,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test(groups = {"negative"})
-    public void RegTestWithFirstNameContains26Symbols() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithFirstNameContains26Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("PiterPiterPiterPiterPiterr")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -618,9 +663,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidFirstName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidFirstName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -629,12 +674,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //LastName
     //1
-    @Test(groups = {"negative"})
-    public void RegTestWithLastNameContainsSpecialCharacters() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithLastNameContainsSpecialCharacters(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
@@ -642,9 +687,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -652,12 +697,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"negative"})
-    public void RegTestWithLastNameContainsDigits() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithLastNameContainsDigits(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
@@ -665,9 +710,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -675,12 +720,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test(groups = {"negative"})
-    public void RegTestWithLastNameContainsUnderscore() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithLastNameContainsUnderscore(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
@@ -688,9 +733,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -698,12 +743,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //4
-    @Test(groups = {"negative"})
-    public void RegTestWithLastNameContains26Symbols() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithLastNameContains26Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
@@ -711,9 +756,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
-            assertTrue(registrationPage.alertMessageNotValidLastName());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidLastName());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -721,12 +766,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //Condition
-    @Test(groups = {"negative"})
-    public void RegTestWithConditionNotFromList() {
+    @Test(groups = {"negative"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestWithConditionNotFromList(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -735,9 +780,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree();
 //
-            assertTrue(registrationPage.alertMessageNotValidCondition());
-            assertTrue(registrationPage.isOnRegistrationPage());
-            assertTrue(registrationPage.notAvailableSignUpButton());
+            Assert.assertTrue(registrationPage.alertMessageNotValidCondition());
+            Assert.assertTrue(registrationPage.isOnRegistrationPage());
+            Assert.assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -748,21 +793,21 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests emails variations
 
     //1
-    @Test(groups = {"positive"})
-    public void RegTestEmailLocalPartBeginsNumber() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailLocalPartBeginsNumber(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("99piter@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -770,21 +815,21 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"positive"})
-    public void RegTestEmailDomainNameBeginsNumber() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailDomainNameBeginsNumber(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter@77genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -794,12 +839,12 @@ public class RegistrationTest extends TestNgTestBase {
 
     //3
 
-    @Test(groups = {"positive"})
-    public void RegTestEmailWithDotsLocalAndDomain() {
+    //@Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailWithDotsLocalAndDomain(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -808,7 +853,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -817,21 +862,21 @@ public class RegistrationTest extends TestNgTestBase {
 
     //4
 
-    @Test(groups = {"positive"})
-    public void RegTestEmailWithHypenInLocalPart() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailWithHypenInLocalPart(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter-pen@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -840,21 +885,21 @@ public class RegistrationTest extends TestNgTestBase {
 
 
     //5
-    @Test(groups = {"positive"})
-    public void RegTestEmailWithHypenInDomainPart() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailWithHypenInDomainPart(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter@ru-genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -863,21 +908,21 @@ public class RegistrationTest extends TestNgTestBase {
 
     //6
 
-    @Test(groups = {"positive"})
-    public void RegTestEmailWithUnderscoreInLocalPart() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestEmailWithUnderscoreInLocalPart(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
-                    .fillEmailField("piter_pen@genefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -887,12 +932,12 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive test for password
 
     //1
-    @Test(groups = {"positive"})
-    public void RegTestPassword6Symbols() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestPassword6Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("abs123")
@@ -901,7 +946,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -909,11 +954,11 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"positive"})
-    public void RegTestPassword8Symbols() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestPassword8Symbols(String address, String type) {
 
         try {
-            registrationPage.openRegistrationPage()
+            registrationPage.openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absd1234")
@@ -922,7 +967,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -930,12 +975,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //3
-    @Test(groups = {"positive"})
-    public void RegTestPassword12Symbols() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestPassword12Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -944,7 +989,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -954,12 +999,12 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests for FirstNameField
 
     //1
-    @Test(groups = {"positive"})
-    public void RegTestFirstName25Symbols() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestFirstName25Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("PiterPiterPiter")
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
@@ -968,7 +1013,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -976,12 +1021,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
 
-    @Test(groups = {"positive"})
-    public void RegTestFirstName1Symbol() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestFirstName1Symbol(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("P")
                     .fillLastNameField("Pen")
                     .fillPasswordField("absdef123456")
@@ -990,7 +1035,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1001,12 +1046,12 @@ public class RegistrationTest extends TestNgTestBase {
     //Positive Tests for LastNameField
 
     //1
-    @Test(groups = {"positive"})
-    public void RegTestLastName25Symbols() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestLastName25Symbols(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Piter")
                     .fillLastNameField("PiterPiterPiterPiterPiter")
                     .fillPasswordField("111111")
@@ -1015,7 +1060,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1023,12 +1068,12 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
     //2
-    @Test(groups = {"positive"})
-    public void RegTestLastName1Symbol() {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestLastName1Symbol(String address, String type) {
 
         try {
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("Pitel")
                     .fillLastNameField("P")
                     .fillPasswordField("absdef123456")
@@ -1037,7 +1082,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1047,13 +1092,13 @@ public class RegistrationTest extends TestNgTestBase {
     // **
     // Created by Olga Berenson
     @Test
-    public void RegTestSuccessAsterisk() {
+    public void RegTestSuccessAsterisk(String address, String type) {
 
         try {
 
             emailNickname = randomAlphabetic(5);
             registrationPage
-                    .openRegistrationPage()
+                    .openRegistrationPage(address)
                     .fillFirstNameField("gggg")
                     .checkThatFirstNameFieldHasAsterisk()
                     .checkThatConditionFieldHasAsterisk()
@@ -1061,14 +1106,14 @@ public class RegistrationTest extends TestNgTestBase {
                     .checkThatPasswordFieldHasAsterisk()
                     .fillLastNameField("")
                     .fillPasswordField("111111")
-                    .fillEmailField("one" + emailNickname + "@usgenefo.com")
+                    .fillEmailField(emailPositive)
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
             profilePage.selectGender("2");
-            assertTrue(profilePage.isGenderSelected("Other"));
+            Assert.assertTrue(profilePage.isGenderSelected("Other"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1076,15 +1121,15 @@ public class RegistrationTest extends TestNgTestBase {
     }
 
 
-    @Test(groups = {"positive"})
-    public void RegTestCheckAgreeBox () {
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "SignUpAddress")
+    public void RegTestCheckAgreeBox(String address, String type) {
         try {
             emailNickname = randomAlphabetic(5);
                 registrationPage
-                        .openRegistrationPage()
-                        .fillLastNameField("")
+                        .openRegistrationPage(address)
+                        .fillFirstNameField("")
                         .fillPasswordField("111111")
-                        .fillEmailField("one" + emailNickname + "@usgenefo.com")
+                        .fillEmailField(emailPositive)
                         .fillConditionField("Alstrom")
                         .clickToCheckBox18()
                         .clickToCheckBoxAgree()
@@ -1092,17 +1137,16 @@ public class RegistrationTest extends TestNgTestBase {
                         .clickToSubmit();
 
 
-
-            assertTrue(profilePage.isOnProfilePage());
+            Assert.assertTrue(profilePage.isOnProfilePage());
             profilePage.selectGender("2");
-            assertTrue(profilePage.isGenderSelected("Other"));
+            Assert.assertTrue(profilePage.isGenderSelected("Other"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
      }
 
 
-    private String closeAlertAndGetItsText() {
+    private String closeAlertAndGetItsText(String address, String type) {
         try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();

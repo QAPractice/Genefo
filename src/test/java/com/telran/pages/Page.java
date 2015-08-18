@@ -105,14 +105,14 @@ protected WebDriver driver;
   public void setElementText(WebElement element, String text) {
     element.click();
     element.clear();
-    Log.info("entering text '" + text + "' into element " + element);
+    //Log.info("entering text '" + text + "' into element " + element);
     element.sendKeys(text);
   // Assert.assertEquals(element.getAttribute("value"), text);
   }
 
 
   public void clickElement(WebElement element) {
-    Log.info("clicking on element " + element + "");
+    // Log.info("clicking on element " + element + "");
     element.click();
   }
 
@@ -128,9 +128,9 @@ protected WebDriver driver;
     try {
       new WebDriverWait(driver, 7).until(ExpectedConditions.visibilityOf(element));
     } catch (Exception e) {
-      Log.info("---------------------------------");
-      Log.info("element " + element + " can not be found by ExpectedConditions.visibilityOf(element)");
-      Log.info("---------------------------------");
+      // Log.info("---------------------------------");
+      // Log.info("element " + element + " can not be found by ExpectedConditions.visibilityOf(element)");
+      //  Log.info("---------------------------------");
       e.printStackTrace();
     }
   }
@@ -153,9 +153,9 @@ protected WebDriver driver;
       element.getTagName();
       return true;
     } catch (NoSuchElementException e) {
-      Log.info("---------------------------------");
-      Log.info("element " + element + " can not be found by  element.getTagName()");
-      Log.info("---------------------------------");
+      //  Log.info("---------------------------------");
+      //  Log.info("element " + element + " can not be found by  element.getTagName()");
+      //   Log.info("---------------------------------");
       return false;
     }
   }
@@ -169,7 +169,7 @@ protected WebDriver driver;
   }
 
   public boolean verifyTextBoolean(WebElement element, String text) {
-    Log.info("verifying that text from element " + element + " - ('" + element.getText() + "') - is equal to text '" + text + "'");
+    //  Log.info("verifying that text from element " + element + " - ('" + element.getText() + "') - is equal to text '" + text + "'");
     return text.equals(element.getText());
   }
 
@@ -201,9 +201,9 @@ protected WebDriver driver;
       driver.findElement(by);
       return true;
     } catch (org.openqa.selenium.NoSuchElementException e) {
-      Log.info("----------ALERT-----------------");
-      Log.info("element " + by + " can not be found by ExpectedConditions.visibilityOf(element)");
-      Log.info("---------ALERT------------------");
+      //  Log.info("----------ALERT-----------------");
+      //  Log.info("element " + by + " can not be found by ExpectedConditions.visibilityOf(element)");
+      //  Log.info("---------ALERT------------------");
       return false;
     }
   }

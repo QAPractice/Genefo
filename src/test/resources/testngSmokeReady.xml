@@ -8,18 +8,8 @@
             </run>
         </groups>
         <classes>
-            <class name="com.telran.RegistrationTest"/>
-            <class name="com.telran.LoginTest"/>
-            <class name="com.telran.SignUpHCPTest"/>
             <class name="com.telran.PostOnMainTest"/>
-            <class name="com.telran.WhatWorksOnMainTest"/>
-            <class name="com.telran.FiltersOfPatientTest"/>
-            <class name="com.telran.MDRatingTest"/>
-            <class name="com.telran.MilestoneOnMainPageTest"/>
-            <class name="com.telran.SymptomsOnMainPageTest"/>
-            <class name="com.telran.MedicineOnMainPageTest"/>
-            <class name="com.telran.DocBasInfTest"/>
-            <class name="com.telran.ProfileDoctorTest"/>
+
         </classes>
 
 

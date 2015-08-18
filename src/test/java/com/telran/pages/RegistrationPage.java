@@ -93,6 +93,12 @@ public class RegistrationPage extends Page {
         PageFactory.initElements(driver, this);
      }
 
+    public RegistrationPage openRegistrationPage(String address) {
+        driver.get(address);
+
+        return this;
+    }
+
     public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
 

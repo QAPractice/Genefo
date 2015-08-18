@@ -36,7 +36,7 @@ public class GraphsTest extends TestNgTestBase {
         super();
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
 
 
@@ -58,7 +58,7 @@ public class GraphsTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadGrafFromFile")
+    @Test(groups = {"positive"}, dataProviderClass = DataProviders.class, dataProvider = "loadGrafFromFile")
     public void TestGraphsLink(String graph) {
         grafsPage.loadGraphs(graph);
         Log.info("Checking " + graph + " link");

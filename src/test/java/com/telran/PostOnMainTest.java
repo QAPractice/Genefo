@@ -3,19 +3,14 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.PostOnMainPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertFalse;
@@ -33,7 +28,7 @@ public class PostOnMainTest extends TestNgTestBase {
     private boolean acceptNextAlert = true;
 
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         //PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -50,12 +45,12 @@ public class PostOnMainTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
         public void beforemethodsetup() {
              mainPage.openMainPage();
              mainPage.waitUntilMainPageIsLoaded()
                     .openPostPanel();
-             postOnMainPage.waitUntilPostPanelIsLoaded();
+        //  postOnMainPage.waitUntilPostPanelIsLoaded();
     }
 
 

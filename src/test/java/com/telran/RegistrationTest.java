@@ -31,7 +31,7 @@ public class RegistrationTest extends TestNgTestBase {
     MainPage mainPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         //this.driver = new FirefoxDriver();
@@ -52,13 +52,13 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void GenerateData() {
         emailNickname = randomAlphabetic(7);
         emailPositive = "one" + emailNickname + "@yopmail.com";
     }
 
-    @Test
+    @Test(groups = {"positive", "smoke"})
     public void AsteriskTest() {
         Log.info("Checking that FirstNAme has asterisk");
         registrationPage
@@ -81,7 +81,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Polyposis coli")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
@@ -99,7 +99,6 @@ public class RegistrationTest extends TestNgTestBase {
     public void RegTestSuccessWithAllConditions(String condition) {
 
         try {
-
 
             registrationPage
                     .openRegistrationPage();
@@ -134,10 +133,10 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("NoCon")
+                    .fillConditionFieldNeg("NoCon")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
+
             assertTrue(registrationPage.alertMessageNotValidCondition());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -156,7 +155,7 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("222")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
                     .clickToCheckBoxAgree()
                     .clickToSubmit();
@@ -169,7 +168,7 @@ public class RegistrationTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"negative"})
+    @Test(groups = {"smoke", "negative"})
     public void RegTestWithLastName256() {
 
         try {
@@ -179,12 +178,12 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("ggg")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
+            assertTrue(registrationPage.notAvailableSignUpButton());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,10 +199,10 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillFirstNameField("1")
                     .fillLastNameField("Pen").fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
+
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -222,10 +221,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidPassword());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -245,10 +243,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -268,9 +265,8 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .fillConditionField("Cystic Fibrosis")
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNonChecked18());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -290,9 +286,8 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
-                    .clickToCheckBox18()
-                    .clickToSubmit();
+                    .fillConditionField("Cystic Fibrosis")
+                    .clickToCheckBox18();
             assertTrue(registrationPage.alertMessageNonCheckedTerms());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -314,10 +309,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("us000998genefo.com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -338,10 +332,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("!)*@#$%^&*.com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -362,10 +355,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("@genefo.com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -386,10 +378,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("us000998@")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -411,10 +402,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("us000998@genefo..com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -435,10 +425,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(".us000998@genefo.com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -459,10 +448,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField("us000998@.genefo.com")
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -489,8 +477,7 @@ public class RegistrationTest extends TestNgTestBase {
                             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk@.genefo.com")
                     .fillConditionField("Alstrom")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidEmail());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -512,10 +499,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("11111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidPassword());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -536,10 +522,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("1111111111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidPassword());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -561,10 +546,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -585,10 +569,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -609,10 +592,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -633,10 +615,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidFirstName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -658,10 +639,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("@#$%^&*(")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -682,10 +662,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("55Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -706,10 +685,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen_Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -730,10 +708,9 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("PenPenPenPenPenPenPenPennn")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Alstrom")
+                    .fillConditionField("Cystic Fibrosis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
             assertTrue(registrationPage.alertMessageNotValidLastName());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());
@@ -754,10 +731,10 @@ public class RegistrationTest extends TestNgTestBase {
                     .fillLastNameField("Pen")
                     .fillPasswordField("111111")
                     .fillEmailField(emailPositive)
-                    .fillConditionField("Appendicitis")
+                    .fillConditionFieldNeg("Appendicitis")
                     .clickToCheckBox18()
-                    .clickToCheckBoxAgree()
-                    .clickToSubmit();
+                    .clickToCheckBoxAgree();
+//
             assertTrue(registrationPage.alertMessageNotValidCondition());
             assertTrue(registrationPage.isOnRegistrationPage());
             assertTrue(registrationPage.notAvailableSignUpButton());

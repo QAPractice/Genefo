@@ -28,7 +28,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     public WhatWorksOnMainPage whatWorksOnMainPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -46,7 +46,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforemethodsetup() {
 
         mainPage.openMainPage();

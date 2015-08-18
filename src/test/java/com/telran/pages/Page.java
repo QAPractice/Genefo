@@ -4,7 +4,6 @@ import com.telran.LogLog4j;
 import com.telran.util.PropertyLoader;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -187,13 +186,9 @@ protected WebDriver driver;
     }
   }
 
+
   public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
-    try {
-      new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
-
-    }catch (TimeoutException e){
-
-    }
+    new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
   }
 
 

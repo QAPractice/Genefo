@@ -27,7 +27,7 @@ public class DocProfInfTest extends TestNgTestBase{
     public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -44,7 +44,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             Log.info("Opening Profile HCP page");
@@ -55,8 +55,9 @@ public class DocProfInfTest extends TestNgTestBase{
 //            profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
             profileDoctorPage.clickOnHealInf();
             Log.info("Wait for load DocProfInf page");
-            docProfInfPage.waitUntilDocProfInfPageIsLoaded()
-                          .clearAllData();
+            Thread.sleep(4000);
+            //docProfInfPage.waitUntilDocProfInfPageIsLoaded()
+            //     .clearAllData();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +139,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"positive"})
+    @Test(groups = {"smoke", "positive"})
     public void AddDelSpecialties() {
         Log.info("Checking that Specialties added and deleted");
         try {
@@ -154,7 +155,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"negative"})
+    @Test(groups = {"smoke", "negative"})
     public void AddSpecialtiesWithoutAddButton() {
         Log.info("Checking that added Specialties are not published");
         try {
@@ -168,7 +169,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"positive"})
+    @Test(groups = {"smoke", "positive"})
     public void AddSpecialtiesWithAddButton() {
         Log.info("Checking that added Specialties are published");
         try {
@@ -183,7 +184,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"negative"})
+    @Test(groups = {"smoke", "negative"})
     public void AddEmptyLocationWPandFillNameWPFields() {
         Log.info("Checking that Work Place Name added and Work Place Location not");
         try {
@@ -197,7 +198,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"negative"})
+    @Test(groups = {"smoke", "negative"})
     public void AddEmptyLocationWPandNameWPFields() {
         Log.info("Checking that Work Place Name and Work Place Location do not added ");
         try {
@@ -211,7 +212,7 @@ public class DocProfInfTest extends TestNgTestBase{
         }
     }
 
-    @Test(groups = {"positive"})
+    @Test(groups = {"smoke", "positive"})
     public void DeleteLocationWPandNameWP() {
         Log.info("Checking that Work Place Name and Work Place Location added and deleted");
         try {

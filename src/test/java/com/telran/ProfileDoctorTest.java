@@ -1,28 +1,16 @@
 package com.telran;
 
 import com.telran.pages.*;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.Reporter.log;
 /**
  * Created by Oleg on 20.06.2015.
  */
@@ -37,7 +25,7 @@ public class ProfileDoctorTest extends TestNgTestBase{
     public DocProfInfPage docProfInfPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -49,17 +37,18 @@ public class ProfileDoctorTest extends TestNgTestBase{
 
         try {
             loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
-            mainPage.waitUntilMainPageIsLoaded();
+            Thread.sleep(4000);
+            // mainPage.waitUntilMainPageIsLoaded();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         Log.info("Opening Profile Doctor Page");
         profileDoctorPage.openProfileDoctorPage();
-        profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
+        // profileDoctorPage.waitUntilProfileDoctorPageIsLoaded();
     }
 
     @Test(groups = {"smoke", "positive"})

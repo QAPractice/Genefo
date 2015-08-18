@@ -3,10 +3,9 @@ package com.telran;
 import com.telran.pages.LoginPage;
 import com.telran.pages.MainPage;
 import com.telran.pages.SymptomsOnMainPage;
-import com.telran.util.TestUtils;
-import com.telran.util.WEB_DRIVER;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by tanyagaus, Lev on 6/10/15.
  */
-public class SymptomsOnMainPageTest{
+public class SymptomsOnMainPageTest {
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static String MY_EMAIL = "jakoff+444@gmail.com";
     private static String MY_Password = "111111";
@@ -32,10 +31,10 @@ public class SymptomsOnMainPageTest{
     public String fillTellUs;
     SymptomsOnMainPage symptomsOnMainPage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
 
     public void setup(){
-        this.driver = TestUtils.chooseDriver(WEB_DRIVER.FireFox);
+        this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
@@ -46,8 +45,9 @@ public class SymptomsOnMainPageTest{
         try {
 
             loginPage.login(MY_EMAIL, MY_Password);
+            Thread.sleep(30000);
             mainPage.waitUntilMainPageIsLoaded();
-            Assert.assertTrue(mainPage.isOnMainPage(), "Login not ok");
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,11 +55,11 @@ public class SymptomsOnMainPageTest{
 
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         mainPage
                 .openSymptomsPanel();
-        symptomsOnMainPage.waitUntilSymptomsPanelIsLoaded();
+        //symptomsOnMainPage.waitUntilSymptomsPanelIsLoaded();
     }
 
     @DataProvider
@@ -88,7 +88,7 @@ public class SymptomsOnMainPageTest{
         };
     }
 
-    @Test(groups={"smoke", "positive"},dataProvider = "myProvider")
+    @Test(groups = {"positive"}, dataProvider = "myProvider")
     public void myTest1(String general_Area, int specific_Area,int symptom){
 
         Date date = new Date();

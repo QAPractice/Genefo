@@ -26,6 +26,10 @@ public class MedicineOnMainPage extends Page {
     WebElement nameOfMedicinefield;
     @FindBy(id = "medicine_reason")
     WebElement reasonForMedicineField;
+    @FindBy(xpath = "//*[@ng-model='medicine_sideeffects']")
+    WebElement sideEffectField;
+    @FindBy(xpath = "//*[@class='suggestion-list']")
+    WebElement sideEffectOptions;
     @FindBy(name = "bio")
     WebElement tellUsMoreAboutThisMedicineField;
     @FindBy(xpath = "//input[@id='medicine_name']/../ul[contains (@id,'typeahead')]")
@@ -93,6 +97,9 @@ public class MedicineOnMainPage extends Page {
     WebElement medicineName;
 
     @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[3]/td[2]")
+    WebElement sideEffects;
+
+    @FindBy(xpath = "//*[@class='panel story-panel ng-scope panel-default']/../div[5]//*[@class='table post-table']//tr[4]/td[2]")
     WebElement reasonName;
 
     //alerts
@@ -152,11 +159,12 @@ public class MedicineOnMainPage extends Page {
      * @throws IOException
      * @throws InterruptedException
      */
-    public void createMedicinePostRandom(String nameOfMed, String reasonOfMed) throws InterruptedException {
+    public void createMedicinePostRandom(String nameOfMed, String effects, String reasonOfMed) throws InterruptedException {
         setNameOfMedicine(nameOfMed);
         WebElement nameOfMedicine;
         //creating list of proposed Eleemtns
         List<WebElement> nameOfMedicineList = nameOfMedicineOptions.findElements(By.tagName("li"));
+        Assert.assertTrue(exists(nameOfMedicineOptions), "DropDown list NameOfMedicine is not visible to user");
         //picking random element
         Random rand = new Random();
         int nameOfMedicineCounter = rand.nextInt(1);
@@ -165,30 +173,51 @@ public class MedicineOnMainPage extends Page {
         Log.info("Choosing randomly name of medicine from list: " + name + " ");
         clickElement(nameOfMedicine);
 
+        setSideEffects(effects);
+        WebElement effectSide;
+        //creating list of proposed Eleemtns
+        List<WebElement> sideEffectList = sideEffectOptions.findElements(By.tagName("li"));
+        Assert.assertTrue(exists(sideEffectOptions), "DropDown list SideEffect is not visible to user");
+        //picking random element
+        Random rand3 = new Random();
+        int sideEffectCounter = rand3.nextInt(1);
+        effectSide = sideEffectList.get(sideEffectCounter);
+        String effectname = effectSide.getText();
+        Log.info("Choosing randomly SideEffect from list: " + effectname + " ");
+        clickElement(nameOfMedicine);
 
         setReasonForMedicine(reasonOfMed);
         WebElement reasonForMedicine;
         List<WebElement> reasonForMedicineList = reasonForMedicineOptions.findElements(By.tagName("li"));
+        Assert.assertTrue(exists(reasonForMedicineOptions), "DropDown list Reason for medicine is not visible to user");
         Random rand2 = new Random();
         int nameOfReasonCounter = rand2.nextInt(1);
         reasonForMedicine = reasonForMedicineList.get(nameOfReasonCounter);
         String reason = reasonForMedicine.getText();
-        Log.info("Choosing randomly name of medicine from list: " + reason + " ");
+        Log.info("Choosing randomly reason of medicine from list: " + reason + " ");
         clickElement(reasonForMedicine);
 
         Log.info("Typing text in 'Tell Us More' field: Testing post ");
         typeTellUsMore("Testing post");
-        clickOnAllStarsTogether();
-        rateFifeStars();
+        clickOnAnyStar(4);
         clickOnPostButton();
-        Log.info("Checking, that medicine and medicine reason are posted in a right way");
+        Log.info("Checking, that medicine, side effect and medicine reason are posted in a right way");
         name.equalsIgnoreCase(medicineName.getText());
         Log.info("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
         Reporter.log("Medicine is posted in a right way: choosen " + name + ", posted " + medicineName.getText());
+        effectname.equalsIgnoreCase(sideEffects.getText());
+        Log.info("Medicine is posted in a right way: choosen " + effectname + ", posted " + sideEffects.getText());
+        Reporter.log("Medicine is posted in a right way: choosen " + effectname + ", posted " + sideEffects.getText());
         reason.equalsIgnoreCase(reasonName.getText());
         //Assert.assertEquals(reasonName.getText(), reason, "Medicine reason name doesen't match");
         Log.info("Medicine reason is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
         Reporter.log("Medicine is posted in a right way: choosen " + reason + ", posted " + reasonName.getText());
+    }
+
+    public MedicineOnMainPage setSideEffects(String effests) {
+        Log.info("Filling 'name of Medicine' field: " + effests + " ");
+        setElementText(sideEffectField, effests);
+        return this;
     }
 
 
@@ -214,6 +243,11 @@ public class MedicineOnMainPage extends Page {
 
     public MedicineOnMainPage fillNewNameOfMedicine(String nameMedicine) throws IOException, InterruptedException {
         setElementText(nameOfMedicinefield, nameMedicine);
+        return this;
+    }
+
+    public MedicineOnMainPage fillNewSideEffect(String effect) throws IOException, InterruptedException {
+        setElementText(sideEffectField, effect);
         return this;
     }
 
@@ -259,6 +293,19 @@ public class MedicineOnMainPage extends Page {
     // Click on the fifth star
     public MedicineOnMainPage rateFifeStars() {
         clickElement(fifthRatingStar);
+        return this;
+    }
+
+    public MedicineOnMainPage clickOnAnyStar(int number) {
+        Log.info("Clicking  on " + number + " stars");
+        List<WebElement> stars = driver.findElements(By.xpath("//*[@class='panel story-panel ng-scope panel-default']/../div[1]//*[@ng-model='medicine_effect']//i/span"));
+        int count = 1;
+        for (WebElement current : stars) {
+            if (count == number) {
+                current.click();
+            }
+            count++;
+        }
         return this;
     }
 

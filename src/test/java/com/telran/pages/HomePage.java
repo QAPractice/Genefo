@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 
@@ -37,7 +36,7 @@ public class HomePage extends Page {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
         this.PAGE_URL = baseUrl;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
+        PageFactory.initElements(driver, this);
     }
 
     public HomePage openHomePage() {

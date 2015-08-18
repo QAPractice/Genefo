@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 
@@ -67,7 +66,7 @@ public class ProfilePage extends Page {
     public ProfilePage(WebDriver driver) {
         super(driver);
         PropertyConfigurator.configure("log4j.properties");
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
+        PageFactory.initElements(driver, this);
     }
 
     public void waitUntilProfilePageIsLoaded() {

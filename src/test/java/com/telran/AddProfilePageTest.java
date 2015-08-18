@@ -7,7 +7,6 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -30,11 +29,11 @@ public class AddProfilePageTest extends TestNgTestBase {
         super();
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
 
 
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         thisPage = PageFactory.initElements(driver,AddProfilePage.class);
@@ -44,13 +43,14 @@ public class AddProfilePageTest extends TestNgTestBase {
                 .waitUntilLoginPageIsLoaded()
                 .login(MY_EMAIL, MY_Password);
     }
-    @BeforeMethod
+
+    @BeforeMethod(alwaysRun = true)
     public void loadThisPage(){
         thisPage.loadPage();
         thisPage.waitUntilIsLoaded(thisPage.get_My_Profiles());
     }
     //Verify that Add profile page exists
-    @Test(groups = {"positive","smoke","special_for_debug"},enabled = true)
+    //  @Test(groups = {"positive","smoke","special_for_debug"},enabled = true)
     public void IsAddProfilePageExists(){
         Assert.assertTrue(thisPage.ADD_ANOTHER_PROFILE_isDisplayed(),"page Add Another Profile exists");
         thisPage.ADD_ANOTHER_PROFILE_click()
@@ -59,7 +59,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
     //    ProU 2	Verify that the required/mandatory fields are marked with "* " .
-    @Test(groups ={"positive","smoke"},enabled = false)
+    // @Test(groups ={"positive","smoke"},enabled = false)
     public void isMandatoryFieldsPresent(){
 
         thisPage.ADD_ANOTHER_PROFILE_click();
@@ -76,7 +76,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
     //    Click a button SELECT ONE and choose It's Me.Fill all fields and click batton Save
-    @Test(groups ={"positive","smoke"},enabled = true,dataProvider = "myDataProvider")
+    // @Test(groups ={"positive"},enabled = true,dataProvider = "myDataProvider")
     public void selectOne(String how_do_you_know,String firstName,String lastName,String gender, String month,String day, String year,String race,String comments ){
         String condition=gender;
         thisPage.ADD_ANOTHER_PROFILE_click()
@@ -117,7 +117,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
     //In the field "CONDITION", enter a first letters
-    @Test(groups = "positive",enabled = true,dataProvider = "chooseCondition")
+    //  @Test(groups = "positive",enabled = true,dataProvider = "chooseCondition")
     public void chooseCondition(String condition){
         thisPage.ADD_ANOTHER_PROFILE_click()
                 .waitUntilIsLoaded(thisPage.get_Create_New_Profile());
@@ -137,7 +137,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
     //Click a button Select Gende
-    @Test(groups = "positive",enabled = true,dataProvider = "chooseCondition")
+    // @Test(groups = "positive",enabled = true,dataProvider = "chooseCondition")
     public void chooseGender(String gender){
         thisPage.ADD_ANOTHER_PROFILE_click()
                 .waitUntilIsLoaded(thisPage.get_Create_New_Profile());
@@ -149,7 +149,7 @@ public class AddProfilePageTest extends TestNgTestBase {
 
 
     //Verify that user able to create at  profile when filled correct data in required fields
-    @Test(groups = "positive",enabled = true)
+    // @Test(groups = "positive",enabled = true)
     public void isUserNamepresent(){
         String firstName,lastName;
 
@@ -188,7 +188,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
     //    Click a button SELECT ONE and choose It's Me.Fill all fields and click batton Save
-    @Test(groups ={"negative","smoke"},enabled = true,dataProvider = "negativeProvider")
+    // @Test(groups ={"negative"},enabled = true,dataProvider = "negativeProvider")
     public void notFilledMandatoryFields(String how_do_you_know,
                                          String firstName,String lastName,
                                          String condition,
@@ -229,7 +229,7 @@ public class AddProfilePageTest extends TestNgTestBase {
     }
 
 
-    @Test(groups = {"positive","smoke"})
+    //@Test(groups = {"positive"})
     public void UploadPicture(){
         assertTrue((new File(PATH_TO_Miki)).exists(),"if file exists or not");
         thisPage.ADD_ANOTHER_PROFILE_click()

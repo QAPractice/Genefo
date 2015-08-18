@@ -5,10 +5,8 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,27 +20,27 @@ public class MilestoneOnMainPage extends Page {
     HashMap<String,WebElement>buttonsAndItemsMap = new HashMap<String, WebElement>();
     //Labels of categories
     @FindBy(xpath = "//label[contains(text(),'Developmental Milestone')]")
-//    @CacheLookup
+//
     WebElement developmentalMilestoneTitle;
 
     //Category Developmental Progress buttons
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Language')]")
- //   @CacheLookup
+    //
     WebElement languageButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Movement')]")
- //   @CacheLookup
+    //
     WebElement movementButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Daily living')]")
-//    @CacheLookup
+//
     WebElement dailyLivingButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Procedure')]")
-//    @CacheLookup
+//
     WebElement procedureButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[contains(text(),'Complications')]")
-//    @CacheLookup
+//
     WebElement complicationButton;
     @FindBy(xpath = "//div [@class='btn-group']/button[@class='btn btn-default milestone_category_other ng-binding ng-scope'][contains(text(),'Other')]")
- //   @CacheLookup
+    //
     WebElement otherButton;
 
     //Dropdown list Button
@@ -127,24 +125,24 @@ public class MilestoneOnMainPage extends Page {
     WebElement itemSleepDisorders;
     //Years-Month button
     @FindBy(xpath = ".//*[@id='milestone_years']")
-  //  @CacheLookup
+    //
     WebElement yearsButton;
     @FindBy(xpath = ".//*[@id='milestone_months']")
-//    @CacheLookup
+//
     WebElement monthButton;
     //field input text for language
     @FindBy(xpath = "//*[@class='chosen-search']/input")
     WebElement selectLanguageField;
     //Field for input PostText
     @FindBy(xpath = "//*[@class='form-group']/textarea")
-//    @CacheLookup
+//
     WebElement inputTextPostField;
     @FindBy(xpath = "//*[@class='col-sm-12']/input")
- //   @CacheLookup
+    //
     WebElement textField;
     //button submit
     @FindBy(xpath = "//*[@id='submit']")
-  //  @CacheLookup
+    //
     WebElement submitButton;
     //alerts
     @FindBy(xpath = "//*[text()='REQUIRED FIELDS']")
@@ -170,7 +168,7 @@ public class MilestoneOnMainPage extends Page {
     //constructor
     public MilestoneOnMainPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
+        PageFactory.initElements(driver, this);
         this.PAGE_URL = "http://52.10.6.51:8080/home";
     }
 

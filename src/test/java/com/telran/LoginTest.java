@@ -6,19 +6,12 @@ import com.telran.pages.MainPage;
 import com.telran.pages.ResetYourPasswordPage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static org.testng.AssertJUnit.assertTrue;
 
-import java.util.concurrent.TimeUnit;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Oleg on 30.05.2015.
@@ -33,7 +26,7 @@ public class LoginTest extends TestNgTestBase{
     public ResetYourPasswordPage resetYourPasswordPage;
     public MainPage mainPage;
 
-    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
@@ -44,7 +37,7 @@ public class LoginTest extends TestNgTestBase{
         resetYourPasswordPage = new ResetYourPasswordPage(driver);
     }
 
-    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             loginPage.openLoginPage()

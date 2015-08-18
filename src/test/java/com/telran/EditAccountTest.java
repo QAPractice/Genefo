@@ -32,8 +32,8 @@ public class EditAccountTest {
     public EditAccountPage thisPage;
 
 
-    @BeforeClass
-    @Parameters({"browser"})
+    @BeforeClass(alwaysRun = true)
+    @Parameters()
     public void setup(String browser) {
 
         TestUtils.addTestToLog();
@@ -64,7 +64,7 @@ public class EditAccountTest {
     }
 
     // TEST: 1.The button is clickable and opened the drop-down menu.(My account, My profiles, Logout).
-    @Test(groups={"smoke","positive"}, enabled = false)
+    @Test(groups = {"positive"}, enabled = false)
     public void dropDownMenuIsClickable(){
         TestUtils.addTestToLog();
         mainPage.openMainPage()
@@ -77,7 +77,7 @@ public class EditAccountTest {
 
 
     //    Edit 2	Verify that the user's information presents correctly
-    @Test(groups={"smoke","positive"})
+    @Test(groups = {"positive"})
     public void verifyUserInformation(){
         TestUtils.addTestToLog();
         thisPage.openEditAccountPage()

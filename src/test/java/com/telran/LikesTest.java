@@ -25,7 +25,7 @@ public class LikesTest extends TestNgTestBase {
         super();
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
 
         loginPage = PageFactory.initElements(driver, LoginPage.class);

@@ -22,7 +22,7 @@ public class ContactUSTest extends TestNgTestBase {
     ContactUSPage contactUSPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         //this.driver = new InternetExplorerDriver();
         wait = new WebDriverWait(driver, 5);

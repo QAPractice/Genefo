@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 
@@ -38,7 +37,6 @@ public class PublicProfilePage extends Page{
         super(driver);
         PageFactory.initElements(driver, this);
         PropertyConfigurator.configure("log4j.properties");
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
     public void waitUntilProfilePageIsLoaded() {

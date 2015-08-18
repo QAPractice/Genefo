@@ -6,7 +6,6 @@ import com.telran.pages.MainPage;
 import com.telran.pages.MilestoneOnMainPage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,7 +17,7 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Zizi, Christina and Mariya on 5/30/2015.
  */
-public class MilestoneOnMainPageTest extends TestNgTestBase{
+public class MilestoneOnMainPageTest extends TestNgTestBase {
 
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public LoginPage loginPage;                         // Pages that we use in our tests
@@ -53,9 +52,8 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        mainPage.openMainPage();
-        mainPage.waitUntilMainPageIsLoaded()
-                .openMilestonePanel();
+        // mainPage.openMainPage();
+        mainPage.openMilestonePanel();
         milestoneOnMainPage.waitUntilMilestonePanelIsLoaded();
     }
 
@@ -120,8 +118,8 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
 
 
     //Send Post Milestone Negative Tests
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest1(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest1() {
         post = randomAlphabetic(20);
         try {
             milestoneOnMainPage
@@ -129,15 +127,15 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
             milestoneOnMainPage.fillTextField(post)
                     .sendPost();
-            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-        }  catch (Exception e) {
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest2(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest2() {
         type = "Language";
         milestone = "Babbles";
         post = randomAlphabetic(250);
@@ -150,18 +148,18 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnMonthOption("&^$");
             assertTrue("Alert 'Numbers only' for months appeared", milestoneOnMainPage.alertMessageNotValidMonth());
             assertTrue("Alert 'Numbers only' for year appeared", milestoneOnMainPage.alertMessageNotValidYear());
-                    milestoneOnMainPage.fillTextField(post)
+            milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest3(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest3() {
         type = "Movement";
         milestone = "Rolls over";
         post = randomAlphabetic(500);
@@ -174,16 +172,16 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnMonthOption("-12");
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
-                    milestoneOnMainPage.fillTextField(post)
+            milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest4(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest4() {
         type = "Daily living";
         milestone = "Eats with spoon";
         post = randomAlphabetic(1);
@@ -195,49 +193,49 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
                     .clickOnYearsOption("שלושל")
                     .clickOnMonthOption("-One");
             assertTrue("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
-                    milestoneOnMainPage.fillTextField(post)
+            assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
+            milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest5(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest5() {
         post = randomAlphabetic(500);
         try {
             milestoneOnMainPage
                     .clickOnYearsOption("583687348237560327234686")
                     .clickOnMonthOption("49");
             assertTrue("Alert 'Numbers only' for year did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
-            assertTrue("Alert 'Numbers only' for month did not appeared",milestoneOnMainPage.alertMessageNotValidMonth());
+            assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidMonth());
             milestoneOnMainPage.fillTextField("post")
                     .sendPost();
-            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-        }  catch (Exception e) {
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest6(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest6() {
         try {
             milestoneOnMainPage
                     .clickOnYearsOption("עשרים ואחד")
                     .clickOnMonthOption("00");
             assertTrue("Alert 'Numbers only' for month did not appeared", milestoneOnMainPage.alertMessageNotValidYear());
             milestoneOnMainPage.sendPost();
-            assertTrue("Alert 'Required field' did not appeared",milestoneOnMainPage.alertMessageRequiredFields());
-        }  catch (Exception e) {
+            assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test(groups={"smoke","negative"}, enabled = true)
-    public void MilestoneNegativeTest7(){
+    @Test(groups = {"smoke", "negative"}, enabled = true)
+    public void MilestoneNegativeTest7() {
         type = "Daily living";
         milestone = "Dresses alone";
         post = randomAlphabetic(500);
@@ -252,16 +250,13 @@ public class MilestoneOnMainPageTest extends TestNgTestBase{
             milestoneOnMainPage.fillTextField(post)
                     .sendPost();
             assertTrue("Alert 'Required field' did not appeared", milestoneOnMainPage.alertMessageRequiredFields());
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+}
 
-    @AfterClass(alwaysRun = true)
-    public void teardown() {
-        this.driver.quit();
-     }
-    }
+
 
 
 

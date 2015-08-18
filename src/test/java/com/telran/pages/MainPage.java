@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -96,7 +95,6 @@ public class MainPage extends Page {
 
     public MainPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
         PageFactory.initElements(driver, this);
         this.PAGE_URL = baseUrl + "/home";
         PropertyConfigurator.configure("log4j.properties");

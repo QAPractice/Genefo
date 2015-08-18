@@ -1,12 +1,11 @@
 package com.telran;
 
 import com.telran.util.PropertyLoader;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import ru.stqa.selenium.factory.WebDriverFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -28,18 +27,18 @@ public class TestNgTestBase {
   public void init() throws IOException {
     baseUrl = PropertyLoader.loadProperty("site.url");
     // gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
+    driver = new FirefoxDriver();
+    // Capabilities capabilities = PropertyLoader.loadCapabilities();
+    // PropertyConfigurator.configure("log4j.properties");
+    // driver = WebDriverFactory.getDriver(capabilities);
 
-    Capabilities capabilities = PropertyLoader.loadCapabilities();
-    PropertyConfigurator.configure("log4j.properties");
-    driver = WebDriverFactory.getDriver(capabilities);
-
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
   }
 
   @AfterClass(alwaysRun = true)
   public void tearDown() {
     if (driver != null) {
-      WebDriverFactory.dismissDriver(driver);
+      driver.quit();
     }
   }
 

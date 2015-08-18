@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ public class RegistrationPage extends Page {
     @FindBy(id = "submit")
     WebElement submitButton;
 
-    @FindBy(xpath = "*//button[@disabled='disabled']")
+    @FindBy(xpath = "//button[@disabled='disabled']")
     WebElement submitNotAvailable;
 
     //checkboxs
@@ -65,7 +64,7 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'last name')]")
     WebElement nonValidLastName;
 
-    @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'condition')]")
+    @FindBy(xpath = "//*[@class='col-sm-4']//*[contains(.,'Condition')]")
     WebElement nonValidCondition;
 
     @FindBy(xpath = "//*[@class='col-sm-4' and contains(.,'18 or older')]")
@@ -83,7 +82,7 @@ public class RegistrationPage extends Page {
     WebElement asteriskPassword;
     @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='Email']/i")
     WebElement asteriskEmail;
-    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='condition']/i")
+    @FindBy(xpath = "//*[@class='col-sm-2 control-label'][@for='condition']/*")
     WebElement asteriskCondition;
 
     //public ProfilePage profilePage;
@@ -92,11 +91,22 @@ public class RegistrationPage extends Page {
         super(driver);
         this.PAGE_URL = baseUrl + "/signup_regular";
         PageFactory.initElements(driver, this);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
      }
 
     public RegistrationPage openRegistrationPage() {
         driver.get(PAGE_URL);
+
+        return this;
+    }
+
+    public RegistrationPage openRegWebinar1Page() {
+        driver.get(baseUrl + "signup_regular?webinar=1");
+
+        return this;
+    }
+
+    public RegistrationPage openRegWebinar2Page() {
+        driver.get(baseUrl + "signup_regular?webinar=2");
 
         return this;
     }
@@ -127,6 +137,12 @@ public class RegistrationPage extends Page {
     public RegistrationPage fillConditionField(String condition) {
         setElementText(conditionField, condition);
         clickElement(conditionToltip);
+        Log.info("entering condition from the list: " + condition + " ");
+        return this;
+    }
+
+    public RegistrationPage fillConditionFieldNeg(String condition) {
+        setElementText(conditionField, condition);
         Log.info("entering condition from the list: " + condition + " ");
         return this;
     }
@@ -202,24 +218,24 @@ public class RegistrationPage extends Page {
     public boolean notAvailableSignUpButton(){return exists(submitNotAvailable);}
 
     public RegistrationPage checkThatFirstNameFieldHasAsterisk() {
-        Assert.assertTrue(asteriskFirstName.isDisplayed());
+        Assert.assertTrue(exists(asteriskFirstName));
         return this;
 
     }
     public RegistrationPage checkThatPasswordFieldHasAsterisk () {
-        Assert.assertTrue(asteriskPassword.isDisplayed());
+        Assert.assertTrue(exists(asteriskPassword));
         return this;
     }
     public RegistrationPage checkThatEmailFieldHasAsterisk () {
-        Assert.assertTrue(asteriskEmail.isDisplayed());
+        Assert.assertTrue(exists(asteriskEmail));
         return this;
     }
     public RegistrationPage checkThatConditionFieldHasAsterisk (){
-        Assert.assertTrue(asteriskCondition.isDisplayed());
+        Assert.assertTrue(exists(asteriskCondition));
         return this;
     }
     public RegistrationPage CheckThatBoxAgreeAppeard() {
-        Assert.assertTrue(CheckBoxAgreeAppeared.isDisplayed());
+        Assert.assertTrue(exists(alertToCheckBoxAgree));
         return this;
     }
     }

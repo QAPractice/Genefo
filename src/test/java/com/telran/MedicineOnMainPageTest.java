@@ -47,19 +47,20 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
     }
 
     //Positive tests
-    @Test(groups = {"smoke", "positive"}, enabled = true, description = "Post medicine Randomly", dataProviderClass = DataProviders.class, dataProvider = "loadMedicineTypesFromFile")
-    public void postSomeMedicineRandom(String name,String reason) throws InterruptedException {
-        medicineOnMainPage.createMedicinePostRandom(name,reason);
+    @Test(groups = {"positive"}, enabled = true, description = "Post medicine Randomly", dataProviderClass = DataProviders.class, dataProvider = "loadMedicineTypesFromFile")
+    public void postSomeMedicineRandom(String name, String effect, String reason) throws InterruptedException {
+        medicineOnMainPage.createMedicinePostRandom(name, effect, reason);
     }
     //Negative tests
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void sendMedicineWithBlankFieldTest() {
 
 
         try {
             medicineOnMainPage
                     .fillNewNameOfMedicine(" ")
+                    .fillNewSideEffect(" ")
                     .fillNewReasonForMedicine(" ")
                     .typeTellUsMore(" ")
                     .clickOnPostButton();
@@ -80,9 +81,9 @@ public class MedicineOnMainPageTest extends TestNgTestBase {
         try {
             medicineOnMainPage
                     .fillNewNameOfMedicine(" ")
+                    .fillNewSideEffect(" ")
                     .fillNewReasonForMedicine(" ")
-                    .clickOnAllStarsTogether()
-                    .rateThreeStars()             //Click on the third star
+                    .clickOnAnyStar(1)
                     .typeTellUsMore(" ")
                     .clickOnPostButton();
             sleep(3000);

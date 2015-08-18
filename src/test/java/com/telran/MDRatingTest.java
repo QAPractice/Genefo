@@ -94,7 +94,7 @@ public class MDRatingTest extends TestNgTestBase {
             Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutPhysicianFName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test(groups = {"smoke", "negative"}, description = "sendMDRatingPostWithoutPhysicianFName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutPhysicianFName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutPhysicianFName test");
         Log.info("sendMDRatingPostWithoutPhysicianFName test");
@@ -118,7 +118,7 @@ public class MDRatingTest extends TestNgTestBase {
         Reporter.log("Post is not sent");
     }
 
-    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutPhysicianLName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test(groups = {"smoke", "negative"}, description = "sendMDRatingPostWithoutPhysicianLName", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutPhysicianLName(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutPhysicianLName test");
         Log.info("sendMDRatingPostWithoutPhysicianLName test");
@@ -158,7 +158,7 @@ public class MDRatingTest extends TestNgTestBase {
         }
         Reporter.log("Post is not sent");
     }*/
-    @Test (groups = {"negative"}, description = "sendMDRatingPostWithoutRating", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
+    @Test(groups = {"smoke", "negative"}, description = "sendMDRatingPostWithoutRating", dataProviderClass = DataProviders.class, dataProvider = "loadDataForMDRating")
     public void sendMDRatingPostWithoutRating(String facility_name, String physician_fname, String physician_lname, String starNumber, String text) {
         Reporter.log("sendMDRatingPostWithoutRating test");
         Log.info("sendMDRatingPostWithoutRating test");

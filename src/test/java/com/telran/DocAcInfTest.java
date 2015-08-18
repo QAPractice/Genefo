@@ -28,10 +28,10 @@ public class DocAcInfTest extends TestNgTestBase {
     public DocAcInfPage docAcInfPage;
     public String EmailNickname; // Keeps the part of email before sign @
     private boolean acceptNextAlert = true;
-    private String EMAIL1 = "osh_il+21@yahoo.com";
-    private String EMAIL2 = "osh_il+19@yahoo.com";
+    private String EMAIL1 = "jakoff+HCP@gmail.com";
+    private String EMAIL2 = "jakoff+HCPNEW@gmail.com";
 
-    @BeforeClass(groups = {"smoke"}, alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -49,7 +49,7 @@ public class DocAcInfTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod(groups = {"smoke"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         try {
             if(profileDoctorPage.isOnProfileDoctorPage() == false) {
@@ -112,7 +112,7 @@ public class DocAcInfTest extends TestNgTestBase {
         Reporter.log("operation is canceled successful");
     }
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"negative"})
     public void EditAccInfEmptyFiels() {
         Log.info("Checking that empty fields are not updated");
         try {

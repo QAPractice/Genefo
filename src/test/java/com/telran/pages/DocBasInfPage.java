@@ -4,10 +4,8 @@ import com.telran.LogLog4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -19,43 +17,43 @@ public class DocBasInfPage extends Page{
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     //Titles
     @FindBy(xpath = "//*[contains(text(),'Healthcare Professional Basic Information')]")
-    @CacheLookup
+
     WebElement basInfTitle;
 
     //buttons
     @FindBy(xpath ="//*[@id='submit']/span" )
-    @CacheLookup
+
     WebElement saveButton;
     @FindBy(xpath ="//*[@id='submit' and @disabled='disabled']" )
-    @CacheLookup
+
     WebElement saveDisableButton;
     @FindBy(xpath = "//*[@class='profile-info-section ng-scope']/descendant::button[@class='btn btn-primary'and contains(.,'Cancel')]")
-    @CacheLookup
+
     WebElement cancelButton;
     @FindBy (xpath = "//*[@style='overflow: hidden;']")
-    @CacheLookup
+
     WebElement addProfilePicture;
 
     //fields
     @FindBy(name = "firstName")
-    @CacheLookup
+
     WebElement firstNameField;
     @FindBy(name = "lastName")
-    @CacheLookup
+
     WebElement lastNameField;
     @FindBy(xpath = "//*[@name='location']")
-    @CacheLookup
+
     WebElement locationField;
 
     //dropdown
     @FindBy(name = "birthmonth")
-    @CacheLookup
+
     WebElement birthmonthToltipMonth;
     @FindBy(name = "birthday")
-    @CacheLookup
+
     WebElement birthdayToltipDay;
     @FindBy(name = "birthyear")
-    @CacheLookup
+
     WebElement birthyearToltipYear;
     @FindBy(xpath = "//*[contains(@id,'option-0')]/a")
     WebElement locationToltip;
@@ -63,20 +61,20 @@ public class DocBasInfPage extends Page{
 
     //Allerts
     @FindBy(xpath = "//*[contains(@ng-show,'firstName')]/*[@class='fa fa-times']")
-    @CacheLookup
+
     WebElement fNameErrAlert;
     @FindBy(xpath = "//*[contains(@ng-show,'lastName')]/*[@class='fa fa-times']")
-    @CacheLookup
+
     WebElement lNameErrAlert;
     @FindBy(xpath = "//*[contains(@ng-show,'location')]/*[@class='fa fa-times']")
-    @CacheLookup
+
     WebElement locationErrAlert;
 
 
     public DocBasInfPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = baseUrl + "/account_hcp/basic";
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
+        PageFactory.initElements(driver, this);
     }
 
     public DocBasInfPage waitUntilDocBasInfPageIsLoaded() {

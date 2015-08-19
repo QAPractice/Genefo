@@ -23,6 +23,7 @@
             <class name="com.telran.DocAcInfTest"/>
             <class name="com.telran.DocBasInfTest"/>
             <class name="com.telran.DocProfInfTest"/>
+            <class name="com.telran.ContactUSTest"/>
         </classes>
 
 

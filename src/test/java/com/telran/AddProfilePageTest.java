@@ -5,8 +5,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -44,7 +42,7 @@ public class AddProfilePageTest extends TestNgTestBase {
                 .login(MY_EMAIL, MY_Password);
     }
 
-    @BeforeMethod(alwaysRun = true)
+    // @BeforeMethod(alwaysRun = true)
     public void loadThisPage(){
         driver.get("http://52.10.6.51:8080/login");
     }
@@ -65,7 +63,7 @@ public class AddProfilePageTest extends TestNgTestBase {
         Assert.assertTrue(thisPage.isMandatoryFieldsPresent(), "All Mandatory fields marked with \"*\"");
     }
 
-    @DataProvider
+    // @DataProvider
     public Object[][] myDataProvider(){
         return new Object[][]{
                 {"It's me","firstName of me Vasia","lastName Pupkin","Male","February","13","1985","African","comments1 "},
@@ -105,7 +103,7 @@ public class AddProfilePageTest extends TestNgTestBase {
         assertTrue(myProfilesPage.isOnMyProfilesPage(), "My profile Page isn't loaded");
     }
 
-    @DataProvider
+    //  @DataProvider
     private Object[][] chooseCondition(){
         return new Object[][]{
 //                input not sensative to case.
@@ -126,7 +124,7 @@ public class AddProfilePageTest extends TestNgTestBase {
 
     }
 
-    @DataProvider
+    //  @DataProvider
     private Object[][] chooseGender(){
         return new Object[][]{
                 {"Male"},
@@ -169,7 +167,7 @@ public class AddProfilePageTest extends TestNgTestBase {
         assertEquals(thisPage.getLastName(), lastName, "last name compare");
     }
 
-    @DataProvider
+    //  @DataProvider
     public Object[][] negativeProvider(){
         return new Object[][]{
                 {"Select One","My First Name","My Last Name","Angel","Male","February","1985","African","March","2","2005","how_do_you_know "},

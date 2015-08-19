@@ -42,7 +42,7 @@ public class ContactUSPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    public ContactUSPage openContactPage() {
+    public ContactUSPage openContactPage(WebDriver driver) {
         Log.info("Opening ContactUs page");
         driver.get(PAGE_URL);
         return this;

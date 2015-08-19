@@ -30,7 +30,7 @@ public class ContactUSTest extends TestNgTestBase {
         contactUSPage = PageFactory.initElements(driver, ContactUSPage.class);
 
         try {
-            contactUSPage.openContactPage();
+            contactUSPage.openContactPage(driver);
 
         } catch (Exception e) {
             e.printStackTrace();

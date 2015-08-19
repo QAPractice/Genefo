@@ -67,7 +67,7 @@ public class WhatWorksOnMainPage extends Page {
     // Here we distinguish list that chosen, from list that is not chosen
     @FindBy(xpath = "//div[contains(@class,'chosen-with-drop chosen-container-active')]//span[contains(text(),'Please select a specific item')]")
     WebElement ItemListButtonThatChosen;
-    //elements of dropdown list
+    //elements of dropdown list    // we do not use it for now. In contrast to that we search them  automaticly
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='1']")
     WebElement firstItemInList;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='2']")
@@ -82,20 +82,26 @@ public class WhatWorksOnMainPage extends Page {
     WebElement sixthItemInList;
     @FindBy(xpath = "//ul[@class='chosen-results']/li[@data-option-array-index='7']")
     WebElement seventhItemInList;
+
     // Rating star( marked one. Have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[contains(text(),'*')]")
-    WebElement thirdMarkedRatingStar;
+    @FindBy(xpath = "//label[@for='what_works_rating']/..//span[@class='ng-isolate-scope ng-valid ng-dirty ng-valid-parse ng-touched']/i[3]/span[contains(text(),'*')]")
+    WebElement thirdMarkedRatingStar;    // we do not use it for now
+
     // Rating star( non-marked one. Do not have asterisk sign in definition)
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/i[3]/span[not(contains(text(),'*'))]")
-    WebElement thirdNonMarkedRatingStar;
+    @FindBy(xpath = "//label[@for='what_works_rating']/..//span[@class='ng-isolate-scope ng-valid ng-dirty ng-valid-parse ng-touched']/i[3]/span[not(contains(text(),'*'))]")
+    WebElement thirdNonMarkedRatingStar;  // we do not use it for now
+
     // Rating star - marked and non-marked together
-    @FindBy(xpath = "//*[@class='ng-isolate-scope ng-valid ng-dirty']/*[3]")
+    @FindBy(xpath = "//label[@for='what_works_rating']/..//span[@class='ng-isolate-scope ng-valid']/i[3]")
     WebElement thirdRatingStar;
+
+    @FindBy(xpath = "//label[@for='what_works_rating']/..//*[@class='ng-isolate-scope ng-valid']")
+    WebElement allStarsTogether;   // we do not use it for now
+
     // Serves as indication that we are on 'WhatWorks' Panel.
     @FindBy(xpath = "//label[@for='what_works_category_1']/../label[@for='symptoms_select'] ")
     WebElement categorySymptomTitle;
-    @FindBy(xpath = "//*[@class='panel-body ng-isolate-scope ng-valid ng-dirty']//*[@ng-model='what_works_rating']//i[contains(@class, 'glyphicon' )]")
-    WebElement allStarsTogether;
+
     // text field for posting
     @FindBy(xpath = "//textarea[@name = 'bio']")
     WebElement postField;
@@ -133,7 +139,7 @@ public class WhatWorksOnMainPage extends Page {
 
     // Waits until title of our 'What works' Panel appears on the screen
     public void waitUntilWhatWorksPanelIsLoaded() {
-        Log.info("Waiting Until WhatWorksPanel Is Loaded" );
+        Log.info("Waiting Until WhatWorksPanel Is Loaded");
         try {
             waitUntilElementIsLoaded(categorySymptomTitle);
         } catch (IOException e) {
@@ -152,7 +158,7 @@ public class WhatWorksOnMainPage extends Page {
     // and data structure itemsInListById ( has type ArrayList<WebElement> )
     public void defineOptionsLocators(){
 
-        highLightedOptionsLocator.put("Therapy",highLightedTherapyButton);
+        highLightedOptionsLocator.put("Therapy", highLightedTherapyButton);
         highLightedOptionsLocator.put("Equipment",highLightedEquipmentButton);
         highLightedOptionsLocator.put("Nutrition",highLightedNutritionButton);
         highLightedOptionsLocator.put("Exercises",highLightedExercisesButton);
@@ -164,12 +170,12 @@ public class WhatWorksOnMainPage extends Page {
         optionsLocator.put("Nutrition", nutritionButton);
         optionsLocator.put("Exercises", exercisesButton);
         optionsLocator.put("Alternative", alternativeButton);
-        optionsLocator.put("Other",otherButton);
+        optionsLocator.put("Other", otherButton);
 
     }
 
     public WhatWorksOnMainPage clickOnOption(String option) {
-        Log.info("Clicking on 'Category' option " + option );
+        Log.info("Clicking on 'Category' option " + option);
         try{
             clickElement(optionsLocator.get(option));// Choose and click on button that has 'option' string written on it
            }
@@ -279,8 +285,8 @@ public class WhatWorksOnMainPage extends Page {
 
     // Click on the third star
     public WhatWorksOnMainPage rateItThree() {
-        Log.info("Clicking on the third star " );
-        clickElement(thirdRatingStar);
+        Log.info("Clicking on the third star ");
+            clickElement(thirdRatingStar);
         return this;
     }
 

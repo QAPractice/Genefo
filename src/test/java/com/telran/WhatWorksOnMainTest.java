@@ -18,7 +18,7 @@ import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by alex on 5/29/2015.
+ * Created by alex on 1/29/2015.
  */
 public class WhatWorksOnMainTest extends TestNgTestBase {
 
@@ -28,7 +28,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     public WhatWorksOnMainPage whatWorksOnMainPage;
     private boolean acceptNextAlert = true;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         loginPage = PageFactory.initElements(driver,LoginPage.class);
         mainPage = PageFactory.initElements(driver,MainPage.class);
@@ -46,7 +46,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforemethodsetup() {
 
         mainPage.openMainPage();
@@ -97,7 +97,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
 
     // Negative test - Do not click on Category button.
     // Check that you are not able to send a post.
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"smoke", "negative"}, description = "Empty Category Negative Test" )
     public void EmptyCategoryTest() {
         Date date = new Date();
         String text = "My Empty Category Post at " + date.toString();
@@ -109,7 +109,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
             assertFalse("Item List Is Chosable despite of 'Category' absence",whatWorksOnMainPage.verifyItemListIsChosen() );
             Log.info("Hurra! Item from the list wasn't choosen, because Category is empty");
             whatWorksOnMainPage
-                    .clickOnAllStarsTogether()
+                   // .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
                     .fillTextField(text)
                     .sendPost();
@@ -125,7 +125,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     // Negative tests - Click on Category button but do not click on item list.
     // Check that you are not able to send a post.
     // Category name is given by data provider.
-    @Test(groups = {"smoke", "negative"}, dataProvider = "myNegativeProvider")
+    @Test(groups = {"smoke", "negative"}, dataProvider = "myNegativeProvider", description = "Empty List Item Negative Test" )
     public void EmptyListItemTest(String category) {
         Log.info("-------------------------------------------------------------------------");
         Log.info("Negative test: Selecting Category " + category + " but Not Selecting Item");
@@ -135,7 +135,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
             whatWorksOnMainPage
                     .clickOnOption(category);// Here we cover the test that category button should be highlighted after clicking
             assertTrue("Category button is not highlighted after we click on it", whatWorksOnMainPage.isOptionHighLighted(category));
-            whatWorksOnMainPage.clickOnAllStarsTogether()
+            whatWorksOnMainPage//.clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
                     .fillTextField(text)
                     .sendPost();
@@ -150,7 +150,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
     // Click on Category button then choose item from the item list.
     //  Check that you are able to send a post.
     // Category name and item number are given by data provider.
-    @Test(groups = {"smoke", "positive"}, dataProvider = "myProvider" )
+    @Test(groups = {"smoke", "positive"}, dataProvider = "myProvider", description = "Send Post Positive Test" )
     public void SendPostTest(String category, Items itemNumber) {
         Date date = new Date();
         String text = "My Post at " + date.toString() ;
@@ -162,8 +162,8 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
                 whatWorksOnMainPage
                         .clickOnOption(category)
                         .fillItemForOtherOption(otherItem)
-                        .clickOnAllStarsTogether()
-                        .rateItThree()                //Click on the third star
+                     //   .clickOnAllStarsTogether()
+                       .rateItThree()                //Click on the third star
                         .fillTextField(text)
                         .sendPost();
             else if (itemNumber == Items.LAST_ITEM_FROM_LIST) //We want to choose the last item from the dropdown list
@@ -172,7 +172,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
                     .clickOnItemList()
                     .waitUntilLastItemFromItemListIsLoaded()
                     .chooseLastItemFromItemList()
-                    .clickOnAllStarsTogether()
+                  //  .clickOnAllStarsTogether()
                     .rateItThree()                //Click on the third star
                     .fillTextField(text)
                     .sendPost();
@@ -183,7 +183,7 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
                         .clickOnItemList()
                         .waitUntilItemFromItemListIsLoaded((itemNumber.value))
                         .chooseItemFromItemList(itemNumber.value)
-                        .clickOnAllStarsTogether()
+                     //   .clickOnAllStarsTogether()
                         .rateItThree()                //Click on the third star
                         .fillTextField(text)
                         .sendPost();
@@ -215,6 +215,5 @@ public class WhatWorksOnMainTest extends TestNgTestBase {
             this.value = value;
         }
     }
-
 
 }

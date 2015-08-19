@@ -33,7 +33,7 @@ public class PostOnMainTest extends TestNgTestBase {
     private boolean acceptNextAlert = true;
 
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         //PropertyConfigurator.configure("log4j.properties");
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -50,7 +50,7 @@ public class PostOnMainTest extends TestNgTestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
         public void beforemethodsetup() {
              mainPage.openMainPage();
              mainPage.waitUntilMainPageIsLoaded()
@@ -59,7 +59,7 @@ public class PostOnMainTest extends TestNgTestBase {
     }
 
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"smoke", "negative"}, description = "Send Empty Post Negative Test")
     public void SendEmptyPostTest() {
         Log.info("---------------------------------------------------------------");
         Log.info("Negative test: 'Post Category' empty post. ");
@@ -78,7 +78,7 @@ public class PostOnMainTest extends TestNgTestBase {
         }
     }
 
-    @Test(groups = {"smoke", "negative"})
+    @Test(groups = {"smoke", "negative"}, description = "Send One Letter Post Negative Test" )
     public void SendOneLetterPostTest() {
         Log.info("---------------------------------------------------------------");
         Log.info("Negative test: 'Post Category' one letter post. ");
@@ -98,7 +98,7 @@ public class PostOnMainTest extends TestNgTestBase {
 
 
 
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "positive"} , description = "Send Post Success Test" )
     public void SendPostSuccessTest() {
         Date date = new Date();
         String text = "My 'Post Category' post at "  + date.toString();

@@ -38,6 +38,7 @@ public class DocProfInfTest extends TestNgTestBase{
         try {
             loginPage.login(LoginTest.USER, LoginTest.PASSWORD);
             mainPage.waitUntilMainPageIsLoaded();
+            sleep();
             mainPage.selectMyAccount();
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,7 +133,20 @@ public class DocProfInfTest extends TestNgTestBase{
             docProfInfPage
                     .fillSpecialtiesField("");
             Assert.assertTrue(docProfInfPage.isAddSpecButtonDisabled(), "The Add Specialties Button is Enabled");
-            Reporter.log("Specialties Button disnable");
+            Reporter.log("Specialties Button disable");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(groups = {"negative"})
+    public void AddEmptySubspecialties() {
+        Log.info("Checking that Subspecialties with empty field cannot added");
+        try {
+            docProfInfPage
+                    .fillSubspecialtiesField("");
+            Assert.assertTrue(docProfInfPage.isAddSubspecButtonDisabled(), "The Add Specialties Button is Enabled");
+            Reporter.log("Subspecialties Button disable");
         } catch (Exception e) {
             e.printStackTrace();
         }

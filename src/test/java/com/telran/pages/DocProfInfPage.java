@@ -180,7 +180,9 @@ public class DocProfInfPage extends Page{
     public boolean isAddSpecButtonDisabled() {
         return exists(addSpecDisButton);
     }
-
+    public boolean isAddSubspecButtonDisabled() {
+        return exists(addSubDisButton);
+    }
 
     public boolean isSpecExists() {
         return exists(specialties);
